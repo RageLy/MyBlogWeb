@@ -239,8 +239,9 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
 
 
 /*#留言*/
-.Message{float: left;width: 100%;border-bottom: 1px solid #f0f3f9; padding:20px 0!important; }
-.Message .headimg{float: left;}
-.Message .headimg img{height: 40px;width: 40px; border-radius: 50%;float: left;}
-.Message .text{text-align: left;overflow: hidden;float: left;line-height: 40px;padding: 0 0 0 20px;}
-.Message .date{text-align: left;overflow: hidden;float: left;}
+.Message{float: left;width: 100%;border-bottom: 1px solid #f0f3f9; padding:10px 0 20px 0!important;position: relative;margin-bottom: 10px; }
+.Message .headimg{float: left;padding: 0 0 20px 0;}
+.Message .user{float: left;position: absolute;top:10px;left: 70px;overflow: hidden;color: deepskyblue}
+.Message .headimg img{height: 50px;width: 50px; border-radius: 50%;float: left;}
+.Message .text{text-align: left;float: left;line-height:24px;padding: 0;height:30%;position: absolute;left:70px;top:40px;}
+.Message .date{text-align: left;overflow: hidden;float: left;position: absolute;bottom: 5px;left:70px;color: #adadad}

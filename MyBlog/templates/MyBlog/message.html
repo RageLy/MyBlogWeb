@@ -37,6 +37,7 @@
                 <div class="layui-card ">
                     <div class="layui-card-body Message">
                         <div class="headimg"><img src="{% static 'common/imgs/userhead.png' %}"></div>
+                        <div class="user"> <p>{{ MessageTb.username }}</p></div>
                         <div class="text"> <p>{{ MessageTb.MessageContent }}</p></div>
                         <div class="date"> <p>{{ MessageTb.createdate|date:"Y-m-d H:i:s"}}</p></div>
                     </div>
