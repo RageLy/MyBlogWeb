@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>菜单添加</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, menu-scalable=0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/layui/css/layui.css' %}">
+{#         <link rel="stylesheet" href="{% static '/layui/css/admin.css' %}">#}
+</head>
+<body>
+<div class="layui-form" lay-filter="layuiadmin-form-menuadmin" id="layuiadmin-form-menuadmin" style="padding: 20px 0 0 0;">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">菜单名称</label>
+        <div class="layui-input-inline">
+            <input type="text" name="menuname" value="{{ menus.menuname}}" lay-verify="required" placeholder="请输入菜单名称" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">菜单级别</label>
+        <div class="layui-input-inline">
+            <select name="level" id="level" lay-verify="required">
+                    <option value="-1">请选择菜单级别</option>
+                {% if menus.level == 0 %}
+                    <option value="0" selected>一级</option>
+                    <option value="1">二级</option>
+                    {% else %}
+                    <option value="0" >一级</option>
+                    <option value="1" selected>二级</option>
+                {% endif %}
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">父菜单</label>
+        <div class="layui-input-inline">
+            <select name="parentid" id="parentid" lay-verify="required">
+                <option value="-1">请选择父菜单</option>
+            {% if menuList %}
+               {% for menu in menuList %}
+                   {% if menu == menus.parentid %}
+                    <option value="{{ menu.id }}" selected>{{ menu.menuname }}</option>
+                   {% else %}
+                       <option value="{{ menu.id }}">{{ menu.menuname }}</option>
+                   {% endif %}
+                    {% endfor %}
+
+            {% else %}
+                <option value="0" selected>无</option>
+            {% endif %}
+                </select>
+        </div>
+    </div>
+
+   <div class="layui-form-item">
+        <label class="layui-form-label">地址</label>
+        <div class="layui-input-inline">
+            <input type="text" name="url" value="{{ menus.url}}" lay-verify="required" placeholder="请输入地址" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+<div class="layui-form-item">
+        <label class="layui-form-label">图标</label>
+        <div class="layui-input-inline">
+            <select name="icon" id='icon' lay-filter="icon" placeholder="请选择图标">
+                {% if menus.icon == 'layui-icon-home' %}
+                 <option value="layui-icon-home" selected>主页</option>
+                <option value="layui-icon-user">用户</option>
+                <option value="layui-icon-set">设置</option>
+                <option value="layui-icon-theme">主题</option>
+                <option value="layui-icon-note">便签</option>
+                <option value="layui-icon-template">页面</option>
+                <option value="layui-icon-component">组件</option>
+                <option value="layui-icon-app">应用</option>
+                <option value="layui-icon-senior">高级</option>
+                {% elif menus.icon == 'layui-icon-app' %}
+                <option value="layui-icon-home">主页</option>
+                <option value="layui-icon-user" >用户</option>
+                <option value="layui-icon-set">设置</option>
+                <option value="layui-icon-theme">主题</option>
+                <option value="layui-icon-note">便签</option>
+                <option value="layui-icon-template">页面</option>
+                <option value="layui-icon-component">组件</option>
+                <option value="layui-icon-app" selected>应用</option>
+                <option value="layui-icon-senior">高级</option>
+                {% elif menus.icon == None %}
+                <option value="layui-icon-home" selected>主页</option>
+                <option value="layui-icon-user" >用户</option>
+                <option value="layui-icon-set">设置</option>
+                <option value="layui-icon-theme">主题</option>
+                <option value="layui-icon-note">便签</option>
+                <option value="layui-icon-template">页面</option>
+                <option value="layui-icon-component">组件</option>
+                <option value="layui-icon-app">应用</option>
+                <option value="layui-icon-senior">高级</option>
+                {% endif %}
+              </select>
+        </div>
+    </div>
+    <div class="layui-form-item layui-hide">
+        <input type="button" lay-submit lay-filter="LAY-menu-front-submit" id="LAY-menu-front-submit"  value="确认">
+    </div>
+
+</div>
+
+<script src="{% static '/layui/layui.js' %}"></script>
+
+<script>
+    layui.config({
+        base: '{% static '/' %}' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'form', 'upload'], function(){
+        var $ = layui.$
+            ,form = layui.form
+    });
+</script>
+</body>
+</html>

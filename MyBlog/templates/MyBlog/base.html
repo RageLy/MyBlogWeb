@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title%}
+        <title>花花与风的博客</title>
+    {% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'common/css/blog.css' %}">
+    <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}">
+    {% block head %}
+    {% endblock %}
+</head>
+<body >
+<div class="header">
+    <div class="menu-btn">
+        <div class="menu"></div>
+    </div>
+    <h1 class="logo">
+        <a href="../">
+            <span>花花与风</span>
+            <img src="{% static 'common/imgs/logo.png' %}">
+        </a>
+    </h1>
+    <div class="nav">
+        <a href="../Blog/" class="active">文章</a>
+        <a href="../Picture/">相册</a>
+        <a href="../message/">留言</a>
+        <a href="../weblink/">圈中人</a>
+        <a href="../about/">关于</a>
+    </div>
+    <ul class="layui-nav header-down-nav">
+        <li class="layui-nav-item"><a href="../Blog/" class="active">文章</a></li>
+        <li class="layui-nav-item"><a href="../Picture/">相册</a></li>
+        <li class="layui-nav-item"><a href="../message/">留言</a></li>
+        <li class="layui-nav-item"><a href="../weblink/">圈中人</a></li>
+        <li class="layui-nav-item"><a href="../about/">关于</a></li>
+    </ul>
+    <p class="welcome-text">
+        欢迎来到<span class="name">花花与风</span>的博客~
+    </p>
+</div>
+{% block fluid %}
+{% endblock %}
+<div class="layui-container">
+    <div class="layui-row layui-col-space15 content-sapce-15">
+        {% block container %}
+        {% endblock %}
+    </div>
+</div>
+<div class="footer">
+    <div class="layui-container">
+        <div class="layui-col-md12">
+            <div class="layui-col-md9 footer-desc">
+                <p>花花与风</p>
+                <p>花花与风愿为你分享生活中的点点滴滴，最新前沿技术，包括数据分析，深度学习，python等方方面面的东西，时而也会更新一些个人生活小事。</p>
+            </div>
+            <div class="layui-col-md3 footer-link">
+                相关链接
+                <ul>
+                    <li><a href="../">主页</a></li>
+                    <li><a href="../Blog/">博文</a></li>
+                    <li><a href="../Picture/">相册</a></li>
+                    <li><a href="../about/">关于</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="layui-col-md12 footer-hr">
+            <div class="layui-col-md12">
+                <p>design & code by @花花与风,base on layui + django</p>
+                <p>感谢七牛提供近乎免费的CDN，阿里云提供的优质云服务，以及360云加速的给力支持。</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'layui/layui.js' %}"></script>
+<script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
+<script>
+    layui.config({
+        base: '{% static '/layui/js/util/' %}'
+    }).extend({
+        index: 'lib/index'
+    }).use(['util','element','menu'], function(){
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+        $ = layui.$,menu = layui.menu;
+        var util = layui.util
+        menu.init();
+        util.fixbar({
+            css: {right: 50, bottom: 100}
+            ,bgcolor: '#393D49'
+        });
+    });
+</script>
+<script>
+    $('li').click(function(){
+        console.log($(this))
+        $('.active').removeClass('active');
+        $(this).addClass("active");
+    });
+    $(function(){
+        function footerPosition(){
+            $(".footer").removeClass("fixed-bottom");
+            var contentHeight = document.body.scrollHeight,//网页正文全文高度
+                winHeight = window.innerHeight;//可视窗口高度，不包括浏览器顶部工具栏
+            if(!(contentHeight > winHeight)){
+                //当网页正文高度小于可视窗口高度时，为footer添加类fixed-bottom
+                $(".footer").addClass("fixed-bottom");
+            } else {
+                $(".footer").removeClass("fixed-bottom");
+            }
+        }
+        footerPosition();
+        $(window).resize(footerPosition);
+    });
+</script>
+{% block script %}
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,77 @@
+{% extends 'MyBlog/base.html' %}
+{% load static %}
+{% block title%}
+    <title>欢迎留言</title>
+{% endblock %}
+{#{% block fluid %}#}
+{#    <div class="banner">#}
+{#        <div class="cont w1000">#}
+{#            <div class="title">#}
+{#                <h3>花花<br />与风</h3>#}
+{#                <h4>well-balanced heart</h4>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#{% endblock %}#}
+{% block container %}
+
+    <div class="layui-col-md12 Tophead">
+        <div class="layui-card ">
+            <div class="layui-card-header">欢迎大家留言</div>
+            <div class="layui-card-body ">
+                <form class="layui-form message-con" method="post">
+                    {% csrf_token %}
+                    <div class="layui-form-item">
+                        <textarea class="layui-textarea" id="MessageCon" ></textarea>
+                    </div>
+                    <div class="layui-form-item">
+                        <button class="layui-btn layui-btn-green" type="button" id="submit">留言</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md12">
+        <div class="layui-card-header">最新留言</div>
+        {% if MessageTbs %}
+            {% for MessageTb in MessageTbs %}
+                <div class="layui-card ">
+                    <div class="layui-card-body Message">
+                        <div class="headimg"><img src="{% static 'common/imgs/userhead.png' %}"></div>
+                        <div class="text"> <p>{{ MessageTb.MessageContent }}</p></div>
+
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}
+{% block script %}
+    <script>
+        layui.config({
+            base: '{% static '/' %}' //静态资源所在路径
+        }).extend({
+            index: 'lib/index' //主入口模块
+        }).use(['layer'], function(){
+            var $ = layui.$
+                ,layer = layui.layer
+
+            $('#submit').on("click",function(){
+                $.ajax({
+                    type:"POST",
+                    data: {'MessageCon':$("#MessageCon").val(),"csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val()
+                    },
+                    url: "{% url 'MyBlog:submitmessage' %}", //后台处理函数的url
+                    cache: false,
+                    success: function(result) {
+                        console.log(result.message)
+                        if (result.message==0){
+                            layer.msg('点赞成功',{time:0.5*1000})
+                            location.reload()
+                        }
+                    },
+                });
+            });
+        });
+    </script>
+{% endblock %}

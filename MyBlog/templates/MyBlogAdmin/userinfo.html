@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>设置我的资料</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}">
+    <link rel="stylesheet" href="{% static 'layui/css/admin.css' %}">
+</head>
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">设置我的资料</div>
+                <div class="layui-card-body" pad15>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="layui-form" lay-filter="layuiadmin-form-useradmin" id="layuiadmin-form-useradmin" >
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">我的角色</label>
+                                <div class="layui-input-inline">
+                                    <select name="role" lay-verify="" readonly>
+                                        <option value="{{ role.roleid }}">{{ role.rolename }}</option>
+                                    </select>
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">当前角色不可更改为其它角色</div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">用户账号</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="useraccount" value="{{ userinfo.useraccount }}" readonly class="layui-input">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">不可修改。一般用于后台登入名</div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">用户名</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="username" value="{{ userinfo.username }}" lay-verify="username" autocomplete="off" placeholder="请输入用户名" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">性别</label>
+                                <div class="layui-input-block">
+                                    {% if userinfo.usersex == '男' %}
+                                        <input type="radio" name="usersex" value="男" title="男" checked="checked">
+                                        <input type="radio" name="usersex" value="女" title="女" >
+                                    {% else %}
+                                        <input type="radio" name="usersex" value="男" title="男" >
+                                        <input type="radio" name="usersex" value="女" title="女" checked="checked">
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">头像</label>
+                                <div class="layui-upload">
+                                    <button type="button" class="layui-btn layui-btn-normal" id="upload-change">上传头像</button>
+                                    <img class="layui-upload-img" id="test-upload-normal-img" width="48px" height="48px" src="{% if userinfo.userpicture == None %}{% else %}{% static userinfo.userpicture %}{% endif %}" class="layui-nav-img">
+                                    <p id="upload-Text"></p>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">联系电话</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="contactphone" value="{% if userinfo.contactphone == None %} {% else %}{{ userinfo.contactphone }}{%  endif %}" lay-verify="phone" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">手机</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="mobilephone" value="{% if userinfo.mobilephone == None %} {% else %}{{ userinfo.mobilephone }}{%  endif %}"  lay-verify="phone" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">邮箱</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="email" value="{% if userinfo.email == None %} {% else %}{{ userinfo.email }}{%  endif %}" lay-verify="email" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item layui-form-text">
+                                <label class="layui-form-label">地址</label>
+                                <div class="layui-input-block">
+                                    <textarea name="useraddress" placeholder="请输入内容"  class="layui-textarea">{% if userinfo.useraddress == None %} {% else %}{{ userinfo.useraddress }}{%  endif %}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn" lay-submit lay-filter="setmyinfo" type="submit">确认修改</button>
+                                    <button type="reset" class="layui-btn layui-btn-primary">重新填写</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static '/layui/layui.js' %}"></script>
+<script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
+<script>
+    layui.config({
+        base: '{% static '/' %}' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'form','upload'], function(){
+            var $ = layui.jquery
+                ,upload = layui.upload;
+
+            //选完文件后不自动上传
+            upload.render({
+                elem: '#upload-change'
+                ,url:'{% url "Chemical:upload_ajax" %}'
+                ,auto: true
+                ,size:0
+                ,data:{'csrfmiddlewaretoken':$("[name='csrfmiddlewaretoken']").val(),'id':{{ userinfo.userid }}}
+                ,before: function(obj) {
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function (index, file, result) {
+                        $('#test-upload-normal-img').attr('src', result); //图片链接（base64）
+                    });
+                }
+                ,error: function() {
+                    //演示失败状态，并实现重传
+                    var demoText = $('#upload-Text');
+                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                    demoText.find('.demo-reload').on('click', function () {
+                        uploadInst.upload();
+                    });
+                }
+                //,multiple: true
+                ,done: function(res){
+                    if(res.message='OK')
+                        console.log(res)
+                }
+            });
+
+        }
+    );
+
+</script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>欢迎来到花花与风的博客</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'common/css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}">
+    <link rel="stylesheet" href="{% static 'compiled/flipclock.css' %}">
+    <script type="application/javascript" src="{% static 'compiled/flipclock.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <!--加载meta IE兼容文件-->
+    <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+</head>
+<body style="background: url({% static 'common/imgs/background.jpg' %}) no-repeat;">
+<div class="header">
+    <div class="menu-btn">
+        <div class="menu"></div>
+    </div>
+    <h1 class="logo">
+        <a href="../">
+            <span>花花与风</span>
+            <img src="{% static 'common/imgs/logo.png' %}">
+        </a>
+    </h1>
+    <div class="nav">
+        <a href="../Blog/" class="active">文章</a>
+        <a href="../Picture/">相册</a>
+        <a href="../message/">留言</a>
+        <a href="../weblink/">圈中人</a>
+        <a href="../about/">关于</a>
+    </div>
+    <ul class="layui-nav header-down-nav">
+        <li class="layui-nav-item"><a href="../Blog/" class="active">文章</a></li>
+        <li class="layui-nav-item"><a href="../Picture/">相册</a></li>
+        <li class="layui-nav-item"><a href="../message/">留言</a></li>
+        <li class="layui-nav-item"><a href="../weblink/">圈中人</a></li>
+        <li class="layui-nav-item"><a href="../about/">关于</a></li>
+    </ul>
+    <p class="welcome-text">
+        欢迎来到<span class="name">花花与风</span>的博客~
+    </p>
+</div>
+<div class="banner">
+    <div class="cont w1000">
+        <div class="title">
+            <h3>花花<br />与风</h3>
+            <h4>well-balanced heart</h4>
+        </div>
+        <div class="amount"><button class="layui-btn layui-btn-green"><a href="../Blog/">进入博文</a></button></div>
+    </div>
+</div>
+<div class="banner2">
+    <div class="cont w1000">
+        <div class="title">
+            <h2>不是一时兴起，是振作精神，扬帆起航，寻找知识的尽头</h2>
+            <ul class="layui-timeline timeline-diy">
+                <li class="layui-timeline-item">
+                    <i class="layui-icon layui-timeline-axis">&#xe756;</i>
+                    <div class="layui-timeline-content layui-text">
+                        <h6 class="layui-timeline-title">8月18日</h6>
+                        <p>
+                            layui 2.0 的一切准备工作似乎都已到位。发布之弦，一触即发。
+                            <br>不枉近百个日日夜夜与之为伴。因小而大，因弱而强。
+                            <br>无论它能走多远，抑或如何支撑？至少我曾倾注全心，无怨无悔 <i class="layui-icon">&#xe650;</i>
+                        </p>
+                    </div>
+                </li>
+                <li class="layui-timeline-item">
+                    <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                    <div class="layui-timeline-content layui-text">
+                        <h6 class="layui-timeline-title">8月16日</h6>
+                        <p>杜甫的思想核心是儒家的仁政思想，他有<em>“致君尧舜上，再使风俗淳”</em>的宏伟抱负。个人最爱的名篇有：</p>
+                        <ul>
+                            <li>《登高》</li>
+                            <li>《茅屋为秋风所破歌》</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="layui-timeline-item">
+                    <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                    <div class="layui-timeline-content layui-text">
+                        <h6 class="layui-timeline-title">8月15日</h6>
+                        <p>
+                            中国人民抗日战争胜利日
+                            <br>常常在想，尽管对这个国家有这样那样的抱怨，但我们的确生在了最好的时代
+                            <br>铭记、感恩
+                            <br>所有为中华民族浴血奋战的英雄将士
+                            <br>永垂不朽
+                        </p>
+                    </div>
+                </li>
+                <li class="layui-timeline-item">
+                    <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                    <div class="layui-timeline-content layui-text">
+                        <div class="layui-timeline-title">过去</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="banner3">
+    <div class="cont w1000">
+        <div class="title">
+            <h6>关于我，关于博客</h6>
+            <h6>花花与风</h6>
+            <h6>没有正经研究过一门编程技能，但是各种学习也算是都有所涉猎，还是想在某些领域有所斩获</h6>
+            <h6>喜欢敲代码的感觉，相信编程是一门艺术</h6>
+            <h6>敲代码的感觉虽好，也不要忘记好好生活</h6>
+        </div>
+        <div class="your-clock title"></div>
+    </div>
+</div>
+<div class="banner4">
+    <div class="cont w1000">
+        <div class="title">
+            <a href="javascript:;"><i class="layui-icon layui-btn-lg layui-icon-login-qq"></i></a>
+            <a href="javascript:;"><i class="layui-icon layui-btn-lg layui-icon-login-wechat"></i></a>
+            <a href="javascript:;"><i class="layui-icon layui-btn-lg layui-icon-login-weibo"></i></a>
+
+        </div>
+    </div>
+</div>
+<div class="banner5">
+    <div class="cont w1000">
+        <div class="title">
+            <h6>友情链接</h6>
+            <ul>
+                <li><a href="http://www.birongsen.com">小木鱼博客</a></li>
+                <li><a href="http://bh-lay.com/">剧中人</a></li>
+                <li><a href="https://smohan.net/">水墨寒</a></li>
+                <li><a href="https://www.yanshisan.cn/Blog/Index">燕十三·一个人的江湖</a></li>
+                <li><a href="http://sharedblog.cn/">前端共享博客</a></li>
+                <li><a href="https://www.yezismile.com/">叶子个人博客</a></li>
+                <li><a href="https://www.k2zone.cn/">马瑞强的个人博客</a></li>
+                <li><a href="https://www.welphen.com">WelphenEDM</a></li>
+                <li><a href="http://www.52xingchen.cn">星尘阁</a></li>
+                <li><a href="http://www.luoluolzb.cn/">洛洛の空间</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="layui-container">
+        <div class="layui-col-md12">
+            <div class="layui-col-md9 footer-desc">
+                <p>花花与风</p>
+                <p>花花与风愿为你分享生活中的点点滴滴，最新前沿技术，包括数据分析，深度学习，python等方方面面的东西，时而也会更新一些个人生活小事。</p>
+            </div>
+            <div class="layui-col-md3 footer-link">
+                相关链接
+                <ul>
+                    <li><a href="../">主页</a></li>
+                    <li><a href="../Blog/">博文</a></li>
+                    <li><a href="../Picture/">相册</a></li>
+                    <li><a href="../about/">关于</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="layui-col-md12 footer-hr">
+            <div class="layui-col-md12">
+                <p>design & code by @花花与风,base on layui + django</p>
+                <p>感谢七牛提供近乎免费的CDN，阿里云提供的优质云服务，以及360云加速的给力支持。</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="{% static 'layui/layui.js' %}"></script>
+<script type="text/javascript">
+    layui.config({
+        base: '{% static '/layui/js/util/' %}'
+    }).extend({
+        index: 'lib/index'
+    }).use(['util','element','menu'], function(){
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+        $ = layui.$,menu = layui.menu;
+        menu.init();
+    });
+
+    var clock;
+    $(document).ready(function() {
+        // Grab the current date
+        var currentDate = new Date();
+        // Set some date in the past. In this case, it's always been since Jan 1
+        var pastDate  = new Date(currentDate.getFullYear(), 0, 1);
+        // Calculate the difference in seconds between the future and current date
+        var diff = currentDate.getTime() / 1000 - pastDate.getTime() / 1000;
+        // Instantiate a coutdown FlipClock
+        clock = $('.your-clock').FlipClock(diff, {
+            clockFace: 'DailyCounter'
+        });
+    });
+</script>
+

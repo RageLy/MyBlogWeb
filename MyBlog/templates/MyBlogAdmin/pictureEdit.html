@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>由html5实现的文件上传预览功能</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/layui/css/layui.css' %}" media="all">
+    <link rel="stylesheet" href="{% static '/layui/css/modules/layer/default/layer.css' %}" media="all">
+    <link rel="stylesheet" href="{% static '/layui/css/public.css' %}" media="all">
+    <link rel="stylesheet" href="{% static '/css/../../static/common/imgs/blog.css' %}" media="all">
+    <link rel="stylesheet" href="{% static 'zjupload/control/css/zyUpload.css' %}" type="text/css">
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+
+    <script src="{% static 'zjupload/control/js/zyUpload.js' %}"></script>
+
+    <script src="{% static 'zjupload/core/zyFile.js' %}"></script>
+    <script src="{% static 'zjupload/demo.js' %}"></script>
+</head>
+<body class="childrenBody" style="background-color: #FFFFFF">
+<div class="layui-fluid ">
+    <div class="layui-col-sm12">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <h1 style="text-align:center;">图片上传</h1>
+                <div id="demo" class="demo"></div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-sm12">
+        <div class="layui-row  layui-col-space15">
+            {% if PicManages.picture_set.all %}
+                {% for i in PicManages.picture_set.all %}
+                    <div class="layui-col-md2">
+                        <div class="picbox" id="picboxtag{{ i.id }}" style="background-image: url({{  i.url }})">
+                            <div class="pic-function" id="pic-functiontag{{ i.id }}">
+                                <ul>
+                                    <li><button type="button" class="picbtn1">替换</button></li>
+                                    <li><button type="button" class="picbtn2">删除</button></li>
+                                    <li><button type="button" class="picbtn3">设置为封面</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="layui-card">
+                            <div class="layui-card-body">
+                                <input class="layui-input" placeholder="请输入描述信息">
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+    </div>
+    <div class="layui-col-sm12" style="margin-top: 15px;">
+        <div class="layui-row">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <button class="layui-btn layui-btn-primary" type="button">修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

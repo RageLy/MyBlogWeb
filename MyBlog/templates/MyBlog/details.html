@@ -1,0 +1,448 @@
+{% extends 'MyBlog/base.html' %}
+{% load static %}
+{% block title%}
+    <title>花花与风的博客-{{ Blog.title }}</title>
+{% endblock %}
+{% block fluid %}
+    <div class="banner">
+        <div class="cont w1000">
+            <div class="title">
+                <h3>花花<br />与风</h3>
+                <h4>well-balanced heart</h4>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block container %}
+    <div class="layui-col-md12" >
+        <blockquote class="blog-elem-quote">
+            <span class="layui-breadcrumb">
+            <a href="../">首页</a>
+            <a href="../Blog/">文章列表</a>
+            <a>文章</a>
+            </span>
+        </blockquote>
+    </div>
+    <div class="clearspace layui-col-md9 blog-content">
+        <div class="layui-card">
+            <div class="layui-card-body ">
+                <div class="layui-col-md12">
+                    <h3>{{ Blog.title }}</h3>
+                </div>
+                <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+                    <p>创建日期：{{ Blog.createdate|date:"Y-m-d H:i:s" }}</p>
+                </div>
+                <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+                    <p>发布者：{{ Blog.author }}</p>
+                </div>
+                <div class="layui-row">
+                    <div class="layui-col-md12 text">
+                        {% autoescape off %}
+                            {{ Blog.blogcontent }}
+                        {% endautoescape %}
+                    </div>
+                    <div class="text-desc layui-col-md12 ">
+                        <div class="layui-col-xs12 layui-col-sm12 layui-col-md12">
+                            本文标题：{{ Blog.title }}
+                        </div>
+                        <div class="layui-col-xs12 layui-col-sm12 layui-col-md12">
+                            本文链接：<a id="urlinfo"></a>
+                        </div>
+                        <div class="layui-col-xs12 layui-col-sm12 layui-col-md12">
+                            本文标签：
+                            {% if Blog.blog_blogtype  %}
+                                {% for BlogType in Blog.blog_blogtype.all %}
+                                    <span class="layui-badge-rim">
+                                                   <a href="{% url 'MyBlog:types' BlogType.TypeName %}">{{ BlogType.TypeName }}</a>
+                                                 </span>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <div class="layui-col-xs12 layui-col-sm12 layui-col-md12">
+                            <p>非特殊说明，本文版权归 夏天的风博客 所有，转载请注明出处.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md3">
+        <div class="layui-card">
+            <div class="layui-card-header">网站信息</div>
+            <div class="layui-card-body">
+                <ul>
+                    <li>网站名称：花花与风的博客</li>
+                    <li>博客系统：</li>
+                    <li>QQ：</li>
+                    <li>前端UI:<a href="https://www.layui.com/" target="_blank">layui 3.4.1</a></li>
+                    <li>后端框架:django:2.0.1</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md3">
+        <div class="layui-card">
+            <div class="layui-card-header">点击排行</div>
+            <div class="layui-card-body">
+                <ul class="ranker">
+                    {% if Rankers %}
+                                {% for ranker in Rankers %}
+                                    <li><a href="{% url 'MyBlog:details' ranker.id %}" title="{{ ranker.title }}">{%if ranker.title|length >= 16 %}
+                                        {{ranker.title|slice:"16"}}...
+                                    {%else%} {{ranker.title}}
+                                    {%endif%}</a></li>
+                                {% endfor %}
+                            {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md3">
+        <div class="layui-card">
+            <div class="layui-card-header">标签页</div>
+            <div class="layui-card-body">
+                {% if Tags %}
+                    {% for tag in Tags %}
+                        <span class="layui-badge layui-bg-orange"><a href="{% url 'MyBlog:types' tag.TypeName %}">{{ tag.TypeName }}</a></span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="clearspace layui-col-md9" >
+        <div class="layui-card">
+            <div class="layui-card-body comment-content">
+                <h2>分享一下</h2>
+            </div>
+        </div>
+    </div>
+    <div class="clearspace layui-col-md9">
+        <div class="layui-card">
+            <div class="layui-card-body comment-content" >
+                <div class="bdsharebuttonbox" data-tag="share_1">
+                    <a class="bds_weixin" data-cmd="weixin"></a>
+                    <a class="bds_qzone" data-cmd="qzone"></a>
+                    <a class="bds_tsina" data-cmd="tsina"></a>
+                    <a class="bds_baidu" data-cmd="baidu"></a>
+                    <!-- <a class="bds_tqq" data-cmd="tqq"></a> -->
+                    <a class="bds_sqq" data-cmd="sqq"></a>
+                    <a class="bds_more" data-cmd="more">更多</a>
+                    <a class="bds_count" data-cmd="count"></a>
+                </div>
+                <script>
+                    window._bd_share_config = {
+                        "common" : {
+                            "bdSnsKey" : {},
+                            "bdText" : "${title}",  //分享时的标题
+                            "bdMini" : "2",
+                            "bdMiniList" : false,
+                            "bdPic" : "${pic}", //此处为分享时自带的图片
+                            "bdStyle" : "0",
+                            "bdSize" : "32",
+                            "bdUrl" : '${sharUrl}', //此处为后台要进行分享的内容的定义
+                            "bdDesc":'${summary}',  //分享时的文本摘要
+                        },
+                        "share" : {}
+                    };
+                    //此处为需要引入的百度分享的js文件
+                    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+                </script>            </div>
+        </div>
+    </div>
+    <div class="clearspace layui-col-md9" >
+        <div class="layui-card">
+            <div class="layui-card-body comment-content">
+                <h2>评论</h2>
+            </div>
+        </div>
+    </div>
+    <div class="clearspace layui-col-md9" id="reply" >
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <form class="layui-form">
+                    {% csrf_token %}
+                    <div class="layui-form-item">
+                        <img class="layui-form-label reply-head" src="{% static '/imgs/2.jpg' %}">
+                        <div class="text">
+                            <textarea id="commentContent"  placeholder="请输入内容" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item" style="overflow: hidden;">
+                        <div class="text">
+                            <button class="layui-btn"  type="button" id="sb-btn">发表</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% if Blog.comment_set.all %}
+        <div class="layui-col-md9 message-content clearspace" >
+            <div class="layui-card">
+                <div class="layui-card-body comment-content">
+                    <h2>最新评论</h2>
+                    {% for comment in Blog.comment_set.all %}
+                        <hr>
+                        <div class="media-body">
+                            <a href="javascript:;" class="media-left">
+                                <img src="{{ comment.user.userpic }}">
+                            </a>
+                            <div class="pad-btm">
+                                <p class="fontColor"><a href="javascript:;">{{ comment.user.username }}</a></p>
+                                <p class="min-font">
+                              <span class="layui-breadcrumb" lay-separator="-">
+                                <a class="layui-icon layui-icon-cellphone"></a>
+                                <a>{{ comment.device }}</a>
+                                <a>{{ comment.createdate|date:"Y-m-d H:i:s" }}</a>
+                              </span>
+                                </p>
+                                <p class="message-text">{{ comment.commentContent }}</p>
+                            </div>
+                        <div class="reply-text">
+                            {% if comment.reply_set.all %}
+                                <div class="reply-container">
+                                    {% for reply in comment.reply_set.all %}
+                                        <div class="title">
+                                         <span>
+                                             <b><a href="javascript:;">{{ reply.user.username }}：</a></b>
+                                        </span>{{ reply.replyContent }}</div>
+                                        <div class="layui-col-md12 reply-date">
+                                          <span lay-separator="-">
+                                            <a href="javascript:;">{{ reply.createdate|date:"Y-m-d H:i:s" }}</a>
+                                          </span>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+
+                            {% endif %}
+                        </div>
+                            <div class="reply-comment">
+                                <div class="layui-col-md2">
+                                    <button class="layui-btn"><i class="layui-icon">&#xe6c6;</i></button>
+                                    <button class="layui-btn layui-btn-primary layui-btn-xs" id="like{{ comment.id }}">点赞</button>
+                                    <button class="layui-btn"><p>{{ comment.likeNum }}</p></button>
+                                </div>
+                                <div class="layui-col-md10">
+                                    <button class="layui-btn"><i class="layui-icon">&#xe611;</i></button>
+                                    <button class="layui-btn layui-btn-primary layui-btn-xs" id='replylabel{{ comment.id }}'>回复</button>
+                                </div>
+
+                            </div>
+                            <form  id="formyz">
+                                {% csrf_token %}
+                                <div class="reply-to-text" id="reply{{ comment.id }}" style="display: none">
+                                    <div class="text">
+                                        <textarea class="reply-box-textarea" id="replyContent{{ comment.id }}"></textarea>
+                                    </div>
+                                    <div class="replybtn"><button class="layui-btn" id="replybtn{{ comment.id }}" type="button" >回复</button></div>
+                                </div>
+                            </form>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+{% block script %}
+    <script>
+        $("#urlinfo").html(window.location.href)
+        $("#urlinfo").attr('href',window.location.href)
+        console.log(window.location.href)
+    </script>
+
+
+    <script type="text/javascript">
+        layui.use('layer', function(){
+            var layer = layui.layer;
+
+            var devide=''
+            $("#sb-btn").click(function(){
+                $.ajax({
+                    type:"POST",
+                    data: {'userid':"1",'blogid':{{Blog.id}},'csrfmiddlewaretoken':$("[name='csrfmiddlewaretoken']").val(),'commentContent':$("#commentContent").val(),'replytype':"0",'device':devide},
+                    url: "{% url 'MyBlog:commentdata' %}", //后台处理函数的url
+                    cache: false,
+                    async : false,
+                    success: function(result){
+                        console.log(result.message)
+                        if(result.message="0")
+                        {
+                            console.log(result.message)
+                            layer.msg('评论成功!',{time:0.5*1000})
+                            location.reload()
+                        }
+                        else if(result.message="-1")
+                        {
+                            layer.msg('评论不能为空',{time:0.5*1000})
+                            {#location.reload()#}
+                        }
+                    },
+                    error: function(){
+                        {#$('#test1').html('传输格式有错误')#}
+                        {#layer.confirm(result)#}
+                        layer.msg('传输格式有误，请检查')
+                    }
+                });
+            })
+            var replysbid=''
+            var replyContentid=''
+            $("[id^=replybtn]").click(function(){
+                var replyid='reply'+replysbid
+                var replylabelid='replylabel'+replysbid
+                $.ajax({
+                    type:"POST",
+                    data: {'userid':"1",'commentid':replysbid,'blogid':{{Blog.id}},'csrfmiddlewaretoken':$("[name='csrfmiddlewaretoken']").val(),'replyContent':$("#"+replyContentid).val()},
+                    url: "{% url 'MyBlog:replydata' %}", //后台处理函数的url
+                    cache: false,
+                    async : false,
+                    success: function(result){
+                        if(result.message="0")
+                        {
+                            console.log(result.message)
+                            layer.msg('回复成功',{time:0.5*1000})
+                            location.reload()
+                            console.log(replyid)
+                            $('#'+replyid).css("display", "none")
+                            $('#'+replylabelid).text("回复")
+                        }
+                        else if(result.message="-1")
+                        {
+                            console.log(result.message)
+                            layer.msg('回复不能为空',{time:0.5*1000})
+                            {#location.reload()#}
+                        }
+                    },
+                    error: function(){
+                        {#$('#test1').html('传输格式有错误')#}
+                        {#layer.confirm(result)#}
+                        layer.msg('传输格式有误，请检查')
+                    }
+                });
+            })
+
+            $("[id^=like]").click(function(){
+                commentid=$(this).attr("id").split("like")[1]
+                $.ajax({
+                    type:"POST",
+                    data: {'commentid':commentid,'csrfmiddlewaretoken':$("[name='csrfmiddlewaretoken']").val()},
+                    url: "{% url 'MyBlog:like' %}", //后台处理函数的url
+                    cache: false,
+                    async : false,
+                    success: function(result){
+                        console.log(result.message)
+                        if(result.message="0")
+                        {
+                            console.log(result.message)
+                            layer.msg('点赞成功',{time:0.5*1000})
+                            location.reload()
+                        }
+                        else if(result.message="-1")
+                        {
+                            console.log(result.message)
+                            layer.msg('点赞失败',{time:0.5*1000})
+                            {#location.reload()#}
+                        }
+                    },
+                    error: function(){
+                        {#$('#test1').html('传输格式有错误')#}
+                        {#layer.confirm(result)#}
+                        layer.msg('传输格式有误，请检查')
+                    }
+                });
+            })
+
+            $('[id^=replylabel]').click(function ()
+            {
+                {#console.log($(this).css("display"))#}
+                id=$(this).attr("id").split("replylabel")[1]
+                {#console.log(id)#}
+                var replyid='reply'+id
+                var replylabelid='replylabel'+id
+                replysbid=id
+                replyContentid='replyContent'+id
+                if($('#'+replyid).css("display")=='block')
+                {
+                    $('#'+replyid).css("display", "none")
+                    $(this).text("回复")
+                }
+                else
+                {
+                    $("#formyz div[id^='reply']").not("#"+replyid).css("display", "none")
+                    $("#reply-comment button[id^='replylabel']").not("#"+replylabelid).text("回复")
+                    {#console.log($("#reply-comment button[id^='replylabel']"))#}
+                    $('#'+replyid).css("display","block")
+                    $(this).text("收起")
+                }
+            })
+
+        });
+        //平台、设备和操作系统
+        var system = {
+            win: false,
+            mac: false,
+            xll: false,
+            ipad:false
+        };
+        //检测平台
+        var p = navigator.platform;
+        system.win = p.indexOf("Win") == 0;
+        system.mac = p.indexOf("Mac") == 0;
+        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+        system.ipad = (navigator.userAgent.match(/iPad/i) != null)?true:false;
+        //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+        if (system.win || system.mac || system.xll||system.ipad) {
+            console.log('电脑端')
+            devide='电脑端'
+        } else if(system.mac)
+        {
+            console.log('MAC端')
+            devide='mac端'
+        }
+        else if(system.xll)
+        {
+            console.log('OK')
+            devide='x11或者Linux端'
+        }
+        else if(system.ipad)
+        {
+            console.log('ipad端')
+            devide='ipad端'
+        }
+        else
+        {
+            console.log('手机端')
+            devide='手机端'
+        }
+
+    </script>
+    <script >
+        var browser = {
+            versions : function() {
+                var u = navigator.userAgent, app = navigator.appVersion;
+                return {//移动终端浏览器版本信息
+                    trident : u.indexOf('Trident') > -1, //IE内核
+                    presto : u.indexOf('Presto') > -1, //opera内核
+                    webKit : u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                    gecko : u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                    mobile : !!u.match(/AppleWebKit.*Mobile.*/)
+                        || !!u.match(/AppleWebKit/), //是否为移动终端
+                    ios : !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                    android : u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                    iPhone : u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者QQHD浏览器
+                    iPad: u.indexOf('iPad') > -1, //是否iPad
+                    webApp : u.indexOf('Safari') == -1,//是否web应该程序，没有头部与底部
+                    google:u.indexOf('Chrome')>-1
+                };
+            }(),
+            language : (navigator.browserLanguage || navigator.language).toLowerCase()
+        }
+        console.log(browser.versions.mobile)
+        console.log(browser.language)
+        {#document.writeln("语言版本: "+browser.language);#}
+        {#document.writeln(" 是否为移动终端: "+browser.versions.mobile);#}
+    </script>
+    <script type="text/javascript">
+
+    </script>
+{% endblock %}

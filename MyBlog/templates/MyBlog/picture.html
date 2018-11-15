@@ -1,0 +1,60 @@
+{% extends 'MyBlog/base.html' %}
+{% block title%}
+    <title>花花与风的相册</title>
+{% endblock %}
+{% load static %}
+{% load thumbnail %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'layui/css/template.css' %}">
+{% endblock %}
+{% block fluid %}
+    <div class="picbanner">
+        <div class="cont w1000">
+            <div class="title">
+                <h3>花花<br/>与风</h3>
+                <p>四川-成都  关注 16   粉丝 25</p>
+                <p>数据分析工程师，摄影小小白，热爱拍摄720全景照片，对人像、风光拍摄有着极大的兴趣！</p>
+            </div>
+
+        </div>
+    </div>
+        <div class="layui-card">
+            <div class="layui-card-body">
+                {% if Tags %}
+                    {% for tag in Tags %}
+                        <span class="layui-badge layui-bg-gray"><a href="{% url 'MyBlog:imgtypes' tag.TypeName %}">{{ tag.TypeName }}</a></span>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+
+{% endblock %}
+{% block container %}
+    <div class="layui-col-md12 blog-content-nav">
+        <div class="layui-row layui-col-space15">
+            {% if PicManages %}
+                {% for PicManage in PicManages %}
+                    <div class="layui-col-md6">
+                        <a href="{% url 'MyBlog:picdetails' PicManage.id %}">
+
+                            <div class="box" style="background-image: url(/static/media/{{  PicManage.imgthumb }})">
+                                <div class="box-content">
+                                    <h5 class="title">{{ PicManage.title }}</h5>
+                                    <span class="post">{{ PicManage.picdesc }}</span>
+                                </div>
+                                <div class="picdesc"><span>by {{ PicManage.author }}</span> <span>{{ PicManage.picture_set.count  }} 张</span><p>{{ PicManage.createdate|date:"Y-m-d"  }}</p>
+                                </div>
+                                <div class="piccomment"><span>0 评论</span> <span>1 喜欢</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
+{% block script %}
+    <script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
+{% endblock %}

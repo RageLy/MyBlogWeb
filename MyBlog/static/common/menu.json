@@ -1,0 +1,39 @@
+[
+  {
+    "name": "功能列表",
+    "url": "javascript:;",
+    "icon":"layui-icon-home",
+    "childMenus": [
+      {
+        "name": "基础单元拆分查询",
+        "url": "search/",
+
+        "childMenus": null
+      }
+    ]
+  },
+  {
+    "name": "系统与基础设置",
+    "url": "javascript:;",
+    "icon":"layui-icon-app",
+    "childMenus": [
+      {
+        "name": "文章管理",
+        "url": "BlogEdit/",
+        "childMenus": null
+      },
+      {
+        "name": "图片管理",
+        "url": "PictureManage/",
+        "childMenus": null
+      },
+          {
+        "name": "图片添加",
+        "url": "PicEdit/",
+        "childMenus": null
+      }
+    ]
+  }
+
+]
+

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layuiAdmin 网站用户</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/layui/css/layui.css' %}" media="all">
+    <link rel="stylesheet" href="{% static '/layui/css/public.css' %}" media="all">
+</head>
+<body class="childrenBody" style="background-color: #FFFFFF">
+<form class="layui-form">
+	<blockquote class="layui-elem-quote quoteBox">
+		<form class="layui-form">
+			<div class="layui-inline">
+				<div class="layui-input-inline">
+					<input type="text" class="layui-input searchVal" placeholder="请输入搜索的内容" />
+				</div>
+				<a class="layui-btn search_btn" data-type="reload">搜索</a>
+			</div>
+			<div class="layui-inline">
+				<a class="layui-btn layui-btn-normal addNews_btn">添加文章</a>
+			</div>
+			<div class="layui-inline">
+				<a class="layui-btn layui-btn-danger layui-btn-normal delAll_btn">批量删除</a>
+			</div>
+		</form>
+	</blockquote>
+	<table id="test-table-toolbar" lay-filter="test-table-toolbar"></table>
+	<!--审核状态-->
+
+
+	<!--操作-->
+<script type="text/html" id="test-table-toolbar-barDemo">
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit" ><i class="layui-icon layui-icon-edit"></i>编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+            </script>
+</form>
+<script src="{% static '/layui/layui.js' %}"></script>
+<script src="{% static '/lib/Newlist.js' %}"></script>
+</body>
+</html>

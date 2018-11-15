@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layuiAdmin 网站用户</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/layui/css/layui.css' %}" media="all">
+    <link rel="stylesheet" href="{% static '/layui/css/admin.css' %}" media="all">
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+            <div class="layui-form-item" id="demotable">
+                <div class="layui-inline">
+                    <label class="layui-form-label">ID</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="id" name="id" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="username" name="username" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn"  data-type="reload">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-card">
+        <div class="layui-card-header"  style="padding-top: 10px;">
+            <button class="layui-btn" data-type="add">添加</button>
+            <button class="layui-btn layuiadmin-btn-useradmin" data-type="multdel">批量删除</button>
+        </div>
+        <div class="layui-card-body">
+
+            <table class="layui-hide" id="test-table-toolbar" lay-filter="test-table-toolbar"></table>
+
+            <script type="text/html" id="test-table-toolbar-barDemo">
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+            </script>
+        </div>
+    </div>
+</div>
+<script src="{% static '/layui/layui.js' %}"></script>
+<script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
+<script>
+    layui.config({
+        base: '{% static '/' %}' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'form','table','element','useradmin'], function(){
+        var $ = layui.$
+            ,form = layui.form
+            ,table = layui.table
+            ,element=layui.element;
+        table.render({
+            elem: '#test-table-toolbar'
+            ,url: '{% url 'Chemical:usersdata' %}' //数据接口
+            ,title: '用户表'
+            ,id: 'testReload'
+            ,height: 'full-200'
+            ,page: true //开启分页
+            ,toolbar:  '#test-table-toolbar-toolbarDemo'//开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+            ,totalRow: true //开启合计行
+            ,cols: [[ //表头
+                {type: 'checkbox', fixed: 'left'}
+                ,{field: 'userid', title: 'ID', width:80, sort: true, fixed: 'left', totalRowText: '合计：'}
+                ,{field: 'useraccount', title: '用户账号', width:120}
+                ,{field: 'username', title: '用户名', width: 100, sort: true, totalRow: true}
+                ,{field: 'usersex', title: '性别', width:80, sort: true}
+                ,{field: 'userpicture', title: '头像', width: 80, sort: true, totalRow: true}
+                ,{field: 'email', title: '邮箱', width:150}
+                ,{field: 'contactphone', title: '联系方式', width: 200}
+                ,{field: 'mobilephone', title: '电话', width: 120}
+                ,{field: 'useraddress', title: '地址', width: 135, sort: true, totalRow: true}
+                ,{fixed: 'right', title:'操作', toolbar: '#test-table-toolbar-barDemo', width:150}
+
+            ]]
+        });
+        table.on('tool(test-table-toolbar)', function(obj){
+            var getdata = obj.data;
+            if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    $.ajax({
+                        type:"GET",
+                        data: {'id':getdata["userid"],'type':'single'},
+                        url: "{% url 'Chemical:deleteuser' %}", //后台处理函数的url
+                        cache: false,
+                        async : false,
+                        success: function(result){
+                            layer.msg(result.message,{time:0.5*1000})
+                            layer.close(index);
+                            location.reload()
+                        },
+                        error: function(){
+                            {#$('#test1').html('传输格式有错误')#}
+                            {#layer.confirm(result)#}
+                            layer.msg('传输格式有误，请检查')
+                            layer.close(index);
+                        }
+                    });
+                    return false;
+                });
+
+            } else if(obj.event === 'edit'){
+                layer.open({
+                    type: 2
+                    ,title: '修改用户'
+                    ,content: "../../userform/1?id="+getdata['userid']+"&method=update"
+                    ,maxmin: true
+                    ,area: ['500px', '450px']
+                    ,btn: ['确定', '取消']
+                    ,yes: function(index, layero){
+                        var iframeWindow = window['layui-layer-iframe'+ index]
+                            ,submitID = 'LAY-user-front-submit'
+                            ,submit = layero.find('iframe').contents().find('#'+ submitID);
+                        //监听提交
+                        iframeWindow.layui.form.on('submit('+ submitID +')', function(data){
+                            var field = data.field; //获取提交的字段
+                            $.ajaxSetup({
+                                data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
+                            });
+                            //提交 Ajax 成功后，静态更新表格中的数据
+                            $.ajax({
+                                type:"POST",
+                                data: {field},
+                                url: "../../userform/1?id="+getdata['userid']+"&method=update", //后台处理函数的url
+                                cache: false,
+                                async : false,
+                                success: function(result){
+                                    console.log('success')
+                                    table.reload('testReload',{
+                                        page:{
+                                            curr:1  //从第一页开始
+                                        },
+                                        method:'get',
+                                        where:{id:'',username:''}
+                                    });
+                                },
+                                error: function(){
+                                }
+                            });
+                            layer.close(index); //关闭弹层
+                        });
+
+                        submit.trigger('click');
+                    }
+                });
+            }
+        });
+        //监听搜索
+        form.on('submit(LAY-user-front-search)', function(data){
+            var field = data.field;
+
+            //执行重载
+            table.reload('LAY-user-manage', {
+                where: field
+            });
+        });
+
+        //事件
+        var active = {
+            reload:function(){
+                var id=$("#id").val();
+                var username=$("#username").val();
+                table.reload('testReload',{
+                    page:{
+                        curr:1  //从第一页开始
+                    },
+                    method:'get',
+                    where:{id:id,username:username}
+                });
+            }
+            ,add: function(){
+                layer.open({
+                    type: 2
+                    ,title: '添加用户'
+                    ,content: "../../userform/0?id=&method=add"
+                    ,maxmin: true
+                    ,area: ['500px', '450px']
+                    ,btn: ['确定', '取消']
+                    ,yes: function(index, layero){
+                        var iframeWindow = window['layui-layer-iframe'+ index]
+                            ,submitID = 'LAY-user-front-submit'
+                            ,submit = layero.find('iframe').contents().find('#'+ submitID);
+                        //监听提交
+                        iframeWindow.layui.form.on('submit('+ submitID +')', function(data){
+                            var field = data.field; //获取提交的字段
+                            {#console.log(field)#}
+                            $.ajaxSetup({
+                                data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
+                            });
+                            //提交 Ajax 成功后，静态更新表格中的数据
+                            $.ajax({
+                                type:"POST",
+                                data: {field},
+                                url: '../../userform/0?id=&method=add', //后台处理函数的url
+                                cache: false,
+                                async : false,
+                                success: function(result){
+                                    table.reload('testReload',{
+                                        page:{
+                                            curr:1  //从第一页开始
+                                        },
+                                        method:'get',
+                                        where:{id:'',username:''}
+                                    });
+                                },
+                                error: function(){
+                                }
+                            });
+                            console.log('执行ajax了！')
+                            layer.close(index); //关闭弹层
+                        });
+                        submit.trigger('click');
+                    }
+                });
+            }
+            ,multdel: function(){
+                var checkStatus = table.checkStatus('testReload')
+                    ,checkData = checkStatus.data; //得到选中的数据
+
+                if(checkData.length === 0){
+                    return layer.msg('请选择数据');
+                }
+                {#console.log(checkData)#}
+                var useridlist=[]
+                for(var i=0;i<checkData.length;i++)
+                {
+                    useridlist.push(checkData[i]['userid'])
+                }
+                {#console.log(useridlist)#}
+                layer.confirm('真的删除行么', function(index){
+                    $.ajax({
+                        type:"GET",
+                        data: {'idlist':useridlist,'type':'mult'},
+                        url: "{% url 'Chemical:deleteuser' %}", //后台处理函数的url
+                        cache: false,
+                        success: function(result){
+                            layer.msg(result.message,{time:0.5*1000})
+                            layer.close(index);
+                            location.reload()
+                        },
+                        error: function(){
+                            $('#test1').html('传输格式有错误')
+                            layer.confirm(result)
+                            layer.msg('传输格式有误，请检查')
+                            layer.close(index);
+                        }
+                    });
+                    return false;
+                });
+            }
+        };
+
+        $('.layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+
+        });
+        element.init();
+    });
+</script>
+</body>
+</html>

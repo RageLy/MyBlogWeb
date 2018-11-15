@@ -1,0 +1,43 @@
+{% extends 'MyBlog/base.html' %}
+{% block title%}
+    <title>圈中人</title>
+{% endblock %}
+{#{% block fluid %}#}
+{#    <div class="banner">#}
+{#        <div class="cont w1000">#}
+{#            <div class="title">#}
+{#                <h3>花花<br />与风</h3>#}
+{#                <h4>well-balanced heart</h4>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#{% endblock %}#}
+{% block container %}
+    <div class="layui-col-md12 Tophead">
+        <div class="layui-card">
+            <div class="layui-card-header">友情链接</div>
+            <div class="layui-card-body">
+                <p>欢迎各位大神互相沟通交流各种前端技术，如需展示链接，请在留言处留言谢谢。</p>
+            </div>
+        </div>
+    </div>
+{#    <div class="layui-col-md12">#}
+        <div class="linkweb">
+            <ul>
+                {% if weblinks %}
+                    {% for weblink in weblinks %}
+
+                        <li>
+                            <a href="{{ weblink.weburl }}" target="_blank">
+                                <img src="{{ weblink.picurl }}" alt="{{ weblink.name }}">
+                                <h3>{{ weblink.name }}</h3>
+                                <p>{{ weblink.webDesc }}</p>
+                            </a>
+                        </li>
+
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+{#    </div>#}
+{% endblock %}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>layuiAdmin 网站用户</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/layui/css/layui.css' %}" media="all">
+    <link rel="stylesheet" href="{% static '/layui/css/modules/layer/default/layer.css' %}" media="all">
+    <link rel="stylesheet" href="{% static '/layui/css/public.css' %}" media="all">
+    <link rel="stylesheet" href="{% static '/css/../../static/common/imgs/blog.css' %}" media="all">
+    <link rel="stylesheet" href="{% static '/zjupload/control/css/zyUpload.css' %}" type="text/css">
+    <script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static '/zjupload/control/js/zyUpload.js' %}"></script>
+    <script src="{% static '/zjupload/core/zyFile.js' %}"></script>
+    <script src="{% static '/zjupload/demo.js' %}"></script>
+</head>
+<body class="childrenBody" style="background-color: #FFFFFF">
+{#<form class="layui-form">#}
+{# {% csrf_token %}#}
+<div class="layui-fluid ">
+    <div class="layui-col-sm12">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <h1 style="text-align:center;">图片上传</h1>
+                <div id="demo" class="demo"></div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-sm12">
+        <div class="layui-row  layui-col-space15">
+            {% if PicManages.picture_set.all %}
+                {% for i in PicManages.picture_set.all %}
+                    <div class="layui-col-md2">
+                        <div class="picbox" id="picboxtag{{ i.id }}" style="background-image: url({{  i.url }})">
+                            <div class="pic-function" id="pic-functiontag{{ i.id }}">
+                                <ul>
+                                    <li><button type="button" class="picbtn1">替换</button></li>
+                                    <li><button type="button" class="picbtn2">删除</button></li>
+                                    <li><button type="button" class="picbtn3">设置为封面</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="layui-card">
+                            <div class="layui-card-body">
+                                <input class="layui-input" placeholder="请输入描述信息">
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+    </div>
+    <div class="layui-col-sm12" style="margin-top: 15px;">
+        <div class="layui-row">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <button class="layui-btn layui-btn-primary" type="button">修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{#</form>#}
+<script src="{% static '/layui/layui.js' %}"></script>
+<script src="{% static '/layui/lay/modules/layer.js' %}"></script>
+{#<script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>#}
+<script>
+    var id=''
+    $("[id^=picboxtag]").hover(function() {
+        id = $(this).attr("id").split("picboxtag")[1]
+        funcid = 'pic-functiontag' + id
+        $("#" + funcid).css('display', 'block')
+    },function(){
+        id=$(this).attr("id").split("picboxtag")[1]
+        funcid='pic-functiontag'+id
+        $("#"+funcid).css('display','none')
+    });
+    $("[id^=picboxtag]").children().children().children().children(".picbtn1").hover(function() {
+        $(this).addClass("layui-btn")
+        console.log(this)
+    },function () {
+        $(this).removeClass("layui-btn")
+        console.log(this)
+    });
+    $("[id^=picboxtag]").children().children().children().children(".picbtn2").hover(function() {
+        $(this).addClass("layui-btn")
+        console.log(this)
+    },function () {
+        $(this).removeClass("layui-btn")
+        console.log(this)
+    });
+    $("[id^=picboxtag]").children().children().children().children(".picbtn3").hover(function() {
+        $(this).addClass("layui-btn")
+        $(this).click(function () {
+            $.ajax({
+                type:"GET",
+                data: {'picid':id,
+                    {#"csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),#}
+                },
+                url: "{% url 'MyBlog:setWrap' %}", //后台处理函数的url
+                cache: false,
+                {#headers:{csrfmiddlewaretoken:$('[name="csrfmiddlewaretoken"]').val()},#}
+                contentType: "application/json",
+                success: function(result) {
+                    {#var dataobj=JSON.parse(result);#}
+                    {#console.log('OK111')#}
+                    layer.msg(result.message);
+                },
+            });
+        })
+        console.log(this)
+    },function () {
+        $(this).removeClass("layui-btn")
+        console.log(this)
+    });
+</script>
+</body>
+</html>

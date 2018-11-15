@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <title>文章列表--layui后台管理模板 2.0</title>
+            <meta name="renderer" content="webkit">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+            <meta name="apple-mobile-web-app-status-bar-style" content="black">
+            <meta name="apple-mobile-web-app-capable" content="yes">
+            <meta name="format-detection" content="telephone=no">
+            {% load static %}
+            <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}">
+            <link rel="stylesheet" href="{% static 'layui/css/public.css' %}">
+        </head>
+<body class="childrenBody" style="background-color: #FFFFFF">
+<form class="layui-form layui-row layui-col-space10">
+    {% csrf_token %}
+    <div class="layui-col-md9 layui-col-xs12">
+        <div class="layui-row layui-col-space10">
+            <div class="layui-col-md9 layui-col-xs7">
+                <div class="layui-form-item magt3">
+                    <input type="text" name="id" class="layui-hide blogid" lay-verify="id"  placeholder="隐藏">
+                    <label class="layui-form-label">文章标题</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" class="layui-input title" lay-verify="title" placeholder="请输入文章标题">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">内容摘要</label>
+                    <div class="layui-input-block">
+                        <input type="text"  lay-verify="abstract" class="layui-textarea abstract" name="abstract" placeholder="请输入内容摘要">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md3 layui-col-xs5">
+                <div class="layui-upload-list thumbBox  mag0 magt3">
+                    <img id="imgTitle" class="layui-upload-img thumbImg">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item magb0">
+            <label class="layui-form-label">文章内容</label>
+            <div class="layui-input-block">
+                <textarea  class="layui-hide editor2"></textarea>
+                <textarea id="editor1" name="editor1" class="editor1"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md3 layui-col-xs12">
+        <blockquote class="layui-elem-quote title"><i class="seraph icon-caidan"></i> 分类目录</blockquote>
+        <div class="border category">
+            <div class="">
+                <p><input type="checkbox" name="news" title="新闻" lay-skin="primary" /></p>
+                <p><input type="checkbox" name="goods" title="商品" lay-skin="primary" /></p>
+                <p><input type="checkbox" name="notice" title="公告" lay-skin="primary" /></p>
+                <p><input type="checkbox" name="images" title="图片" lay-skin="primary" /></p>
+            </div>
+        </div>
+        <blockquote class="layui-elem-quote title magt10"><i class="layui-icon">&#xe609;</i> 发布</blockquote>
+        <div class="border">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><i class="layui-icon">&#xe60e;</i> 状　态</label>
+                <div class="layui-input-block newsStatus">
+                    <select name="status" lay-verify="required">
+                        <option value="0">保存草稿</option>
+                        <option value="1">等待审核</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"><i class="layui-icon">&#xe609;</i> 发　布</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="release" title="立即发布" lay-skin="primary" lay-filter="release" checked />
+                    <input type="radio" name="release" title="定时发布" lay-skin="primary" lay-filter="release" />
+                </div>
+            </div>
+            <div class="layui-form-item layui-hide releaseDate">
+                <label class="layui-form-label"></label>
+                <div class="layui-input-block">
+                    <input type="text" class="layui-input" id="release" placeholder="请选择日期和时间" readonly />
+                </div>
+            </div>
+            <div class="layui-form-item openness">
+                <label class="layui-form-label"><i class="seraph icon-look"></i> 公开度</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="openness" title="开放浏览" lay-skin="primary" checked />
+                    <input type="radio" name="openness" title="私密浏览" lay-skin="primary" />
+                </div>
+            </div>
+            <div class="layui-form-item isTop">
+                <label class="layui-form-label"><i class="seraph icon-zhiding"></i> 置　顶</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" name="isTop" lay-skin="switch" lay-text="是|否">
+                </div>
+            </div>
+            <div class="layui-form-item isorg">
+                <label class="layui-form-label"><i class="seraph icon-zhiding"></i> 是否原创</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" name="isorg" lay-skin="switch" lay-text="是|否">
+                </div>
+            </div>
+            <hr class="layui-bg-gray" />
+            <div class="layui-right">
+                <a class="layui-btn layui-btn-sm" lay-filter="addNews" lay-submit><i class="layui-icon">&#xe609;</i>发布</a>
+                <a class="layui-btn layui-btn-primary layui-btn-sm" lay-filter="look" lay-submit>预览</a>
+            </div>
+        </div>
+    </div>
+</form>
+<script src="{% static '/layui/layui.js' %}"></script>
+<script src="{% static '/lib/Addnews.js' %}"></script>
+<script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
+<script src='{% static '/tinymce/tinymce.min.js' %}'></script>
+
+<script type="text/javascript">
+    tinymce.init({
+        selector:'#editor1',
+        language: "zh_CN",
+        height: 500,
+        fontsize_formats: "8pt 9pt 10pt 11pt 12pt 13pt 14pt 15pt 16pt 17pt 18pt 19pt 20pt 21pt 22pt 23pt 24pt 26pt 36pt 72pt",
+        plugins: 'print preview fullpage searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools  contextmenu colorpicker textpattern help',
+        toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor fontsizeselect fontselect styleselect | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
+        image_advtab: true,
+        templates: [
+            { title: 'Test template 1', content: 'Test 1' },
+            { title: 'Test template 2', content: 'Test 2' }
+        ],
+        content_css: [
+            '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+            '//www.tinymce.com/css/codepen.min.css'
+        ],
+        font_formats: "宋体=宋体;微软雅黑=微软雅黑;新宋体=新宋体;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n,Lato=Lato;Andale Mono=andale mono,times;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;Comic Sans MS=comic sans ms,sans-serif;Courier New=courier new,courier;Georgia=georgia,palatino;Helvetica=helvetica;Impact=impact,chicago;Symbol=symbol;Tahoma=tahoma,arial,helvetica,sans-serif;Terminal=terminal,monaco;Times New Roman=times new roman,times;Trebuchet MS=trebuchet ms,geneva;Verdana=verdana,geneva;Webdings=webdings;Wingdings=wingdings,zapf dingbats"
+    });
+    {#if($('.editor2').val()!='')#}
+    {#{#}
+    tinyMCE.activeEditor.getContent($('.editor2').val())
+    {# }#}
+
+
+</script>
+
+
+</body>
+</html>

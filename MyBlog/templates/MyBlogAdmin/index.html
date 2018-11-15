@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>我的博客后台管理系统</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}">
+    <link rel="stylesheet" href="{% static 'layui/css/admin.css' %}">
+</head>
+<body class="layui-layout-body">
+<div id="LAY_app">
+
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <!-- 头部区域（可配合layui已有的水平导航） -->
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item layadmin-flexible" lay-unselect>
+                    <a href="javascript:;" layadmin-event="flexible" title="侧边伸缩">
+                        <i class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i>
+                    </a>
+                </li>
+                <li class="layui-nav-item" lay-unselect>
+                    <a href="javascript:;" layadmin-event="refresh" title="刷新">
+                        <i class="layui-icon layui-icon-refresh-3"></i>
+                    </a>
+                </li>
+
+            </ul>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item layui-hide-xs" lay-unselect>
+                    <a href="javascript:;" layadmin-event="theme" title="主题">
+                        <i class="layui-icon layui-icon-theme"></i>
+                    </a>
+                </li>
+                <li class="layui-nav-item layui-hide-xs" lay-unselect>
+                    <a href="javascript:;" layadmin-event="note" title="便签">
+                        <i class="layui-icon layui-icon-note"></i>
+                    </a>
+                </li>
+
+                <li class="layui-nav-item layui-hide-xs" lay-unselect>
+                    <a href="javascript:;" layadmin-event="fullscreen" title="全屏">
+                        <i class="layui-icon layui-icon-screen-full"></i>
+                    </a>
+                </li>
+
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <img src="{{ userpic }}" class="layui-nav-img">
+                        {{ username }}
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a lay-href="{% url 'MyBlog:userinfo' id %}">基本资料</a></dd>
+                        <dd><a lay-href="{% url 'MyBlog:password' id %}">密码修改</a></dd>
+
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="{% url 'MyBlog:login' %}">退出</a></li>
+            </ul>
+        </div>
+
+        <div class="layui-side layui-side-menu" >
+            <div class="layui-side-scroll">
+                <div class="layui-logo">
+                    <span>我的博客后台管理系统</span>
+                </div>
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
+                </ul>
+            </div>
+        </div>
+        <div class="layadmin-pagetabs" id="LAY_app_tabs">
+            <div class="layui-icon layadmin-tabs-control layui-icon-prev" layadmin-event="leftPage"></div>
+            <div class="layui-icon layadmin-tabs-control layui-icon-next" layadmin-event="rightPage"></div>
+            <div class="layui-icon layadmin-tabs-control layui-icon-down">
+                <ul class="layui-nav layadmin-tabs-select" lay-filter="layadmin-pagetabs-nav">
+                    <li class="layui-nav-item" lay-unselect>
+                        <a href="javascript:;"></a>
+                        <dl class="layui-nav-child layui-anim-fadein">
+                            <dd layadmin-event="closeThisTabs"><a href="javascript:;">关闭当前标签页</a></dd>
+                            <dd layadmin-event="closeOtherTabs"><a href="javascript:;">关闭其它标签页</a></dd>
+                            <dd layadmin-event="closeAllTabs"><a href="javascript:;">关闭全部标签页</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+            <div class="layui-tab" lay-unauto lay-allowClose="true" lay-filter="layadmin-layout-tabs">
+                <ul class="layui-tab-title" id="LAY_app_tabsheader">
+                    <li lay-id="console" lay-attr="console" class="layui-this"><i class="layui-icon layui-icon-home"></i></li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="layui-body" id="LAY_app_body">
+            <div class="layadmin-tabsbody-item layui-show">
+                <iframe src="console" frameborder="0" class="layadmin-iframe"></iframe>
+            </div>
+        </div>
+        <div class="layui-footer">
+            <!-- 底部固定区域 -->
+            © 深圳玖维数据科技有限公司
+        </div>
+    </div>
+</div>
+
+
+<script src="{% static 'layui/layui.js' %}"></script>
+{#<script src="{% static 'js/common/menu.js' %}"></script>#}
+
+<script>
+    layui.config({
+        base: '{% static '/' %}' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use('index');
+
+    // 导航菜单的间隔像素
+   var menuCell = 5;
+
+    layui.use('element', function(){
+        var element = layui.element;
+        var $ = layui.jquery;
+
+        $.ajax({
+            url:"{% url 'MyBlog:menushow' %}",
+            type:"get",
+            dataType:"json",
+            data:{},
+            success:function(data){
+                console.log("data: "+data);
+                var liStr= "";
+                // 遍历生成主菜单
+                for( var i = 0; i <data.length; i++){
+                    //console.log("--> "+JSON.stringify(data[i]));
+                    // 判断是否存在子菜单
+                    if(data[i].childMenus!=null&&data[i].childMenus.length>0){
+                        console.log("--> "+JSON.stringify(data[i].childMenus));
+                        liStr+="<li class=\"layui-nav-item\"><a class=\"\" href=\"javascript:;\" lay-tips=\"\" lay-direction=\"2\"> <i class=\"layui-icon "+data[i].icon+"\"></i>" +
+                          "<cite>"+data[i].name+"</cite></a>\n"+
+                            "<dl class=\"layui-nav-child\">\n";
+                        // 遍历获取子菜单
+                        for( var k = 0; k <data[i].childMenus.length; k++){
+                            liStr+=getChildMenu(data[i].childMenus[k],0);
+                        }
+                        liStr+="</dl></li>";
+                    }else{
+                        liStr+="<li class=\"layui-nav-item\"><a class=\"\" href=\""+data[i].url+"\">"+data[i].name+"</a></li>";
+                    }
+                };
+                console.log(">>>> "+liStr);
+                // $("#LAY-system-side-menu").html("<ul class=\"layui-nav layui-nav-tree\" id=\"LAY-system-side-menu\" lay-filter=\"layadmin-system-side-menu\">\n" +liStr+"</ul>");
+                $("#LAY-system-side-menu").html(liStr);
+                element.init();
+            }
+        });
+
+    });
+
+    // 递归生成子菜单
+    function getChildMenu(subMenu,num) {
+        console.log("num: "+num);
+        num++;
+        var subStr = "";
+        if(subMenu.childMenus!=null&&subMenu.childMenus.length>0){
+            subStr+="<dd><ul><li class=\"layui-nav-item\" ><a  class=\"\" href=\"javascript:;\">"+subMenu.name+"</a>" +
+                "<dl class=\"layui-nav-child\">\n";
+            for( var j = 0; j <subMenu.childMenus.length; j++){
+                subStr+=getChildMenu(subMenu.childMenus[j],num);
+            }
+            subStr+="</dl></li></ul></dd>";
+        }else{
+            subStr+="<dd><a lay-href=\""+subMenu.url+"\">"+subMenu.name+"</a></dd>";
+        }
+        return subStr;
+    }
+
+</script>
+
+</body>
+</html>

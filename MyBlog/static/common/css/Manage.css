@@ -1,0 +1,16 @@
+.picManage
+{
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    background:#fff;
+    background-size:cover ;
+    padding-bottom: 60%;
+    /*border-style: solid;*/
+    border-width: 0;
+}
+.picManage img
+{
+    /*height: 200px;*/
+    /*width: 200px;*/
+}

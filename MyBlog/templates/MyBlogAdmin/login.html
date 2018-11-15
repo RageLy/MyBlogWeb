@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>玖维大数据分析平台--用户登录</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/layui/css/layui.css' %}" media="all">
+    {#    <link rel="stylesheet" href="{% static '/layui/css/admin.css' %}" media="all">#}
+    {#    <link rel="stylesheet" href="{% static '/layui/css/login.css' %}" media="all">#}
+    <link rel="stylesheet" href="{% static '/layui/css/public.css' %}" media="all">
+</head>
+<body class="loginBody">
+<div class="layadmin-user-login layadmin-user-display-show" id="LAY-user-login" style="display:block;">
+    <div class="layadmin-user-login-main">
+        <form class="layui-form">
+            {% csrf_token %}
+            <div class="login_face"><img src="{% static '/common/imgs/face.jpg' %}" class="userAvatar"></div>
+            <div class="layui-form-item input-item">
+                <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-useraccount"> 用户名</label>
+                <input type="text" name="useraccount" id="LAY-user-login-useraccount" lay-verify="required" placeholder="用户名" class="layui-input" value="admin">
+            </div>
+            <div class="layui-form-item input-item">
+                <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-password"> 密码</label>
+                <input type="password" name="password" id="LAY-user-login-password" lay-verify="required" placeholder="密码" class="layui-input" value="admin">
+            </div>
+{#            <div class="layui-form-item" id="imgCode">#}
+{#                <div class="layui-row">#}
+{#                    <div class="layui-col-xs7">#}
+{#                        <label class="layadmin-user-login-icon layui-icon layui-icon-vercode" for="LAY-user-login-vercode"> 验证码</label>#}
+{#                        <input type="text" name="vercode" id="imgVercode" lay-verify="required" placeholder="图形验证码" class="layui-input" >#}
+{#                    </div>#}
+{#                    <div class="layui-col-xs5">#}
+{#                        <canvas id="canvas" width="100" height="43"></canvas>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+            <div class="layui-form-item">
+                <button type="button" class="layui-btn layui-block" lay-submit lay-filter="LAY-user-login-submit" id="loginbutton">登 录</button>
+            </div>
+            <div class="layui-form-item layui-row">
+                <a href="javascript:;" class="seraph icon-qq layui-col-xs4 layui-col-sm4 layui-col-md4 layui-col-lg4"></a>
+                <a href="javascript:;" class="seraph icon-wechat layui-col-xs4 layui-col-sm4 layui-col-md4 layui-col-lg4"></a>
+                <a href="javascript:;" class="seraph icon-sina layui-col-xs4 layui-col-sm4 layui-col-md4 layui-col-lg4"></a>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="{% static '/layui/layui.js' %}"></script>
+<script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static '/js/common/login.js' %}"></script>
+{#<script src="{% static '/js/common/imgcodeVerify.js' %}"></script>#}
+<script>
+    layui.config({
+        base: '{% static '/' %}' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'user'], function(){
+        var $ = layui.$
+            ,setter = layui.setter
+            ,admin = layui.admin
+            ,form = layui.form
+            ,router = layui.router()
+            ,search = router.search;
+    });
+    $('#loginbutton').on("click",function(){
+        $.ajax({
+            type:"POST",
+            data: {
+                {#'verifyCode':$('#imgVercode').val().toLowerCase(),#}
+                'csrfmiddlewaretoken':$("[name='csrfmiddlewaretoken']").val(),
+                {#'trueverifyCode':num,#}
+                'useraccount':$('#LAY-user-login-useraccount').val(),
+                'password':$('#LAY-user-login-password').val(),
+            },
+            url: "{% url 'MyBlog:login' %}", //后台处理函数的url
+            cache: false,
+            success: function(result) {
+                console.log(result.message)
+                console.log(result.userinfo)
+                if (result.message==1){
+                    layer.msg('登陆成功', {
+                        offset: '15px'
+                        ,icon: 1
+                    });
+                    window.location.href = "{% url 'MyBlog:admin' %}";
+                }
+                else if(result.message==0)
+                {
+                    layer.msg('密码不正确', {
+                        offset: '15px'
+                        ,icon: 1
+                    });
+                }
+                else if(result.message==-1)
+                {
+                    layer.msg('用户名不存在', {
+                        offset: '15px'
+                        ,icon: 1
+                    });
+                }
+                {#else if(result.message==-2)#}
+                {#{#}
+                {#    layer.msg('验证码错误', {#}
+                {#        offset: '15px'#}
+                {#        ,icon: 1#}
+                {#    });#}
+                    {#var show_num = [];#}
+                    {#draw(show_num)#}
+                {# }#}
+            },
+        });
+    });
+     $('#LAY-user-login-password').bind('keyup', function(event) {
+        if (event.keyCode == "13") {
+            //回车执行查询
+            $('#loginbutton').click();
+        }
+    });
+    {#function draw(show_num) {#}
+    {#    var canvas_width=$('#canvas').width();#}
+    {#    var canvas_height=$('#canvas').height();#}
+    {#    var canvas = document.getElementById("canvas");//获取到canvas的对象，演员#}
+    {#    var context = canvas.getContext("2d");//获取到canvas画图的环境，演员表演的舞台#}
+    {#    canvas.width = canvas_width;#}
+    {#    canvas.height = canvas_height;#}
+    {#    var sCode = "A,B,C,E,F,G,H,J,K,L,M,N,P,Q,R,S,T,W,X,Y,Z,1,2,3,4,5,6,7,8,9,0";#}
+    {#    var aCode = sCode.split(",");#}
+    {#    var aLength = aCode.length;//获取到数组的长度#}
+    {##}
+    {#    for (var i = 0; i <= 3; i++) {#}
+    {#        var j = Math.floor(Math.random() * aLength);//获取到随机的索引值#}
+    {#        var deg = Math.random() * 30 * Math.PI / 180;//产生0~30之间的随机弧度#}
+    {#        var txt = aCode[j];//得到随机的一个内容#}
+    {#        show_num[i] = txt.toLowerCase();#}
+    {#        var x = 10 + i * 20;//文字在canvas上的x坐标#}
+    {#        var y = 20 + Math.random() * 8;//文字在canvas上的y坐标#}
+    {#        context.font = "bold 23px 微软雅黑";#}
+    {##}
+    {#        context.translate(x, y);#}
+    {#        context.rotate(deg);#}
+    {##}
+    {#        context.fillStyle = randomColor();#}
+    {#        context.fillText(txt, 0, 0);#}
+    {##}
+    {#        context.rotate(-deg);#}
+    {#        context.translate(-x, -y);#}
+    {#    }#}
+    {#    for (var i = 0; i <= 5; i++) { //验证码上显示线条#}
+    {#        context.strokeStyle = randomColor();#}
+    {#        context.beginPath();#}
+    {#        context.moveTo(Math.random() * canvas_width, Math.random() * canvas_height);#}
+    {#        context.lineTo(Math.random() * canvas_width, Math.random() * canvas_height);#}
+    {#        context.stroke();#}
+    {#    }#}
+    {#    for (var i = 0; i <= 30; i++) { //验证码上显示小点#}
+    {#        context.strokeStyle = randomColor();#}
+    {#        context.beginPath();#}
+    {#        var x = Math.random() * canvas_width;#}
+    {#        var y = Math.random() * canvas_height;#}
+    {#        context.moveTo(x, y);#}
+    {#        context.lineTo(x + 1, y + 1);#}
+    {#        context.stroke();#}
+    {#    }#}
+    {# }#}
+    {##}
+    {#function randomColor() {//得到随机的颜色值#}
+    {#    var r = Math.floor(Math.random() * 256);#}
+    {#    var g = Math.floor(Math.random() * 256);#}
+    {#    var b = Math.floor(Math.random() * 256);#}
+    {#    return "rgb(" + r + "," + g + "," + b + ")";#}
+    {# }#}
+</script>
+
+</body>
+</html>

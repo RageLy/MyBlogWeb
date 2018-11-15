@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>权限设置</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/layui/css/layui.css' %}">
+    {#     <link rel="stylesheet" href="{% static '/layui/css/admin.css' %}">#}
+</head>
+<body>
+    <div class="layui-form" lay-filter="layuiadmin-form-useradmin" id="layuiadmin-form-useradmin" style="padding: 20px 0 0 0;">
+        <div class="layui-form-item">
+            <label class="layui-form-label">角色名</label>
+            <div class="layui-input-inline">
+                <input type="text" name="rolename" value="{{ roles.rolename }}" lay-verify="required" placeholder="请输入角色名" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">数据可见</label>
+            <div class="layui-input-inline">
+                <select name="queryrange" lay-verify="required">
+                    {% if roles %}
+                    <option  value="{{ roles.queryrange }}" >{% if roles.queryrange == '99' %}全部{% else %}{{ roles.queryrange }}{% endif %}</option>
+                    {% else %}
+                        <option  value="99" >全部</option>
+                    {% endif %}
+                </select>
+            </div>
+
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">电话导出</label>
+            <div class="layui-input-inline">
+                <select name="canseephone" lay-verify="required">
+                    {% if roles %}
+                    <option  value="{{ roles.canseephone }}" >{{ roles.canseephone }}</option>
+                     {% else %}
+                        <option  value="导出可见" >导出可见</option>
+                    {% endif %}
+                </select>
+            </div>
+
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">备注</label>
+            <div class="layui-input-inline">
+                <textarea name="RoleDesc" lay-verify="" style="width: 300px; height: 150px;" autocomplete="off" class="layui-textarea" >{{ roles.roledesc }}</textarea>
+            </div>
+        </div>
+        <div class="layui-form-item layui-hide">
+            <input type="button" lay-submit lay-filter="LAY-user-role-submit" id="LAY-user-role-submit"  value="确认">
+        </div>
+    </div>
+<script src="{% static '/layui/layui.js' %}"></script>
+
+<script>
+    layui.config({
+        base: '{% static '/' %}' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'form', 'upload'], function(){
+        var $ = layui.$
+            ,form = layui.form
+    })
+</script>
+</body>
+</html>
