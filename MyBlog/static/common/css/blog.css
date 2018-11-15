@@ -1,6 +1,6 @@
 body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif; overflow-x: hidden;}
 .w1000{max-width: 1000px!important; margin:0 auto;}
-.header{height: 90px; width:100%;line-height: 90px; position: fixed;top:0; font-size: 16px;background-color: white;z-index: 1;float: left;box-shadow: 1px 1px 1px #adadad}
+.header{height: 90px; width:100%;line-height: 90px; position: fixed;top:0; font-size: 16px;background-color: white;z-index: 1;float: left;box-shadow: 1px 1px 1px #adadad;}
 .header .logo,.header .welcome-text,.header .nav{position: fixed; top: 0;z-index: 1;}
 .header .logo{left: 65px;}
 .header .logo span{display: none;}
@@ -243,3 +243,4 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
 .Message .headimg{float: left;}
 .Message .headimg img{height: 40px;width: 40px; border-radius: 50%;float: left;}
 .Message .text{text-align: left;overflow: hidden;float: left;line-height: 40px;padding: 0 0 0 20px;}
+.Message .date{text-align: left;overflow: hidden;float: left;}

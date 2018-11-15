@@ -54,7 +54,7 @@ def message(request):
 
 def submitmessage(request):
     MessageCon=request.POST.get("MessageCon")
-    MessageTb = models.MessageTb(MessageContent=MessageCon,userid='',username='',email='')
+    MessageTb = models.MessageTb(MessageContent=MessageCon,userid='',username='',email='',createdate=datetime.datetime.now())
     MessageTb.save()
     return JsonResponse({'message': 0})
 
@@ -92,10 +92,6 @@ def imgtypes(request,type):
     tag = models.BlogType.objects.filter(category=1)
     # print(Bloglist,len(Bloglist))
     return render(request, 'MyBlog/picture.html', {'PicManages':PicManage,'Tags':tag})
-
-def test(request):
-    test=[1,2,3,4]
-    return render(request, 'MyBlog/test.html',{'data':test})
 
 def commentdata(request):
     if request.POST.get('commentContent')=='':
