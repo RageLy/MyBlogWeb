@@ -14,7 +14,6 @@
 {#    </div>#}
 {#{% endblock %}#}
 {% block container %}
-
     <div class="layui-col-md12 Tophead">
         <div class="layui-card ">
             <div class="layui-card-header">欢迎大家留言</div>
@@ -55,7 +54,6 @@
         }).use(['layer'], function(){
             var $ = layui.$
                 ,layer = layui.layer
-
             $('#submit').on("click",function(){
                 $.ajax({
                     type:"POST",
