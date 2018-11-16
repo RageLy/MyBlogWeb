@@ -239,9 +239,9 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
 
 
 /*#留言*/
-.Message{float: left;width: 100%;border-bottom: 1px solid #f0f3f9; padding:0!important; position: relative;}
-.Message .headimg{float: left;margin: 0;padding: 10px 0 30px 0;}
+.Message{float: left;width: 100%;border-bottom: 1px solid #f0f3f9; padding:0 0 0 0!important; position: relative;}
+.Message .headimg{float: left;margin: 0;padding: 20px 0 30px 0;}
 .Message .headimg img{height: 50px;width: 50px; border-radius: 50%;float: left;}
-.Message .text{text-align: left;float: left;line-height: 24px;padding: 0;position: absolute;left:70px;top:30px;}
-.Message .user{text-align: left;overflow: hidden;float: left;position: absolute;top: 10px;left: 70px;color: dodgerblue;}
-.Message .date{text-align: left;overflow: hidden;float: left;position: absolute;left:70px;bottom: 0;color: #adadad;}
+.Message .user{text-align: left;overflow: hidden;float: left;line-height:100%;position: absolute;top: 20px;left: 70px;color: dodgerblue;padding:0 0 10px 0;}
+.Message .text{text-align: left;line-height: 20px;position: static;padding: 45px 0 35px 70px;height:100%;color:#545556;}
+.Message .date{text-align: left;overflow: hidden;float: left;line-height:100%;position: absolute;left:70px;bottom: 10px;color: #adadad;padding:10px 0 0 0;}
