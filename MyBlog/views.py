@@ -54,7 +54,8 @@ def message(request):
 
 def submitmessage(request):
     MessageCon=request.POST.get("MessageCon")
-    MessageTb = models.MessageTb(MessageContent=MessageCon,userid='',username='',email='')
+    maxid=models.MessageTb.objects.latest('id').id
+    MessageTb = models.MessageTb(MessageContent=MessageCon,userid='',username='游客'+str(int(maxid)+1),email='',createdate=datetime.datetime.now())
     MessageTb.save()
     return JsonResponse({'message': 0})
 

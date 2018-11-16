@@ -289,6 +289,7 @@ class MessageTb(models.Model):
     userid = models.CharField(db_column='userid', max_length=50, blank=True, null=True)
     username = models.CharField(db_column='username', max_length=50, blank=True, null=True)
     email = models.CharField(db_column='email', max_length=50, blank=True, null=True)
+    createdate=models.DateTimeField(db_column='createdate', blank=True, null=True)
     objects = models.Manager()
 
     class Meta:
