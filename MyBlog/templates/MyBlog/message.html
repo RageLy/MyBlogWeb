@@ -1,5 +1,6 @@
 {% extends 'MyBlog/base.html' %}
 {% load static %}
+{% load pagetags %}
 {% block title%}
     <title>欢迎留言</title>
 {% endblock %}
@@ -45,15 +46,54 @@
                 </div>
             {% endfor %}
         {% endif %}
+
+    </div>
+    <div class="layui-col-md12 navigation">
+        <nav aria-label="">
+            <ul class="pagination">
+                {% if MessageTbs.has_previous %}
+                    <li>
+                        <a href="?page={{ MessageTbs.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+
+                {%  for pg in MessageTbs.paginator.page_range %}
+                    {% circle_page MessageTbs.number pg %}
+                {% endfor %}
+
+                {% if MessageTbs.has_next %}
+                    <li>
+                        <a href="?page={{ MessageTbs.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {#        <div class="pagination">#}
+        {#            <span class="step-links">#}
+        {#                {% if MessageTbs.has_previous %}#}
+        {#                    <a href="?page={{ MessageTbs.previous_page_number }}"><<</a>#}
+        {#                {% endif %}#}
+        {##}
+        {#                <span class="current">#}
+        {#                   {{ MessageTbs.number }} 共 {{ MessageTbs.paginator.num_pages }}页#}
+        {#                </span>#}
+        {##}
+        {#                {% if MessageTbs.has_next %}#}
+        {#                    <a href="?page={{ MessageTbs.next_page_number }}">>></a>#}
+        {#                {% endif %}#}
+        {#            </span>#}
+        {#        </div>#}
     </div>
 {% endblock %}
 {% block script %}
     <script>
         layui.config({
-            base: '{% static '/' %}' //静态资源所在路径
-        }).extend({
-            index: 'lib/index' //主入口模块
-        }).use(['layer'], function(){
+            base: '{% static '/layui/js/util/' %}' //静态资源所在路径
+     }).use(['layer'], function(){
             var $ = layui.$
                 ,layer = layui.layer
 
@@ -64,12 +104,15 @@
                     },
                     url: "{% url 'MyBlog:submitmessage' %}", //后台处理函数的url
                     cache: false,
+                    async : false,
                     success: function(result) {
                         console.log(result.message)
-                        if (result.message==0){
-                            layer.msg('点赞成功',{time:0.5*1000})
+                        if (result.message=="0"){
+                            layer.msg('留言成功',{time:0.5*1000})
                             location.reload()
                         }
+                        else if (result.message=="-1")
+                        {layer.msg('请输入内容',{time:0.5*1000})}
                     },
                 });
             });

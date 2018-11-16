@@ -4,10 +4,9 @@ from django.http import JsonResponse
 from MyBlog import models
 from django.http import HttpResponse
 from MyBlogWeb import settings
-from django.core.paginator import Paginator
-from easy_thumbnails.files import get_thumbnailer
+from django.core.paginator import Paginator,EmptyPage, PageNotAnInteger
+
 from django.db.models import Q
-import datetime
 import json
 from django.db.models.fields.files import ImageFieldFile
 from PIL import Image
@@ -50,14 +49,33 @@ def picture(request):
 
 def message(request):
     MessageTb=models.MessageTb.objects.all()
-    return render(request, 'MyBlog/message.html',{'MessageTbs':MessageTb})
+    paginator = Paginator(MessageTb, 10)  # Show 25 contacts per page
+    page = request.GET.get('page')
+    try:
+        contacts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        contacts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        contacts = paginator.page(paginator.num_pages)
+    return render(request, 'MyBlog/message.html',{'MessageTbs':contacts})
 
 def submitmessage(request):
-    MessageCon=request.POST.get("MessageCon")
-    maxid=models.MessageTb.objects.latest('id').id
-    MessageTb = models.MessageTb(MessageContent=MessageCon,userid='',username='游客'+str(int(maxid)+1),email='',createdate=datetime.datetime.now())
-    MessageTb.save()
-    return JsonResponse({'message': 0})
+    if request.POST.get("MessageCon")!='':
+        if 'HTTP_X_FORWARDED_FOR' in request.META:
+            ip = request.META['HTTP_X_FORWARDED_FOR']
+        else:
+            ip = request.META['REMOTE_ADDR']
+        print(ip)
+        ipcity='http://ip.taobao.com/service/getIpInfo.php?ip='+ip
+        MessageCon=request.POST.get("MessageCon")
+        maxid=models.MessageTb.objects.latest('id').id
+        MessageTb = models.MessageTb(MessageContent=MessageCon,userid='',username='游客'+str(int(maxid)+1),email='',createdate=datetime.datetime.now())
+        MessageTb.save()
+        return JsonResponse({'message': 0})
+    else:
+        return JsonResponse({'message': -1})
 
 def about(request):
     return render(request, 'MyBlog/about.html')
