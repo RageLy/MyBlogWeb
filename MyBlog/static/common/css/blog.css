@@ -1,15 +1,26 @@
-body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif; overflow-x: hidden;}
-.w1000{max-width: 1000px!important; margin:0 auto;}
-.header{height: 90px; width:100%;line-height: 90px; position: fixed;top:0; font-size: 16px;background-color: white;z-index: 1;float: left;box-shadow: 1px 1px 1px #adadad}
-.header .logo,.header .welcome-text,.header .nav{position: fixed; top: 0;z-index: 1;}
-.header .logo{left: 65px;}
+body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif; overflow-x: hidden;background-color: #F2F2F2;}
+.header{height: 60px; width:100%;line-height: 60px;font-size: 16px;background-color: white;z-index: 1;box-shadow: 1px 1px 1px #adadad;text-align: center;position: relative;}
+/*.header .logo,.header .welcome-text,.header .nav{z-index: 1;}*/
+.header .logo{float: left}
 .header .logo span{display: none;}
-.header .nav{left: 250px;}
-.header .nav a{color: #3f2863; margin:0 40px;}
+.header .nav{float: right}
+.header .nav a{color: #777777; margin:0 40px;}
 .header .nav a.active{color: #ff7f21;}
 .header .welcome-text{right: 50px;}
 .header .header-down-nav{display: none;}
 
+
+.nav{z-index:1;text-align: center;top:0;width:100%;position: fixed!important;background: rgba(255,255,255,0.5)!important;height: 60px;line-height: 60px;box-sizing:border-box;opacity: 1;box-shadow:0 1px 2px #f2f2f2; }
+.nav .item{margin:0 auto;width:100%;}
+
+.nav img {float: left;padding-left: 7.5px;}
+.nav ul{float: right;}
+.nav ul li{float: left;font-size: 16px;;}
+.nav ul li a{color:#777777!important;}
+
+@media screen and (min-width:768px){.nav .item{width:750px}}
+@media screen and (min-width:992px){.nav .item{width:970px}}
+@media screen and (min-width:1200px){.nav .item{width:1170px}}
 
 .banner{height: 470px; width: 100%; background: url(../../common/imgs/header.jpg) no-repeat; background-size:cover;margin-top: 90px;}
 .banner .cont{position: relative;}
@@ -20,7 +31,7 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
 .banner .text{position: relative; width: 80px; display: inline-block;}
 .banner .text::before { position: absolute; right: -5px; content: '\FF1A';}
 
-.picbanner{height: 300px; width: 100%; background: url(../../common/imgs/picheader.jpg) no-repeat; background-size:cover;margin-top: 90px;}
+.picbanner{height: 300px; width: 100%; background: url(../../common/imgs/picheader.jpg) no-repeat; background-size:cover;}
 .picbanner .cont{position: relative;}
 .picbanner .title{color: #fff; position: absolute; top: 100px; left: 0;}
 .picbanner .title h3{font-size: 40px; line-height: 40px;}
@@ -220,8 +231,8 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
 
 /*友情链接*/
 .linkweb {color:#adadad;margin-bottom: 20px;float: left;margin-top: -10px;}
-.linkweb ul{margin-left:-2%}
-.linkweb ul li{float: left;background-color: #f0f0f0;margin-top: 20px;margin-left:2%;width: 23%;}
+.linkweb ul{margin-left:-2%;}
+.linkweb ul li{float: left;background-color: white;margin-top: 20px;margin-left:2%;width: 23%;}
 .linkweb ul li:hover{box-shadow: 2px 5px 14px #c5c5c5;transform: translate3d(0,-2px,0);-webkit-transform: translate3d(0,-3px,0);}
 .linkweb ul li a{font-size: 12px;padding: 15px;width: 90%;line-height: 16px;display: block}
 .linkweb ul li h3{height: 40px;line-height: 40px;overflow: hidden;color: #333;}
@@ -235,22 +246,22 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
 /*#自定义*/
 .blog-elem-quote{ margin:20px 0 10px 0;padding: 15px;border-left: 5px solid #009688;border-radius: 0 2px 2px 0;background-color:#f0f3f9;}
 .content-sapce-15{padding-top: 20px;}
-.Tophead{margin-top: 90px;}
+.Tophead{margin-top: 60px;}
 
 
 /*#留言*/
-.Message{float: left;width: 100%;border-bottom: 1px solid #f0f3f9; padding:0 0 0 0!important; position: relative;}
-.Message .headimg{float: left;margin: 0;padding: 20px 0 30px 0;}
+.Message{float: left;width: 100%;border-bottom: 1px solid #f0f3f9; padding:0!important; position: relative;background-color: white;}
+.Message .headimg{float: left;margin: 0;padding: 20px 0 30px 10px;}
 .Message .headimg img{height: 50px;width: 50px; border-radius: 50%;float: left;}
 .Message .user{text-align: left;overflow: hidden;float: left;line-height:100%;position: absolute;top: 20px;left: 70px;color: dodgerblue;padding:0 0 10px 0;}
-.Message .text{text-align: left;line-height: 20px;position: static;padding: 45px 0 35px 70px;height:100%;color:#545556;}
+.Message .text{text-align: left;line-height: 20px;position: static;padding: 45px 70px 35px 70px;height:100%;color:#545556;}
 .Message .date{text-align: left;overflow: hidden;float: left;line-height:100%;position: absolute;left:70px;bottom: 10px;color: #adadad;padding:10px 0 0 0;}
 
 .navigation{text-align: center;padding: 10px;}
 /*.pagination .step-links{border: 1px solid #1E9FFF;padding: 10px;}*/
 /*.pagination .step-links span{font-size: 12px;color: #545556}*/
 
-.about{height: 200px; width: 100%; background-color: #1E9FFF; background-size:cover;margin-top: 90px;float: left;}
+.about{height: 200px; width: 100%; background-color: #1E9FFF; background-size:cover;float: left;margin-top: 70px;}
 .about .cont{position: relative;text-align: center;width: 100%;}
 .about .title{color: #fff;}
 .about .title h3{font-size: 20px; line-height: 200px;text-transform: uppercase;}

@@ -210,15 +210,15 @@ class PicManage(models.Model):
         managed = False
         db_table = 'PicManage'
 
-    # def save(self):
-    #     super(PicManage, self).save()  # 将上传的图片先保存一下，否则报错
-    #     base, ext = os.path.splitext(os.path.basename(self.img.path))
-    #     thumb_pixbuf = make_thumb(os.path.join(MEDIA_ROOT, self.img.name))
-    #     relate_thumb_path = os.path.join(THUMB_ROOT, base + '_thumb' + ext)
-    #     thumb_path = os.path.join(MEDIA_ROOT, relate_thumb_path)
-    #     thumb_pixbuf.save(thumb_path)
-    #     self.imgthumb = ImageFieldFile(self, self.imgthumb, relate_thumb_path)
-    #     super(PicManage, self).save()  # 再保存一下，包括缩略图等
+    def save(self):
+        super(PicManage, self).save()  # 将上传的图片先保存一下，否则报错
+        base, ext = os.path.splitext(os.path.basename(self.img.path))
+        thumb_pixbuf = make_thumb(os.path.join(MEDIA_ROOT, self.img.name))
+        relate_thumb_path = os.path.join(THUMB_ROOT, base + '_thumb' + ext)
+        thumb_path = os.path.join(MEDIA_ROOT, relate_thumb_path)
+        thumb_pixbuf.save(thumb_path)
+        self.imgthumb = ImageFieldFile(self, self.imgthumb, relate_thumb_path)
+        super(PicManage, self).save()  # 再保存一下，包括缩略图等
 
 
 

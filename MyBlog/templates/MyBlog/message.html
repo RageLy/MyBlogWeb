@@ -15,10 +15,18 @@
 {#    </div>#}
 {#{% endblock %}#}
 {% block container %}
-
     <div class="layui-col-md12 Tophead">
+        <div class="layui-card">
+            <div class="layui-card-header">
+                <h2>大佬们看这里</h2>
+            </div>
+            <div class="layui-card-body">
+                欢迎各位大佬们提意见，本博客还有很多不完善的地方，如发现，可在下方留言，多谢多谢。
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md12 ">
         <div class="layui-card ">
-            <div class="layui-card-header">欢迎大家留言</div>
             <div class="layui-card-body ">
                 <form class="layui-form message-con" method="post">
                     {% csrf_token %}
@@ -93,7 +101,7 @@
     <script>
         layui.config({
             base: '{% static '/layui/js/util/' %}' //静态资源所在路径
-     }).use(['layer'], function(){
+        }).use(['layer'], function(){
             var $ = layui.$
                 ,layer = layui.layer
 

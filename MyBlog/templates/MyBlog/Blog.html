@@ -3,22 +3,17 @@
 {% block title%}
     <title>花花与风的博文</title>
 {% endblock %}
-{% block fluid %}
-    <div class="banner">
-        <div class="cont w1000">
-            <div class="title">
-                <h3>花花<br />与风</h3>
-                <h4>well-balanced heart</h4>
-            </div>
-            <div class="amount">
-                <p><span class="text">访问量</span><span class="access">1000</span></p>
-                <p><span class="text">日志</span><span class="daily-record">{{ Blogs.count }}</span></p>
-            </div>
-        </div>
-    </div>
-{% endblock %}
+{#{% block fluid %}#}
+{#    <div class="banner">#}
+{#        <div class="cont w1000">#}
+{#            <div class="title">#}
+{#                <h3>花花<br />与风</h3>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#{% endblock %}#}
 {% block container %}
-    <div class="layui-col-md9">
+    <div class="layui-col-md9 Tophead">
         <div class="content">
             <div class="cont w1000">
                 <div class="list-item">
@@ -57,7 +52,7 @@
             </div>
         </div>
     </div>
-    <div class="layui-col-md3" >
+    <div class="layui-col-md3 Tophead" >
         <div class="layui-row layui-col-space15">
             <div class="layui-col-md12 ">
                 <div class="layui-card">

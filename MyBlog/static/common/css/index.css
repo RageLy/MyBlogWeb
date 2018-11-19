@@ -1,22 +1,36 @@
 body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif; overflow-x: hidden;}
-.w1000{max-width: 1000px!important; margin:0 auto;}
-.header{height: 90px; width:100%;line-height: 90px; position: fixed; font-size: 16px;background-color: white;z-index: 1;float: left;box-shadow: 1px 1px 1px #adadad}
+/*.w1000{max-width: 1000px!important; margin:0 auto;}*/
+.header{height: 60px; width:100%;line-height: 60px; position: fixed; font-size: 16px;background-color: white;z-index: 1;float: left;box-shadow: 1px 1px 1px #adadad}
 .header .logo,.header .welcome-text,.header .nav{position: fixed; top: 0;z-index: 1;}
 .header .logo{left: 65px;}
 .header .logo span{display: none;}
 .header .nav{left: 250px;}
-.header .nav a{color: #3f2863; margin:0 40px;}
+.header .nav a{color: #777777; margin:0 40px;}
 .header .nav a.active{color: #ff7f21;}
 .header .welcome-text{right: 50px;}
 .header .header-down-nav{display: none;}
 
+.nav{z-index:1;text-align: center;width:100%;position: fixed!important;top:7.5px;background: rgba(255,255,255,0.5)!important;height: 60px;line-height: 60px;box-sizing:border-box;}
+.nav .item{margin:0 auto;width:100%;}
+
+.nav a img{float: left;padding-left: 7.5px;}
+.nav ul{float: right;}
+.nav ul li{float: left;font-size: 16px;;}
+.nav ul li a{color:#777777!important;}
+
+@media screen and (min-width:768px){.nav .item{width:750px}}
+@media screen and (min-width:992px){.nav .item{width:970px}}
+@media screen and (min-width:1200px){.nav .item{width:1170px}}
+
 .banner{height: 610px; width: 100%; background: rgba(0,0,0,0.5);position: relative}
 /*.banner:before{content:'';height: 900px; width: 100%; opacity: 0.5;background-color: black}*/
 .banner .cont{position: relative;}
-.banner .title{color: #fff; position: absolute; top: 152px; left: 0;z-index:1;}
-.banner .title h3{font-size: 80px; line-height: 88px;}
+.banner .title{color: #fff; z-index:1;width: 50%;padding-top:300px;text-align: center;}
+.banner .title h3{font-size: 60px; line-height: 60px;}
 .banner .title h4{font-size: 46px;}
-.banner .amount{font-size: 18px; line-height: 50px; color: #ff7f21; position: absolute; right: 20px; top: 290px;}
+.banner .amount{font-size: 18px;  color: #ff7f21; line-height: 24px;text-align: center;padding-top: -30px!important;}
+.banner .amount a{border:1px solid #1E9FFF;border-radius: 30px ;padding: 10px;text-decoration: none; color: #1E9FFF;rgba(0,0,0,0.5)}
+.banner .amount a:hover{border:1px solid white;color: white;}
 .banner .text{position: relative; width: 80px; display: inline-block;}
 .banner .text::before { position: absolute; right: -5px; content: '\FF1A';}
 
@@ -33,9 +47,9 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
 .banner2 .text ul{ position: relative;}
 
 
-.banner3{height: 400px; width: 100%; background-color: #f6f6f6; background-size:cover;}
+.banner3{height: 600px; width: 100%; background-color: #f6f6f6; background-size:cover;}
 .banner3 .cont{position: relative;}
-.banner3 .title{color: #000; position: relative; top: 40px; left: 0;}
+.banner3 .title{color: #000; text-align: center;padding-top: 30px;}
 .banner3 .title h3{font-size: 80px; line-height: 88px;}
 .banner3 .title h4{font-size: 60px; line-height: 60px;}
 .banner3 .title h5{font-size: 40px; line-height: 40px;}
@@ -44,12 +58,14 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
 .banner3 .text{position: relative; width: 80px; display: inline-block;}
 .banner3 .text::before { position: absolute; right: -5px; content: '\FF1A';}
 
-.banner4{height: 250px; width: 100%; background-color: #2A97E4; background-size:cover;}
+.banner4{height: 250px; width: 100%; background-color: #2A97E4; background-size:cover;line-height: 250px;}
 .banner4 .cont{position: relative;}
-.banner4 .title{color: #fff; position: relative; top: 30px; left: 0; text-align: center}
+.banner4 .title{color: #fff; text-align: center}
 .banner4 .title h3{font-size: 80px; line-height: 88px;}
 .banner4 .title h4{font-size: 60px; line-height: 60px;}
 .banner4 .title h5{font-size: 40px; line-height: 40px;}
+.banner4 .title .github{text-align: center;border: 1px solid white;padding: 10px;color: black;margin-right: 50px;background-color: white;font-weight: bold}
+.banner4 .title .about{text-align: center;border: 1px solid black;padding: 10px;color: white;background-color: black;font-weight: bold}
 .banner4 .title h6{font-size: 16px; line-height: 30px;text-align: center}
 .banner4 .amount{font-size: 18px; line-height: 50px; color: #ff7f21; position: absolute; right: 20px; top: 290px;}
 .banner4 .text{position: relative; width: 80px; display: inline-block;}
