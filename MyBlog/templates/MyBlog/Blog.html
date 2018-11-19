@@ -3,53 +3,31 @@
 {% block title%}
     <title>花花与风的博文</title>
 {% endblock %}
-{#{% block fluid %}#}
-{#    <div class="banner">#}
-{#        <div class="cont w1000">#}
-{#            <div class="title">#}
-{#                <h3>花花<br />与风</h3>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#{% endblock %}#}
 {% block container %}
     <div class="layui-col-md9 Tophead">
         <div class="content">
-            <div class="cont w1000">
-                <div class="list-item">
-                    {% if Blogs %}
-                        {% for blog in Blogs %}
-                            <div class="item">
-                                <div class="layui-fluid">
-                                    <div class="layui-row">
-                                        <div class="layui-col-xs12 layui-col-sm4 layui-col-md3">
-                                            <div class="img"><img src="{{ blog.imgTitle }}" alt=""></div>
-                                        </div>
-                                        <div class="layui-col-xs12 layui-col-sm8 layui-col-md9">
-                                            <div class="item-cont">
-                                                <h3><a href="{% url 'MyBlog:details' id=blog.id %}">{{ blog.title }}</a></h3>
-                                                <p>{{ blog.abstract }}</p>
-                                                <div class="author">
-                                                    <span class="f_l lm">
-                                                    {% if blog.blogtyperelation_set.all  %}
-                                                        {% for BlogTypeRelation in blog.blogtyperelation_set.all %}
-                                                            <a href="{% url 'MyBlog:types' BlogTypeRelation.BlogType.TypeName %}">{{ BlogTypeRelation.BlogType.TypeName }}</a>
-                                                        {% endfor %}
-                                                    {% endif %}
-                                                    </span>
-                                                    <span class="dtime f_l">{{ blog.createdate|date:"Y-m-d H:i:s" }}</span>
-                                                    <span class="viewnum f_r t_right">{{ blog.hit }}</span>
-                                                    <span class="pingl f_r">{{ blog.comment_set.count }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-            </div>
+            {% if Blogs %}
+                {% for blog in Blogs %}
+                    <div class="item">
+                        <div class="title"><a href="{% url 'MyBlog:details' id=blog.id %}" title="{{ blog.title }}">{{ blog.title }}</a></div>
+                        <div class="img"><img src="{{ blog.imgTitle }}" alt="{{ blog.title }}"></div>
+                        <div class="abstract"><a href="{% url 'MyBlog:details' id=blog.id %}" title="{{ blog.title }}">{{ blog.abstract }}</a></div>
+                        <div class="author">
+                                <span class="f_l lm">
+                                {% if blog.blogtyperelation_set.all  %}
+                                    {% for BlogTypeRelation in blog.blogtyperelation_set.all %}
+                                        <a href="{% url 'MyBlog:types' BlogTypeRelation.BlogType.TypeName %}">{{ BlogTypeRelation.BlogType.TypeName }}</a>
+                                    {% endfor %}
+                                {% endif %}
+                                </span>
+                            <span class="dtime f_l">{{ blog.createdate|date:"Y-m-d H:i:s" }}</span>
+                            <span class="viewnum f_r t_right">{{ blog.hit }}</span>
+                            <span class="pingl f_r">{{ blog.comment_set.count }}</span>
+                        </div>
+                    </div>
+
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
     <div class="layui-col-md3 Tophead" >

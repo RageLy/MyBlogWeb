@@ -3,26 +3,9 @@
 {% block title%}
     <title>花花与风的博客-{{ Blog.title }}</title>
 {% endblock %}
-{% block fluid %}
-    <div class="banner">
-        <div class="cont w1000">
-            <div class="title">
-                <h3>花花<br />与风</h3>
-            </div>
-        </div>
-    </div>
-{% endblock %}
+
 {% block container %}
-    <div class="layui-col-md12" >
-        <blockquote class="blog-elem-quote">
-            <span class="layui-breadcrumb">
-            <a href="../">首页</a>
-            <a href="../Blog/">文章列表</a>
-            <a>文章</a>
-            </span>
-        </blockquote>
-    </div>
-    <div class="clearspace layui-col-md9 blog-content">
+    <div class="clearspace layui-col-md9 blog-content Tophead">
         <div class="layui-card">
             <div class="layui-card-body ">
                 <div class="layui-col-md12">
@@ -65,7 +48,7 @@
             </div>
         </div>
     </div>
-    <div class="layui-col-md3">
+    <div class="layui-col-md3 Tophead">
         <div class="layui-card">
             <div class="layui-card-header">网站信息</div>
             <div class="layui-card-body">
