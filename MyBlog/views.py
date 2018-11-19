@@ -54,9 +54,7 @@ def message(request):
 
 def submitmessage(request):
     MessageCon=request.POST.get("MessageCon")
-    maxid=models.MessageTb.objects.latest('id').id
-    # print(type(maxid))
-    MessageTb = models.MessageTb(MessageContent=MessageCon,userid='',username='游客'+str(int(maxid)+1),email='',createdate=datetime.datetime.now())
+    MessageTb = models.MessageTb(MessageContent=MessageCon,userid='',username='',email='')
     MessageTb.save()
     return JsonResponse({'message': 0})
 
@@ -94,6 +92,10 @@ def imgtypes(request,type):
     tag = models.BlogType.objects.filter(category=1)
     # print(Bloglist,len(Bloglist))
     return render(request, 'MyBlog/picture.html', {'PicManages':PicManage,'Tags':tag})
+
+def test(request):
+    test=[1,2,3,4]
+    return render(request, 'MyBlog/test.html',{'data':test})
 
 def commentdata(request):
     if request.POST.get('commentContent')=='':
