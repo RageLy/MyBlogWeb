@@ -1,5 +1,6 @@
 {% extends 'MyBlog/base.html' %}
 {% load static %}
+{% load pagetags %}
 {% block title%}
     <title>欢迎留言</title>
 {% endblock %}
@@ -14,10 +15,18 @@
 {#    </div>#}
 {#{% endblock %}#}
 {% block container %}
-
     <div class="layui-col-md12 Tophead">
+        <div class="layui-card">
+            <div class="layui-card-header">
+                <h2>大佬们看这里</h2>
+            </div>
+            <div class="layui-card-body">
+                欢迎各位大佬们提意见，本博客还有很多不完善的地方，如发现，可在下方留言，多谢多谢。
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md12 ">
         <div class="layui-card ">
-            <div class="layui-card-header">欢迎大家留言</div>
             <div class="layui-card-body ">
                 <form class="layui-form message-con" method="post">
                     {% csrf_token %}
@@ -38,20 +47,60 @@
                 <div class="layui-card ">
                     <div class="layui-card-body Message">
                         <div class="headimg"><img src="{% static 'common/imgs/userhead.png' %}"></div>
+                        <div class="user"> <p>{{ MessageTb.username }}</p></div>
                         <div class="text"> <p>{{ MessageTb.MessageContent }}</p></div>
-
+                        <div class="date"> <p>{{ MessageTb.createdate|date:'Y-m-d H:i:s' }}</p></div>
                     </div>
                 </div>
             {% endfor %}
         {% endif %}
+
+    </div>
+    <div class="layui-col-md12 navigation">
+        <nav aria-label="">
+            <ul class="pagination">
+                {% if MessageTbs.has_previous %}
+                    <li>
+                        <a href="?page={{ MessageTbs.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+
+                {%  for pg in MessageTbs.paginator.page_range %}
+                    {% circle_page MessageTbs.number pg %}
+                {% endfor %}
+
+                {% if MessageTbs.has_next %}
+                    <li>
+                        <a href="?page={{ MessageTbs.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {#        <div class="pagination">#}
+        {#            <span class="step-links">#}
+        {#                {% if MessageTbs.has_previous %}#}
+        {#                    <a href="?page={{ MessageTbs.previous_page_number }}"><<</a>#}
+        {#                {% endif %}#}
+        {##}
+        {#                <span class="current">#}
+        {#                   {{ MessageTbs.number }} 共 {{ MessageTbs.paginator.num_pages }}页#}
+        {#                </span>#}
+        {##}
+        {#                {% if MessageTbs.has_next %}#}
+        {#                    <a href="?page={{ MessageTbs.next_page_number }}">>></a>#}
+        {#                {% endif %}#}
+        {#            </span>#}
+        {#        </div>#}
     </div>
 {% endblock %}
 {% block script %}
     <script>
         layui.config({
-            base: '{% static '/' %}' //静态资源所在路径
-        }).extend({
-            index: 'lib/index' //主入口模块
+            base: '{% static '/layui/js/util/' %}' //静态资源所在路径
         }).use(['layer'], function(){
             var $ = layui.$
                 ,layer = layui.layer
@@ -63,12 +112,15 @@
                     },
                     url: "{% url 'MyBlog:submitmessage' %}", //后台处理函数的url
                     cache: false,
+                    async : false,
                     success: function(result) {
                         console.log(result.message)
-                        if (result.message==0){
-                            layer.msg('点赞成功',{time:0.5*1000})
+                        if (result.message=="0"){
+                            layer.msg('留言成功',{time:0.5*1000})
                             location.reload()
                         }
+                        else if (result.message=="-1")
+                        {layer.msg('请输入内容',{time:0.5*1000})}
                     },
                 });
             });

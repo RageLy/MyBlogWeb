@@ -12,35 +12,20 @@
     {% block head %}
     {% endblock %}
 </head>
-<body >
-<div class="header">
-    <div class="menu-btn">
-        <div class="menu"></div>
+<body>
+<div class="nav layui-nav">
+    <div class="item">
+        <a href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
+        <ul class="">
+            <li class="layui-nav-item"><a href="../blog">博客</a></li>
+            <li class="layui-nav-item"><a href="../picture">相册</a></li>
+            <li class="layui-nav-item"><a href="../weblink">友情链接</a></li>
+            <li class="layui-nav-item"><a href="../message">留言</a></li>
+            <li class="layui-nav-item"><a href="../about">关于</a></li>
+        </ul>
     </div>
-    <h1 class="logo">
-        <a href="../">
-            <span>花花与风</span>
-            <img src="{% static 'common/imgs/logo.png' %}">
-        </a>
-    </h1>
-    <div class="nav">
-        <a href="../Blog/" class="active">文章</a>
-        <a href="../Picture/">相册</a>
-        <a href="../message/">留言</a>
-        <a href="../weblink/">圈中人</a>
-        <a href="../about/">关于</a>
-    </div>
-    <ul class="layui-nav header-down-nav">
-        <li class="layui-nav-item"><a href="../Blog/" class="active">文章</a></li>
-        <li class="layui-nav-item"><a href="../Picture/">相册</a></li>
-        <li class="layui-nav-item"><a href="../message/">留言</a></li>
-        <li class="layui-nav-item"><a href="../weblink/">圈中人</a></li>
-        <li class="layui-nav-item"><a href="../about/">关于</a></li>
-    </ul>
-    <p class="welcome-text">
-        欢迎来到<span class="name">花花与风</span>的博客~
-    </p>
 </div>
+
 {% block fluid %}
 {% endblock %}
 <div class="layui-container">
@@ -60,8 +45,8 @@
                 相关链接
                 <ul>
                     <li><a href="../">主页</a></li>
-                    <li><a href="../Blog/">博文</a></li>
-                    <li><a href="../Picture/">相册</a></li>
+                    <li><a href="../blog/">博文</a></li>
+                    <li><a href="../picture/">相册</a></li>
                     <li><a href="../about/">关于</a></li>
                 </ul>
             </div>
@@ -69,7 +54,7 @@
         <div class="layui-col-md12 footer-hr">
             <div class="layui-col-md12">
                 <p>design & code by @花花与风,base on layui + django</p>
-                <p>感谢七牛提供近乎免费的CDN，阿里云提供的优质云服务，以及360云加速的给力支持。</p>
+                <p>感谢layui提供的完美框架，腾讯云提供的优质云服务，以及各位大佬们的设计精髓。</p>
             </div>
         </div>
     </div>

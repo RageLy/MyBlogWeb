@@ -5,10 +5,9 @@
 {% load static %}
 {% load thumbnail %}
 {% block head %}
-    <link rel="stylesheet" href="{% static 'layui/css/template.css' %}">
 {% endblock %}
 {% block fluid %}
-    <div class="picbanner">
+    <div class="picbanner Tophead">
         <div class="cont w1000">
             <div class="title">
                 <h3>花花<br/>与风</h3>
@@ -27,14 +26,13 @@
                 {% endif %}
             </div>
         </div>
-
 {% endblock %}
 {% block container %}
     <div class="layui-col-md12 blog-content-nav">
         <div class="layui-row layui-col-space15">
             {% if PicManages %}
                 {% for PicManage in PicManages %}
-                    <div class="layui-col-md6">
+                    <div class="layui-col-md3">
                         <a href="{% url 'MyBlog:picdetails' PicManage.id %}">
 
                             <div class="box" style="background-image: url(/static/media/{{  PicManage.imgthumb }})">
