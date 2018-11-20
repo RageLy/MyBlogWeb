@@ -108,11 +108,11 @@ body a{cursor: pointer;}
 
 /*.layui-card-body ul li{font-size: 13px;color: #545556;line-height: 26px;}*/
 .webinfo{}
-.webinfo ul li{color: #999999;}
+.webinfo ul li{color: #999999;line-height: 30px;}
 .webinfo ul li a{color: #999999;}
 /*排行*/
 .ranker {counter-reset:section;}
-.ranker li {width:100%;line-height: 30px; height: 30px;overflow:hidden;}
+.ranker li {width:100%;line-height: 40px; height: 40px;overflow:hidden;}
 .ranker li a {font-size: 13px;color: rgba(153,153,153,1)}
 .ranker li:before {counter-increment:section;content:counter(section);display:inline-block;padding:0 6px;margin-right:10px;height:18px;line-height:18px;background:#717070;color:#fff;border-radius:3px;font-size:9px;}
 .ranker li:nth-child(1):before {background:#ff6a00}
@@ -159,7 +159,7 @@ border:1px solid #e6e6e6; padding: 4px 8px;border-radius: 4px;margin: 8px 8px 8p
 .message-content .layui-btn {height: auto;line-height: 0;padding: 0;font-size: 12px;border-width: 0}
 /*.message-content hr{margin-bottom: 30px;}*/
 .message-content .reply-text{padding: 10px 64px 10px 64px;}
-.message-content .reply-container{margin: 0;padding: 15px;border:1px dashed #adadad;overflow:hidden}
+.message-content .reply-container{margin: 0;padding: 15px;border:0px dashed #adadad;overflow:hidden}
 .message-content .reply-container .title{line-height: 24px;}
 .message-content .reply-container .title span{font-weight: 800;color: #4b4b4b;}
 .message-content .reply-container .reply-date span{margin-top: 5px;margin-bottom: 5px;font-size: 12px;color: #adadad;line-height: 24px;padding: 0;}
@@ -246,8 +246,7 @@ border:1px solid #e6e6e6; padding: 4px 8px;border-radius: 4px;margin: 8px 8px 8p
 /*.pagination .step-links{border: 1px solid #1E9FFF;padding: 10px;}*/
 /*.pagination .step-links span{font-size: 12px;color: #545556}*/
 
-.about{height: 200px; width: 100%; background-color: #1E9FFF; background-size:cover;float: left;}
-.about {position: relative;text-align: center;width: 100%;}
+.about{height: 200px; width: 100%; background-color: #1E9FFF; background-size:cover;text-align: center;}
 .about .title{color: #fff;}
 .about .title h3{font-size: 20px; line-height: 200px;text-transform: uppercase;}
 
