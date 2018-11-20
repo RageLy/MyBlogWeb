@@ -112,9 +112,6 @@ def imgtypes(request,type):
     # print(Bloglist,len(Bloglist))
     return render(request, 'MyBlog/picture.html', {'PicManages':PicManage,'Tags':tag})
 
-def test(request):
-    test=[1,2,3,4]
-    return render(request, 'MyBlog/test.html',{'data':test})
 
 def commentdata(request):
     if request.POST.get('commentContent')=='':

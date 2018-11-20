@@ -3,61 +3,144 @@
 {% block title%}
     <title>花花与风的博客-{{ Blog.title }}</title>
 {% endblock %}
-
 {% block container %}
-    <div class="clearspace layui-col-md9 blog-content Tophead">
+    <div class="layui-col-md9 Tophead">
         <div class="layui-card">
-            <div class="layui-card-body ">
-                <div class="layui-col-md12">
-                    <h3>{{ Blog.title }}</h3>
-                </div>
-                <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
-                    <p>创建日期：{{ Blog.createdate|date:"Y-m-d H:i:s" }}</p>
-                </div>
-                <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
-                    <p>发布者：{{ Blog.author }}</p>
-                </div>
-                <div class="layui-row">
-                    <div class="layui-col-md12 text">
+            <div class="layui-card-body">
+                <div class="blog-content ">
+                    <div class="blog-title">
+                        <h3>{{ Blog.title }}</h3>
+                    </div>
+                    <div class="con-desc">
+                        <a>创建日期：{{ Blog.createdate|date:"Y-m-d H:i:s" }}</a>
+                        <a>发布者：{{ Blog.author }}</a>
+                    </div>
+                    <div class="text-con">
                         {% autoescape off %}
                             {{ Blog.blogcontent }}
                         {% endautoescape %}
                     </div>
-                    <div class="text-desc layui-col-md12 ">
-                        <div class="layui-col-xs12 layui-col-sm12 layui-col-md12">
+                    <div class="text-desc">
+                        <div class="">
                             本文标题：{{ Blog.title }}
                         </div>
-                        <div class="layui-col-xs12 layui-col-sm12 layui-col-md12">
+                        <div class="">
                             本文链接：<a id="urlinfo"></a>
                         </div>
-                        <div class="layui-col-xs12 layui-col-sm12 layui-col-md12">
+                        <div class="">
                             本文标签：
                             {% if Blog.blog_blogtype  %}
                                 {% for BlogType in Blog.blog_blogtype.all %}
                                     <span class="layui-badge-rim">
-                                                   <a href="{% url 'MyBlog:types' BlogType.TypeName %}">{{ BlogType.TypeName }}</a>
-                                                 </span>
+                           <a href="{% url 'MyBlog:types' BlogType.TypeName %}">{{ BlogType.TypeName }}</a>
+                       </span>
                                 {% endfor %}
                             {% endif %}
                         </div>
-                        <div class="layui-col-xs12 layui-col-sm12 layui-col-md12">
+                        <div class="">
                             <p>非特殊说明，本文版权归 夏天的风博客 所有，转载请注明出处.</p>
                         </div>
+
                     </div>
+                    <div class="comment-content">
+                        <h2>评论</h2>
+                    </div>
+                    <div id="reply" >
+                        <form class="layui-form">
+                            {% csrf_token %}
+                            <div class="layui-form-item">
+                                <img class="layui-form-label reply-head" src="{% static '/common/imgs/userhead.png' %}">
+                                <div class="text">
+                                    <textarea id="commentContent"  placeholder="请输入内容" class="layui-textarea"></textarea>
+                                </div>
+                            </div>
+                            <div class="layui-form-item" style="overflow: hidden;">
+                                <div class="text">
+                                    <button class="layui-btn"  type="button" id="sb-btn">发表</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                        {% if Blog.comment_set.all %}
+                            <div class="message-content" >
+                                <div class="comment-content">
+                                    <h2>{{ Blog.comment_set.count }}条评论</h2>
+                                    <hr>
+                                </div>
+                                {% for comment in Blog.comment_set.all %}
+                                    <div class="media-body">
+                                        <a href="javascript:;" class="media-left space-message">
+                                            <img src="{{ comment.user.userpic }}">
+                                        </a>
+                                        <div class="pad-btm space-message">
+                                            <p class="fontColor"><a href="javascript:;">{{ comment.user.username }}</a></p>
+                                            <p class="min-font">
+                                          <span class="layui-breadcrumb" lay-separator="-">
+                                            <a class="layui-icon layui-icon-cellphone"></a>
+                                            <a>{{ comment.device }}</a>
+                                            <a>{{ comment.createdate|date:"Y-m-d H:i:s" }}</a>
+                                          </span>
+                                            </p>
+                                            <p class="message-text">{{ comment.commentContent }}</p>
+                                        </div>
+                                        <div class="reply-text">
+                                            {% if comment.reply_set.all %}
+                                                <div class="reply-container">
+                                                    {% for reply in comment.reply_set.all %}
+                                                        <div class="title">
+                                         <span>
+                                             <b><a href="javascript:;">{{ reply.user.username }}：</a></b>
+                                        </span>{{ reply.replyContent }}</div>
+                                                        <div class="layui-col-md12 reply-date">
+                                          <span lay-separator="-">
+                                            <a href="javascript:;">{{ reply.createdate|date:"Y-m-d H:i:s" }}</a>
+                                          </span>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+
+                                            {% endif %}
+                                        </div>
+                                        <div class="reply-comment">
+                                            <div class="layui-col-md2">
+                                                <button class="layui-btn"><i class="layui-icon">&#xe6c6;</i></button>
+                                                <button class="layui-btn layui-btn-primary layui-btn-xs" id="like{{ comment.id }}">点赞</button>
+                                                <button class="layui-btn"><p>{{ comment.likeNum }}</p></button>
+                                            </div>
+                                            <div class="layui-col-md10">
+                                                <button class="layui-btn"><i class="layui-icon">&#xe611;</i></button>
+                                                <button class="layui-btn layui-btn-primary layui-btn-xs" id='replylabel{{ comment.id }}'>回复</button>
+                                            </div>
+
+                                        </div>
+                                        <form  id="formyz">
+                                            {% csrf_token %}
+                                            <div class="reply-to-text" id="reply{{ comment.id }}" style="display: none">
+                                                <div class="text">
+                                                    <textarea class="reply-box-textarea" id="replyContent{{ comment.id }}"></textarea>
+                                                </div>
+                                                <div class="replybtn"><button class="layui-btn" id="replybtn{{ comment.id }}" type="button" >回复</button></div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+                        {% endif %}
                 </div>
             </div>
         </div>
     </div>
     <div class="layui-col-md3 Tophead">
-        <div class="layui-card">
+        <div class="layui-card webinfo">
             <div class="layui-card-header">网站信息</div>
             <div class="layui-card-body">
                 <ul>
                     <li>网站名称：花花与风的博客</li>
-                    <li>博客系统：</li>
-                    <li>QQ：</li>
-                    <li>前端UI:<a href="https://www.layui.com/" target="_blank">layui 3.4.1</a></li>
-                    <li>后端框架:django:2.0.1</li>
+                    <li>博客系统：自建</li>
+                    <li>QQ：1687761583</li>
+                    <li>前端UI：<a href="https://www.layui.com/" target="_blank">layui 3.4.1</a></li>
+                    <li>后端框架：django:2.0.1</li>
                 </ul>
             </div>
         </div>
@@ -68,13 +151,13 @@
             <div class="layui-card-body">
                 <ul class="ranker">
                     {% if Rankers %}
-                                {% for ranker in Rankers %}
-                                    <li><a href="{% url 'MyBlog:details' ranker.id %}" title="{{ ranker.title }}">{%if ranker.title|length >= 16 %}
-                                        {{ranker.title|slice:"16"}}...
-                                    {%else%} {{ranker.title}}
-                                    {%endif%}</a></li>
-                                {% endfor %}
-                            {% endif %}
+                        {% for ranker in Rankers %}
+                            <li><a href="{% url 'MyBlog:details' ranker.id %}" title="{{ ranker.title }}">{%if ranker.title|length >= 25 %}
+                                {{ranker.title|slice:"25"}}...
+                            {%else%} {{ranker.title}}
+                            {%endif%}</a></li>
+                        {% endfor %}
+                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -82,149 +165,15 @@
     <div class="layui-col-md3">
         <div class="layui-card">
             <div class="layui-card-header">标签页</div>
-            <div class="layui-card-body">
+            <div class="layui-card-body note">
                 {% if Tags %}
                     {% for tag in Tags %}
-                        <span class="layui-badge layui-bg-orange"><a href="{% url 'MyBlog:types' tag.TypeName %}">{{ tag.TypeName }}</a></span>
+                        <a href="{% url 'MyBlog:types' tag.TypeName %}">{{ tag.TypeName }}</a>
                     {% endfor %}
                 {% endif %}
             </div>
         </div>
     </div>
-    <div class="clearspace layui-col-md9" >
-        <div class="layui-card">
-            <div class="layui-card-body comment-content">
-                <h2>分享一下</h2>
-            </div>
-        </div>
-    </div>
-    <div class="clearspace layui-col-md9">
-        <div class="layui-card">
-            <div class="layui-card-body comment-content" >
-                <div class="bdsharebuttonbox" data-tag="share_1">
-                    <a class="bds_weixin" data-cmd="weixin"></a>
-                    <a class="bds_qzone" data-cmd="qzone"></a>
-                    <a class="bds_tsina" data-cmd="tsina"></a>
-                    <a class="bds_baidu" data-cmd="baidu"></a>
-                    <!-- <a class="bds_tqq" data-cmd="tqq"></a> -->
-                    <a class="bds_sqq" data-cmd="sqq"></a>
-                    <a class="bds_more" data-cmd="more">更多</a>
-                    <a class="bds_count" data-cmd="count"></a>
-                </div>
-                <script>
-                    window._bd_share_config = {
-                        "common" : {
-                            "bdSnsKey" : {},
-                            "bdText" : "${title}",  //分享时的标题
-                            "bdMini" : "2",
-                            "bdMiniList" : false,
-                            "bdPic" : "${pic}", //此处为分享时自带的图片
-                            "bdStyle" : "0",
-                            "bdSize" : "32",
-                            "bdUrl" : '${sharUrl}', //此处为后台要进行分享的内容的定义
-                            "bdDesc":'${summary}',  //分享时的文本摘要
-                        },
-                        "share" : {}
-                    };
-                    //此处为需要引入的百度分享的js文件
-                    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
-                </script>            </div>
-        </div>
-    </div>
-    <div class="clearspace layui-col-md9" >
-        <div class="layui-card">
-            <div class="layui-card-body comment-content">
-                <h2>评论</h2>
-            </div>
-        </div>
-    </div>
-    <div class="clearspace layui-col-md9" id="reply" >
-        <div class="layui-card">
-            <div class="layui-card-body">
-                <form class="layui-form">
-                    {% csrf_token %}
-                    <div class="layui-form-item">
-                        <img class="layui-form-label reply-head" src="{% static '/common/imgs/userhead.png' %}">
-                        <div class="text">
-                            <textarea id="commentContent"  placeholder="请输入内容" class="layui-textarea"></textarea>
-                        </div>
-                    </div>
-                    <div class="layui-form-item" style="overflow: hidden;">
-                        <div class="text">
-                            <button class="layui-btn"  type="button" id="sb-btn">发表</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    {% if Blog.comment_set.all %}
-        <div class="layui-col-md9 message-content clearspace" >
-            <div class="layui-card">
-                <div class="layui-card-body comment-content">
-                    <h2>最新评论</h2>
-                    {% for comment in Blog.comment_set.all %}
-                        <hr>
-                        <div class="media-body">
-                            <a href="javascript:;" class="media-left">
-                                <img src="{{ comment.user.userpic }}">
-                            </a>
-                            <div class="pad-btm">
-                                <p class="fontColor"><a href="javascript:;">{{ comment.user.username }}</a></p>
-                                <p class="min-font">
-                              <span class="layui-breadcrumb" lay-separator="-">
-                                <a class="layui-icon layui-icon-cellphone"></a>
-                                <a>{{ comment.device }}</a>
-                                <a>{{ comment.createdate|date:"Y-m-d H:i:s" }}</a>
-                              </span>
-                                </p>
-                                <p class="message-text">{{ comment.commentContent }}</p>
-                            </div>
-                        <div class="reply-text">
-                            {% if comment.reply_set.all %}
-                                <div class="reply-container">
-                                    {% for reply in comment.reply_set.all %}
-                                        <div class="title">
-                                         <span>
-                                             <b><a href="javascript:;">{{ reply.user.username }}：</a></b>
-                                        </span>{{ reply.replyContent }}</div>
-                                        <div class="layui-col-md12 reply-date">
-                                          <span lay-separator="-">
-                                            <a href="javascript:;">{{ reply.createdate|date:"Y-m-d H:i:s" }}</a>
-                                          </span>
-                                        </div>
-                                    {% endfor %}
-                                </div>
-
-                            {% endif %}
-                        </div>
-                            <div class="reply-comment">
-                                <div class="layui-col-md2">
-                                    <button class="layui-btn"><i class="layui-icon">&#xe6c6;</i></button>
-                                    <button class="layui-btn layui-btn-primary layui-btn-xs" id="like{{ comment.id }}">点赞</button>
-                                    <button class="layui-btn"><p>{{ comment.likeNum }}</p></button>
-                                </div>
-                                <div class="layui-col-md10">
-                                    <button class="layui-btn"><i class="layui-icon">&#xe611;</i></button>
-                                    <button class="layui-btn layui-btn-primary layui-btn-xs" id='replylabel{{ comment.id }}'>回复</button>
-                                </div>
-
-                            </div>
-                            <form  id="formyz">
-                                {% csrf_token %}
-                                <div class="reply-to-text" id="reply{{ comment.id }}" style="display: none">
-                                    <div class="text">
-                                        <textarea class="reply-box-textarea" id="replyContent{{ comment.id }}"></textarea>
-                                    </div>
-                                    <div class="replybtn"><button class="layui-btn" id="replybtn{{ comment.id }}" type="button" >回复</button></div>
-                                </div>
-                            </form>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    {% endif %}
 {% endblock %}
 {% block script %}
     <script>

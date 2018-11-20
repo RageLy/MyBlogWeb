@@ -13,19 +13,20 @@
                         <div class="img"><img src="{{ blog.imgTitle }}" alt="{{ blog.title }}"></div>
                         <div class="abstract"><a href="{% url 'MyBlog:details' id=blog.id %}" title="{{ blog.title }}">{{ blog.abstract }}</a></div>
                         <div class="author">
-                                <span class="f_l lm">
+                                <span class="f_l t_left top">{% if blog.isTop == 1 %}置顶{% else %}{% endif %}</span>
+                                <span class="f_l lm">分类：
                                 {% if blog.blogtyperelation_set.all  %}
                                     {% for BlogTypeRelation in blog.blogtyperelation_set.all %}
                                         <a href="{% url 'MyBlog:types' BlogTypeRelation.BlogType.TypeName %}">{{ BlogTypeRelation.BlogType.TypeName }}</a>
                                     {% endfor %}
                                 {% endif %}
                                 </span>
-                            <span class="dtime f_l">{{ blog.createdate|date:"Y-m-d H:i:s" }}</span>
-                            <span class="viewnum f_r t_right">{{ blog.hit }}</span>
-                            <span class="pingl f_r">{{ blog.comment_set.count }}</span>
+                            <span class="dtime f_l">发布时间：{{ blog.createdate|date:"Y-m-d H:i:s" }}</span>
+                            <span class="f_r t_right orign">{% if blog.isorg == 1 %}原创{% else %}转载{% endif %}</span>
+                            <span class="viewnum f_r ">{{ blog.hit }}次阅读</span>
+                            <span class="pingl f_r">{{ blog.comment_set.count }}条评论</span>
                         </div>
                     </div>
-
                 {% endfor %}
             {% endif %}
         </div>
@@ -33,15 +34,15 @@
     <div class="layui-col-md3 Tophead" >
         <div class="layui-row layui-col-space15">
             <div class="layui-col-md12 ">
-                <div class="layui-card">
+                <div class="layui-card webinfo">
                     <div class="layui-card-header">网站信息</div>
                     <div class="layui-card-body">
                         <ul>
                             <li>网站名称：花花与风的博客</li>
-                            <li>博客系统：</li>
-                            <li>QQ：</li>
-                            <li>前端UI:<a href="https://www.layui.com/" target="_blank">layui 3.4.1</a></li>
-                            <li>后端框架:django:2.0.1</li>
+                            <li>博客系统：自建</li>
+                            <li>QQ：1687761583</li>
+                            <li>前端UI：<a href="https://www.layui.com/" target="_blank">layui 3.4.1</a></li>
+                            <li>后端框架：django:2.0.1</li>
                         </ul>
                     </div>
                 </div>
@@ -53,8 +54,8 @@
                         <ul class="ranker">
                             {% if Rankers %}
                                 {% for ranker in Rankers %}
-                                    <li><a href="{% url 'MyBlog:details' ranker.id %}" title="{{ ranker.title }}">{%if ranker.title|length >= 16 %}
-                                        {{ranker.title|slice:"16"}}...
+                                    <li><a href="{% url 'MyBlog:details' ranker.id %}" title="{{ ranker.title }}">{%if ranker.title|length >= 25 %}
+                                        {{ranker.title|slice:"25"}}...
                                     {%else%} {{ranker.title}}
                                     {%endif%}</a></li>
                                 {% endfor %}
@@ -66,10 +67,10 @@
             <div class="layui-col-md12">
                 <div class="layui-card">
                     <div class="layui-card-header">标签页</div>
-                    <div class="layui-card-body">
+                    <div class="layui-card-body note">
                         {% if Tags %}
                             {% for tag in Tags %}
-                                <span class="layui-badge layui-bg-gray"> <a  href="{% url 'MyBlog:types' tag.TypeName %}">{{ tag.TypeName }}</a></span>
+                                <a  href="{% url 'MyBlog:types' tag.TypeName %}">{{ tag.TypeName }}</a>
                             {% endfor %}
                         {% endif %}
                     </div>

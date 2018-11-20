@@ -15,7 +15,7 @@
 {#    </div>#}
 {#{% endblock %}#}
 {% block container %}
-    <div class="layui-col-md12 Tophead">
+    <div class="layui-col-md9 Tophead">
         <div class="layui-card">
             <div class="layui-card-header">
                 <h2>大佬们看这里</h2>
@@ -25,11 +25,37 @@
             </div>
         </div>
     </div>
-    <div class="layui-col-md12 ">
-        <div class="layui-card ">
+    <div class="layui-col-md3 Tophead">
+        <div class="layui-card">
+            <div class="layui-card-header">最新留言</div>
+            <div class="layui-card-body"></div>
+        </div>
+    </div>
+    <div class="layui-col-md9 ">
+        <div class="layui-card">
             <div class="layui-card-body ">
                 <form class="layui-form message-con" method="post">
                     {% csrf_token %}
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">昵称</label>
+                            <div class="layui-input-inline">
+                                <input type="tel" name="username" lay-verify="" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">邮箱</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="email" lay-verify="" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">站点</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="website" lay-verify="" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                    </div>
                     <div class="layui-form-item">
                         <textarea class="layui-textarea" id="MessageCon" ></textarea>
                     </div>
@@ -40,23 +66,24 @@
             </div>
         </div>
     </div>
-    <div class="layui-col-md12">
-        <div class="layui-card-header">最新留言</div>
-        {% if MessageTbs %}
-            {% for MessageTb in MessageTbs %}
-                <div class="layui-card ">
+    <div class="layui-col-md9">
+        <div class="layui-card ">
+            <div class="layui-card-header">最新留言</div>
+            {% if MessageTbs %}
+                {% for MessageTb in MessageTbs %}
+
                     <div class="layui-card-body Message">
                         <div class="headimg"><img src="{% static 'common/imgs/userhead.png' %}"></div>
                         <div class="user"> <p>{{ MessageTb.username }}</p></div>
                         <div class="text"> <p>{{ MessageTb.MessageContent }}</p></div>
                         <div class="date"> <p>{{ MessageTb.createdate|date:'Y-m-d H:i:s' }}</p></div>
                     </div>
-                </div>
-            {% endfor %}
-        {% endif %}
 
+                {% endfor %}
+            {% endif %}
+        </div>
     </div>
-    <div class="layui-col-md12 navigation">
+    <div class="layui-col-md9 navigation">
         <nav aria-label="">
             <ul class="pagination">
                 {% if MessageTbs.has_previous %}
@@ -96,6 +123,7 @@
         {#            </span>#}
         {#        </div>#}
     </div>
+
 {% endblock %}
 {% block script %}
     <script>

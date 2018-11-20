@@ -17,7 +17,7 @@
     <div class="item">
         <a href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
         <ul class="">
-            <li class="layui-nav-item"><a href="../blog">博客</a></li>
+            <li class="layui-nav-item layui-this"><a href="../blog">博客</a></li>
             <li class="layui-nav-item"><a href="../picture">相册</a></li>
             <li class="layui-nav-item"><a href="../weblink">友情链接</a></li>
             <li class="layui-nav-item"><a href="../message">留言</a></li>
@@ -76,6 +76,9 @@
             ,bgcolor: '#393D49'
         });
     });
+    $("li").click(function(){
+$(this).siblings().removeClass("layui-this").addClass("layui-this");
+})
 </script>
 <script>
     $('li').click(function(){
