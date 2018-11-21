@@ -80,7 +80,7 @@
                     //以jQuery的Ajax请求为例，请求下一页数据（注意：page是从2开始返回）
                     setTimeout(function() {
                         var lis = [];
-                        $.get('../loadblog?page=' + page + '&limit=1',
+                        $.get('../loadblog?page=' + page + '&limit=2',
                             function(res) {
                                 console.info(res);
                                 //假设你的列表返回在data集合中
@@ -88,14 +88,15 @@
                                     var blogcategorylist=[]
                                     var blogcategory=layui.each(item.blogCategory,function(index,subitem)
                                             {
-                                                var item1str='<a href="../category/"'+subitem.id +'">'+subitem.Name+'</a>'
-                                                blogcategorylist.push(item1str)
+                                                var itemstr='<a href="../category/'+subitem.id +'">'+subitem.Name+'</a>'
+                                                blogcategorylist.push(itemstr)
                                             });
                                     var blog_blogtypelist=[]
                                     var blog_blogtype=layui.each(item.blogType,function(index,subitem)
                                             {
-                                                var item2str='<a href="../types/"'+subitem.TypeName +'">'+subitem.TypeName+'</a>'
-                                                blog_blogtypelist.push(item2str)
+                                                var itemstr='<a href="../types/'+subitem.TypeName +'">'+subitem.TypeName+'</a>'
+                                                blog_blogtypelist.push(itemstr)
+                                                console.log(blog_blogtypelist)
                                             });
                                     var str=' <div class="item">\n' +
                                         '                        <div class="header">\n' +
@@ -115,7 +116,7 @@
                                         '                    </div>'
                                     lis.push(str);
                                 });
-                                next(lis.join(''), page < res.count); //假设总页数为 6
+                                next(lis.join(''), page*2 < res.count); //假设总页数为 6
                             });
                     }, 500);
                 }

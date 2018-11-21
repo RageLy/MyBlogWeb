@@ -5,7 +5,7 @@ from MyBlog import models
 from django.http import HttpResponse
 from MyBlogWeb import settings
 from django.core.paginator import Paginator,EmptyPage, PageNotAnInteger
-
+from django.core import serializers
 from django.db.models import Q
 import json
 from django.db.models.fields.files import ImageFieldFile
@@ -28,21 +28,20 @@ class DateEncoder(json.JSONEncoder):
 前端处理
 '''
 def index(request):
-    Blog=models.Blog.objects.all()
-    Ranker = models.Blog.objects.order_by('-hit')[0:9]
-    tag = models.BlogType.objects.filter(category=0)
-    # print(Ranker)
-    return render(request,'MyBlog/index.html',{'Blogs':Blog,'Rankers':Ranker,'Tags':tag})
+    return render(request,'MyBlog/index.html')
 
 def Blog(request):
-    Blog=models.Blog.objects.all()
     Ranker = models.Blog.objects.order_by('-hit')[0:9]
     tag = models.BlogType.objects.all()
     category = models.Category.objects.all()
-    return render(request,'MyBlog/Blog.html',{'Blogs':Blog,'Rankers':Ranker,'Tags':tag,'Categorys':category})
+    return render(request,'MyBlog/Blog.html',{'Rankers':Ranker,'Tags':tag,'Categorys':category})
 
 def loadblog(request):
-    Blog=models.Blog.objects.all()
+    data={}
+    # Blog1=models.Blog.objects.values('id','title','abstract','createdate','hit','isTop','isorg','imgTitle','blog_blogtype','blog_CategoryToBlog')
+    Blog = models.Blog.objects.all()
+    # data['list'] = json.loads(serializers.serialize("json", Blog))
+    # print(data)
     bloglist=[]
     for item in Blog:
         blogtypedict=[]
@@ -53,16 +52,15 @@ def loadblog(request):
         blogcategory = item.blog_CategoryToBlog.all()
         for j in blogcategory:
             blogcategorydict.append({'Name': j.Name, 'id': j.id})
-        # blogtypedict=
-        blogdict={'id':item.id,'title':item.title,'abstract':item.abstract,'createdate':str(item.createdate),'modifydate':str(item.modifydate),'type':item.type,
-                  'blogcontent':item.blogcontent,'hit':item.hit,'isTop':'checked' if item.isTop==1 else '','isorg':'checked' if item.isorg==1 else '','imgTitle':item.imgTitle,'blogType':blogtypedict,'blogCategory':blogcategorydict,'commentcount':item.comment_set.count()}
+        blogdict={'id':item.id,'title':item.title,'abstract':item.abstract,'createdate':str(item.createdate),
+                'hit':item.hit,'isTop':'checked' if item.isTop==1 else '','isorg':'checked' if item.isorg==1 else '','imgTitle':item.imgTitle,'blogType':blogtypedict,'blogCategory':blogcategorydict,'commentcount':item.comment_set.count()}
         bloglist.append(blogdict)
     limit=request.GET.get('limit')
     paginator = Paginator(bloglist, limit)
     page = request.GET.get('page')
     bloglists = paginator.get_page(page)
     # print(userlists.object_list)
-    defaultdict={"code":0,"msg":"","count":len(bloglist)}
+    defaultdict={"count":len(bloglist)}
     defaultdict['data']=bloglists.object_list
     print(defaultdict)
     return HttpResponse(json.dumps(defaultdict, cls=DateEncoder), content_type="application/json")
