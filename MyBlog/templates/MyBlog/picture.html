@@ -2,27 +2,27 @@
 {% block title%}
     <title>相册</title>
 {% endblock %}
-{% block fluid %}
-    <div class="picbanner Tophead">
-        <div class="title">
-            <div class="seat">&nbsp;</div><div class="logo-title"><h3>花花<br/>与风</h3></div>
-            <div class="seat">&nbsp;</div><div class="logo-desc"><p>四川-成都  关注 16   粉丝 25</p>
-            <p>数据分析工程师，摄影小小白，热爱拍摄720全景照片，对人像、风光拍摄有着极大的兴趣！</p>
-        </div>
-        </div>
-    </div>
-    <div class="layui-card">
-        <div class="layui-card-body">
-            {% if Tags %}
-                {% for tag in Tags %}
-                    <span class="layui-badge layui-bg-gray"><a href="{% url 'MyBlog:imgtypes' tag.TypeName %}">{{ tag.TypeName }}</a></span>
-                {% endfor %}
-            {% endif %}
-        </div>
-    </div>
-{% endblock %}
+{#{% block fluid %}#}
+{#    <div class="picbanner Tophead">#}
+{#        <div class="title">#}
+{#            <div class="seat">&nbsp;</div><div class="logo-title"><h3>花花<br/>与风</h3></div>#}
+{#            <div class="seat">&nbsp;</div><div class="logo-desc"><p>四川-成都  关注 16   粉丝 25</p>#}
+{#            <p>数据分析工程师，摄影小小白，热爱拍摄720全景照片，对人像、风光拍摄有着极大的兴趣！</p>#}
+{#        </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="layui-card">#}
+{#        <div class="layui-card-body">#}
+{#            {% if Tags %}#}
+{#                {% for tag in Tags %}#}
+{#                    <span class="layui-badge layui-bg-gray"><a href="{% url 'MyBlog:imgtypes' tag.TypeName %}">{{ tag.TypeName }}</a></span>#}
+{#                {% endfor %}#}
+{#            {% endif %}#}
+{#        </div>#}
+{#    </div>#}
+{#{% endblock %}#}
 {% block container %}
-    <div class="layui-col-md12">
+    <div class="layui-col-md12 Tophead">
         <div class="layui-card">
             <div class="layui-card-body ">
                 <div class="layui-row layui-col-space15">

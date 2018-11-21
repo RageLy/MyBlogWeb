@@ -30,6 +30,9 @@ class Blog(models.Model):
     blog_blogtype = models.ManyToManyField(to="BlogType",
                                      through="BlogTypeRelation",
                                      through_fields=("Blog", "BlogType"))
+    blog_CategoryToBlog = models.ManyToManyField(to="Category",
+                                           through="CategoryToBlog",
+                                           through_fields=("Blog", "Category"))
     objects = models.Manager()
     blog_objects = BlogManager()
 
@@ -295,3 +298,24 @@ class MessageTb(models.Model):
     class Meta:
         managed = False
         db_table = 'MessageTb'
+
+class Category(models.Model):
+    id = models.AutoField(db_column='id', primary_key=True)
+    Name = models.CharField(db_column='Name', max_length=50, blank=True, null=True)
+    objects = models.Manager()
+    CategoryToBlog_Blog = models.ManyToManyField(to="Blog",
+                                           through="CategoryToBlog",
+                                           through_fields=("Category", "Blog"))
+    class Meta:
+        managed = False
+        db_table = 'Category'
+
+class CategoryToBlog(models.Model):
+    id = models.AutoField(db_column='id', primary_key=True)
+    Blog = models.ForeignKey(to="Blog", to_field="id", on_delete=models.CASCADE)
+    Category = models.ForeignKey(to="Category", to_field="id", on_delete=models.CASCADE)
+
+    class Meta:
+        managed = False
+        db_table = 'CategoryToBlog'
+        unique_together = ("Blog", "Category")

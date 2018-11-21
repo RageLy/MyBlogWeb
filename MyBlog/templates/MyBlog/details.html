@@ -43,6 +43,22 @@
 
                     </div>
                     <div class="comment-content">
+                        <h2>分享一下</h2>
+                        <hr>
+                        <div class="share">
+
+                            <ul>
+                                <li class="qq"> <a href="mailto:heming_wei@126.com"><i class="layui-icon layui-icon-login-qq"></i></a></li>
+                                <li class="wechat"> <i class="layui-icon layui-icon-login-wechat"></i></li>
+                                <li class="weibo"> <a href="https://weibo.com/mingtianya"><i class="layui-icon layui-icon-login-weibo"></i></a></li>
+                                <li class="github"><a href="https://github.com/huahuayufeng"><i class="iconfont icon-github"></i></a></li>
+                                <li class="email"><a href="mailto:heming_wei@126.com"><i class="iconfont icon-email"></i></a></li>
+                            </ul>
+
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="comment-content">
                         <h2>评论</h2>
                     </div>
                     <div id="reply" >
@@ -61,116 +77,129 @@
                             </div>
                         </form>
                     </div>
-                        {% if Blog.comment_set.all %}
-                            <div class="message-content" >
-                                <div class="comment-content">
-                                    <h2>{{ Blog.comment_set.count }}条评论</h2>
-                                    <hr>
-                                </div>
-                                {% for comment in Blog.comment_set.all %}
-                                    <div class="media-body">
-                                        <a href="javascript:;" class="media-left space-message">
-                                            <img src="{{ comment.user.userpic }}">
-                                        </a>
-                                        <div class="pad-btm space-message">
-                                            <p class="fontColor"><a href="javascript:;">{{ comment.user.username }}</a></p>
-                                            <p class="min-font">
+                    {% if Blog.comment_set.all %}
+                        <div class="message-content" >
+                            <div class="comment-content">
+                                <h2>{{ Blog.comment_set.count }}条评论</h2>
+                                <hr>
+                            </div>
+                            {% for comment in Blog.comment_set.all %}
+                                <div class="media-body">
+                                    <a href="javascript:;" class="media-left space-message">
+                                        <img src="{{ comment.user.userpic }}">
+                                    </a>
+                                    <div class="pad-btm space-message">
+                                        <p class="fontColor"><a href="javascript:;">{{ comment.user.username }}</a></p>
+                                        <p class="min-font">
                                           <span class="layui-breadcrumb" lay-separator="-">
                                             <a class="layui-icon layui-icon-cellphone"></a>
                                             <a>{{ comment.device }}</a>
                                             <a>{{ comment.createdate|date:"Y-m-d H:i:s" }}</a>
                                           </span>
-                                            </p>
-                                            <p class="message-text">{{ comment.commentContent }}</p>
-                                        </div>
-                                        <div class="reply-text">
-                                            {% if comment.reply_set.all %}
-                                                <div class="reply-container">
-                                                    {% for reply in comment.reply_set.all %}
-                                                        <div class="title">
+                                        </p>
+                                        <p class="message-text">{{ comment.commentContent }}</p>
+                                    </div>
+                                    <div class="reply-text">
+                                        {% if comment.reply_set.all %}
+                                            <div class="reply-container">
+                                                {% for reply in comment.reply_set.all %}
+                                                    <div class="title">
                                          <span>
                                              <b><a href="javascript:;">{{ reply.user.username }}：</a></b>
                                         </span>{{ reply.replyContent }}</div>
-                                                        <div class="layui-col-md12 reply-date">
+                                                    <div class="layui-col-md12 reply-date">
                                           <span lay-separator="-">
                                             <a href="javascript:;">{{ reply.createdate|date:"Y-m-d H:i:s" }}</a>
                                           </span>
-                                                        </div>
-                                                    {% endfor %}
-                                                </div>
-
-                                            {% endif %}
-                                        </div>
-                                        <div class="reply-comment">
-                                            <div class="layui-col-md2">
-                                                <button class="layui-btn"><i class="layui-icon">&#xe6c6;</i></button>
-                                                <button class="layui-btn layui-btn-primary layui-btn-xs" id="like{{ comment.id }}">点赞</button>
-                                                <button class="layui-btn"><p>{{ comment.likeNum }}</p></button>
-                                            </div>
-                                            <div class="layui-col-md10">
-                                                <button class="layui-btn"><i class="layui-icon">&#xe611;</i></button>
-                                                <button class="layui-btn layui-btn-primary layui-btn-xs" id='replylabel{{ comment.id }}'>回复</button>
+                                                    </div>
+                                                {% endfor %}
                                             </div>
 
-                                        </div>
-                                        <form  id="formyz">
-                                            {% csrf_token %}
-                                            <div class="reply-to-text" id="reply{{ comment.id }}" style="display: none">
-                                                <div class="text">
-                                                    <textarea class="reply-box-textarea" id="replyContent{{ comment.id }}"></textarea>
-                                                </div>
-                                                <div class="replybtn"><button class="layui-btn" id="replybtn{{ comment.id }}" type="button" >回复</button></div>
-                                            </div>
-                                        </form>
+                                        {% endif %}
                                     </div>
-                                {% endfor %}
+                                    <div class="reply-comment">
+                                        <div class="layui-col-md2">
+                                            <button class="layui-btn"><i class="layui-icon">&#xe6c6;</i></button>
+                                            <button class="layui-btn layui-btn-primary layui-btn-xs" id="like{{ comment.id }}">点赞</button>
+                                            <button class="layui-btn"><p>{{ comment.likeNum }}</p></button>
+                                        </div>
+                                        <div class="layui-col-md10">
+                                            <button class="layui-btn"><i class="layui-icon">&#xe611;</i></button>
+                                            <button class="layui-btn layui-btn-primary layui-btn-xs" id='replylabel{{ comment.id }}'>回复</button>
+                                        </div>
 
-                            </div>
-                        {% endif %}
+                                    </div>
+                                    <form  id="formyz">
+                                        {% csrf_token %}
+                                        <div class="reply-to-text" id="reply{{ comment.id }}" style="display: none">
+                                            <div class="text">
+                                                <textarea class="reply-box-textarea" id="replyContent{{ comment.id }}"></textarea>
+                                            </div>
+                                            <div class="replybtn"><button class="layui-btn" id="replybtn{{ comment.id }}" type="button" >回复</button></div>
+                                        </div>
+                                    </form>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
-    <div class="layui-col-md3 Tophead">
-        <div class="layui-card webinfo">
-            <div class="layui-card-header">网站信息</div>
-            <div class="layui-card-body">
-                <ul>
-                    <li>网站名称：花花与风的博客</li>
-                    <li>博客系统：自建</li>
-                    <li>QQ：1687761583</li>
-                    <li>前端UI：<a href="https://www.layui.com/" target="_blank">layui 3.4.1</a></li>
-                    <li>后端框架：django:2.0.1</li>
-                </ul>
+    <div class="layui-col-md3 Tophead" >
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12 ">
+                <div class="layui-card webinfo">
+                    <div class="layui-card-header">
+                        <i class="layui-icon layui-icon-app"></i>
+                        <span>文章分类</span>
+                    </div>
+                    <div class="layui-card-body">
+                        <ul>
+                            {% if Categorys %}
+                                {% for category in Categorys %}
+                                    <a href="{% url 'MyBlog:category' category.id %}" title="{{ category.Name }}"><li>{%if category.Name|length >= 25 %}{{category.Name|slice:"25"}}...{%else%} {{category.Name}}{%endif%}</li></a>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="layui-col-md3">
-        <div class="layui-card">
-            <div class="layui-card-header">点击排行</div>
-            <div class="layui-card-body">
-                <ul class="ranker">
-                    {% if Rankers %}
-                        {% for ranker in Rankers %}
-                            <li><a href="{% url 'MyBlog:details' ranker.id %}" title="{{ ranker.title }}">{%if ranker.title|length >= 25 %}
-                                {{ranker.title|slice:"25"}}...
-                            {%else%} {{ranker.title}}
-                            {%endif%}</a></li>
-                        {% endfor %}
-                    {% endif %}
-                </ul>
+            <div class="layui-col-md12">
+                <div class="layui-card ranker">
+                    <div class="layui-card-header">
+                        <i class="iconfont icon-wenzhang"></i>
+                        <span>点击排行</span>
+                    </div>
+                    <div class="layui-card-body">
+                        <ul>
+                            {% if Rankers %}
+                                {% for ranker in Rankers %}
+                                    <li><a href="{% url 'MyBlog:details' ranker.id %}" title="{{ ranker.title }}">{%if ranker.title|length >= 25 %}
+                                        {{ranker.title|slice:"25"}}...
+                                    {%else%} {{ranker.title}}
+                                    {%endif%}</a></li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="layui-col-md3">
-        <div class="layui-card">
-            <div class="layui-card-header">标签页</div>
-            <div class="layui-card-body note">
-                {% if Tags %}
-                    {% for tag in Tags %}
-                        <a href="{% url 'MyBlog:types' tag.TypeName %}">{{ tag.TypeName }}</a>
-                    {% endfor %}
-                {% endif %}
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        <i class="layui-icon layui-icon-note"></i>
+                        <span>标签云</span>
+                    </div>
+                    <div class="layui-card-body note">
+                        {% if Tags %}
+                            {% for tag in Tags %}
+                                <a  href="{% url 'MyBlog:types' tag.TypeName %}">{{ tag.TypeName }}</a>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
