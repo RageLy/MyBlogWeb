@@ -38,7 +38,34 @@ def Blog(request):
     Blog=models.Blog.objects.all()
     Ranker = models.Blog.objects.order_by('-hit')[0:9]
     tag = models.BlogType.objects.all()
-    return render(request,'MyBlog/Blog.html',{'Blogs':Blog,'Rankers':Ranker,'Tags':tag})
+    category = models.Category.objects.all()
+    return render(request,'MyBlog/Blog.html',{'Blogs':Blog,'Rankers':Ranker,'Tags':tag,'Categorys':category})
+
+def loadblog(request):
+    Blog=models.Blog.objects.all()
+    bloglist=[]
+    for item in Blog:
+        blogtypedict=[]
+        blogtype=item.blog_blogtype.all()
+        for i in blogtype:
+            blogtypedict.append({'TypeName':i.TypeName,'id':i.id})
+        blogcategorydict = []
+        blogcategory = item.blog_CategoryToBlog.all()
+        for j in blogcategory:
+            blogcategorydict.append({'Name': j.Name, 'id': j.id})
+        # blogtypedict=
+        blogdict={'id':item.id,'title':item.title,'abstract':item.abstract,'createdate':str(item.createdate),'modifydate':str(item.modifydate),'type':item.type,
+                  'blogcontent':item.blogcontent,'hit':item.hit,'isTop':'checked' if item.isTop==1 else '','isorg':'checked' if item.isorg==1 else '','imgTitle':item.imgTitle,'blogType':blogtypedict,'blogCategory':blogcategorydict,'commentcount':item.comment_set.count()}
+        bloglist.append(blogdict)
+    limit=request.GET.get('limit')
+    paginator = Paginator(bloglist, limit)
+    page = request.GET.get('page')
+    bloglists = paginator.get_page(page)
+    # print(userlists.object_list)
+    defaultdict={"code":0,"msg":"","count":len(bloglist)}
+    defaultdict['data']=bloglists.object_list
+    print(defaultdict)
+    return HttpResponse(json.dumps(defaultdict, cls=DateEncoder), content_type="application/json")
 
 def picture(request):
     PicManage=models.PicManage.objects.all()
@@ -46,6 +73,10 @@ def picture(request):
     Ranker = models.Blog.objects.order_by('-hit')[0:9]
     tag = models.BlogType.objects.filter(category=1)
     return render(request, 'MyBlog/picture.html', {'PicManages': PicManage,'Rankers':Ranker,'Tags':tag})
+
+def archive(request):
+    archive = models.Blog.objects.all()
+    return render(request, 'MyBlog/archive.html', {'archives': archive})
 
 def message(request):
     MessageTb=models.MessageTb.objects.all()
@@ -87,7 +118,8 @@ def details(request,id):
     # commentdetail=models.Blog.objects.all()
     Ranker = models.Blog.objects.order_by('-hit')[0:9]
     tag = models.BlogType.objects.filter(category=0)
-    return render(request, 'MyBlog/details.html', {'Blog': detail,'Rankers':Ranker,'Tags':tag})
+    category = models.Category.objects.all()
+    return render(request, 'MyBlog/details.html', {'Blog': detail,'Rankers':Ranker,'Tags':tag,'Categorys':category})
 
 def weblink(request):
     weblink = models.WebLink.objects.all()
@@ -103,8 +135,15 @@ def types(request,type):
     Bloglist = models.BlogType.objects.get(TypeName=type).blogtype_blog.all()
     Ranker = models.Blog.objects.order_by('-hit')[0:9]
     tag = models.BlogType.objects.all()
-    # print(Bloglist,len(Bloglist))
-    return render(request, 'MyBlog/Blog.html', {'Blogs':Bloglist,'Rankers':Ranker,'Tags':tag})
+    category = models.Category.objects.all()
+    return render(request, 'MyBlog/Blog.html', {'Blogs':Bloglist,'Rankers':Ranker,'Tags':tag,'Categorys':category})
+
+def category(request,type):
+    Bloglist = models.Category.objects.get(id=type).CategoryToBlog_Blog.all()
+    Ranker = models.Blog.objects.order_by('-hit')[0:9]
+    tag = models.BlogType.objects.all()
+    category = models.Category.objects.all()
+    return render(request, 'MyBlog/Blog.html', {'Blogs':Bloglist,'Rankers':Ranker,'Tags':tag,'Categorys':category})
 
 def imgtypes(request,type):
     PicManage = models.BlogType.objects.get(TypeName=type,category=1).pictype_pic.all()

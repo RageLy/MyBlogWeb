@@ -1,0 +1,26 @@
+{% extends 'MyBlog/base.html' %}
+{% block title%}
+    <title>归档</title>
+{% endblock %}
+{% block container %}
+    <div class="layui-col-md9 Tophead">
+        <div class="layui-card">
+            <div class="layui-card-header">博客归档</div>
+            <div class="layui-card-body archive">
+                {% if archives %}
+                    <ul>
+                        {% for archive in archives %}
+                            <li>
+                            <span>{{ archive.createdate|date:"Y-m-d" }}</span>
+                                <a href="{% url "MyBlog:details" archive.id %}">{{ archive.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    还未归档
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md3"></div>
+{% endblock %}

@@ -1,93 +1,93 @@
 {% extends 'MyBlog/base.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'common/css/iconfont.css' %}">
+{% endblock %}
 {% block title%}
     <title>关于我</title>
 {% endblock %}
 {% block fluid %}
     <div class="about Tophead">
-        <div class="cont">
-            <div class="title">
-                <h3>每个人的成长都经历了无限的艰辛和挫折，唯有坚持到最后才能获得永久幸福</h3>
-            </div>
-        </div>
+        <div class="img"><img src="{% static 'common/imgs/userhead.png' %}"></div>
+        <div class="con"><h3>每个人的成长都经历了无限的艰辛和挫折，唯有坚持到最后才能获得永久幸福</h3></div>
     </div>
 {% endblock %}
 {% block container %}
-    <div class="layui-col-md12 ">
+    <div class="layui-col-md9">
         <div class="layui-card ">
-            <div class="layui-card-body ">
-                <blockquote class="layui-elem-quote">关于我</blockquote>
-                <fieldset class="layui-elem-field">
-                    <legend>成长</legend>
-                    <div class="layui-field-box">
-                        89年生于四川西充市义兴镇，5岁随父母去了新疆，在那里生活、学习指直到大学，后来不甘心留在新疆，于是出疆去了古都西安、江南水乡城杭州、IT行业发达的深圳，
-                        寻找自己的未来，但是一次次挫败，让我失去了信心，后来因为朋友关系有幸去了青岛。在那里遇到了很多好的同事，一待就是3年，最后又跑去了济南待了9个月，最终
-                        定居在美丽的天府之都成都。现在在成都一家IT公司做数据分析师。本来就喜欢做网站，于是学习了layui，觉得很牛逼，于是做了自己的博客，与大家一起分析IT技术。
-                    </div>
-                </fieldset>
-            </div>
-        </div>
-    </div>
-    <div class="layui-col-md12">
-        <div class="layui-card">
-            <div class="layui-card-body ">
-                <blockquote class="layui-elem-quote layui-quote-nm">
-                    以下是能联系到我的各种方法：<br>
-                    邮件： heming_wei@126.com<br>
-                    与文章或者项目相关的问题，请直接在文后评论处留言<br>
-                </blockquote>
-            </div>
-        </div>
-    </div>
-    <div class="layui-col-md12">
-        <div class="layui-card">
-            <div class="layui-card-body ">
-                <ul class="layui-timeline">
-                    <li class="layui-timeline-item">
-                        <i class="layui-icon layui-timeline-axis"></i>
-                        <div class="layui-timeline-content layui-text">
-                            <h3 class="layui-timeline-title">2018年11月29日</h3>
-                            <p>
-                                我的博客已经可以算是一个可以查看的网站了。
-                                <br>不枉近百个日日夜夜与之为伴。因小而大，因弱而强。
-                                <br>无论它能走多远，抑或如何支撑？至少我曾倾注全心，无怨无悔 <i class="layui-icon"></i>
-                            </p>
-                        </div>
+            <div class="layui-card-body about-cont">
+                <h2 class="title">It's Me</h2>
+                <ul>
+                    <li class="self font detail-item">
+                        <i class="layui-icon layui-icon-friends"></i>
+                        <p>89年生于四川西充市义兴镇，5岁随父母去了新疆，在那里生活、学习指直到大学，后来不甘心留在新疆，于是出疆去了古都西安、江南水乡城杭州、IT行业发达的深圳，
+                            寻找自己的未来，但是一次次挫败，让我失去了信心，后来因为朋友关系有幸去了青岛。在那里遇到了很多好的同事，一待就是3年，最后又跑去了济南待了9个月，最终
+                            定居在美丽的天府之都成都。现在在成都一家IT公司做数据分析师。本来就喜欢做网站，于是学习了layui，觉得很牛逼，于是做了自己的博客，与大家一起分析IT技术。</p>
                     </li>
-                    <li class="layui-timeline-item">
-                        <i class="layui-icon layui-timeline-axis"></i>
-                        <div class="layui-timeline-content layui-text">
-                            <h3 class="layui-timeline-title">2018年10月16日</h3>
-                            <p>搭建了框架layui框架，仅仅是后台框架，学习基本的增删改查
-                            <br>开始筹备前端的设计方法
-                            <br>开始创建数据库。
-                            </p>
-                        </div>
+                    <li class="hobby font detail-item">
+                        <i class="iconfont icon-xihuan"></i>
+                        <p>撸码、看书、旅游、骑车、音乐、吃鸡(O(∩_∩)O哈哈~)</p>
                     </li>
-                    <li class="layui-timeline-item">
-                        <i class="layui-icon layui-timeline-axis"></i>
-                        <div class="layui-timeline-content layui-text">
-                            <h3 class="layui-timeline-title">2018年10月13日</h3>
-                            <p>
-                                看了Layui的设计后，终于有想法要做一个博客了
-                                <br>刚开始一片迷茫，不知道从什么开始做起。
-                                <br>还要学习js、css。
-                                <br>要学习django、回忆html
-                                <br>开始规划设计
-                            </p>
-                        </div>
+                    <li class="tool font detail-item">
+                        <i class="iconfont icon-gongjuxiang"></i>
+                        <p>Python、SqlServer、.Net、C#</p>
                     </li>
-                    <li class="layui-timeline-item">
-                        <i class="layui-icon layui-timeline-axis"></i>
-                        <div class="layui-timeline-content layui-text">
-                            <div class="layui-timeline-title">过去</div>
-                            <p>
-                                一直在做数据分析工作
-                            </p>
-                        </div>
+                    <li class="noteabout font detail-item">
+                        <i class="layui-icon layui-icon-note"></i>
+                        <p>半宅男、执着症患者、小气鬼、闷骚男</p>
+                    </li>
+                    <li class="myposition font detail-item">
+                        <i class="iconfont icon-location3bdingwei3"></i>
+                        <p>成都天府新区</p>
+                    </li>
+                    <li class="company font detail-item">
+                        <i class="iconfont icon-jiudian"></i>
+                        <p>数据分析公司</p>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
-
+    <div class="layui-col-md3">
+        <div class="card github-follow">
+            <div class="card-body">
+                <div class="status">
+                    <div class="follow">
+                        <span class="count">161</span>
+                        <div class="label">Follower</div>
+                    </div>
+                    <span class="divider"></span>
+                    <div class="following">
+                        <span class="count">141</span>
+                        <div class="label">Following</div>
+                    </div>
+                </div>
+            </div>
+            <div class="follow-btn">
+                <a href="https://github.com/huahuayufeng">Follow Me</a>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md3">
+        <div class="contact card">
+            <div class="card-body">
+                <h2 class="title">Contacts</h2>
+                <ul>
+                    <li class="qq"> <a href="mailto:heming_wei@126.com"><i class="layui-icon layui-icon-login-qq"></i></a></li>
+                    <li class="wechat"> <i class="layui-icon layui-icon-login-wechat"></i></li>
+                    <li class="weibo"> <a href="https://weibo.com/mingtianya"><i class="layui-icon layui-icon-login-weibo"></i></a></li>
+                    <li class="github"><a href="https://github.com/huahuayufeng"><i class="iconfont icon-github"></i></a></li>
+                    <li class="email"><a href="mailto:heming_wei@126.com"><i class="iconfont icon-email"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md3">
+        <div class="position card card-no-padding">
+            <div class="card-body">
+                <h2 class="title">I'm Here</h2>
+                <iframe></iframe>
+            </div>
+        </div>
+    </div>
 {% endblock %}

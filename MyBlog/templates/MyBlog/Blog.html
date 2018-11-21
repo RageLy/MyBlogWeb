@@ -3,55 +3,41 @@
 {% block title%}
     <title>花花与风的博文</title>
 {% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'common/css/iconfont.css' %}">
+{% endblock %}
 {% block container %}
     <div class="layui-col-md9 Tophead">
-        <div class="content">
-            {% if Blogs %}
-                {% for blog in Blogs %}
-                    <div class="item">
-                        <div class="title"><a href="{% url 'MyBlog:details' id=blog.id %}" title="{{ blog.title }}">{{ blog.title }}</a></div>
-                        <div class="img"><img src="{{ blog.imgTitle }}" alt="{{ blog.title }}"></div>
-                        <div class="abstract"><a href="{% url 'MyBlog:details' id=blog.id %}" title="{{ blog.title }}">{{ blog.abstract }}</a></div>
-                        <div class="author">
-                                <span class="f_l t_left top">{% if blog.isTop == 1 %}置顶{% else %}{% endif %}</span>
-                                <span class="f_l lm">分类：
-                                {% if blog.blogtyperelation_set.all  %}
-                                    {% for BlogTypeRelation in blog.blogtyperelation_set.all %}
-                                        <a href="{% url 'MyBlog:types' BlogTypeRelation.BlogType.TypeName %}">{{ BlogTypeRelation.BlogType.TypeName }}</a>
-                                    {% endfor %}
-                                {% endif %}
-                                </span>
-                            <span class="dtime f_l">发布时间：{{ blog.createdate|date:"Y-m-d H:i:s" }}</span>
-                            <span class="f_r t_right orign">{% if blog.isorg == 1 %}原创{% else %}转载{% endif %}</span>
-                            <span class="viewnum f_r ">{{ blog.hit }}次阅读</span>
-                            <span class="pingl f_r">{{ blog.comment_set.count }}条评论</span>
-                        </div>
-                    </div>
-                {% endfor %}
-            {% endif %}
+        <div class="content" id="flow">
         </div>
     </div>
     <div class="layui-col-md3 Tophead" >
         <div class="layui-row layui-col-space15">
             <div class="layui-col-md12 ">
                 <div class="layui-card webinfo">
-                    <div class="layui-card-header">网站信息</div>
+                    <div class="layui-card-header">
+                        <i class="layui-icon layui-icon-app"></i>
+                        <span>文章分类</span>
+                    </div>
                     <div class="layui-card-body">
                         <ul>
-                            <li>网站名称：花花与风的博客</li>
-                            <li>博客系统：自建</li>
-                            <li>QQ：1687761583</li>
-                            <li>前端UI：<a href="https://www.layui.com/" target="_blank">layui 3.4.1</a></li>
-                            <li>后端框架：django:2.0.1</li>
+                            {% if Categorys %}
+                                {% for category in Categorys %}
+                                    <a href="{% url 'MyBlog:category' category.id %}" title="{{ category.Name }}"><li>{%if category.Name|length >= 25 %}{{category.Name|slice:"25"}}...{%else%} {{category.Name}}{%endif%}</li></a>
+                                {% endfor %}
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="layui-col-md12">
-                <div class="layui-card">
-                    <div class="layui-card-header">点击排行</div>
+                <div class="layui-card ranker">
+                    <div class="layui-card-header">
+                        <i class="iconfont icon-wenzhang"></i>
+                        <span>点击排行</span>
+                    </div>
                     <div class="layui-card-body">
-                        <ul class="ranker">
+                        <ul>
                             {% if Rankers %}
                                 {% for ranker in Rankers %}
                                     <li><a href="{% url 'MyBlog:details' ranker.id %}" title="{{ ranker.title }}">{%if ranker.title|length >= 25 %}
@@ -66,7 +52,10 @@
             </div>
             <div class="layui-col-md12">
                 <div class="layui-card">
-                    <div class="layui-card-header">标签页</div>
+                    <div class="layui-card-header">
+                        <i class="layui-icon layui-icon-note"></i>
+                        <span>标签云</span>
+                    </div>
                     <div class="layui-card-body note">
                         {% if Tags %}
                             {% for tag in Tags %}
@@ -81,18 +70,58 @@
 {% endblock %}
 {% block script %}
     <script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
-    {#    <script>#}
-    {#        $("[id^=blog]").mouseover(function(){#}
-    {#            id=$(this).attr('id').split("blog")[1]#}
-    {#            splitlineid='splitline'+id#}
-    {#            $('#'+splitlineid).css('border-bottom-color','#1E9FFF');#}
-    {#            $('#'+splitlineid).css('border-bottom-width','2px');#}
-    {#        });#}
-    {#        $("[id^=blog]").mouseout(function(){#}
-    {#            id=$(this).attr('id').split("blog")[1]#}
-    {#            splitlineid='splitline'+id#}
-    {#            $('#'+splitlineid).css('border-bottom-color','#f2f2f2');#}
-    {#            $('#'+splitlineid).css('border-bottom-width','2px');#}
-    {#        });#}
-    {#    </script>#}
+    <script>
+        layui.use('flow', function(){
+            var flow = layui.flow;
+            flow.load({
+                elem: '#flow' //指定列表容器
+                ,scrollElem: '#flow' //滚动条所在元素，一般不用填，此处只是演示需要。
+                ,done: function(page, next){ //到达临界点（默认滚动触发），触发下一页
+                    //以jQuery的Ajax请求为例，请求下一页数据（注意：page是从2开始返回）
+                    setTimeout(function() {
+                        var lis = [];
+                        $.get('../loadblog?page=' + page + '&limit=1',
+                            function(res) {
+                                console.info(res);
+                                //假设你的列表返回在data集合中
+                                layui.each(res.data, function(index, item) {
+                                    var blogcategorylist=[]
+                                    var blogcategory=layui.each(item.blogCategory,function(index,subitem)
+                                            {
+                                                var item1str='<a href="../category/"'+subitem.id +'">'+subitem.Name+'</a>'
+                                                blogcategorylist.push(item1str)
+                                            });
+                                    var blog_blogtypelist=[]
+                                    var blog_blogtype=layui.each(item.blogType,function(index,subitem)
+                                            {
+                                                var item2str='<a href="../types/"'+subitem.TypeName +'">'+subitem.TypeName+'</a>'
+                                                blog_blogtypelist.push(item2str)
+                                            });
+                                    var str=' <div class="item">\n' +
+                                        '                        <div class="header">\n' +
+                                        '                            <div class="title"><a href="../details/'+item.id+'" title="'+item.title+'">'+item.title+'</a></div>\n' +
+                                        '                            <div class="category">'+blogcategorylist+'</div>\n' +
+                                        '                        </div>\n' +
+                                        '                        <div class="img"><img src="'+item.imgTitle+'" alt="'+item.title+'"></div>\n' +
+                                        '                        <div class="abstract"><a href="../details/"'+item.id+'" title="'+item.title+'">'+item.abstract+'</a></div>\n' +
+                                        '                        <div class="author">\n' +
+                                        '                            <span class="f_l t_left top">置顶</span>\n' +
+                                        '                            <span class="f_l lm">分类：'+blog_blogtypelist+'</span>\n' +
+                                        '                            <span class="dtime f_l">发布时间：'+item.createdate+'</span>\n' +
+                                        '                            <span class="f_r t_right orign">原创</span>\n' +
+                                        '                            <span class="viewnum f_r ">'+item.hit+'次阅读</span>\n' +
+                                        '                            <span class="pingl f_r">'+item.commentcount+'条评论</span>\n' +
+                                        '                        </div>\n' +
+                                        '                    </div>'
+                                    lis.push(str);
+                                });
+                                next(lis.join(''), page < res.count); //假设总页数为 6
+                            });
+                    }, 500);
+                }
+            });
+        });
+
+    </script>
+
 {% endblock %}
