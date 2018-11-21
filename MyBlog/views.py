@@ -52,10 +52,10 @@ def loadblog(request):
         blogcategorydict = []
         blogcategory = item.blog_CategoryToBlog.all()
         for j in blogcategory:
-            blogcategorydict.append({'TypeName': j.Name, 'id': j.id})
+            blogcategorydict.append({'Name': j.Name, 'id': j.id})
         # blogtypedict=
         blogdict={'id':item.id,'title':item.title,'abstract':item.abstract,'createdate':str(item.createdate),'modifydate':str(item.modifydate),'type':item.type,
-                  'blogcontent':item.blogcontent,'hit':item.hit,'isTop':'checked' if item.isTop==1 else '','isorg':'checked' if item.isorg==1 else '','imgTitle':item.imgTitle,'blogType':blogtypedict,'blogCategory':blogcategorydict}
+                  'blogcontent':item.blogcontent,'hit':item.hit,'isTop':'checked' if item.isTop==1 else '','isorg':'checked' if item.isorg==1 else '','imgTitle':item.imgTitle,'blogType':blogtypedict,'blogCategory':blogcategorydict,'commentcount':item.comment_set.count()}
         bloglist.append(blogdict)
     limit=request.GET.get('limit')
     paginator = Paginator(bloglist, limit)
