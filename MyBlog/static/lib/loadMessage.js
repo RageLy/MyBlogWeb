@@ -1,3 +1,4 @@
+
 Date.prototype.Format = function (formatStr) {
     var str = formatStr;
     var Week = ['日', '一', '二', '三', '四', '五', '六'];
@@ -22,54 +23,6 @@ Date.prototype.Format = function (formatStr) {
     str = str.replace(/s|S/g, this.getSeconds());
     return str;
 }
-
-  function diaplayTime(data) {
-
-            var str = data;
-            //将字符串转换成时间格式
-            var timePublish = new Date(str);
-            var timeNow = new Date();
-            var minute = 1000 * 60;
-            var hour = minute * 60;
-            var day = hour * 24;
-            var month = day * 30;
-            var diffValue = timeNow - timePublish;
-            var diffMonth = diffValue / month;
-            var diffWeek = diffValue / (7 * day);
-            var diffDay = diffValue / day;
-            var diffHour = diffValue / hour;
-            var diffMinute = diffValue / minute;
-
-            if (diffValue < 0) {
-                alert("错误时间");
-            }
-            else if (diffMonth > 3) {
-                result = timePublish.getFullYear()+"-";
-                result += timePublish.getMonth() + "-";
-                result += timePublish.getDate();
-                alert(result);
-            }
-            else if (diffMonth > 1) {
-                result = parseInt(diffMonth) + "月前";
-            }
-            else if (diffWeek > 1) {
-                result = parseInt(diffWeek) + "周前";
-            }
-            else if (diffDay > 1) {
-                result = parseInt(diffDay) + "天前";
-            }
-            else if (diffHour > 1) {
-                result = parseInt(diffHour) + "小时前";
-            }
-            else if (diffMinute > 1) {
-                result = parseInt(diffMinute) + "分钟前";
-            }
-            else {
-                result = "刚刚发表";
-            }
-            return result;
-        }
-
 $(function(){
     /*瀑布流开始*/
     var container = $('.waterfall ul');
@@ -156,9 +109,9 @@ $(function(){
                     html+="<li class='item'><div class='userinfo'>\n" +
                         "<div class='headpic'> <img src='../../static/common/imgs/userhead.png'></div>\n" +
                         "<h2 class='li-title' title='"+sqlJson[i].username +"'>"+sqlJson[i].username +"</h2>\n" +
-                        "<div class='qianm clearfloat'><span class='sp3'>"+diaplayTime(sqlJson[i].createdate)+"</span></div></div>\n" +
+                        "<div class='qianm'><span class='sp3'>"+jQuery.timeago(sqlJson[i].createdate)+"</span></div></div>\n" +
                         "<div class='con'><a class='description'>"+sqlJson[i].MessageContent +"</a></div>\n" +
-                        "<div class='otherinfo'><i class='layui-icon layui-icon-location'>"+sqlJson[i].country +" · "+sqlJson[i].region +" · "+sqlJson[i].city +"</i></div></li>"
+                        "<div class='otherinfo'><i class='layui-icon layui-icon-location'> " +sqlJson[i].country +" · "+sqlJson[i].region +" · "+sqlJson[i].city +"</i></div></li>"
 
                 }
                 console.log(html)

@@ -5,7 +5,7 @@
     <title>欢迎留言</title>
 {% endblock %}
 {% block head %}
-{#    <link rel="stylesheet" type="text/css" href="{% static 'waterfall/css/base.css' %}">#}
+    {#    <link rel="stylesheet" type="text/css" href="{% static 'waterfall/css/base.css' %}">#}
     <link rel="stylesheet" type="text/css" href="{% static 'waterfall/css/waterfall.css' %}">
     <!--[if lt IE 9]>
 		<script src="{% static 'waterfall/js/css3-mediaqueries' %}"></script>
@@ -73,7 +73,7 @@
                                 <div class="headpic"> <img src="{% static 'common/imgs/userhead.png' %}"></div>
                                 <h2 class="li-title" title="{{ MessageTb.username }}">{{ MessageTb.username }}</h2>
                                 <div class="qianm">
-                                <span class="sp3">{{ MessageTb.createdate|date:'Y-m-d H:i:s' }}</span>
+                                    <span class="sp3"><script>$(function(){jQuery.timeago(new Date({{ MessageTb.createdate|date:'yyyy-MM-dd hh:mm:ss'}}).toUTCString())})</script></span>
                                 </div>
                             </div>
                             <div class="con"><a class="description">{{ MessageTb.MessageContent }}</a></div>
@@ -90,6 +90,8 @@
     </div>
 {% endblock %}
 {% block script %}
+     <script src="{% static '/common/js/jquery.timeago.js' %}" ></script>
+    <script src="{% static '/lib/loadMessage.js' %}" ></script>
     <script>
         layui.config({
             base: '{% static '/layui/js/util/' %}' //静态资源所在路径
@@ -118,6 +120,6 @@
             });
         });
     </script>
-    <script src="{% static '/lib/loadMessage.js' %}" ></script>
+
 
 {% endblock %}
