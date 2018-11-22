@@ -23,7 +23,7 @@
                         <ul>
                             {% if Categorys %}
                                 {% for category in Categorys %}
-                                    <a href="{% url 'MyBlog:category' category.id %}" title="{{ category.Name }}"><li>{%if category.Name|length >= 25 %}{{category.Name|slice:"25"}}...{%else%} {{category.Name}}{%endif%}</li></a>
+                                    <a href="{% url 'MyBlog:category' category.id %}" title="{{ category.Name }}" id="link{{ category.id }}"><li>{%if category.Name|length >= 25 %}{{category.Name|slice:"25"}}...{%else%} {{category.Name}}{%endif%}</li></a>
                                 {% endfor %}
                             {% endif %}
                         </ul>
@@ -70,59 +70,6 @@
 {% endblock %}
 {% block script %}
     <script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
-    <script>
-        layui.use('flow', function(){
-            var flow = layui.flow;
-            flow.load({
-                elem: '#flow' //指定列表容器
-                ,scrollElem: '#flow' //滚动条所在元素，一般不用填，此处只是演示需要。
-                ,done: function(page, next){ //到达临界点（默认滚动触发），触发下一页
-                    //以jQuery的Ajax请求为例，请求下一页数据（注意：page是从2开始返回）
-                    setTimeout(function() {
-                        var lis = [];
-                        $.get('../loadblog?page=' + page + '&limit=2',
-                            function(res) {
-                                console.info(res);
-                                //假设你的列表返回在data集合中
-                                layui.each(res.data, function(index, item) {
-                                    var blogcategorylist=[]
-                                    var blogcategory=layui.each(item.blogCategory,function(index,subitem)
-                                            {
-                                                var itemstr='<a href="../category/'+subitem.id +'">'+subitem.Name+'</a>'
-                                                blogcategorylist.push(itemstr)
-                                            });
-                                    var blog_blogtypelist=[]
-                                    var blog_blogtype=layui.each(item.blogType,function(index,subitem)
-                                            {
-                                                var itemstr='<a href="../types/'+subitem.TypeName +'">'+subitem.TypeName+'</a>'
-                                                blog_blogtypelist.push(itemstr)
-                                                console.log(blog_blogtypelist)
-                                            });
-                                    var str=' <div class="item">\n' +
-                                        '                        <div class="header">\n' +
-                                        '                            <div class="title"><a href="../details/'+item.id+'" title="'+item.title+'">'+item.title+'</a></div>\n' +
-                                        '                            <div class="category">'+blogcategorylist+'</div>\n' +
-                                        '                        </div>\n' +
-                                        '                        <div class="img"><img src="'+item.imgTitle+'" alt="'+item.title+'"></div>\n' +
-                                        '                        <div class="abstract"><a href="../details/"'+item.id+'" title="'+item.title+'">'+item.abstract+'</a></div>\n' +
-                                        '                        <div class="author">\n' +
-                                        '                            <span class="f_l t_left top">置顶</span>\n' +
-                                        '                            <span class="f_l lm">分类：'+blog_blogtypelist+'</span>\n' +
-                                        '                            <span class="dtime f_l">发布时间：'+item.createdate+'</span>\n' +
-                                        '                            <span class="f_r t_right orign">原创</span>\n' +
-                                        '                            <span class="viewnum f_r ">'+item.hit+'次阅读</span>\n' +
-                                        '                            <span class="pingl f_r">'+item.commentcount+'条评论</span>\n' +
-                                        '                        </div>\n' +
-                                        '                    </div>'
-                                    lis.push(str);
-                                });
-                                next(lis.join(''), page*2 < res.count); //假设总页数为 6
-                            });
-                    }, 500);
-                }
-            });
-        });
-
-    </script>
+    <script src="{% static '/lib/LoadBlog.js' %}" data-id="type={{ type }}&method={{ method }}"></script>
 
 {% endblock %}

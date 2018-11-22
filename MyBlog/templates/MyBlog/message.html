@@ -4,18 +4,21 @@
 {% block title%}
     <title>欢迎留言</title>
 {% endblock %}
-{#{% block fluid %}#}
-{#    <div class="banner">#}
-{#        <div class="cont w1000">#}
-{#            <div class="title">#}
-{#                <h3>花花<br />与风</h3>#}
-{#                <h4>well-balanced heart</h4>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{#{% endblock %}#}
+{% block head %}
+{#    <link rel="stylesheet" type="text/css" href="{% static 'waterfall/css/base.css' %}">#}
+    <link rel="stylesheet" type="text/css" href="{% static 'waterfall/css/waterfall.css' %}">
+    <!--[if lt IE 9]>
+		<script src="{% static 'waterfall/js/css3-mediaqueries' %}"></script>
+	<![endif]-->
+    <script type="text/javascript" src="{% static 'waterfall/js/jquery-1.8.3.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'waterfall/js/jQueryColor.js' %}"></script>
+    <!--这个插件是瀑布流主插件函数必须-->
+    <script type="text/javascript" src="{% static 'waterfall/js/jquery.masonry.min.js' %}"></script>
+    <!--这个插件只是为了扩展jquery的animate函数动态效果可有可无-->
+    <script type="text/javascript" src="{% static 'waterfall/js/jQeasing.js' %}"></script>
+{% endblock %}
 {% block container %}
-    <div class="layui-col-md9 Tophead">
+    <div class="layui-col-md12 Tophead">
         <div class="layui-card">
             <div class="layui-card-header">
                 <h2>大佬们看这里</h2>
@@ -25,13 +28,7 @@
             </div>
         </div>
     </div>
-    <div class="layui-col-md3 Tophead">
-        <div class="layui-card">
-            <div class="layui-card-header">最新留言</div>
-            <div class="layui-card-body"></div>
-        </div>
-    </div>
-    <div class="layui-col-md9 ">
+    <div class="layui-col-md12 ">
         <div class="layui-card">
             <div class="layui-card-body ">
                 <form class="layui-form message-con" method="post">
@@ -66,64 +63,31 @@
             </div>
         </div>
     </div>
-    <div class="layui-col-md9">
-        <div class="layui-card ">
-            <div class="layui-card-header">最新留言</div>
-            {% if MessageTbs %}
-                {% for MessageTb in MessageTbs %}
+    <div class="layui-col-md12">
+        <div class="waterfall clearfloat" id="waterfall">
+            <ul>
+                {% if MessageTbs %}
+                    {% for MessageTb in MessageTbs %}
+                        <li class="item">
+                            <div class="userinfo">
+                                <div class="headpic"> <img src="{% static 'common/imgs/userhead.png' %}"></div>
+                                <h2 class="li-title" title="{{ MessageTb.username }}">{{ MessageTb.username }}</h2>
+                                <div class="qianm">
+                                <span class="sp3">{{ MessageTb.createdate|date:'Y-m-d H:i:s' }}</span>
+                                </div>
+                            </div>
+                            <div class="con"><a class="description">{{ MessageTb.MessageContent }}</a></div>
 
-                    <div class="layui-card-body Message">
-                        <div class="headimg"><img src="{% static 'common/imgs/userhead.png' %}"></div>
-                        <div class="user"> <p>{{ MessageTb.username }}</p></div>
-                        <div class="text"> <p>{{ MessageTb.MessageContent }}</p></div>
-                        <div class="date"> <p>{{ MessageTb.createdate|date:'Y-m-d H:i:s' }}</p></div>
-                    </div>
-
-                {% endfor %}
-            {% endif %}
-        </div>
-    </div>
-    <div class="layui-col-md9 navigation">
-        <nav aria-label="">
-            <ul class="pagination">
-                {% if MessageTbs.has_previous %}
-                    <li>
-                        <a href="?page={{ MessageTbs.previous_page_number }}" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                {% endif %}
-
-                {%  for pg in MessageTbs.paginator.page_range %}
-                    {% circle_page MessageTbs.number pg %}
-                {% endfor %}
-
-                {% if MessageTbs.has_next %}
-                    <li>
-                        <a href="?page={{ MessageTbs.next_page_number }}" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
+                            <div class="otherinfo"><i class="layui-icon layui-icon-location"> {{ MessageTb.country }} · {{ MessageTb.region }} · {{ MessageTb.city }}</i></div>
+                        </li>
+                    {% endfor %}
                 {% endif %}
             </ul>
-        </nav>
-        {#        <div class="pagination">#}
-        {#            <span class="step-links">#}
-        {#                {% if MessageTbs.has_previous %}#}
-        {#                    <a href="?page={{ MessageTbs.previous_page_number }}"><<</a>#}
-        {#                {% endif %}#}
-        {##}
-        {#                <span class="current">#}
-        {#                   {{ MessageTbs.number }} 共 {{ MessageTbs.paginator.num_pages }}页#}
-        {#                </span>#}
-        {##}
-        {#                {% if MessageTbs.has_next %}#}
-        {#                    <a href="?page={{ MessageTbs.next_page_number }}">>></a>#}
-        {#                {% endif %}#}
-        {#            </span>#}
-        {#        </div>#}
+        </div>
+        <div id="imloading" style="width:150px;height:30px;line-height:30px;font-size:16px;text-align:center;border-radius:3px;opacity:0.7;background:#000;margin:10px auto 30px;color:#fff;display:none">
+            I'm Loading.....
+        </div>
     </div>
-
 {% endblock %}
 {% block script %}
     <script>
@@ -154,4 +118,6 @@
             });
         });
     </script>
+    <script src="{% static '/lib/loadMessage.js' %}" ></script>
+
 {% endblock %}

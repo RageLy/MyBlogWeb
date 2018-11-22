@@ -5,7 +5,7 @@ from MyBlog import models
 from django.http import HttpResponse
 from MyBlogWeb import settings
 from django.core.paginator import Paginator,EmptyPage, PageNotAnInteger
-from django.core import serializers
+import urllib.request
 from django.db.models import Q
 import json
 from django.db.models.fields.files import ImageFieldFile
@@ -34,13 +34,23 @@ def Blog(request):
     Ranker = models.Blog.objects.order_by('-hit')[0:9]
     tag = models.BlogType.objects.all()
     category = models.Category.objects.all()
-    return render(request,'MyBlog/Blog.html',{'Rankers':Ranker,'Tags':tag,'Categorys':category})
+    return render(request,'MyBlog/Blog.html',{'Rankers':Ranker,'Tags':tag,'Categorys':category,'method':'0','type':'all'})
 
 def loadblog(request):
-    data={}
+    # data={}
     # Blog1=models.Blog.objects.values('id','title','abstract','createdate','hit','isTop','isorg','imgTitle','blog_blogtype','blog_CategoryToBlog')
-    Blog = models.Blog.objects.all()
-    # data['list'] = json.loads(serializers.serialize("json", Blog))
+    # if request.method=='GET':
+    type=request.GET.get('type')
+    method=request.GET.get('method')
+    print('方法：',method)
+    if method=='0':
+        Blog = models.Blog.objects.all()
+    elif method=='1':
+        Blog = models.BlogType.objects.get(TypeName=type).blogtype_blog.all()
+    elif method=='2':
+        Blog = models.Category.objects.get(id=type).CategoryToBlog_Blog.all()
+    else:
+        Blog = models.Blog.objects.all()
     # print(data)
     bloglist=[]
     for item in Blog:
@@ -73,22 +83,23 @@ def picture(request):
     return render(request, 'MyBlog/picture.html', {'PicManages': PicManage,'Rankers':Ranker,'Tags':tag})
 
 def archive(request):
+    Ranker = models.Blog.objects.order_by('-hit')[0:9]
+    tag = models.BlogType.objects.all()
+    category = models.Category.objects.all()
     archive = models.Blog.objects.all()
-    return render(request, 'MyBlog/archive.html', {'archives': archive})
+    return render(request, 'MyBlog/archive.html', {'archives': archive,'Rankers':Ranker,'Tags':tag,'Categorys':category})
 
 def message(request):
-    MessageTb=models.MessageTb.objects.all()
-    paginator = Paginator(MessageTb, 10)  # Show 25 contacts per page
-    page = request.GET.get('page')
-    try:
-        contacts = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        contacts = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        contacts = paginator.page(paginator.num_pages)
-    return render(request, 'MyBlog/message.html',{'MessageTbs':contacts})
+    MessageTb=models.MessageTb.objects.order_by('-createdate')[0:10]
+    return render(request, 'MyBlog/message.html',{'MessageTbs':MessageTb})
+
+def loadmessage(request):
+    data={}
+    message=models.MessageTb.objects.values().order_by('-createdate')[10:]
+    data['list']=list(message)
+    itemNum=len(list(message))
+    print(itemNum)
+    return JsonResponse({'data':data,'itemNum':itemNum})
 
 def submitmessage(request):
     if request.POST.get("MessageCon")!='':
@@ -97,10 +108,16 @@ def submitmessage(request):
         else:
             ip = request.META['REMOTE_ADDR']
         print(ip)
-        ipcity='http://ip.taobao.com/service/getIpInfo.php?ip='+ip
+        ipcity='http://ip.taobao.com/service/getIpInfo.php?ip=118.24.141.118'
+        wb_data = urllib.request.urlopen(ipcity)
+        data = json.loads(wb_data.read().decode("utf-8"))
+        ipadd=data['data']['ip']
+        country=data['data']['country']
+        region = data['data']['region']
+        city = data['data']['city']
         MessageCon=request.POST.get("MessageCon")
         maxid=models.MessageTb.objects.latest('id').id
-        MessageTb = models.MessageTb(MessageContent=MessageCon,userid='',username='游客'+str(int(maxid)+1),email='',createdate=datetime.datetime.now())
+        MessageTb = models.MessageTb(MessageContent=MessageCon,userid='',username='游客'+str(int(maxid)+1),email='',createdate=datetime.datetime.now(),ip=ipadd,country=country,region=region,city=city)
         MessageTb.save()
         return JsonResponse({'message': 0})
     else:
@@ -112,7 +129,7 @@ def about(request):
 def details(request,id):
     detail=models.Blog.objects.get(id=id)
     detail.hit+=1
-    detail.save()
+    detail.save(update_fields=['hit'])
     # commentdetail=models.Blog.objects.all()
     Ranker = models.Blog.objects.order_by('-hit')[0:9]
     tag = models.BlogType.objects.filter(category=0)
@@ -130,18 +147,16 @@ def picdetails(request,id):
     return render(request, 'MyBlog/picdetails.html', {'PicManages': PicManage, 'Rankers': Ranker, 'Tags': tag})
 
 def types(request,type):
-    Bloglist = models.BlogType.objects.get(TypeName=type).blogtype_blog.all()
     Ranker = models.Blog.objects.order_by('-hit')[0:9]
     tag = models.BlogType.objects.all()
     category = models.Category.objects.all()
-    return render(request, 'MyBlog/Blog.html', {'Blogs':Bloglist,'Rankers':Ranker,'Tags':tag,'Categorys':category})
+    return render(request, 'MyBlog/Blog.html', {'Rankers':Ranker,'Tags':tag,'Categorys':category,'type':type,'method':'1'})
 
 def category(request,type):
-    Bloglist = models.Category.objects.get(id=type).CategoryToBlog_Blog.all()
     Ranker = models.Blog.objects.order_by('-hit')[0:9]
     tag = models.BlogType.objects.all()
     category = models.Category.objects.all()
-    return render(request, 'MyBlog/Blog.html', {'Blogs':Bloglist,'Rankers':Ranker,'Tags':tag,'Categorys':category})
+    return render(request, 'MyBlog/Blog.html', {'Rankers':Ranker,'Tags':tag,'Categorys':category,'type':type,'method':'2'})
 
 def imgtypes(request,type):
     PicManage = models.BlogType.objects.get(TypeName=type,category=1).pictype_pic.all()

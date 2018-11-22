@@ -2,9 +2,42 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96e37eb9-eab1-4dc6-a001-8e45b9d95461" name="Default" comment="修改了留言界面">
+      <change afterPath="$PROJECT_DIR$/MyBlog/static/lib/LoadBlog.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlog/static/lib/loadMessage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlog/static/waterfall/css/base.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlog/static/waterfall/css/waterfall.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlog/static/waterfall/images/demo2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlog/static/waterfall/images/one.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlog/static/waterfall/images/p1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlog/static/waterfall/images/t1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlog/static/waterfall/images/t10.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlog/static/waterfall/images/t2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlog/static/waterfall/images/t3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlog/static/waterfall/images/t4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlog/static/waterfall/images/t5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlog/static/waterfall/images/t6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlog/static/waterfall/images/t7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlog/static/waterfall/images/t8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlog/static/waterfall/images/t9.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlog/static/waterfall/js/css3-mediaqueries.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlog/static/waterfall/js/jQeasing.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlog/static/waterfall/js/jQueryColor.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlog/static/waterfall/js/jquery-1.8.3.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyBlog/static/waterfall/js/jquery.masonry.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlog/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBlog/templates/MyBlog/Blog.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/templates/MyBlog/Blog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlog/templates/MyBlog/Types.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlog/templates/MyBlog/archive.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/templates/MyBlog/archive.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlog/templates/MyBlog/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/templates/MyBlog/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlog/templates/MyBlog/comment.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlog/templates/MyBlog/details.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/templates/MyBlog/details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlog/templates/MyBlog/message.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/templates/MyBlog/message.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlog/templates/MyBlog/picture.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/templates/MyBlog/picture.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBlog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogWeb/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogWeb/settings.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,391 +77,6 @@
     <option name="myUseModuleSdk" value="true" />
     <option name="myModuleName" value="ChemicalWeb" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="1748883797">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="4" />
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.10" value="2" />
-          <entry key="project.open.time.11" value="1" />
-          <entry key="project.open.time.12" value="2" />
-          <entry key="project.opened" value="6" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="html" value="440" />
-          <entry key="js" value="4" />
-          <entry key="py" value="490" />
-          <entry key="sql" value="22" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="HTML" value="440" />
-          <entry key="JavaScript" value="4" />
-          <entry key="Python" value="490" />
-          <entry key="Scratch" value="22" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="html" value="10" />
-          <entry key="js" value="5" />
-          <entry key="json" value="2" />
-          <entry key="py" value="5" />
-          <entry key="sql" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="HTML" value="10" />
-          <entry key="JSON" value="2" />
-          <entry key="JavaScript" value="5" />
-          <entry key="Python" value="5" />
-          <entry key="Scratch" value="1" />
-        </counts>
-      </usages-collector>
-    </session>
-    <session id="514056878">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="5" />
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.10" value="1" />
-          <entry key="project.open.time.15" value="1" />
-          <entry key="project.open.time.40" value="1" />
-          <entry key="project.open.time.50" value="1" />
-          <entry key="project.open.time.7" value="1" />
-          <entry key="project.open.time.78" value="1" />
-          <entry key="project.open.time.95" value="1" />
-          <entry key="project.opened" value="8" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="bak" value="3" />
-          <entry key="css" value="2" />
-          <entry key="html" value="58" />
-          <entry key="js" value="35" />
-          <entry key="json" value="18" />
-          <entry key="py" value="130" />
-          <entry key="sql" value="9" />
-          <entry key="ts" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="CSS" value="2" />
-          <entry key="HTML" value="58" />
-          <entry key="JSON" value="18" />
-          <entry key="JavaScript" value="35" />
-          <entry key="PLAIN_TEXT" value="3" />
-          <entry key="Python" value="130" />
-          <entry key="SQL" value="4" />
-          <entry key="Scratch" value="5" />
-          <entry key="TypeScript" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="css" value="2" />
-          <entry key="html" value="4317" />
-          <entry key="js" value="64" />
-          <entry key="json" value="151" />
-          <entry key="py" value="5753" />
-          <entry key="sql" value="648" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="CSS" value="2" />
-          <entry key="HTML" value="4317" />
-          <entry key="JSON" value="151" />
-          <entry key="JavaScript" value="64" />
-          <entry key="Python" value="5753" />
-          <entry key="SQL" value="7" />
-          <entry key="Scratch" value="641" />
-        </counts>
-      </usages-collector>
-    </session>
-    <session id="422166246">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="4" />
-          <entry key="project.open.time.122" value="1" />
-          <entry key="project.open.time.13" value="1" />
-          <entry key="project.open.time.2" value="1" />
-          <entry key="project.open.time.42" value="1" />
-          <entry key="project.open.time.45" value="1" />
-          <entry key="project.open.time.57" value="1" />
-          <entry key="project.opened" value="6" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="cell" value="2" />
-          <entry key="css" value="13" />
-          <entry key="html" value="2570" />
-          <entry key="js" value="271" />
-          <entry key="json" value="17" />
-          <entry key="py" value="2345" />
-          <entry key="sql" value="48" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="CSS" value="13" />
-          <entry key="HTML" value="2570" />
-          <entry key="JSON" value="17" />
-          <entry key="JavaScript" value="271" />
-          <entry key="Python" value="2343" />
-          <entry key="SQL" value="2" />
-          <entry key="Scratch" value="50" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="css" value="3" />
-          <entry key="html" value="53" />
-          <entry key="js" value="24" />
-          <entry key="json" value="7" />
-          <entry key="py" value="64" />
-          <entry key="sql" value="1" />
-          <entry key="ts" value="2" />
-          <entry key="xml" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="CSS" value="3" />
-          <entry key="HTML" value="53" />
-          <entry key="JSON" value="7" />
-          <entry key="JavaScript" value="24" />
-          <entry key="Python" value="64" />
-          <entry key="Scratch" value="1" />
-          <entry key="TypeScript" value="2" />
-          <entry key="XML" value="1" />
-        </counts>
-      </usages-collector>
-    </session>
-    <session id="854075195">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="11" />
-          <entry key="project.open.time.1" value="2" />
-          <entry key="project.open.time.2" value="4" />
-          <entry key="project.open.time.40" value="1" />
-          <entry key="project.open.time.45" value="1" />
-          <entry key="project.open.time.48" value="1" />
-          <entry key="project.open.time.5" value="2" />
-          <entry key="project.open.time.56" value="1" />
-          <entry key="project.open.time.59" value="1" />
-          <entry key="project.open.time.6" value="1" />
-          <entry key="project.open.time.61" value="1" />
-          <entry key="project.open.time.73" value="1" />
-          <entry key="project.opened" value="16" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="asp" value="1" />
-          <entry key="aspx" value="1" />
-          <entry key="config" value="2" />
-          <entry key="css" value="72" />
-          <entry key="html" value="103" />
-          <entry key="jpg" value="1" />
-          <entry key="js" value="21" />
-          <entry key="json" value="7" />
-          <entry key="py" value="139" />
-          <entry key="rnc" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="CSS" value="72" />
-          <entry key="HTML" value="103" />
-          <entry key="Image" value="1" />
-          <entry key="JSON" value="7" />
-          <entry key="JavaScript" value="21" />
-          <entry key="PLAIN_TEXT" value="4" />
-          <entry key="Python" value="139" />
-          <entry key="RNG Compact" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="config" value="9" />
-          <entry key="css" value="6418" />
-          <entry key="html" value="7652" />
-          <entry key="js" value="607" />
-          <entry key="json" value="26" />
-          <entry key="py" value="3625" />
-          <entry key="txt" value="21" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="CSS" value="6418" />
-          <entry key="HTML" value="7652" />
-          <entry key="JSON" value="26" />
-          <entry key="JavaScript" value="607" />
-          <entry key="PLAIN_TEXT" value="30" />
-          <entry key="Python" value="3625" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.vcs.git.usages">
-        <counts>
-          <entry key="git.branch.compare" value="1" />
-        </counts>
-      </usages-collector>
-    </session>
-    <session id="-905910829">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.open.time.12" value="2" />
-          <entry key="project.open.time.20" value="1" />
-          <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="4" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="css" value="33" />
-          <entry key="eot" value="3" />
-          <entry key="html" value="39" />
-          <entry key="js" value="22" />
-          <entry key="json" value="2" />
-          <entry key="py" value="30" />
-          <entry key="ts" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="CSS" value="33" />
-          <entry key="HTML" value="39" />
-          <entry key="JSON" value="2" />
-          <entry key="JavaScript" value="22" />
-          <entry key="PLAIN_TEXT" value="3" />
-          <entry key="Python" value="30" />
-          <entry key="TypeScript" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="css" value="532" />
-          <entry key="html" value="1341" />
-          <entry key="json" value="4" />
-          <entry key="py" value="382" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="CSS" value="532" />
-          <entry key="HTML" value="1341" />
-          <entry key="JSON" value="4" />
-          <entry key="Python" value="382" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.js.language.service.starts">
-        <counts>
-          <entry key="TypeScriptServerServiceImpl" value="1" />
-        </counts>
-      </usages-collector>
-    </session>
-    <session id="128054277">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="8" />
-          <entry key="project.open.time.10" value="1" />
-          <entry key="project.open.time.18" value="1" />
-          <entry key="project.open.time.2" value="1" />
-          <entry key="project.open.time.3" value="1" />
-          <entry key="project.open.time.4" value="5" />
-          <entry key="project.open.time.5" value="2" />
-          <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="12" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="css" value="58" />
-          <entry key="html" value="86" />
-          <entry key="js" value="54" />
-          <entry key="json" value="2" />
-          <entry key="py" value="60" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="CSS" value="58" />
-          <entry key="HTML" value="86" />
-          <entry key="JSON" value="2" />
-          <entry key="JavaScript" value="54" />
-          <entry key="Python" value="60" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="css" value="4139" />
-          <entry key="html" value="7023" />
-          <entry key="js" value="151" />
-          <entry key="json" value="11" />
-          <entry key="py" value="1644" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="CSS" value="4139" />
-          <entry key="HTML" value="7023" />
-          <entry key="JSON" value="11" />
-          <entry key="JavaScript" value="151" />
-          <entry key="Python" value="1644" />
-        </counts>
-      </usages-collector>
-    </session>
-    <session id="-585515921">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.11" value="1" />
-          <entry key="project.open.time.2" value="1" />
-          <entry key="project.opened" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="css" value="1" />
-          <entry key="html" value="3" />
-          <entry key="py" value="3" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="CSS" value="1" />
-          <entry key="HTML" value="3" />
-          <entry key="Python" value="3" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="css" value="180" />
-          <entry key="html" value="82" />
-          <entry key="py" value="30" />
-          <entry key="txt" value="9" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="CSS" value="180" />
-          <entry key="HTML" value="82" />
-          <entry key="PLAIN_TEXT" value="9" />
-          <entry key="Python" value="30" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FavoritesManager">
     <favorites_list name="ChemicalWeb" />
   </component>
@@ -437,17 +85,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/Blog.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="884">
-              <caret line="100" column="24" lean-forward="true" selection-start-line="100" selection-start-column="24" selection-end-line="100" selection-end-column="24" />
+            <state relative-caret-position="722">
+              <caret line="59" column="37" lean-forward="true" selection-start-line="59" selection-start-column="37" selection-end-line="59" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MyBlog/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="47" column="41" lean-forward="true" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="41" />
+            <state relative-caret-position="342">
+              <caret line="114" column="39" lean-forward="true" selection-start-line="114" selection-start-column="39" selection-end-line="114" selection-end-column="39" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -456,85 +104,31 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MyBlog/models.py">
+        <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/message.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="30" column="37" lean-forward="true" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
+            <state relative-caret-position="228">
+              <caret line="76" column="38" lean-forward="true" selection-start-line="76" selection-start-column="38" selection-end-line="76" selection-end-column="38" />
               <folding>
-                <element signature="e#0#40#0" expanded="true" />
+                <element signature="e#6264#6437#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MyBlog/static/common/css/blog.css">
+        <entry file="file://$PROJECT_DIR$/MyBlog/static/waterfall/css/waterfall.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1143">
-              <caret line="369" column="32" lean-forward="true" selection-start-line="369" selection-start-column="32" selection-end-line="369" selection-end-column="32" />
+            <state relative-caret-position="209">
+              <caret line="333" column="22" selection-start-line="333" selection-start-column="22" selection-end-line="333" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/details.html">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MyBlog/static/lib/loadMessage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
-              <folding>
-                <element signature="e#3534#3559#0#HTML" expanded="true" />
-                <element signature="e#7687#7708#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MyBlog/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="10" column="46" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="32" column="62" selection-start-line="32" selection-start-column="62" selection-end-line="32" selection-end-column="62" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/about.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/picture.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
-              <folding>
-                <element signature="e#199#205#1#HTML" expanded="true" />
-                <element signature="e#290#296#1#HTML" expanded="true" />
-                <element signature="e#489#559#0#HTML" expanded="true" />
-              </folding>
+            <state relative-caret-position="342">
+              <caret line="155" column="71" lean-forward="true" selection-start-line="155" selection-start-column="71" selection-end-line="155" selection-end-column="71" />
             </state>
           </provider>
         </entry>
@@ -547,19 +141,14 @@
         <option value="package.json" />
         <option value="TypeScript File" />
         <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="Python Script" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>add</find>
-      <find>Chemical</find>
-      <find>login</find>
-      <find>face</find>
-      <find>login.</find>
       <find>1280</find>
       <find>favicon</find>
       <find>element</find>
@@ -585,6 +174,11 @@
       <find>.cont</find>
       <find>.list-item</find>
       <find>layui-icon-login-weibo</find>
+      <find>Types</find>
+      <find>./images</find>
+      <find>waterfull</find>
+      <find>loadmessage</find>
+      <find>message</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;</replace>
@@ -592,6 +186,8 @@
       <replace>[]</replace>
       <replace>menu</replace>
       <replace>MyBlog</replace>
+      <replace>../../static/waterfall/images</replace>
+      <replace>waterfall</replace>
     </replaceStrings>
     <dirStrings>
       <dir>E:\BaiduYunDownload\ChemicalWeb(5)\ChemicalWeb</dir>
@@ -609,15 +205,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/MyBlog/templates/MyBlogAdmin/index.html" />
-        <option value="$PROJECT_DIR$/MyBlog/templates/MyBlog/Types.html" />
-        <option value="$PROJECT_DIR$/MyBlog/templates/MyBlog/main.html" />
-        <option value="$PROJECT_DIR$/MyBlog/templates/MyBlog/base_fluid.html" />
-        <option value="$PROJECT_DIR$/MyBlog/admin.py" />
-        <option value="$PROJECT_DIR$/MyBlog/static/common/js/imgloadups/zyFile.js" />
-        <option value="$PROJECT_DIR$/MyBlog/static/common/js/imgloadups/zyUpload.js" />
-        <option value="$PROJECT_DIR$/MyBlog/static/common/css/imgs_uploads/zyUpload.css" />
-        <option value="$PROJECT_DIR$/MyBlog/static/common/js/imgs_upload/uploadcore.js" />
         <option value="$PROJECT_DIR$/MyBlog/static/common/js/imgs_upload/zyUpload.js" />
         <option value="$PROJECT_DIR$/MyBlog/static/zjupload/demo.js" />
         <option value="$PROJECT_DIR$/MyBlog/static/zjupload/control/js/zyUpload.js" />
@@ -642,42 +229,44 @@
         <option value="$PROJECT_DIR$/MyBlog/static/css/index.css" />
         <option value="$PROJECT_DIR$/MyBlog/static/css/blog.css" />
         <option value="$PROJECT_DIR$/MyBlog/templatetags/pagetags.py" />
-        <option value="$PROJECT_DIR$/MyBlogWeb/settings.py" />
         <option value="$PROJECT_DIR$/web.config" />
         <option value="$PROJECT_DIR$/MyBlog/static/common/css/index.css" />
-        <option value="$PROJECT_DIR$/MyBlog/templates/MyBlog/message.html" />
         <option value="$PROJECT_DIR$/MyBlog/static/layui/css/layui.css" />
         <option value="$PROJECT_DIR$/MyBlog/static/common/css/iconfont.css" />
         <option value="$PROJECT_DIR$/MyBlog/templates/MyBlog/index.html" />
-        <option value="$PROJECT_DIR$/MyBlog/templates/MyBlog/base.html" />
-        <option value="$PROJECT_DIR$/MyBlog/templates/MyBlog/archive.html" />
         <option value="$PROJECT_DIR$/MyBlog/templates/MyBlog/about.html" />
-        <option value="$PROJECT_DIR$/MyBlog/models.py" />
         <option value="$PROJECT_DIR$/MyBlog/templates/MyBlog/LinkWeb.html" />
-        <option value="$PROJECT_DIR$/MyBlog/templates/MyBlog/details.html" />
         <option value="$PROJECT_DIR$/MyBlog/static/common/css/blog.css" />
+        <option value="$PROJECT_DIR$/MyBlog/static/lib/LoadBlogtoCategory.js" />
+        <option value="$PROJECT_DIR$/MyBlog/static/lib/LoadBlogtoType.js" />
+        <option value="$PROJECT_DIR$/MyBlog/templates/MyBlog/BlogtoCategory.html" />
+        <option value="$PROJECT_DIR$/MyBlog/templates/MyBlog/Blogtotype.html" />
+        <option value="$PROJECT_DIR$/MyBlog/static/lib/LoadBlog.js" />
         <option value="$PROJECT_DIR$/MyBlog/templates/MyBlog/picture.html" />
-        <option value="$PROJECT_DIR$/MyBlog/urls.py" />
+        <option value="$PROJECT_DIR$/MyBlog/templates/MyBlog/comment.html" />
         <option value="$PROJECT_DIR$/MyBlog/templates/MyBlog/Blog.html" />
+        <option value="$PROJECT_DIR$/MyBlog/templates/MyBlog/archive.html" />
+        <option value="$PROJECT_DIR$/MyBlog/templates/MyBlog/base.html" />
+        <option value="$PROJECT_DIR$/MyBlog/templates/MyBlog/details.html" />
+        <option value="$PROJECT_DIR$/MyBlog/urls.py" />
+        <option value="$PROJECT_DIR$/MyBlog/static/waterfall/css/base.css" />
+        <option value="$PROJECT_DIR$/MyBlogWeb/settings.py" />
+        <option value="$PROJECT_DIR$/MyBlog/models.py" />
         <option value="$PROJECT_DIR$/MyBlog/views.py" />
+        <option value="$PROJECT_DIR$/MyBlog/templates/MyBlog/message.html" />
+        <option value="$PROJECT_DIR$/MyBlog/static/waterfall/css/waterfall.css" />
+        <option value="$PROJECT_DIR$/MyBlog/static/lib/loadMessage.js" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
     <exe-path />
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="756" />
-    <option name="y" value="-13" />
+    <option name="x" value="960" />
     <option name="width" value="960" />
     <option name="height" value="1040" />
   </component>
@@ -726,15 +315,22 @@
               <item name="MyBlogWeb" type="462c0819:PsiDirectoryNode" />
               <item name="MyBlog" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="imgs" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MyBlogWeb" type="b2602c69:ProjectViewProjectNode" />
               <item name="MyBlogWeb" type="462c0819:PsiDirectoryNode" />
               <item name="MyBlog" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="layui" type="462c0819:PsiDirectoryNode" />
+              <item name="waterfall" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MyBlogWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MyBlogWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="MyBlog" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="waterfall" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MyBlogWeb" type="b2602c69:ProjectViewProjectNode" />
@@ -748,6 +344,13 @@
               <item name="MyBlog" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="MyBlog" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MyBlogWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MyBlogWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="MyBlog" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="MyBlogAdmin" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MyBlogWeb" type="b2602c69:ProjectViewProjectNode" />
@@ -788,19 +391,19 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\PycharmProjects\MyBlogWeb\MyBlog\static\waterfall" />
+      <recent name="C:\Users\Administrator\PycharmProjects\MyBlogWeb\MyBlog\static\waterfall\css" />
+      <recent name="C:\Users\Administrator\PycharmProjects\MyBlogWeb\MyBlog\templates\MyBlog" />
+      <recent name="C:\Users\Administrator\PycharmProjects\MyBlogWeb\MyBlog\static\common\css" />
+      <recent name="C:\Users\Administrator\PycharmProjects\MyBlogWeb\MyBlog\static\common\font" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\BaiduNetdiskDownload\MyBlogWeb\MyBlog\static\common\imgs" />
       <recent name="D:\BaiduNetdiskDownload\MyBlogWeb\MyBlog\static\common\css" />
       <recent name="D:\BaiduNetdiskDownload\MyBlogWeb\MyBlog\static\common" />
       <recent name="D:\BaiduNetdiskDownload\MyBlogWeb\MyBlog\static" />
       <recent name="E:\BaiduYunDownload\MyBlogWeb\MyBlog\static\media" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Administrator\PycharmProjects\MyBlogWeb\MyBlog\static\common\css" />
-      <recent name="C:\Users\Administrator\PycharmProjects\MyBlogWeb\MyBlog\static\common\font" />
-      <recent name="C:\Users\Administrator\PycharmProjects\MyBlogWeb\MyBlog\static\common\imgs" />
-      <recent name="C:\Users\Administrator\PycharmProjects\MyBlogWeb" />
-      <recent name="C:\Users\Administrator\Documents\Tencent Files\1033780738\FileRecv\MobileFile\MyBlogWeb\MyBlog\static\common\imgs" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -907,6 +510,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1537240895619</updated>
+      <workItem from="1542849062060" duration="31914000" />
     </task>
     <task id="LOCAL-00001" summary="重新修改留言界面">
       <created>1542333296458</created>
@@ -946,6 +550,9 @@
     <option name="localTasksCounter" value="6" />
     <servers />
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="31914000" />
+  </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
@@ -959,13 +566,13 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49750414" weight="0.20362474" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49750414" weight="0.26385927" />
       <window_info id="Structure" order="1" sideWeight="0.5024958" side_tool="true" weight="0.20682302" />
       <window_info id="Favorites" order="2" sideWeight="0.50083196" side_tool="true" weight="0.18923241" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.33333334" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.24387528" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" visible="true" weight="0.19821826" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.33259177" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.243604" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" weight="0.25917685" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -1012,9 +619,6 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="新的提交" />
     <MESSAGE value="重新修改留言界面" />
@@ -1050,42 +654,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlogAdmin/PicManageAdd.html" />
-    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlogAdmin/PictureManage.html" />
-    <entry file="file://$PROJECT_DIR$/MyBlog/static/compiled/flipclock.js" />
-    <entry file="file://$PROJECT_DIR$/MyBlog/static/common/css/Bubble.css" />
-    <entry file="file://$PROJECT_DIR$/MyBlog/static/common/js/Bubble.js" />
-    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlogAdmin/PicdetailMan.html" />
-    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlogAdmin/menu.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3468" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlogAdmin/menuform.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1893">
-          <caret line="115" column="8" lean-forward="true" selection-start-line="115" selection-start-column="8" selection-end-line="116" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlogAdmin/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-153">
-          <caret line="120" column="7" lean-forward="true" selection-start-line="54" selection-end-line="120" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyBlog/static/layui/css/template.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyBlog/static/css/main.css" />
-    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/first.html" />
-    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/main.html" />
-    <entry file="file://$PROJECT_DIR$/MyBlog/static/css/code.css" />
     <entry file="file://$PROJECT_DIR$/MyBlog/static/layui/layui.all.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="457">
@@ -1104,18 +672,6 @@
     <entry file="file://$PROJECT_DIR$/MyBlog/static/common/css/Manage.css" />
     <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/test.html" />
     <entry file="file://$PROJECT_DIR$/MyBlog/static/common/menu1.js" />
-    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlogAdmin/userinfo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="604">
-          <caret line="145" selection-start-line="145" selection-end-line="145" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlogAdmin/userset.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-111" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlogAdmin/password.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
@@ -1124,13 +680,7 @@
       </provider>
     </entry>
     <entry file="file://D:/Python36/Lib/site-packages/django/templatetags/static.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/MyBlog/templatetags/pagetags.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1156,20 +706,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/picdetails.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="44" lean-forward="true" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyBlogWeb/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="95" column="5" lean-forward="true" selection-start-line="95" selection-start-column="5" selection-end-line="95" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MyBlog/static/common/css/index.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -1191,17 +727,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/message.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="38" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
-          <folding>
-            <element signature="e#1385#2122#0#HTML" />
-            <element signature="e#2122#3806#0#HTML" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MyBlog/static/common/font/iconfont.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1209,42 +734,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
           <caret line="1" column="7363" selection-start-line="1" selection-start-column="7341" selection-end-line="1" selection-end-column="7363" />
-          <folding>
-            <element signature="e#61503#61642#2" expanded="true" />
-            <element signature="e#63096#63235#2" expanded="true" />
-            <element signature="e#63783#63922#2" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="32" column="62" selection-start-line="32" selection-start-column="62" selection-end-line="32" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/archive.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="67" selection-start-line="13" selection-start-column="67" selection-end-line="13" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/pycharm.jar!/resources/html5-schema/html5/phrase.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/pycharm.jar!/resources/html5-schema/html5/phrase.rnc" />
     <entry file="file://$PROJECT_DIR$/MyBlog/static/common/css/iconfont.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
@@ -1252,88 +745,233 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlog/static/lib/LoadBlogtoType.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="43" lean-forward="true" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlog/static/lib/LoadBlogtoCategory.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="1" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/Blogtotype.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="69" column="14" lean-forward="true" selection-start-line="69" selection-start-column="14" selection-end-line="69" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/BlogtoCategory.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="516">
+          <caret line="72" column="64" selection-start-line="72" selection-start-column="64" selection-end-line="72" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="812" column="4" selection-start-line="812" selection-start-column="4" selection-end-line="812" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/comment.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="556">
+          <caret line="42" column="35" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/about.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/LinkWeb.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="48" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyBlog/static/common/css/blog.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1143">
-          <caret line="369" column="32" lean-forward="true" selection-start-line="369" selection-start-column="32" selection-end-line="369" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyBlog/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" column="46" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlogAdmin/users.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1496">
-          <caret line="49" column="21" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+        <state relative-caret-position="651">
+          <caret line="66" column="71" lean-forward="true" selection-start-line="66" selection-start-column="71" selection-end-line="66" selection-end-column="71" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/picture.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
-          <folding>
-            <element signature="e#199#205#1#HTML" expanded="true" />
-            <element signature="e#290#296#1#HTML" expanded="true" />
-            <element signature="e#489#559#0#HTML" expanded="true" />
-          </folding>
+        <state relative-caret-position="437">
+          <caret line="23" column="21" lean-forward="true" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlogAdmin/users.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-494">
+          <caret line="49" column="21" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlogAdmin/userset.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1121" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlogAdmin/userinfo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="917">
+          <caret line="145" selection-start-line="145" selection-end-line="145" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlogAdmin/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="67" column="44" lean-forward="true" selection-start-line="67" selection-start-column="4" selection-end-line="67" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-760">
+          <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/details.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
+        <state relative-caret-position="423">
+          <caret line="207" column="66" selection-start-line="207" selection-start-column="66" selection-end-line="207" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/Types.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/archive.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="22" column="14" lean-forward="true" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/LinkWeb.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-33">
+          <caret line="8" column="48" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/picdetails.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="33" column="92" lean-forward="true" selection-start-line="33" selection-start-column="92" selection-end-line="33" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="63" column="2" lean-forward="true" selection-start-line="63" selection-start-column="2" selection-end-line="63" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlog/static/lib/LoadBlog.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="29" column="29" lean-forward="true" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlog/static/waterfall/js/jQeasing.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="57" column="15" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="15" />
           <folding>
-            <element signature="e#3534#3559#0#HTML" expanded="true" />
-            <element signature="e#7687#7708#0#HTML" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlog/static/waterfall/css/base.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlog/static/waterfall/js/jquery.masonry.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="223" column="5" lean-forward="true" selection-start-line="223" selection-start-column="5" selection-end-line="223" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlog/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="7" column="54" selection-start-line="7" selection-start-column="54" selection-end-line="7" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlogWeb/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1369">
+          <caret line="97" lean-forward="true" selection-start-line="97" selection-end-line="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlog/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="114" column="39" lean-forward="true" selection-start-line="114" selection-start-column="39" selection-end-line="114" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/Blog.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="100" column="24" lean-forward="true" selection-start-line="100" selection-start-column="24" selection-end-line="100" selection-end-column="24" />
+        <state relative-caret-position="722">
+          <caret line="59" column="37" lean-forward="true" selection-start-line="59" selection-start-column="37" selection-end-line="59" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MyBlog/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="37" lean-forward="true" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
+        <state relative-caret-position="483">
+          <caret line="302" lean-forward="true" selection-start-line="302" selection-end-line="302" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyBlog/views.py">
+    <entry file="file://$PROJECT_DIR$/MyBlog/static/common/css/blog.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="47" column="41" lean-forward="true" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="41" />
+        <state relative-caret-position="271">
+          <caret line="326" column="49" selection-start-line="326" selection-start-column="34" selection-end-line="326" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlog/static/waterfall/css/waterfall.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="333" column="22" selection-start-line="333" selection-start-column="22" selection-end-line="333" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/message.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="76" column="38" lean-forward="true" selection-start-line="76" selection-start-column="38" selection-end-line="76" selection-end-column="38" />
           <folding>
-            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#6264#6437#0#HTML" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlog/static/lib/loadMessage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="155" column="71" lean-forward="true" selection-start-line="155" selection-start-column="71" selection-end-line="155" selection-end-column="71" />
         </state>
       </provider>
     </entry>

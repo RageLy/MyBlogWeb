@@ -293,6 +293,12 @@ class MessageTb(models.Model):
     username = models.CharField(db_column='username', max_length=50, blank=True, null=True)
     email = models.CharField(db_column='email', max_length=50, blank=True, null=True)
     createdate=models.DateTimeField(db_column='createdate', blank=True, null=True)
+    ip=models.CharField(db_column='ip', max_length=20, blank=True, null=True)
+    country = models.CharField(db_column='country', max_length=50, blank=True, null=True)
+    region = models.CharField(db_column='region', max_length=50, blank=True, null=True)
+    city = models.CharField(db_column='city', max_length=20, blank=True, null=True)
+    brower = models.CharField(db_column='brower', max_length=20, blank=True, null=True)
+    device = models.CharField(db_column='device', max_length=20, blank=True, null=True)
     objects = models.Manager()
 
     class Meta:

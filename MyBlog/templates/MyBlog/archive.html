@@ -22,5 +22,60 @@
             </div>
         </div>
     </div>
-    <div class="layui-col-md3"></div>
+    <div class="layui-col-md3 Tophead" >
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12 ">
+                <div class="layui-card webinfo">
+                    <div class="layui-card-header">
+                        <i class="layui-icon layui-icon-app"></i>
+                        <span>文章分类</span>
+                    </div>
+                    <div class="layui-card-body">
+                        <ul>
+                            {% if Categorys %}
+                                {% for category in Categorys %}
+                                    <a href="{% url 'MyBlog:category' category.id %}" title="{{ category.Name }}" id="link{{ category.id }}"><li>{%if category.Name|length >= 25 %}{{category.Name|slice:"25"}}...{%else%} {{category.Name}}{%endif%}</li></a>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md12">
+                <div class="layui-card ranker">
+                    <div class="layui-card-header">
+                        <i class="iconfont icon-wenzhang"></i>
+                        <span>点击排行</span>
+                    </div>
+                    <div class="layui-card-body">
+                        <ul>
+                            {% if Rankers %}
+                                {% for ranker in Rankers %}
+                                    <li><a href="{% url 'MyBlog:details' ranker.id %}" title="{{ ranker.title }}">{%if ranker.title|length >= 25 %}
+                                        {{ranker.title|slice:"25"}}...
+                                    {%else%} {{ranker.title}}
+                                    {%endif%}</a></li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        <i class="layui-icon layui-icon-note"></i>
+                        <span>标签云</span>
+                    </div>
+                    <div class="layui-card-body note">
+                        {% if Tags %}
+                            {% for tag in Tags %}
+                                <a  href="{% url 'MyBlog:types' tag.TypeName %}">{{ tag.TypeName }}</a>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

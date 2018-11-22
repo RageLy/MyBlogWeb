@@ -5,13 +5,13 @@ app_name = 'MyBlog'
 urlpatterns = [
     path('', views.index, name='index'),
     path('blog/', views.Blog, name='Blog'),
-    path('loadblog/', views.loadblog, name='loadblog'),
-
+    path('loadblog', views.loadblog, name='loadblog'),
     path('admin/menushow/', views.menushow, name='menushow'),
     path('admin/', views.admin, name='admin'),
     path('admin/login/', views.login, name='login'),
     path('admin/console/', views.console, name='console'),
     path('message/', views.message, name='message'),
+    path('loadmessage/', views.loadmessage, name='loadmessage'),
     path('submitmessage/', views.submitmessage, name='submitmessage'),
     path('picture/', views.picture, name='picture'),
     path('archive/', views.archive, name='archive'),
