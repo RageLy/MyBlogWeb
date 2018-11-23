@@ -1,39 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="96e37eb9-eab1-4dc6-a001-8e45b9d95461" name="Default" comment="修改了留言界面">
-      <change afterPath="$PROJECT_DIR$/MyBlog/static/common/css/player.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlog/static/common/js/jquery.baidu.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlog/static/common/js/player.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlog/static/common/js/util.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlog/static/lib/message_submit.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlog/static/player/css/player.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlog/static/player/images/player.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlog/static/player/images/player.seeking.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlog/static/player/js/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlog/static/player/js/player.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlog/static/player/js/player_database.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlog/static/player/js/playlist.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyBlog/templates/MyBlog/test.html" afterDir="false" />
+    <list default="true" id="96e37eb9-eab1-4dc6-a001-8e45b9d95461" name="Default" comment="ico文件更新">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlog/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlog/static/common/css/blog.css" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/static/common/css/blog.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlog/static/common/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/static/common/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlog/static/common/imgs/background.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/static/common/imgs/background.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlog/static/common/js/jquery.timeago.js" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/static/common/js/jquery.timeago.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlog/static/compiled/flipclock.css" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/static/compiled/flipclock.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlog/static/compiled/flipclock.js" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/static/compiled/flipclock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlog/static/compiled/flipclock.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/static/compiled/flipclock.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlog/static/js/blog.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlog/static/lib/loadMessage.js" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/static/lib/loadMessage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlog/static/waterfall/css/waterfall.css" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/static/waterfall/css/waterfall.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlog/templates/MyBlog/LinkWeb.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/templates/MyBlog/LinkWeb.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlog/templates/MyBlog/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/templates/MyBlog/about.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlog/templates/MyBlog/details.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/templates/MyBlog/details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlog/templates/MyBlog/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/templates/MyBlog/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlog/templates/MyBlog/message.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/templates/MyBlog/message.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/favicon.ico" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -111,8 +80,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="36" column="10" lean-forward="true" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+            <state relative-caret-position="323">
+              <caret line="26" column="22" lean-forward="true" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#5;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#5;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -349,29 +318,6 @@
               <item name="MyBlogWeb" type="b2602c69:ProjectViewProjectNode" />
               <item name="MyBlogWeb" type="462c0819:PsiDirectoryNode" />
               <item name="MyBlog" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="player" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MyBlogWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MyBlogWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="MyBlog" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="player" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MyBlogWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MyBlogWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="MyBlog" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="player" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MyBlogWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MyBlogWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="MyBlog" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -584,11 +530,25 @@
       <option name="project" value="LOCAL" />
       <updated>1542708226443</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="添加了播放器，地图，修改了留言界面的输入框">
+      <created>1542965274909</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1542965274909</updated>
+    </task>
+    <task id="LOCAL-00007" summary="ico文件更新">
+      <created>1542965846310</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1542965846310</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61648000" />
+    <option name="totallyTimeSpent" value="62918000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -600,7 +560,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49750414" visible="true" weight="0.25692964" />
@@ -609,14 +569,14 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.33259177" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.24249166" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" visible="true" weight="0.27808675" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" weight="0.27808675" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50053304" side_tool="true" weight="0.32850778" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32925472" />
+      <window_info anchor="bottom" id="Version Control" order="10" visible="true" weight="0.32925472" />
       <window_info anchor="bottom" id="Database Console" order="11" weight="0.37666667" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32827735" />
       <window_info anchor="bottom" id="Terminal" order="13" weight="0.3311111" />
@@ -660,7 +620,9 @@
     <MESSAGE value="新的提交" />
     <MESSAGE value="重新修改留言界面" />
     <MESSAGE value="修改了留言界面" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改了留言界面" />
+    <MESSAGE value="添加了播放器，地图，修改了留言界面的输入框" />
+    <MESSAGE value="ico文件更新" />
+    <option name="LAST_COMMIT_MESSAGE" value="ico文件更新" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -691,7 +653,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/MyBlog/static/lib/LoadBlogtoType.js" />
     <entry file="file://$PROJECT_DIR$/MyBlog/static/lib/LoadBlogtoCategory.js" />
     <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/Blogtotype.html" />
     <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/BlogtoCategory.html" />
@@ -1016,10 +977,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="76">
+            <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="36" column="10" lean-forward="true" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+        <state relative-caret-position="323">
+          <caret line="26" column="22" lean-forward="true" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#1;n#div#5;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#5;n#body#0;n#html#0;n#!!top" expanded="true" />
