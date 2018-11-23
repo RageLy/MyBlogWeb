@@ -1,0 +1,36 @@
+<html>
+	<head>
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script type="application/javascript" src="../../static/compiled/flipclock.js"></script>
+            <link rel="stylesheet" href="../../static/compiled/flipclock.css">
+
+	</head>
+	<body>
+	<div class="clock" style="margin:2em;"></div>
+	<div class="message"></div>
+
+	<script type="text/javascript">
+		var clock;
+
+		$(document).ready(function() {
+			var clock;
+
+			clock = $('.clock').FlipClock({
+		        clockFace: 'DailyCounter',
+		        autoStart: false,
+		        callbacks: {
+		        	stop: function() {
+		        		$('.message').html('The clock has stopped!')
+		        	}
+		        }
+		    });
+
+		    clock.setTime(220880);
+		    clock.setCountdown(true);
+		    clock.start();
+
+		});
+	</script>
+
+	</body>
+</html>

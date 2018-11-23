@@ -109,7 +109,7 @@ $(function(){
                     html+="<li class='item'><div class='userinfo'>\n" +
                         "<div class='headpic'> <img src='../../static/common/imgs/userhead.png'></div>\n" +
                         "<h2 class='li-title' title='"+sqlJson[i].username +"'>"+sqlJson[i].username +"</h2>\n" +
-                        "<div class='qianm'><span class='sp3'>"+jQuery.timeago(sqlJson[i].createdate)+"</span></div></div>\n" +
+                        "<div class='qianm'><span class='sp3' >"+timeago().format(sqlJson[i].createdate)+"</span></div></div>\n" +
                         "<div class='con'><a class='description'>"+sqlJson[i].MessageContent +"</a></div>\n" +
                         "<div class='otherinfo'><i class='layui-icon layui-icon-location'> " +sqlJson[i].country +" · "+sqlJson[i].region +" · "+sqlJson[i].city +"</i></div></li>"
 
@@ -117,9 +117,9 @@ $(function(){
                 console.log(html)
                 /*模拟ajax请求数据时延时800毫秒*/
                 var time=setTimeout(function(){
-                    $(html).find('img').each(function(index){
-                        loadImage($(this).attr('src'));
-                    })
+                    // $(html).find('img').each(function(index){
+                    //     loadImage($(this).attr('src'));
+                    // })
                     var $newElems = $(html).css({ opacity: 0}).appendTo(container);
                     $newElems.imagesLoaded(function(){
                         $newElems.animate({ opacity: 1},800);

@@ -168,7 +168,7 @@ body a{cursor: pointer;}
 .space-message{}
 .space-message p{ padding-bottom: 10px;}
 .message-content {position: relative;margin-bottom: 20px;width: 100%;}
-.message-content .fontColor{font-weight: bold;font-size: 16px;}
+.message-content .fontColor{font-weight: bold;font-size: 16px!important;}
 .message-content .media-body{margin-bottom: 20px;padding: 0 20px 30px 20px;border-bottom: 1px dashed #e6e6e6;}
 .message-content .media-body .pad-btm{width:100%;}
 .message-content .media-body .pad-btm a{font-size: 12px;}
@@ -264,6 +264,11 @@ padding: 0 12px;}
 @media screen and (max-width: 768px) {  .linkweb ul li{width: 100%;margin-left: 0;}  .linkweb ul{margin-left:0;}  }
 
 .message-con{text-align: left}
+.message-con .Message-input .input-icon input{background-color: #f2f2f2;border-width: 0;font-size: 12px;float: left}
+.message-con .mybtn button{background-color: #f2f2f2;color:#555555;line-height: 32px;font-size: 12px;height: 32px;}
+#MessageCon{border-width: 0;background-color: #f2f2f2;font-size: 12px;}
+/*.message-con .Message-input .input-icon i{float: left;color: #999999;}*/
+/*.message-con .Message-input .input-icon{background-color: #f2f2f2;padding: 5px;float: none;}*/
 
 /*#自定义*/
 .blog-elem-quote{ margin:20px 0 10px 0;padding: 15px;border-left: 5px solid #009688;border-radius: 0 2px 2px 0;background-color:#f0f3f9;}
@@ -314,6 +319,11 @@ padding: 0 12px;}
 .position{position: relative;line-height: 0;}
 .position .title{line-height: 1.5;margin-bottom: 16px;text-align: center;color: rgba(0,0,0,0.43);position: absolute;top: 0;right: 0;left: 0;padding: 8px 0;background: hsla(0,0%,100%,0.8);}
 .position iframe{width: 100%;height: 320px;border: 0;}
+.position .container {
+				width: 50%;
+				height: 100%;
+				float: left;
+			}
 .card-no-padding, .card-no-padding .card-body{padding: 0;}
 .contact{}
 .contact .title{margin-bottom: 16px;text-align: center;color: rgba(0,0,0,0.43);}

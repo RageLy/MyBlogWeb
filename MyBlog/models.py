@@ -292,6 +292,7 @@ class MessageTb(models.Model):
     userid = models.CharField(db_column='userid', max_length=50, blank=True, null=True)
     username = models.CharField(db_column='username', max_length=50, blank=True, null=True)
     email = models.CharField(db_column='email', max_length=50, blank=True, null=True)
+    website = models.CharField(db_column='website', max_length=50, blank=True, null=True)
     createdate=models.DateTimeField(db_column='createdate', blank=True, null=True)
     ip=models.CharField(db_column='ip', max_length=20, blank=True, null=True)
     country = models.CharField(db_column='country', max_length=50, blank=True, null=True)

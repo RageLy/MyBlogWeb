@@ -8,15 +8,21 @@
     <link rel="stylesheet" href="{% static 'common/css/index.css' %}">
     <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}">
     <link rel="stylesheet" href="{% static 'compiled/flipclock.css' %}">
-    <script type="application/javascript" src="{% static 'compiled/flipclock.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'player/css/player.css' %}">
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script type="application/javascript" src="{% static 'player/js/player.js' %}"></script>
+    <script type="application/javascript" src="{% static 'player/js/playlist.js' %}"></script>
+    <script type="application/javascript" src="{% static 'player/js/index.js' %}"></script>
+    <script type="application/javascript" src="{% static 'player/js/player_database.js' %}"></script>
+    <script type="application/javascript" src="{% static 'compiled/flipclock.js' %}"></script>
+
     <!--加载meta IE兼容文件-->
     <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 <![endif]-->
 </head>
-<body style="background: url({% static 'common/imgs/background.jpg' %}) no-repeat;">
+<body>
 <div class="nav layui-nav">
     <div class="item">
         <a href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
@@ -30,26 +36,33 @@
         </ul>
     </div>
 </div>
-<div class="banner">
+<div class="bannerfather">
+    <div class="banner">
         <div class="title">
             <h3>花花<br />与风</h3>
         </div>
         <div class="amount"><a href="../blog/">进入博文</a></div>
+    </div>
 </div>
 <div class="myself">
-        <div class="title">
-            <h2>不是一时兴起，是振作精神，扬帆起航，寻找知识的尽头</h2>
-            <h6>关于我，关于博客</h6>
-            <h6>花花与风</h6>
-            <h6>没有正经研究过一门编程技能，但是各种学习也算是都有所涉猎，还是想在某些领域有所斩获</h6>
-            <h6>想学习的冲动太多，IT技术日益更新，不学怕已经落后他人一大截</h6>
-            <h6>敲代码的感觉虽好，也不要忘记好好生活</h6>
-        </div>
-        <div class="your-clock title"></div>
+    <div class="title">
+        <h2>不是一时兴起，是振作精神，扬帆起航，寻找知识的尽头</h2>
+        <h6>关于我，关于博客</h6>
+        <h6>花花与风</h6>
+        <h6>没有正经研究过一门编程技能，但是各种学习也算是都有所涉猎，还是想在某些领域有所斩获</h6>
+        <h6>想学习的冲动太多，IT技术日益更新，不学怕已经落后他人一大截</h6>
+        <h6>敲代码的感觉虽好，也不要忘记好好生活</h6>
+    </div>
+    <div class="myclock">
+
+    </div>
 </div>
-<div class="aboutinfo">
-    <a class="github" href="https://github.com/huahuayufeng/MyBlogWeb" target="_blank">GitHub源码地址</a>
-    <a class="about" href="../about/" target="_blank">关于花花与风</a>
+<div class="aboutinfofather">
+    <div class="aboutinfo">
+
+        <a class="github" href="https://github.com/huahuayufeng/MyBlogWeb" target="_blank">GitHub</a>
+        <a class="about" href="../about/" target="_blank">关于</a>
+    </div>
 </div>
 <div class="link">
     <h6>友情链接</h6>
@@ -92,6 +105,99 @@
             </div>
         </div>
     </div>
+    <div class="layui-col-md12">
+        <div id="jp_container_N" class="jp-video jp-video-270p jp-state-playing" role="application" aria-label="media player" style="left: 0px; height: 175px; bottom: 20px;">
+            <div class="jp-type-playlist">
+                <div id="jquery_jplayer_N" class="jp-jplayer" style="width: 90px; height: 90px;">
+                    <audio id="jp_audio_0" preload="metadata" src="http://music.163.com/song/media/outer/url?id=31473269.mp3" title="那英"></audio>
+                    <video id="jp_video_0" preload="metadata" title="那英" style="width: 0px; height: 0px;"></video>
+                </div>
+                <div class="jp-gui">
+                    <div class="jp-video-play" style="display: none;">
+                        <button class="jp-video-play-icon" role="button" tabindex="0">播放</button>
+                    </div>
+                    <div class="jp-interface">
+                        <div class="jp-progress">
+                            <div class="jp-seek-bar" style="width: 100%;">
+                                <div class="jp-play-bar" style="overflow: hidden; width: 97.5219%;"></div>
+                            </div>
+                        </div>
+                        <div class="jp-current-time" role="timer" aria-label="time">04:11</div>
+                        <div class="jp-duration" role="timer" aria-label="duration">04:17</div>
+                        <div class="jp-controls-holder">
+                            <div class="jp-controls">
+                                <button class="jp-previous" role="button" tabindex="0">上一曲</button>
+                                <button class="jp-play" role="button" tabindex="0">播放</button>
+                                <button class="jp-next" role="button" tabindex="0">下一曲</button>
+                                <button class="jp-stop" role="button" tabindex="0">暂停</button>
+                            </div>
+                            <div class="jp-volume-controls">
+                                <button class="jp-mute" role="button" tabindex="0">静音</button>
+                                <button class="jp-volume-max" role="button" tabindex="0">最大音量</button>
+                                <div class="jp-volume-bar">
+                                    <div class="jp-volume-bar-value" style="width: 10%;"></div>
+                                </div>
+                            </div>
+                            <div class="jp-toggles">
+                                <button class="jp-repeat" role="button" tabindex="0">重复</button>
+                                <button class="jp-shuffle" role="button" tabindex="0">随机</button>
+
+                            </div>
+                        </div>
+                        <div class="jp-details" style="display: none;">
+                            <div class="jp-title" aria-label="title">那英</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="jp-playlist">
+                    <div class="jp-playlist-box" style="height: 80px;">
+                        <ul style="height: 1000px; display: block; top: 0px;">
+                            <li>
+                                <div>
+                                    <a href="javascript:;" class="jp-playlist-item-remove">×</a>
+                                    <a href="javascript:;" class="jp-playlist-item" tabindex="0">默 <span class="jp-artist" style="transform: rotate(180deg);"> - 那英</span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div>
+                                    <a href="javascript:;" class="jp-playlist-item-remove">×</a>
+                                    <a href="javascript:;" class="jp-playlist-item" tabindex="0">Ellens Gesang III D839 <span class="jp-artist" style="transform: rotate(180deg);"> - Geoffrey Parsons</span></a>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <a href="javascript:;" class="jp-playlist-item-remove">×</a>
+                                    <a href="javascript:;" class="jp-playlist-item" tabindex="0">Fire <span class="jp-artist" style="transform: rotate(180deg);"> - Said The Sky</span></a>
+                                </div>
+                            </li>
+                            <li class="jp-playlist-current" style="display: list-item;">
+                                <div>
+                                    <a href="javascript:;" class="jp-playlist-item-remove">×</a>
+                                    <a href="javascript:;" class="jp-playlist-item jp-playlist-current" tabindex="0">兰若词 <span class="jp-artist" style="transform: rotate(180deg);"> - 刘亦菲</span></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="jp-no-solution" style="display: none;">
+                    <span style="transform: rotate(180deg);">升级需要</span> 您浏览器赞不支持播放，请更新版本
+                    <a href="http://get.adobe.com/flashplayer" target="_blank">Flash插件</a>.
+                </div>
+            </div>
+
+            <div class="scrollBar" style="display: block;">
+                <div class="bar" style="top: 0px;"></div>
+            </div>
+
+            <button type="button" class="folded_bt" title="点击收缩" id="btnfold" style="top: 52px;">
+                <span style="transform: rotate(180deg);"></span>
+            </button>
+            <div id="listRemove" style="display: block;"></div>
+
+            <div id="listClose"></div>
+
+        </div>
+    </div>
 </div>
 </body>
 </html>
@@ -108,17 +214,24 @@
     });
 
     var clock;
+
     $(document).ready(function() {
-        // Grab the current date
-        var currentDate = new Date();
-        // Set some date in the past. In this case, it's always been since Jan 1
-        var pastDate  = new Date(currentDate.getFullYear(), 0, 1);
-        // Calculate the difference in seconds between the future and current date
-        var diff = currentDate.getTime() / 1000 - pastDate.getTime() / 1000;
-        // Instantiate a coutdown FlipClock
-        clock = $('.your-clock').FlipClock(diff, {
-            clockFace: 'DailyCounter'
+        var clock;
+
+        clock = $('.clock').FlipClock({
+            clockFace: 'DailyCounter',
+            autoStart: false,
+            callbacks: {
+                stop: function() {
+                    $('.message').html('The clock has stopped!')
+                }
+            }
         });
+
+        clock.setTime(220880);
+        clock.setCountdown(true);
+        clock.start();
+
     });
 </script>
 

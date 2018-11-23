@@ -5,7 +5,6 @@
     <title>欢迎留言</title>
 {% endblock %}
 {% block head %}
-    {#    <link rel="stylesheet" type="text/css" href="{% static 'waterfall/css/base.css' %}">#}
     <link rel="stylesheet" type="text/css" href="{% static 'waterfall/css/waterfall.css' %}">
     <!--[if lt IE 9]>
 		<script src="{% static 'waterfall/js/css3-mediaqueries' %}"></script>
@@ -28,35 +27,36 @@
             </div>
         </div>
     </div>
-    <div class="layui-col-md12 ">
+    <div class="layui-col-md12">
         <div class="layui-card">
-            <div class="layui-card-body ">
+            <div class="layui-card-body">
                 <form class="layui-form message-con" method="post">
                     {% csrf_token %}
-                    <div class="layui-form-item">
+                    <div class="layui-form-item Message-input">
                         <div class="layui-inline">
-                            <label class="layui-form-label">昵称</label>
-                            <div class="layui-input-inline">
-                                <input type="tel" name="username" lay-verify="" autocomplete="off" class="layui-input">
+                            {#                            <label class="layui-form-label">昵称 *</label>#}
+                            <div class="layui-input-inline input-icon">
+                                {#                                <i class="layui-icon layui-icon-username"></i>#}
+                                <input type="tel" name="username" lay-verify="" autocomplete="off" class="layui-input username" placeholder="昵称（必填）">
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label">邮箱</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="email" lay-verify="" autocomplete="off" class="layui-input">
+                            {#                            <label class="layui-form-label"></label>#}
+                            <div class="layui-input-inline input-icon">
+                                <input type="text" name="email" lay-verify="" autocomplete="off" class="layui-input email" placeholder="邮箱（必填）">
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label">站点</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="website" lay-verify="" autocomplete="off" class="layui-input">
+                            {#                            <label class="layui-form-label">站点</label>#}
+                            <div class="layui-input-inline input-icon">
+                                <input type="text" name="website" lay-verify="" autocomplete="off" class="layui-input website" placeholder="站点">
                             </div>
                         </div>
                     </div>
                     <div class="layui-form-item">
-                        <textarea class="layui-textarea" id="MessageCon" ></textarea>
+                        <textarea class="layui-textarea" id="MessageCon" placeholder="说点什么"></textarea>
                     </div>
-                    <div class="layui-form-item">
+                    <div class="layui-form-item mybtn">
                         <button class="layui-btn layui-btn-green" type="button" id="submit">留言</button>
                     </div>
                 </form>
@@ -73,53 +73,79 @@
                                 <div class="headpic"> <img src="{% static 'common/imgs/userhead.png' %}"></div>
                                 <h2 class="li-title" title="{{ MessageTb.username }}">{{ MessageTb.username }}</h2>
                                 <div class="qianm">
-                                    <span class="sp3"><script>$(function(){jQuery.timeago(new Date({{ MessageTb.createdate|date:'yyyy-MM-dd hh:mm:ss'}}).toUTCString())})</script></span>
+                                    <span class="sp3" datetime="{{ MessageTb.createdate|date:"Y-m-d H:i:s" }}"></span>
                                 </div>
                             </div>
                             <div class="con"><a class="description">{{ MessageTb.MessageContent }}</a></div>
-
                             <div class="otherinfo"><i class="layui-icon layui-icon-location"> {{ MessageTb.country }} · {{ MessageTb.region }} · {{ MessageTb.city }}</i></div>
                         </li>
                     {% endfor %}
                 {% endif %}
             </ul>
         </div>
-        <div id="imloading" style="width:150px;height:30px;line-height:30px;font-size:16px;text-align:center;border-radius:3px;opacity:0.7;background:#000;margin:10px auto 30px;color:#fff;display:none">
+        <div id="imloading">
             I'm Loading.....
         </div>
     </div>
 {% endblock %}
 {% block script %}
-     <script src="{% static '/common/js/jquery.timeago.js' %}" ></script>
+    <script src="{% static '/common/js/jquery.timeago.js' %}" ></script>
     <script src="{% static '/lib/loadMessage.js' %}" ></script>
     <script>
+        function checkEmail(myemail) {
+            var myReg = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+            if (myReg.test(myemail)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        var timeagoInstance = timeago();// 实例
+        timeagoInstance.render(document.querySelectorAll('.sp3'),'zh_CN');
         layui.config({
             base: '{% static '/layui/js/util/' %}' //静态资源所在路径
         }).use(['layer'], function(){
             var $ = layui.$
                 ,layer = layui.layer
-
             $('#submit').on("click",function(){
-                $.ajax({
-                    type:"POST",
-                    data: {'MessageCon':$("#MessageCon").val(),"csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val()
-                    },
-                    url: "{% url 'MyBlog:submitmessage' %}", //后台处理函数的url
-                    cache: false,
-                    async : false,
-                    success: function(result) {
-                        console.log(result.message)
-                        if (result.message=="0"){
-                            layer.msg('留言成功',{time:0.5*1000})
-                            location.reload()
-                        }
-                        else if (result.message=="-1")
-                        {layer.msg('请输入内容',{time:0.5*1000})}
-                    },
-                });
+
+                if ($(".username").val()=="")
+                {
+                    layer.msg('请输入昵称',{time:0.5*1000})
+                }
+                else if ($(".email").val()=="")
+                {
+                    layer.msg('请输入邮箱',{time:0.5*1000})
+                }
+                else if($("#MessageCon").val()=="")
+                {
+                    layer.msg('说点什么吧！',{time:0.5*1000})
+                }
+                else if($(".email").val()!="" && !checkEmail($(".email").val()))
+                {
+                    layer.msg('邮箱格式不对!',{time:0.5*1000})
+                }
+                else
+                {
+                    $.ajax({
+                        type:"POST",
+                        data: {'MessageCon':$("#MessageCon").val(),"csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),'username':$(".username").val(),'email':$(".email").val(),'website':$(".website").val()
+                        },
+                        url: "{% url 'MyBlog:submitmessage' %}", //后台处理函数的url
+                        cache: false,
+                        async : false,
+                        success: function(result) {
+                            console.log(result.message)
+                            if (result.message=="0"){
+                                layer.msg('留言成功',{time:0.5*1000})
+                                location.reload()
+                            }
+                            else if (result.message=="-1")
+                            {layer.msg('请输入内容',{time:0.5*1000})}
+                        },
+                    });
+                }
             });
         });
     </script>
-
-
 {% endblock %}

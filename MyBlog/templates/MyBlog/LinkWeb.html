@@ -14,24 +14,20 @@
         </div>
     </div>
     <div class="layui-col-md12">
-{#        <div class="layui-card">#}
-{#            <div class="layui-card-body">#}
-                <div class="linkweb">
-                    <ul>
-                        {% if weblinks %}
-                            {% for weblink in weblinks %}
-                                <li>
-                                    <a href="{{ weblink.weburl }}" target="_blank">
-                                        <img src="{{ weblink.picurl }}" alt="{{ weblink.name }}">
-                                        <h3>{{ weblink.name }}</h3>
-                                        <p>{{ weblink.webDesc }}</p>
-                                    </a>
-                                </li>
-                            {% endfor %}
-                        {% endif %}
-                    </ul>
-                </div>
-{#            </div>#}
-{#        </div>#}
+        <div class="linkweb">
+            <ul>
+                {% if weblinks %}
+                    {% for weblink in weblinks %}
+                        <li>
+                            <a href="{{ weblink.weburl }}" target="_blank">
+                                <img src="{{ weblink.picurl }}" alt="{{ weblink.name }}">
+                                <h3>{{ weblink.name }}</h3>
+                                <p>{{ weblink.webDesc }}</p>
+                            </a>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
     </div>
 {% endblock %}

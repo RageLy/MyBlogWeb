@@ -13,25 +13,31 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
 @media screen and (min-width:992px){.nav .item{width:970px}}
 @media screen and (min-width:1280px){.nav .item{width:1250px}}
 
-.banner{height: 610px; width: 100%; background: rgba(0,0,0,0.5);position: relative}
-.banner .title{color: #fff; z-index:1;width: 50%;padding-top:300px;text-align: center;}
-.banner .title h3{font-size: 60px; line-height: 60px;}
-.banner .amount{font-size: 18px;  color: #ff7f21; line-height: 24px;text-align: center;padding-top: -30px!important;}
-.banner .amount a{border:1px solid #1E9FFF;border-radius: 30px ;padding: 10px;text-decoration: none; color: #1E9FFF;rgba(0,0,0,0.5)}
-.banner .amount a:hover{border:1px solid white;color: white;}
+.bannerfather {background: url(../../common/imgs/background.jpg) no-repeat;background-attachment: fixed;}
+.bannerfather .banner{height: 710px; width: 100%;position: relative;background: rgba(0,0,0,0);}
+.bannerfather .banner .title{color: #fff; z-index:1;width: 100%;padding-top:300px;text-align: center;}
+.bannerfather .banner .title h3{font-size: 60px; line-height: 60px;}
+.bannerfather .banner .amount{font-size: 18px; line-height: 24px;text-align: center;padding-top: 30px!important;}
+.bannerfather .banner .amount a{border:1px solid white;border-radius: 30px ;padding: 10px 30px;text-decoration: none; color: white;rgba(0,0,0,0.5)}
+.bannerfather .banner .amount a:hover{border:1px solid #adadad;color: #adadad;}
 
 .myself{height: 600px; width: 100%; background-color: #f6f6f6; background-size:cover;}
 .myself .title{color: #000; text-align: center;padding-top: 30px;}
 .myself .title h2{font-size: 30px; line-height:30px;}
 .myself .title h6{font-size: 16px; line-height: 30px;text-align: center}
-
-.aboutinfo{height: 250px; width: 100%; background-color: #2A97E4; background-size:cover;line-height: 250px;text-align: center;}
-.aboutinfo .github{text-align: center;border: 1px solid white;padding: 10px;color: black;margin-right: 50px;background-color: white;font-weight: bold}
-.aboutinfo .about{text-align: center;border: 1px solid black;padding: 10px;color: white;background-color: black;font-weight: bold}
+.myself .myclock{text-align: center;width: 820px;padding: 120px 0 80px 0; margin:0 auto;position: relative;}
 
 
-.link{height: 150px; width: 100%; background-color: #ffffff; background-size:cover;text-align: center;}
-.link h6{font-weight: bolder;margin-top: 20px;}
+
+.aboutinfofather {background: url(../../common/imgs/background2.jpg) no-repeat;background-attachment: fixed;}
+.aboutinfofather .aboutinfo{height: 380px; width: 100%; background: rgba(0,0,0,0.5); background-size:cover;line-height: 380px;text-align: center;}
+.aboutinfofather .aboutinfo .github{text-align: center;border: 1px solid white;padding: 20px 50px;color: white;margin-right: 50px;font-weight: bold;border-radius: 30px;font-size: 20px;}
+.aboutinfofather .aboutinfo .about{text-align: center;border: 1px solid white;padding: 20px 50px;color: white;font-weight: bold;border-radius: 30px;font-size: 20px;}
+.aboutinfofather .aboutinfo .github:hover{border-color: #adadad;color:#adadad; }
+.aboutinfofather .aboutinfo .about:hover{border-color: #adadad;color:#adadad;}
+
+.link{height: 400px; width: 100%; background-color: #ffffff; background-size:cover;text-align: center;}
+.link h6{font-weight: bolder;padding-top: 100px;font-size: 20px;}
 .link .linkshow{text-align: center;width: 100%;height: 50px;margin: 20px 0;}
 .link .linkshow ul{width: 800px;height: 50px;margin: 0 auto;}
 .link .linkshow ul li{ float: left;padding: 10px}

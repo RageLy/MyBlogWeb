@@ -94,7 +94,7 @@
                                           <span class="layui-breadcrumb" lay-separator="-">
                                             <a class="layui-icon layui-icon-cellphone"></a>
                                             <a>{{ comment.device }}</a>
-                                            <a>{{ comment.createdate|date:"Y-m-d H:i:s" }}</a>
+                                            <a class="time" datetime="{{ comment.createdate|date:"Y-m-d H:i:s" }}"></a>
                                           </span>
                                         </p>
                                         <p class="message-text">{{ comment.commentContent }}</p>
@@ -114,7 +114,6 @@
                                                     </div>
                                                 {% endfor %}
                                             </div>
-
                                         {% endif %}
                                     </div>
                                     <div class="reply-comment">
@@ -205,13 +204,17 @@
     </div>
 {% endblock %}
 {% block script %}
+    <script src="{% static '/common/js/jquery.timeago.js' %}" ></script>
     <script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
     <script>
         $("#urlinfo").html(window.location.href)
         $("#urlinfo").attr('href',window.location.href)
         console.log(window.location.href)
+     var timeagoInstance = timeago();// 实例
+　　timeagoInstance.render(document.querySelectorAll('.time'),'zh_CN');
     </script>
     <script type="text/javascript">
+
         layui.use('layer', function(){
             var layer = layui.layer;
             var devide=''

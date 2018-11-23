@@ -115,9 +115,12 @@ def submitmessage(request):
         country=data['data']['country']
         region = data['data']['region']
         city = data['data']['city']
+        username=request.POST.get('username')
+        email = request.POST.get('email')
+        website = request.POST.get('website')
         MessageCon=request.POST.get("MessageCon")
-        maxid=models.MessageTb.objects.latest('id').id
-        MessageTb = models.MessageTb(MessageContent=MessageCon,userid='',username='游客'+str(int(maxid)+1),email='',createdate=datetime.datetime.now(),ip=ipadd,country=country,region=region,city=city)
+        # maxid=models.MessageTb.objects.latest('id').id
+        MessageTb = models.MessageTb(MessageContent=MessageCon,userid='',username=username,createdate=datetime.datetime.now(),ip=ipadd,country=country,region=region,city=city,website=website,email=email)
         MessageTb.save()
         return JsonResponse({'message': 0})
     else:
