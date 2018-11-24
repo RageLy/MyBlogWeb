@@ -2,9 +2,11 @@
 {% load static %}
 {% block head %}
     <link rel="stylesheet" href="{% static 'common/css/iconfont.css' %}">
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=67jMQ5DmYTe1TLMBKFUTcZAR"></script>
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=A1LU7iHS0avqQwPLAxbhKn0UYSQCuRVH"></script>
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'common/js/jquery.baidu.min.js' %}"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+	<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
 {% endblock %}
 {% block title%}
     <title>关于我</title>
@@ -89,9 +91,7 @@
         <div class="position card card-no-padding">
             <div class="card-body">
                 <h2 class="title">I'm Here</h2>
-                <iframe style="display: block;" id="geoPage" width="100%" height="30%" frameborder=0 scrolling="no" src="https://apis.map.qq.com/tools/geolocation?key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp&effect=zoom">
-                </iframe>
-
+                <div id="allmap"></div>
             </div>
         </div>
     </div>
@@ -99,42 +99,35 @@
 
 {% block script %}
     <script type="text/javascript">
-        function ShowMap(zuobiao, name, addrsee, phone, chuanzhen, zoom) {
-            var arrzuobiao = zuobiao.split(',');
-            var map = new BMap.Map("allmap");
-            map.addControl(new BMap.OverviewMapControl());
-            map.centerAndZoom(new BMap.Point(arrzuobiao[0], arrzuobiao[1]), zoom);
-            map.addControl(new BMap.NavigationControl());
-            var marker = new BMap.Marker(new BMap.Point(arrzuobiao[0], arrzuobiao[1]));
-            map.addOverlay(marker);
-            var infoWindow = new BMap.InfoWindow('<p style="color: #bf0008;font-size:14px;">' + name + '</p><p>地址：' + addrsee + '</p><p>电话：' + phone + '</p><p>传真：' + chuanzhen + '</p>');
-            marker.addEventListener("click", function () {
-                this.openInfoWindow(infoWindow);
-            });
-            marker.openInfoWindow(infoWindow);
-        }
+ var map = new BMap.Map('allmap');
+    var poi = new BMap.Point(104.0603690000,30.5051400000);
+    map.centerAndZoom(poi, 16);
+    map.enableScrollWheelZoom();
 
+    var content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                    '<img src="../img/baidu.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                    '地址：四川省成都市天府新区华阳街道南湖梦幻岛公园<br/>电话：(028)61906688<br/>简介：梦幻岛体验公园（简称梦幻岛）位于天府新区腹地，城市RBD核心区——南湖度假风景区内，是由府河、江安河自然交汇围合而成的天然半岛。2007年成都南湖国际旅游文化发展有限公司斥巨资开发，经过3年倾力打造，一个集游乐、休闲、购物为一体的全开放式主题公园于2009年7月盛装登场，成为国际南城一张崭新名片。梦幻岛一期占地400亩，分为南湖明珠、海神码头、精灵恶魔岛、丛林之旅、爱神湖共五个区域，每个区域呈现出风格迥异、神秘奇特的建筑及园林景观，公园首次引进近60套全球高端游乐设备，包括38米高TOP-FLYING 、SuperSpin、M型激流勇进、内向六爪大摆锤、目前国内科技含量极高的虚拟体验项目—球幕动感影院。' +
+                  '</div>';
 
-        var loc;
-        var isMapInit = false;
-        //监听定位组件的message事件
-        window.addEventListener('message', function(event) {
-            loc = event.data; // 接收位置信息
-            console.log('location', loc);
-            if(loc  && loc.module == 'geolocation') { //定位成功,防止其他应用也会向该页面post信息，需判断module是否为'geolocation'
-                var markUrl = 'https://apis.map.qq.com/tools/poimarker' +
-                    '?marker=coord:' + loc.lat + ',' + loc.lng +
-                    ';title:我的位置;addr:' + (loc.addr || loc.city) +
-                    '&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp';
-                //给位置展示组件赋值
-                // document.getElementById('markPage').src = markUrl;
-                var lng = loc.lng//经度
-                var lat = loc.lat //维度
-                console.log(lng)
-                ShowMap(''+lng+','+lat+'', 'dome', loc.city,'1388888888', '010-88888888', '20');
-            }else {
-                console.log('定位失败');
-            }
-        }, false);
+    //创建检索信息窗口对象
+    var searchInfoWindow = null;
+	searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {
+			title  : "百度大厦",      //标题
+			width  : 290,             //宽度
+			height : 105,              //高度
+			panel  : "panel",         //检索结果面板
+			enableAutoPan : true,     //自动平移
+			searchTypes   :[
+				BMAPLIB_TAB_SEARCH,   //周边检索
+				BMAPLIB_TAB_TO_HERE,  //到这里去
+				BMAPLIB_TAB_FROM_HERE //从这里出发
+			]
+		});
+    var marker = new BMap.Marker(poi); //创建marker对象
+    marker.enableDragging(); //marker可拖拽
+    marker.addEventListener("click", function(e){
+	    searchInfoWindow.open(marker);
+    })
+    map.addOverlay(marker); //在地图中添加marker
     </script>
 {% endblock %}

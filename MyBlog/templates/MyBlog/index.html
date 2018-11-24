@@ -7,14 +7,12 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'common/css/index.css' %}">
     <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}">
-    <link rel="stylesheet" href="{% static 'compiled/flipclock.css' %}">
-    <link rel="stylesheet" href="{% static 'player/css/player.css' %}">
+    <link rel="stylesheet" href="{% static 'QPlayer/css/player.css' %}">
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-    <script type="application/javascript" src="{% static 'player/js/player.js' %}"></script>
-    <script type="application/javascript" src="{% static 'player/js/playlist.js' %}"></script>
-    <script type="application/javascript" src="{% static 'player/js/index.js' %}"></script>
-    <script type="application/javascript" src="{% static 'player/js/player_database.js' %}"></script>
-    <script type="application/javascript" src="{% static 'compiled/flipclock.js' %}"></script>
+    <script src="{% static 'QPlayer/js/jquery.marquee.min.js' %}"></script>
+    <script type="application/javascript" src="{% static 'QPlayer/js/playlist.js' %}"></script>
+
+
 
     <!--加载meta IE兼容文件-->
     <!--[if lt IE 9]>
@@ -105,99 +103,37 @@
             </div>
         </div>
     </div>
-    <div class="layui-col-md12">
-        <div id="jp_container_N" class="jp-video jp-video-270p jp-state-playing" role="application" aria-label="media player" style="left: 0px; height: 175px; bottom: 20px;">
-            <div class="jp-type-playlist">
-                <div id="jquery_jplayer_N" class="jp-jplayer" style="width: 90px; height: 90px;">
-                    <audio id="jp_audio_0" preload="metadata" src="http://music.163.com/song/media/outer/url?id=31473269.mp3" title="那英"></audio>
-                    <video id="jp_video_0" preload="metadata" title="那英" style="width: 0px; height: 0px;"></video>
-                </div>
-                <div class="jp-gui">
-                    <div class="jp-video-play" style="display: none;">
-                        <button class="jp-video-play-icon" role="button" tabindex="0">播放</button>
-                    </div>
-                    <div class="jp-interface">
-                        <div class="jp-progress">
-                            <div class="jp-seek-bar" style="width: 100%;">
-                                <div class="jp-play-bar" style="overflow: hidden; width: 97.5219%;"></div>
-                            </div>
-                        </div>
-                        <div class="jp-current-time" role="timer" aria-label="time">04:11</div>
-                        <div class="jp-duration" role="timer" aria-label="duration">04:17</div>
-                        <div class="jp-controls-holder">
-                            <div class="jp-controls">
-                                <button class="jp-previous" role="button" tabindex="0">上一曲</button>
-                                <button class="jp-play" role="button" tabindex="0">播放</button>
-                                <button class="jp-next" role="button" tabindex="0">下一曲</button>
-                                <button class="jp-stop" role="button" tabindex="0">暂停</button>
-                            </div>
-                            <div class="jp-volume-controls">
-                                <button class="jp-mute" role="button" tabindex="0">静音</button>
-                                <button class="jp-volume-max" role="button" tabindex="0">最大音量</button>
-                                <div class="jp-volume-bar">
-                                    <div class="jp-volume-bar-value" style="width: 10%;"></div>
-                                </div>
-                            </div>
-                            <div class="jp-toggles">
-                                <button class="jp-repeat" role="button" tabindex="0">重复</button>
-                                <button class="jp-shuffle" role="button" tabindex="0">随机</button>
 
-                            </div>
-                        </div>
-                        <div class="jp-details" style="display: none;">
-                            <div class="jp-title" aria-label="title">那英</div>
-                        </div>
-                    </div>
+
+</div>
+<div id="QPlayer">
+    <div id="pContent">
+        <div id="player">
+            <span class="cover"></span>
+            <div class="ctrl">
+                <div class="musicTag marquee">
+                    <strong>Title</strong>
+                    <span> - </span>
+                    <span class="artist">Artist</span>
                 </div>
-                <div class="jp-playlist">
-                    <div class="jp-playlist-box" style="height: 80px;">
-                        <ul style="height: 1000px; display: block; top: 0px;">
-                            <li>
-                                <div>
-                                    <a href="javascript:;" class="jp-playlist-item-remove">×</a>
-                                    <a href="javascript:;" class="jp-playlist-item" tabindex="0">默 <span class="jp-artist" style="transform: rotate(180deg);"> - 那英</span></a>
-                                </div>
-                            </li>
-                            <li class="">
-                                <div>
-                                    <a href="javascript:;" class="jp-playlist-item-remove">×</a>
-                                    <a href="javascript:;" class="jp-playlist-item" tabindex="0">Ellens Gesang III D839 <span class="jp-artist" style="transform: rotate(180deg);"> - Geoffrey Parsons</span></a>
-                                </div>
-                            </li>
-                            <li>
-                                <div>
-                                    <a href="javascript:;" class="jp-playlist-item-remove">×</a>
-                                    <a href="javascript:;" class="jp-playlist-item" tabindex="0">Fire <span class="jp-artist" style="transform: rotate(180deg);"> - Said The Sky</span></a>
-                                </div>
-                            </li>
-                            <li class="jp-playlist-current" style="display: list-item;">
-                                <div>
-                                    <a href="javascript:;" class="jp-playlist-item-remove">×</a>
-                                    <a href="javascript:;" class="jp-playlist-item jp-playlist-current" tabindex="0">兰若词 <span class="jp-artist" style="transform: rotate(180deg);"> - 刘亦菲</span></a>
-                                </div>
-                            </li>
-                        </ul>
+                <div class="progress">
+                    <div class="timer left">0:00</div>
+                    <div class="contr">
+                        <div class="rewind icon"></div>
+                        <div class="playback icon"></div>
+                        <div class="fastforward icon"></div>
                     </div>
-                </div>
-                <div class="jp-no-solution" style="display: none;">
-                    <span style="transform: rotate(180deg);">升级需要</span> 您浏览器赞不支持播放，请更新版本
-                    <a href="http://get.adobe.com/flashplayer" target="_blank">Flash插件</a>.
+                    <div class="right">
+                        <div class="liebiao icon"></div>
+                    </div>
                 </div>
             </div>
-
-            <div class="scrollBar" style="display: block;">
-                <div class="bar" style="top: 0px;"></div>
-            </div>
-
-            <button type="button" class="folded_bt" title="点击收缩" id="btnfold" style="top: 52px;">
-                <span style="transform: rotate(180deg);"></span>
-            </button>
-            <div id="listRemove" style="display: block;"></div>
-
-            <div id="listClose"></div>
-
+        </div>
+        <div class="ssBtn">
+            <div class="adf"></div>
         </div>
     </div>
+    <ol id="playlist"></ol>
 </div>
 </body>
 </html>
@@ -212,26 +148,14 @@
         $ = layui.$,menu = layui.menu;
         menu.init();
     });
-
-    var clock;
-
-    $(document).ready(function() {
-        var clock;
-
-        clock = $('.clock').FlipClock({
-            clockFace: 'DailyCounter',
-            autoStart: false,
-            callbacks: {
-                stop: function() {
-                    $('.message').html('The clock has stopped!')
-                }
-            }
-        });
-
-        clock.setTime(220880);
-        clock.setCountdown(true);
-        clock.start();
-
-    });
 </script>
+  <script type="application/javascript" src="{% static 'QPlayer/js/player.js' %}"></script>
+<script>
 
+    function bgChange(){
+        var lis= $('.lib');
+        for(var i=0; i<lis.length; i+=2)
+            lis[i].style.background = 'rgba(246, 246, 246, 0.5)';
+    }
+    window.onload = bgChange;
+</script>
