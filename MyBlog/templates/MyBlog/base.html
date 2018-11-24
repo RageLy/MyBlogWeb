@@ -97,11 +97,20 @@
 {#<script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>#}
 <script>
     layui.config({
-        base: '{% static '/layui/js/util/' %}'
+        base: '{% static '/' %}'
     }).extend({
         index: 'lib/index'
-    }).use(['util','element','menu'], function(){
-        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+    }).use(['util','element','menu','index'], function(){
+         var $ = layui.$
+    ,admin = layui.admin
+    ,element = layui.element;
+
+    element.render('nav', 'component-nav');
+    element.render('nav', 'component-nav-active');
+
+    element.on('nav(component-nav-active)', function(elem){
+      layer.msg(elem.text());
+     });
         $ = layui.$,menu = layui.menu;
         var util = layui.util
         menu.init();

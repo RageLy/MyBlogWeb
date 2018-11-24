@@ -1,36 +1,58 @@
-<html>
-	<head>
-        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-	<script type="application/javascript" src="../../static/compiled/flipclock.js"></script>
-            <link rel="stylesheet" href="../../static/compiled/flipclock.css">
 
-	</head>
-	<body>
-	<div class="clock" style="margin:2em;"></div>
-	<div class="message"></div>
 
-	<script type="text/javascript">
-		var clock;
 
-		$(document).ready(function() {
-			var clock;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title%}
+        <title>花花与风的博客</title>
+    {% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'common/css/blog.css' %}">
+    <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}">
+{#    <link rel="stylesheet" href="{% static 'QPlayer/css/player.css' %}">#}
+{#    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>#}
+    <script src="{% static 'QPlayer/js/jquery.marquee.min.js' %}"></script>
+{#    <script type="application/javascript" src="{% static 'QPlayer/js/playlist.js' %}"></script>#}
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
 
-			clock = $('.clock').FlipClock({
-		        clockFace: 'DailyCounter',
-		        autoStart: false,
-		        callbacks: {
-		        	stop: function() {
-		        		$('.message').html('The clock has stopped!')
-		        	}
-		        }
-		    });
+  <div class="nav layui-nav">
+    <div class="item">
+        <a href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
+        <ul class="">
+            <li class="layui-nav-item layui-this"><a href="javascript:;">博客</a></li>
+            <li class="layui-nav-item"><a href="javascript:;">相册</a></li>
+            <li class="layui-nav-item"><a href="javascript:;">友情链接</a></li>
+            <li class="layui-nav-item"><a href="javascript:;">归档</a></li>
+            <li class="layui-nav-item"><a href="javascript:;">留言</a></li>
+            <li class="layui-nav-item"><a href="javascript:;">关于</a></li>
+        </ul>
+    </div>
+</div>
 
-		    clock.setTime(220880);
-		    clock.setCountdown(true);
-		    clock.start();
+  <script src="../../static/layui/layui.js"></script>
+  <script>
+  layui.config({
+    base: '../../static/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index'], function(){
+    var $ = layui.$
+    ,admin = layui.admin
+    ,element = layui.element;
 
-		});
-	</script>
+    element.render('nav', 'component-nav');
+    element.render('nav', 'component-nav-active');
 
-	</body>
+    element.on('nav(component-nav-active)', function(elem){
+      layer.msg(elem.text());
+     });
+  });
+  </script>
+</body>
 </html>

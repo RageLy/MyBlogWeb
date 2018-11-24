@@ -17,6 +17,7 @@ urlpatterns = [
     path('archive/', views.archive, name='archive'),
     path('like/', views.like, name='like'),
     path('about/', views.about, name='about'),
+    path('test/', views.test, name='test'),
     path('details/<int:id>', views.details, name='details'),
     path('weblink/', views.weblink, name='weblink'),
     path('picdetails/<int:id>', views.picdetails, name='picdetails'),

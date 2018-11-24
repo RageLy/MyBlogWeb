@@ -85,11 +85,11 @@
                             </div>
                             {% for comment in Blog.comment_set.all %}
                                 <div class="media-body">
-                                    <a href="javascript:;" class="media-left space-message">
+                                    <a class="media-left space-message">
                                         <img src="{{ comment.user.userpic }}">
                                     </a>
                                     <div class="pad-btm space-message">
-                                        <p class="fontColor"><a href="javascript:;">{{ comment.user.username }}</a></p>
+                                        <p class="fontColor"><a>{{ comment.user.username }}</a></p>
                                         <p class="min-font">
                                           <span class="layui-breadcrumb" lay-separator="-">
                                             <a class="layui-icon layui-icon-cellphone"></a>
@@ -103,14 +103,20 @@
                                         {% if comment.reply_set.all %}
                                             <div class="reply-container">
                                                 {% for reply in comment.reply_set.all %}
+                                                    <div class="box-reply">
                                                     <div class="title">
-                                         <span>
-                                             <b><a href="javascript:;">{{ reply.user.username }}：</a></b>
-                                        </span>{{ reply.replyContent }}</div>
-                                                    <div class="layui-col-md12 reply-date">
-                                          <span lay-separator="-">
-                                            <a href="javascript:;">{{ reply.createdate|date:"Y-m-d H:i:s" }}</a>
-                                          </span>
+                                                        <img src="{% static 'common/imgs/userhead.png' %}">
+                                                     <span>
+                                                         <b><a>{{ reply.user.username }}：</a></b>
+                                                    </span></div>
+                                                    <div class="replyContent">{{ reply.replyContent }}</div>
+
+                                                    <div class="other">
+                                                    <div class="like"><i class="layui-icon">&#xe6c6;</i></div>
+                                                      <div lay-separator="-" class="reply-date">
+                                                        <a class="replytime" datetime="{{ reply.createdate|date:"Y-m-d H:i:s" }}"></a>
+                                                      </div>
+                                                    </div>
                                                     </div>
                                                 {% endfor %}
                                             </div>
@@ -210,8 +216,10 @@
         $("#urlinfo").html(window.location.href)
         $("#urlinfo").attr('href',window.location.href)
         console.log(window.location.href)
-     var timeagoInstance = timeago();// 实例
-　　timeagoInstance.render(document.querySelectorAll('.time'),'zh_CN');
+        var timeagoInstance = timeago();// 实例
+        timeagoInstance.render(document.querySelectorAll('.time'),'zh_CN');
+        timeagoInstance.render(document.querySelectorAll('.replytime'),'zh_CN');
+
     </script>
     <script type="text/javascript">
 
@@ -336,9 +344,7 @@
                     $(this).text("收起")
                 }
             })
-
-        });
-        //平台、设备和操作系统
+//平台、设备和操作系统
         var system = {
             win: false,
             mac: false,
@@ -375,6 +381,8 @@
             console.log('手机端')
             devide='手机端'
         }
+        });
+
 
     </script>
     <script >
@@ -402,8 +410,5 @@
         console.log(browser.language)
         {#document.writeln("语言版本: "+browser.language);#}
         {#document.writeln(" 是否为移动终端: "+browser.versions.mobile);#}
-    </script>
-    <script type="text/javascript">
-
     </script>
 {% endblock %}

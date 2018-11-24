@@ -21,7 +21,7 @@
 <![endif]-->
 </head>
 <body>
-<div class="nav layui-nav">
+<div class="nav layui-nav"  lay-filter="component-nav" id="nav">
     <div class="item">
         <a href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
         <ul class="">
@@ -103,8 +103,6 @@
             </div>
         </div>
     </div>
-
-
 </div>
 <div id="QPlayer">
     <div id="pContent">
@@ -140,13 +138,22 @@
 <script type="text/javascript" src="{% static 'layui/layui.js' %}"></script>
 <script type="text/javascript">
     layui.config({
-        base: '{% static '/layui/js/util/' %}'
+        base: '{% static '/' %}'
     }).extend({
         index: 'lib/index'
-    }).use(['util','element','menu'], function(){
-        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
-        $ = layui.$,menu = layui.menu;
-        menu.init();
+    }).use(['util','element','menu','index'], function(){
+        var $ = layui.$
+        ,admin = layui.admin
+            ,element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+        element.render('nav');
+        element.render('nav', 'component-nav');
+        element.render('nav', 'component-nav-active');
+
+        element.on('nav(component-nav-active)', function(elem){
+            layer.msg(elem.text());
+        });
+
     });
 </script>
   <script type="application/javascript" src="{% static 'QPlayer/js/player.js' %}"></script>

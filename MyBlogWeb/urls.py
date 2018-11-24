@@ -7,17 +7,6 @@ from django.conf import settings
 urlpatterns = [
     path('', include('MyBlog.urls')),
     path("favicon.ico", RedirectView.as_view(url='static/favicon.ico')),
-
-
-    # path('', include('MyBlogAdmin.urls')),
-
     path('adminht/', admin.site.urls),
-
-    # path('markdown/',include('django_markdown.urls')),
-
-
-
-
-
 ]
 

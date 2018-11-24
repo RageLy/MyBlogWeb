@@ -1,5 +1,6 @@
 {% extends 'MyBlog/base.html' %}
 {% load static %}
+
 {% block title%}
     <title>欢迎留言</title>
 {% endblock %}
@@ -15,17 +16,18 @@
     <!--这个插件只是为了扩展jquery的animate函数动态效果可有可无-->
     <script type="text/javascript" src="{% static 'waterfall/js/jQeasing.js' %}"></script>
 {% endblock %}
-{% block container %}
-    <div class="layui-col-md12 Tophead">
-        <div class="layui-card">
-            <div class="layui-card-header">
+{% block fluid %}
+        <div class="message-head Tophead">
+            <div class="tips">
                 <h2>大佬们看这里</h2>
             </div>
-            <div class="layui-card-body">
+            <div class="desc">
                 欢迎各位大佬们提意见，本博客还有很多不完善的地方，如发现，可在下方留言，多谢多谢。
             </div>
         </div>
-    </div>
+{% endblock %}
+{% block container %}
+
     <div class="layui-col-md12">
         <div class="layui-card">
             <div class="layui-card-body">

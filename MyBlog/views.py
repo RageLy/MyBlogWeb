@@ -128,6 +128,8 @@ def submitmessage(request):
 
 def about(request):
     return render(request, 'MyBlog/about.html')
+def test(request):
+    return render(request, 'MyBlog/test.html')
 
 def details(request,id):
     detail=models.Blog.objects.get(id=id)
