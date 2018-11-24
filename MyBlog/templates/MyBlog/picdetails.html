@@ -1,17 +1,7 @@
 {% extends 'MyBlog/base.html' %}
 {% load static %}
 {% block head %}
-    <link rel="stylesheet" href="{% static 'layui/css/template.css' %}">
-{% endblock %}
-{% block fluid %}
-    <div class="banner">
-        <div class="cont w1000">
-            <div class="title">
-                <h3>花花<br />与风</h3>
-                <h4>well-balanced heart</h4>
-            </div>
-        </div>
-    </div>
+
 {% endblock %}
 {% block container %}
     <div class="layui-col-md12 blog-content-nav" style="margin-top: 60px">
@@ -48,7 +38,6 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
 {% block script %}
     <script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
