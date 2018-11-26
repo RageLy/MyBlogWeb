@@ -108,7 +108,7 @@ def submitmessage(request):
         else:
             ip = request.META['REMOTE_ADDR']
         print(ip)
-        ipcity='http://ip.taobao.com/service/getIpInfo.php?ip=118.24.141.118'
+        ipcity='http://ip.taobao.com/service/getIpInfo.php?ip='+ip
         wb_data = urllib.request.urlopen(ipcity)
         data = json.loads(wb_data.read().decode("utf-8"))
         ipadd=data['data']['ip']
