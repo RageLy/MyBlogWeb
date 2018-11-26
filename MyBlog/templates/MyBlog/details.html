@@ -51,8 +51,6 @@
                             <li class="qq"> <a href="mailto:heming_wei@126.com"><i class="layui-icon layui-icon-login-qq"></i></a></li>
                             <li class="wechat"> <i class="layui-icon layui-icon-login-wechat"></i></li>
                             <li class="weibo"> <a href="https://weibo.com/mingtianya"><i class="layui-icon layui-icon-login-weibo"></i></a></li>
-                            <li class="github"><a href="https://github.com/huahuayufeng"><i class="iconfont icon-github"></i></a></li>
-                            <li class="email"><a href="mailto:heming_wei@126.com"><i class="iconfont icon-email"></i></a></li>
                         </ul>
 
                     </div>
@@ -60,34 +58,37 @@
                         <h2>评论</h2>
                     </div>
                     <div id="reply" >
+                        <div class="reply-con">
                         <form class="layui-form">
                             {% csrf_token %}
-                            <div class="layui-form-item">
-                                <img class="layui-form-label reply-head" src="{% static '/common/imgs/userhead.png' %}">
+                            <div class="userinfo">
+                             <div class="username">
+                                 <input id="username"  placeholder="请输入昵称（必填）" class="layui-input">
+                            </div>
+                             <div class="email">
+                                 <input id="email"  placeholder="请输入邮箱（必填）" class="layui-input">
+                            </div></div>
                                 <div class="text">
                                     <textarea id="commentContent"  placeholder="请输入内容" class="layui-textarea"></textarea>
                                 </div>
-                            </div>
-                            <div class="layui-form-item" style="overflow: hidden;">
                                 <div class="text">
                                     <button class="layui-btn"  type="button" id="sb-btn">发表</button>
                                 </div>
-                            </div>
                         </form>
+                            </div>
                     </div>
                     {% if Blog.comment_set.all %}
                         <div class="message-content" >
                             <div class="comment-content">
                                 <h2>{{ Blog.comment_set.count }}条评论</h2>
-                                {#                                <hr>#}
                             </div>
                             {% for comment in Blog.comment_set.all %}
                                 <div class="media-body">
                                     <div class="media-left">
-                                        <img src="{{ comment.user.userpic }}">
+                                        <img src="../{{ comment.userpic }}">
                                     </div>
                                     <div class="pad-btm">
-                                        <p class="fontColor"><a>{{ comment.user.username }}</a></p>
+                                        <p class="fontColor"><a>{{ comment.username }}</a></p>
                                         <div class="min-font">
                                           <span class="layui-breadcrumb" lay-separator="-">
                                             <a class="layui-icon layui-icon-cellphone"></a>
@@ -104,13 +105,15 @@
                                                     <div class="box-reply">
                                                         <div class="title">
                                                             <img src="{% static 'common/imgs/userhead.png' %}">
-
                                                             <p>{{ reply.user.username }}</p>
                                                         </div>
                                                         <div class="brower">四川.成都  Windows 10  Chrome|65</div>
                                                         <div class="replyContent"><p>{{ reply.replyContent }}</p></div>
                                                         <div class="other">
-                                                            <div class="like"><i class="layui-icon">&#xe6c6;</i></div>
+                                                            <div class="like">
+                                                                 <button class="layui-btn" id="replylike{{ reply.id }}"><i class="layui-icon">&#xe6c6;</i></button>
+                                                                <span class="layui-btn"><p class="replylikecon{{ reply.id }}">{{ reply.likeNum }}</p></span>
+                                                            </div>
                                                             <div lay-separator="-" class="reply-date">
                                                                 <a class="replytime" datetime="{{ reply.createdate|date:"Y-m-d H:i:s" }}"></a>
                                                             </div>
@@ -123,11 +126,11 @@
                                     <div class="reply-comment">
                                         <div class="like">
                                             <button class="layui-btn" id="like{{ comment.id }}"><i class="layui-icon">&#xe6c6;</i></button>
-                                            <button class="layui-btn"><p>{{ comment.likeNum }}</p></button>
+                                            <button class="layui-btn"><p class="likecon{{ comment.id }}">{{ comment.likeNum }}</p></button>
                                         </div>
                                         <div class="reply-btn">
                                             <button class="layui-btn"><i class="layui-icon">&#xe611;</i></button>
-                                            <button class="layui-btn layui-btn-primary layui-btn-xs" id='replylabel{{ comment.id }}'>回复</button>
+                                            <button class="layui-btn" id='replylabel{{ comment.id }}'>回复</button>
                                         </div>
 
                                     </div>
@@ -142,7 +145,6 @@
                                     </form>
                                 </div>
                             {% endfor %}
-
                         </div>
                     {% endif %}
                 </div>
@@ -224,7 +226,15 @@
             var layer = layui.layer;
             var devide=''
             $("#sb-btn").click(function(){
-                if($("#commentContent").val()=="")
+                if($("#username").val()=="")
+                {
+                    layer.msg('你的昵称呢!',{time:0.5*1000})
+                }
+                else if($("#email").val()=="")
+                {
+                    layer.msg('邮箱必填!',{time:0.5*1000})
+                }
+                else if($("#commentContent").val()=="")
                 {
                     layer.msg('评论不能为空!',{time:0.5*1000})
                 }
@@ -232,7 +242,7 @@
                 {
                     $.ajax({
                         type:"POST",
-                        data: {'userid':"1",'blogid':{{Blog.id}},'csrfmiddlewaretoken':$("[name='csrfmiddlewaretoken']").val(),'commentContent':$("#commentContent").val(),'replytype':"0",'device':devide},
+                        data: {'username':$("#username").val(),'email':$("#email").val(),'blogid':{{Blog.id}},'csrfmiddlewaretoken':$("[name='csrfmiddlewaretoken']").val(),'commentContent':$("#commentContent").val(),'replytype':"0",'device':devide},
                         url: "{% url 'MyBlog:commentdata' %}", //后台处理函数的url
                         cache: false,
                         async : false,
@@ -243,11 +253,6 @@
                                 console.log(result.message)
                                 layer.msg('评论成功!',{time:0.5*1000})
                                 location.reload()
-                            }
-                            else if(result.message="-1")
-                            {
-                                layer.msg('评论不能为空',{time:0.5*1000})
-                                {#location.reload()#}
                             }
                         },
                         error: function(){
@@ -285,12 +290,6 @@
                                 $('#'+replyid).css("display", "none")
                                 $('#'+replylabelid).text("回复")
                             }
-                            else if(result.message="-1")
-                            {
-                                console.log(result.message)
-                                layer.msg('回复不能为空',{time:0.5*1000})
-                                {#location.reload()#}
-                            }
                         },
                         error: function(){
                             {#$('#test1').html('传输格式有错误')#}
@@ -315,18 +314,36 @@
                         {
                             console.log(result.message)
                             layer.msg('点赞成功',{time:0.5*1000})
-                            location.reload()
-                        }
-                        else if(result.message="-1")
-                        {
-                            console.log(result.message)
-                            layer.msg('点赞失败',{time:0.5*1000})
-                            {#location.reload()#}
+                            var likecon='likecon'+commentid
+                            $("."+likecon).html(result.like)
+                            console.log(result.like,$("."+likecon).html())
                         }
                     },
                     error: function(){
-                        {#$('#test1').html('传输格式有错误')#}
-                        {#layer.confirm(result)#}
+                        layer.msg('传输格式有误，请检查')
+                    }
+                });
+            })
+             $("[id^=replylike]").click(function(){
+                replyid=$(this).attr("id").split("replylike")[1]
+                $.ajax({
+                    type:"POST",
+                    data: {'replyid':replyid,'csrfmiddlewaretoken':$("[name='csrfmiddlewaretoken']").val()},
+                    url: "{% url 'MyBlog:replylike' %}", //后台处理函数的url
+                    cache: false,
+                    async : false,
+                    success: function(result){
+                        console.log(result.message)
+                        if(result.message="0")
+                        {
+                            console.log(result.message)
+                            layer.msg('点赞成功',{time:0.5*1000})
+                            var replylikecon='replylikecon'+commentid
+                            $("."+replylikecon).html(result.replylike)
+                            console.log(result.replylike,$("."+replylikecon).html())
+                        }
+                    },
+                    error: function(){
                         layer.msg('传输格式有误，请检查')
                     }
                 });

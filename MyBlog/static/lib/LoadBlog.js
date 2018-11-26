@@ -72,6 +72,7 @@ layui.use('flow', function(){
                                 '                        </div>\n' +
                                 '                    </div>'
                             lis.push(str);
+                            console.log(lis)
                         });
                         next(lis.join(''), page*2 < res.count); //假设总页数为 6
                     });

@@ -67,14 +67,14 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
     .banner .amount{left: 20px; top: 210px; line-height: 30px;}
     /*menu-btn*/
     .menu { width: 50px; height: 40px; position: relative; cursor: pointer;}
-    .menu:before, .menu:after { content: ""; display: block; width: 50px; height: 6px; background: #ff7f21; border-radius: 8px; position: absolute; left: 0; -webkit-transition: all 0.15s ease-in-out; transition: all 0.15s ease-in-out; }
-    .menu:before { top: 0px; box-shadow: 0 34px #ff7f21;}
+    .menu:before, .menu:after { content: ""; display: block; width: 50px; height: 6px; background: #999999; border-radius: 8px; position: absolute; left: 0; -webkit-transition: all 0.15s ease-in-out; transition: all 0.15s ease-in-out; }
+    .menu:before { top: 0; box-shadow: 0 34px #999999;}
     .menu:after { bottom: 17px; }
     .menu.on:before { top: 17px; box-shadow: none; -webkit-transform: rotate(225deg); transform: rotate(225deg); }
     .menu.on:after { bottom: 17px; -webkit-transform: rotate(135deg); transform: rotate(135deg); }
-    .menu-btn{position: absolute; top: 40px; right: 20px;}
+    .menu-btn{position: absolute; top: 10px; right: 20px;}
     .header .header-down-nav { width: 100%; position: absolute; top: 120px; z-index: 2; left: 0; padding: 0; border-radius: 0;}
-    .header .header-down-nav {background: #ff7f21;}
+    .header .header-down-nav {background: #999999;}
     .header .header-down-nav .layui-nav-item a{padding:0 40px;}
     .header .header-down-nav li {display: block;}
     .header .header-down-nav li a{font-size: 16px;}}

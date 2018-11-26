@@ -238,9 +238,11 @@ class Comment(models.Model):
     id = models.AutoField(db_column='id', primary_key=True)
     blog = models.ForeignKey(to="Blog", to_field="id", on_delete=models.CASCADE)  # Field name made lowercase.
     commentContent = models.TextField(db_column='commentContent', blank=True, null=True)  # Field name made lowercase.
-    user = models.OneToOneField("Users", to_field="userid", on_delete=models.CASCADE)# Field name made lowercase.
+    username = models.CharField(db_column='username', max_length=50, blank=True, null=True)
+    email = models.CharField(db_column='email', max_length=50, blank=True, null=True)
     createdate = models.DateTimeField(db_column='createdate', blank=True, null=True)  # Field name made lowercase.
     device=models.CharField(db_column='device', max_length=50, blank=True, null=True)
+    userpic = models.CharField(db_column='userpic', max_length=50, blank=True, null=True)
     likeNum = models.IntegerField(db_column='likeNum', blank=True, null=True)  # Field name made lowercase.
     objects = models.Manager()
     comment_objects = CommentManager()
@@ -266,7 +268,8 @@ class Reply(models.Model):
     user = models.OneToOneField("Users", to_field="userid", on_delete=models.CASCADE)# Field name made lowercase.
     createdate = models.DateTimeField(db_column='createdate', blank=True, null=True)  # Field name made lowercase.
     reply_type=models.CharField(db_column='reply_type', max_length=50, blank=True, null=True)
-    taruser_id = models.IntegerField(db_column='taruser_id', blank=True, null=True)  # Field name made lowercase.
+    # taruser_id = models.IntegerField(db_column='taruser_id', blank=True, null=True)  # Field name made lowercase.
+    likeNum = models.IntegerField(db_column='likeNum', blank=True, null=True)  # Field name made lowercase.
     objects = models.Manager()
     reply_objects = ReplyManager()
 

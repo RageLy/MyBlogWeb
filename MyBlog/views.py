@@ -171,38 +171,38 @@ def imgtypes(request,type):
 
 
 def commentdata(request):
-    if request.POST.get('commentContent')=='':
-        # print(-1)
-        return JsonResponse({'message': -1})
-    else:
-        userid=request.POST.get('userid')
-        blogid=request.POST.get('blogid')
-        commentContent = request.POST.get('commentContent')
-        device=request.POST.get('device')
-        comment=models.Comment(blog_id=blogid,user_id=userid,commentContent=commentContent,createdate=datetime.datetime.now(),device=device,likeNum=0)
-        comment.save()
-        return JsonResponse({'message':0})
+    username=request.POST.get('username')
+    email = request.POST.get('email')
+    blogid=request.POST.get('blogid')
+    commentContent = request.POST.get('commentContent')
+    device=request.POST.get('device')
+    comment=models.Comment(blog_id=blogid,username=username,email=email,commentContent=commentContent,createdate=datetime.datetime.now(),device=device,likeNum=0,userpic='/static/common/imgs/userheadlib/userhead.png')
+    comment.save()
+    return JsonResponse({'message':0})
 
 def replydata(request):
-    if request.POST.get('replyContent')=='':
-        return JsonResponse({'message': -1})
-    else:
-        userid=request.POST.get('userid')
-        blogid=request.POST.get('blogid')
-        commentid=request.POST.get('commentid')
-        replyContent = request.POST.get('replyContent')
-        replytype=request.POST.get('replytype')
-        reply=models.Reply(blog_id=blogid,user_id=userid,comment_id=commentid,replyContent=replyContent,createdate=datetime.datetime.now(),reply_type=replytype)
-        reply.save()
-        return JsonResponse({'message':0})
+    userid=request.POST.get('userid')
+    blogid=request.POST.get('blogid')
+    commentid=request.POST.get('commentid')
+    replyContent = request.POST.get('replyContent')
+    replytype=request.POST.get('replytype')
+    reply=models.Reply(blog_id=blogid,user_id=userid,comment_id=commentid,replyContent=replyContent,createdate=datetime.datetime.now(),reply_type=replytype,likeNum=0)
+    reply.save()
+    return JsonResponse({'message':0})
 
 def like(request):
     commentid = request.POST.get('commentid')
     comment=models.Comment.objects.get(id=commentid)
     comment.likeNum+=1
     comment.save()
-    return JsonResponse({'message':0})
+    return JsonResponse({'message':0,'like':comment.likeNum})
 
+def replylike(request):
+    replyid = request.POST.get('replyid')
+    reply=models.Reply.objects.get(id=replyid)
+    reply.likeNum+=1
+    reply.save()
+    return JsonResponse({'message':0,'replylike':reply.likeNum})
 '''
 后端处理
 '''

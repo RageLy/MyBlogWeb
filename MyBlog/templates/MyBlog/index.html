@@ -22,6 +22,9 @@
 </head>
 <body>
 <div class="nav layui-nav"  lay-filter="component-nav" id="nav">
+{#     <div class="menu-btn">#}
+{#      <div class="menu"></div>#}
+{#    </div>#}
     <div class="item">
         <a href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
         <ul class="">
@@ -136,6 +139,8 @@
 </body>
 </html>
 <script type="text/javascript" src="{% static 'layui/layui.js' %}"></script>
+<script type="text/javascript" src="{% static 'layui/layui.js' %}"></script>
+<script type="text/javascript" src="{% static 'menu.js' %}"></script>
 <script type="text/javascript">
     layui.config({
         base: '{% static '/' %}'
