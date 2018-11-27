@@ -169,7 +169,6 @@ def imgtypes(request,type):
     # print(Bloglist,len(Bloglist))
     return render(request, 'MyBlog/picture.html', {'PicManages':PicManage,'Tags':tag})
 
-
 def commentdata(request):
     username=request.POST.get('username')
     email = request.POST.get('email')
@@ -179,7 +178,8 @@ def commentdata(request):
     device=request.POST.get('device')
     comment=models.Comment(blog_id=blogid,username=username,website=website,email=email,commentContent=commentContent,createdate=datetime.datetime.now(),device=device,likeNum=0,userpic='static/common/imgs/userheadlib/userhead.png')
     comment.save()
-    return JsonResponse({'message':0})
+    commentNew=models.Comment.objects.filter(id=comment.id).values()
+    return JsonResponse({'message':0,'data':list(commentNew)})
 
 def replydata(request):
     userid=request.POST.get('userid')

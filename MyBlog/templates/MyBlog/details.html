@@ -94,69 +94,69 @@
                             <div class="comment-content">
                                 <h2>{{ Blog.comment_set.count }}条评论</h2>
                             </div>
-                            {% for comment in Blog.comment_set.all %}
-                                <div class="media-body">
-                                    <div class="media-left">
-                                        <img src="../{{ comment.userpic }}">
-                                    </div>
-                                    <div class="pad-btm">
-                                        <p class="fontColor"><a>{{ comment.username }}</a></p>
-                                        <div class="min-font">
-                                          <span class="layui-breadcrumb" lay-separator="-">
-                                            <a class="layui-icon layui-icon-cellphone"></a>
-                                            <a>{{ comment.device }}</a>
-                                            <a class="time" datetime="{{ comment.createdate|date:"Y-m-d H:i:s" }}"></a>
-                                          </span>
-                                        </div>
-                                        <p class="message-text">{{ comment.commentContent }}</p>
-                                    </div>
-                                    <div class="reply-text">
-                                        {% if comment.reply_set.all %}
-                                            <div class="reply-container">
-                                                {% for reply in comment.reply_set.all %}
-                                                    <div class="box-reply">
-                                                        <div class="title">
-                                                            <img src="{% static 'common/imgs/userhead.png' %}">
-                                                            <p>{{ reply.user.username }}</p>
-                                                        </div>
-                                                        <div class="brower">四川.成都  Windows 10  Chrome|65</div>
-                                                        <div class="replyContent"><p>{{ reply.replyContent }}</p></div>
-                                                        <div class="other">
-                                                            <div class="like">
-                                                                <button class="layui-btn" id="replylike{{ reply.id }}"><i class="layui-icon">&#xe6c6;</i></button>
-                                                                <span class="layui-btn"><p class="replylikecon{{ reply.id }}">{{ reply.likeNum }}</p></span>
-                                                            </div>
-                                                            <div lay-separator="-" class="reply-date">
-                                                                <a class="replytime" datetime="{{ reply.createdate|date:"Y-m-d H:i:s" }}"></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                {% endfor %}
-                                            </div>
-                                        {% endif %}
-                                    </div>
-                                    <div class="reply-comment">
-                                        <div class="like">
-                                            <button class="layui-btn" id="like{{ comment.id }}"><i class="layui-icon">&#xe6c6;</i></button>
-                                            <button class="layui-btn"><p class="likecon{{ comment.id }}">{{ comment.likeNum }}</p></button>
-                                        </div>
-                                        <div class="reply-btn">
-                                            <button class="layui-btn"><i class="layui-icon">&#xe611;</i></button>
-                                            <button class="layui-btn" id='replylabel{{ comment.id }}'>回复</button>
-                                        </div>
-
-                                    </div>
-                                    <form  id="formyz">
-                                        {% csrf_token %}
-                                        <div class="reply-to-text" id="reply{{ comment.id }}" style="display: none">
-                                            <div class="text">
-                                                <textarea class="reply-box-textarea" id="replyContent{{ comment.id }}"></textarea>
-                                            </div>
-                                            <div class="replybtn"><button class="layui-btn" id="replybtn{{ comment.id }}" type="button" >回复</button></div>
-                                        </div>
-                                    </form>
-                                </div>
-                            {% endfor %}
+{#                            {% for comment in Blog.comment_set.all %}#}
+{#                                <div class="media-body">#}
+{#                                    <div class="media-left">#}
+{#                                        <img src="../{{ comment.userpic }}">#}
+{#                                    </div>#}
+{#                                    <div class="pad-btm">#}
+{#                                        <p class="fontColor"><a>{{ comment.username }}</a></p>#}
+{#                                        <div class="min-font">#}
+{#                                          <span class="layui-breadcrumb" lay-separator="-">#}
+{#                                            <a class="layui-icon layui-icon-cellphone"></a>#}
+{#                                            <a>{{ comment.device }}</a>#}
+{#                                            <a class="time" datetime="{{ comment.createdate|date:"Y-m-d H:i:s" }}"></a>#}
+{#                                          </span>#}
+{#                                        </div>#}
+{#                                        <p class="message-text">{{ comment.commentContent }}</p>#}
+{#                                    </div>#}
+{#                                    <div class="reply-text">#}
+{#                                        {% if comment.reply_set.all %}#}
+{#                                            <div class="reply-container">#}
+{#                                                {% for reply in comment.reply_set.all %}#}
+{#                                                    <div class="box-reply">#}
+{#                                                        <div class="title">#}
+{#                                                            <img src="{% static 'common/imgs/userhead.png' %}">#}
+{#                                                            <p>{{ reply.user.username }}</p>#}
+{#                                                        </div>#}
+{#                                                        <div class="brower">四川.成都  Windows 10  Chrome|65</div>#}
+{#                                                        <div class="replyContent"><p>{{ reply.replyContent }}</p></div>#}
+{#                                                        <div class="other">#}
+{#                                                            <div class="like">#}
+{#                                                                <button class="layui-btn" id="replylike{{ reply.id }}"><i class="layui-icon">&#xe6c6;</i></button>#}
+{#                                                                <span class="layui-btn"><p class="replylikecon{{ reply.id }}">{{ reply.likeNum }}</p></span>#}
+{#                                                            </div>#}
+{#                                                            <div lay-separator="-" class="reply-date">#}
+{#                                                                <a class="replytime" datetime="{{ reply.createdate|date:"Y-m-d H:i:s" }}"></a>#}
+{#                                                            </div>#}
+{#                                                        </div>#}
+{#                                                    </div>#}
+{#                                                {% endfor %}#}
+{#                                            </div>#}
+{#                                        {% endif %}#}
+{#                                    </div>#}
+{#                                    <div class="reply-comment">#}
+{#                                        <div class="like">#}
+{#                                            <button class="layui-btn" id="like{{ comment.id }}"><i class="layui-icon">&#xe6c6;</i></button>#}
+{#                                            <button class="layui-btn"><p class="likecon{{ comment.id }}">{{ comment.likeNum }}</p></button>#}
+{#                                        </div>#}
+{#                                        <div class="reply-btn">#}
+{#                                            <button class="layui-btn"><i class="layui-icon">&#xe611;</i></button>#}
+{#                                            <button class="layui-btn" id='replylabel{{ comment.id }}'>回复</button>#}
+{#                                        </div>#}
+{##}
+{#                                    </div>#}
+{#                                    <form  id="formyz">#}
+{#                                        {% csrf_token %}#}
+{#                                        <div class="reply-to-text" id="reply{{ comment.id }}" style="display: none">#}
+{#                                            <div class="text">#}
+{#                                                <textarea class="reply-box-textarea" id="replyContent{{ comment.id }}"></textarea>#}
+{#                                            </div>#}
+{#                                            <div class="replybtn"><button class="layui-btn" id="replybtn{{ comment.id }}" type="button" >回复</button></div>#}
+{#                                        </div>#}
+{#                                    </form>#}
+{#                                </div>#}
+{#                            {% endfor %}#}
                         </div>
                     {% endif %}
                 </div>
@@ -258,13 +258,56 @@
                         url: "{% url 'MyBlog:commentdata' %}", //后台处理函数的url
                         cache: false,
                         async : false,
-                        success: function(result){
-                            console.log(result.message)
+                        success: function(result,stutas){
+                            {#console.log(result.message)#}
                             if(result.message="0")
                             {
-                                console.log(result.message)
+                                {#console.log(result.message)#}
                                 layer.msg('评论成功!',{time:0.5*1000})
-                                location.reload()
+                                {#location.reload()#}
+                                    console.log(result.data)
+                                $.each(result.data, function (i, item) {
+                                    var vfields = item;  //这里不定义也行，在下面的调用中直接使用item，请忽略我不规范的缩进
+                                    $(".message-content").append(" <div class=\"media-body\">\n" +
+                                        "                                    <div class=\"media-left\">\n" +
+                                        "                                        <img src=\"../"+ vfields.userpic+" \">\n" +
+                                        "                                    </div>\n" +
+                                        "                                    <div class=\"pad-btm\">\n" +
+                                        "                                        <p class=\"fontColor\"><a>"+ vfields.username +"</a></p>\n" +
+                                        "                                        <div class=\"min-font\">\n" +
+                                        "                                          <span class=\"layui-breadcrumb\" lay-separator=\"-\">\n" +
+                                        "                                            <a class=\"layui-icon layui-icon-cellphone\"></a>\n" +
+                                        "                                            <a>"+ vfields.device +"</a>\n" +
+                                        "                                            <a class=\"time\" datetime=\""+ vfields.createdate+"\"></a>\n" +
+                                        "                                          </span>\n" +
+                                        "                                        </div>\n" +
+                                        "                                        <p class=\"message-text\">"+ vfields.commentContent +"</p>\n" +
+                                        "                                    </div>\n" +
+                                        "                                    <div class=\"reply-text\">\n" +
+                                        "                                    </div>\n" +
+                                        "                                    <div class=\"reply-comment\">\n" +
+                                        "                                        <div class=\"like\">\n" +
+                                        "                                            <button class=\"layui-btn\" id=\"like"+ vfields.id +"\"><i class=\"layui-icon\">&#xe6c6;</i></button>\n" +
+                                        "                                            <button class=\"layui-btn\"><p class=\"likecon"+ vfields.id +"\">"+ vfields.likeNum +"</p></button>\n" +
+                                        "                                        </div>\n" +
+                                        "                                        <div class=\"reply-btn\">\n" +
+                                        "                                            <button class=\"layui-btn\"><i class=\"layui-icon\">&#xe611;</i></button>\n" +
+                                        "                                            <button class=\"layui-btn\" id='replylabel"+ vfields.id +"'>回复</button>\n" +
+                                        "                                        </div>\n" +
+                                        "\n" +
+                                        "                                    </div>\n" +
+                                        "                                    <form  id=\"formyz\">\n" +
+                                        {#"                                        {% csrf_token %}\n" +#}
+                                        "                                        <div class=\"reply-to-text\" id=\"reply"+ vfields.id +"\" style=\"display: none\">\n" +
+                                        "                                            <div class=\"text\">\n" +
+                                        "                                                <textarea class=\"reply-box-textarea\" id=\"replyContent"+ vfields.id +"\"></textarea>\n" +
+                                        "                                            </div>\n" +
+                                        "                                            <div class=\"replybtn\"><button class=\"layui-btn\" id=\"replybtn"+ vfields.id +"\" type=\"button\" >回复</button></div>\n" +
+                                        "                                        </div>\n" +
+                                        "                                    </form>\n" +
+                                        "                                </div>");
+
+                                });
                             }
                         },
                         error: function(){
