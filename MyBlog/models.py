@@ -243,6 +243,7 @@ class Comment(models.Model):
     createdate = models.DateTimeField(db_column='createdate', blank=True, null=True)  # Field name made lowercase.
     device=models.CharField(db_column='device', max_length=50, blank=True, null=True)
     userpic = models.CharField(db_column='userpic', max_length=50, blank=True, null=True)
+    website = models.CharField(db_column='website', max_length=50, blank=True, null=True)
     likeNum = models.IntegerField(db_column='likeNum', blank=True, null=True)  # Field name made lowercase.
     objects = models.Manager()
     comment_objects = CommentManager()

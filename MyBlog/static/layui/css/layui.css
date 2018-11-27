@@ -3597,8 +3597,7 @@ body .layui-util-face .layui-layer-content {
 }
 .layui-colorpicker-trigger-bgcolor {
 	display:block;
-	background:url(data:image/png;
-	base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
+	background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==);
 	border-radius:2px
 }
 .layui-colorpicker-trigger-span {

@@ -33,8 +33,8 @@
 
 {% block fluid %}
 {% endblock %}
-<div class="layui-container">
-    <div class="layui-row layui-col-space15 content-sapce-15">
+<div class="layui-container Tophead">
+    <div class="layui-row content-sapce-15 ">
         {% block container %}
         {% endblock %}
     </div>
@@ -129,23 +129,23 @@
     {#    $('.active').removeClass('active');#}
     {#    $(this).addClass("active");#}
     {# });#}
-    $(function(){
-        function footerPosition(){
-            $(".footer").removeClass("fixed-bottom");
-            var contentHeight = document.body.scrollHeight,//网页正文全文高度
-                winHeight = window.innerHeight;//可视窗口高度，不包括浏览器顶部工具栏
-            if(!(contentHeight > winHeight)){
-                //当网页正文高度小于可视窗口高度时，为footer添加类fixed-bottom
-                $(".footer").addClass("fixed-bottom");
-            } else {
-                $(".footer").removeClass("fixed-bottom");
-            }
-        }
-        footerPosition();
-        $(window).resize(footerPosition);
-    });
+{#    $(function(){#}
+{#        function footerPosition(){#}
+{#            $(".footer").removeClass("fixed-bottom");#}
+{#            var contentHeight = document.body.scrollHeight,//网页正文全文高度#}
+{#                winHeight = window.innerHeight;//可视窗口高度，不包括浏览器顶部工具栏#}
+{#            if(!(contentHeight > winHeight)){#}
+{#                //当网页正文高度小于可视窗口高度时，为footer添加类fixed-bottom#}
+{#                $(".footer").addClass("fixed-bottom");#}
+{#            } else {#}
+{#                $(".footer").removeClass("fixed-bottom");#}
+{#            }#}
+{#        }#}
+{#        footerPosition();#}
+{#        $(window).resize(footerPosition);#}
+{#    });#}
 </script>
-<script type="application/javascript" src="{% static 'QPlayer/js/player.js' %}"></script>
+{#<script type="application/javascript" src="{% static 'QPlayer/js/player.js' %}"></script>#}
 {#<script>#}
 {##}
 {#    function bgChange(){#}

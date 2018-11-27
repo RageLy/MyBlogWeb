@@ -19,7 +19,7 @@ body a{cursor: pointer;}
 .picbanner .title .logo-title{font-size: 30px; line-height: 30px;width: 85%;float: left;text-align: left;}
 .picbanner .title .logo-desc{font-size: 16px;float: left;width: 85%;text-align: left;}
 
-.content{padding:0 0 50px 0;margin-bottom: 20px;background-color: white;}
+.content{padding:0 0 50px 0;margin-bottom: 0;background-color: white;}
 .content   .item .header{width: 100%;padding: 0 0 20px 0;display: inline-block;clear: both;}
 .content   .item .header .title{float: left}
 .content   .item .header .title a{font-size: 16px; color: #000!important;font-weight: bold;transition: all .3s ease;}
@@ -83,7 +83,7 @@ body a{cursor: pointer;}
 }
 
 @media screen and (max-width: 768px){
-
+    .f_r{float: left;}
     .banner .amount{line-height: 40px; }
     .banner .title{top: 245px;}
     .banner .title h3{font-size: 40px; line-height: 44px;}
@@ -105,7 +105,7 @@ body a{cursor: pointer;}
     .header .header-down-nav li {display: block;}
     .header .header-down-nav li a{font-size: 16px;}}
 /**, :after, :before {*/
-    /*box-sizing: border-box;*/
+/*box-sizing: border-box;*/
 /*}*/
 .layui-icon,.iconfont{font-weight: normal!important;}
 
@@ -114,9 +114,9 @@ body a{cursor: pointer;}
 .webinfo ul{ padding: 20px 0;}
 .webinfo .layui-card-body{padding: 0;}
 .webinfo ul a li{color: #999999;line-height: 40px;padding: 0 45px;border-right: 2px solid white;border-bottom:1px solid #F8F8F8;transition: background-color 1s,border-right-color 1s;
--moz-transition: background-color 1s,border-right-color 1s;	/* Firefox 4 */
--webkit-transition: background-color 1s,border-right-color 1s;	/* Safari 和 Chrome */
--o-transition: background-color 1s,border-right-color 1s;}
+    -moz-transition: background-color 1s,border-right-color 1s;	/* Firefox 4 */
+    -webkit-transition: background-color 1s,border-right-color 1s;	/* Safari 和 Chrome */
+    -o-transition: background-color 1s,border-right-color 1s;}
 .webinfo ul a li:hover{background-color: #F8F8F8;border-right: 2px solid black;}
 .webinfo ul a li:hover .webinfo ul li{color: #525252!important;}
 .webinfo ul a li {color: #999999;}
@@ -126,9 +126,10 @@ body a{cursor: pointer;}
 /*.ranker i{font-size: 20px;line-height: 42px;}*/
 .ranker ul{counter-reset:section;}
 .ranker ul li {width:100%;line-height: 40px; height: 40px;overflow:hidden;}
+.ranker ul li:hover{background-color: #e6e6e6!important;}
 .ranker ul li a {font-size: 13px;color: rgba(153,153,153,1)}
 .ranker ul li:before {counter-increment:section;content:counter(section);display:inline-block;padding:0 6px;margin-right:10px;height:18px;line-height:18px;background:#e6e6e6;color:#505050;border-radius:3px;font-size:9px;}
-.ranker ul li a:hover .ranker ul li a{color: #0C0C0C!important;}
+
 /*无数据展示*/
 #nodata {height: 395px;text-align: center;color:#545556;line-height:52px}
 #nodata .nodatatip {padding-top: 100px;font-size: 30px;line-height:20px}
@@ -153,10 +154,11 @@ body a{cursor: pointer;}
 
 /*文章内容*/
 .blog-content{margin-bottom: 0;padding-bottom: 0!important;background-color: white;width: 100%;}
-.blog-content .blog-title{margin: 16px 0;font-size: 20px;text-align: center;}
-.blog-content .blog-title h3{font-weight: bold;color: #000000;}
-.blog-content .con-desc{display: flex;flex-direction: row;justify-content: center;align-items: center;flex-wrap: nowrap;margin: 12px 0 16px;color: #adadad;font-size: 12px;}
-.blog-content .con-desc a{padding-right: 20px;}
+.blog-content .blog-head{background-color: #f0f0f0;padding: 40px 0;margin-top: 5px;}
+.blog-content .blog-head .blog-title{margin: 16px 0;font-size: 20px;text-align: center;}
+.blog-content .blog-head .blog-title h3{font-weight: bold;color: #000000;}
+.blog-content .blog-head .con-desc{display: flex;flex-direction: row;justify-content: center;align-items: center;flex-wrap: nowrap;margin: 12px 0 16px;color: #adadad;font-size: 12px;}
+.blog-content .blog-head .con-desc a{padding-right: 20px;}
 .blog-content .text-desc {font-size: 14px;color: #999999;border-left: 5px solid #E6E6E6;padding: 20px 0 20px 20px;margin: 20px;line-height: 30px;background-color: #f0f0f0;}
 .blog-content .text-desc a, .blog-content .text-desc span{color: #999999;}
 .blog-content .text-con{padding: 25px;}
@@ -211,7 +213,7 @@ body a{cursor: pointer;}
     /*border-top: 1px solid #e6e6e6;border-bottom: 1px solid #e6e6e6;border-right: 1px solid #e6e6e6;*/
 }
 .share{text-align: center;width: 100%;float: left;}
- .share ul{}
+.share ul{}
 .share ul li{width: 33.333%;float: left;}
 .share .qq {height: 50px;}
 .share .qq i{color: #00B7EE;font-size: 50px;line-height: 50px;}
@@ -225,8 +227,9 @@ body a{cursor: pointer;}
 #reply{float: left;width: 100%;}
 #reply .reply-con{padding:0 20px;}
 #reply .reply-con .userinfo{width: 100%;height: 40px;margin-bottom: 15px;}
-#reply .reply-con .userinfo .username{width: 200px;display: block;float: left;margin-right: 20px;}
-#reply .reply-con .userinfo .email{width: 200px;display: block;float: left;margin-right: 20px;}
+#reply .reply-con .userinfo input{background-color: #f2f2f2;border-width: 0;font-size: 12px;float: left}
+/*#reply .reply-con .userinfo .username{width: 200px;display: block;float: left;margin-right: 20px;}*/
+/*#reply .reply-con .userinfo .email{width: 200px;display: block;float: left;margin-right: 20px;}*/
 #reply .reply-con .text{margin-bottom: 15px;}
 #reply .reply-con .text textarea{border: 0;background-color: #f2f2f2;font-size: 12px;padding: 10px;border-radius: 2px;height: 36px;}
 #reply .reply-con .text button{background-color: #f2f2f2;color:#555555;line-height: 32px;font-size: 12px;height: 32px;}
@@ -238,9 +241,9 @@ body a{cursor: pointer;}
 /*图片覆盖特效*/
 .box{text-align: center;overflow: hidden;position: relative;background:#fff;background-size: cover;padding-bottom:60%;border:4px solid #adadad;}
 .box .box-content{position: absolute;bottom: 0;left: 0;height: 40px;width:100%;background: rgba(0,0,0,0.5);color:#ffffff;transition: height 0.5s;line-height: 40px;
--moz-transition: height 0.5s;	/* Firefox 4 */
--webkit-transition: height 0.5s;	/* Safari 和 Chrome */
--o-transition: height 0.5s;}
+    -moz-transition: height 0.5s;	/* Firefox 4 */
+    -webkit-transition: height 0.5s;	/* Safari 和 Chrome */
+    -o-transition: height 0.5s;}
 .box .picinfo{position: absolute;top: 0;left: 0;width:100%;height:30px;display: none;font-size: 12px;background: rgba(0,0,0,0.5);transition: height 2s}
 .box .picdesc{position: absolute;top: 5px;left: 5px;color:white;}
 .box .piccomment{position: absolute;top: 5px;right: 5px;color:white;}
@@ -260,14 +263,14 @@ body a{cursor: pointer;}
 .pic-function ul li button {width: 100%;padding: 4px;border-width: 0;color: white!important;background-color: black;opacity: 1;}
 
 /*友情链接*/
-.linkweb {color:#999999;margin-bottom: 20px;margin-top: -10px;}
+.linkweb {background-color: white;float: left;font-size: 12px;padding: 15px 15px 0 15px;}
 .linkweb ul{margin-left:-2%;}
-.linkweb ul li{background-color:white;float: left;margin-top: 20px;margin-left:2%;width: 23%;}
-.linkweb ul li:hover{box-shadow: 2px 5px 14px #c5c5c5;transform: translate3d(0,-2px,0);-webkit-transform: translate3d(0,-3px,0);}
-.linkweb ul li a{font-size: 12px;padding: 15px;width: 90%;line-height: 16px;display: block}
-.linkweb ul li h3{height: 40px;line-height: 40px;overflow: hidden;color: #202020;}
-.linkweb ul li p{margin-top: 10px;height: 80px;overflow: hidden;font-size: 12px;color: #999999;}
-.linkweb ul li img{height: 40px;width: 40px;border-radius: 50%;float: left; margin-right: 15px;}
+.linkweb ul li{float: left;width: 23%;margin-left:2%;background-color: #ffffff;margin-bottom: 15px;box-shadow: 2px 5px 14px #c5c5c5}
+.linkweb ul li a{width: 90%;padding: 5%;float: left;}
+.linkweb ul li a img{height: 40px;width: 40px;border-radius: 50%;float: left;margin:0 10px 10px 0;}
+.linkweb ul li a h3{height: 40px;line-height: 40px;float: left;overflow: hidden;font-size: 14px;font-weight: bold;}
+.linkweb ul li a p{height: 100px;width: 100%;overflow: hidden;padding-top: 10px;font-size: 13px;line-height: 20px;color: #999999;letter-spacing:0.5px;}
+.linkweb ul li:hover{transform: translate3d(0,-2px,0);-webkit-transform: translate3d(0,-3px,0);}
 .linkdesc{color: #999999;}
 .linkdesc p{line-height: 40px;}
 
@@ -278,8 +281,9 @@ body a{cursor: pointer;}
 
 /*#自定义*/
 .blog-elem-quote{ margin:20px 0 10px 0;padding: 15px;border-left: 5px solid #009688;border-radius: 0 2px 2px 0;background-color:#f0f3f9;}
-.content-sapce-15{padding-top: 20px;}
-.Tophead{margin-top: 60px;}
+.content-sapce-15{margin:0 -7.5px -15px -7.5px }
+.content-sapce-15>*{padding:0 7.5px 15px 7.5px }
+.Tophead{margin-top: 75px!important;}
 
 
 /*#留言*/

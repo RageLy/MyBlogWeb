@@ -173,10 +173,11 @@ def imgtypes(request,type):
 def commentdata(request):
     username=request.POST.get('username')
     email = request.POST.get('email')
+    website = request.POST.get('website')
     blogid=request.POST.get('blogid')
     commentContent = request.POST.get('commentContent')
     device=request.POST.get('device')
-    comment=models.Comment(blog_id=blogid,username=username,email=email,commentContent=commentContent,createdate=datetime.datetime.now(),device=device,likeNum=0,userpic='/static/common/imgs/userheadlib/userhead.png')
+    comment=models.Comment(blog_id=blogid,username=username,website=website,email=email,commentContent=commentContent,createdate=datetime.datetime.now(),device=device,likeNum=0,userpic='static/common/imgs/userheadlib/userhead.png')
     comment.save()
     return JsonResponse({'message':0})
 
