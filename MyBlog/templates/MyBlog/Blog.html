@@ -6,12 +6,27 @@
 {% block head %}
     <link rel="stylesheet" href="{% static 'common/css/iconfont.css' %}">
 {% endblock %}
+{% block nav %}
+    <div class="nav layui-nav">
+        <div class="item">
+            <a href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
+            <ul class="">
+                <li class="layui-nav-item layui-this"><a href="../blog">博客</a></li>
+                {#            <li class="layui-nav-item"><a href="../picture">相册</a></li>#}
+                <li class="layui-nav-item"><a href="../weblink">友情链接</a></li>
+                <li class="layui-nav-item"><a href="../archive">归档</a></li>
+                <li class="layui-nav-item"><a href="../message">留言</a></li>
+                <li class="layui-nav-item"><a href="../about">关于</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
 {% block container %}
     <div class="layui-col-md9">
         <div class="content" id="flow">
         </div>
     </div>
-    <div class="layui-col-md3" >
+    <div id="right" class="layui-col-md3" >
         <div class="content-sapce-15">
             <div class="layui-col-md12 ">
                 <div class="layui-card webinfo">
@@ -68,4 +83,45 @@
 {% block script %}
     <script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static '/lib/LoadBlog.js' %}" data-id="type={{ type }}&method={{ method }}"></script>
+{#    <script type="text/javascript">#}
+{#        $(document).ready(function(){#}
+{#            //获取nav距离顶部的距离#}
+{#            var navtop=$("#right").offset().top;#}
+{#            var navleft=$("#right").offset().left;#}
+{#            var rightpx=navleft+'px'#}
+{#            console.log(navtop)#}
+{#            console.log(navleft)#}
+{#            $(document).scroll(function(){#}
+{#                //获取滚动条滚动的高度#}
+{#                var scroltop=$(document).scrollTop();#}
+{#                if (scroltop > navtop){#}
+{#                    $("#right").css({#}
+{#                        "position":"fixed",#}
+{#                        "left":rightpx,#}
+{#                        "top":"75px",#}
+                        {#"width":"100%"#}
+{#                    })#}
+{#                }else {#}
+{#                    $("#right").css({#}
+{#                        "position":"",#}
+{#                        "left":"",#}
+{#                        "top":"",#}
+{#                    })#}
+{#                }#}
+{#            })#}
+{#            $(window).resize(function() {#}
+{#                console.log('窗体改变了')#}
+{#                var navtop=$("#right").offset().top;#}
+{#                var navleft=$("#right").offset().left;#}
+{#                var rightpx=navleft+'px'#}
+{#                console.log('距离顶部高度：',navtop)#}
+{#                console.log(navleft)#}
+{#                    $("#right").css({#}
+{#                        "left":rightpx,#}
+{#                        "top":"75px",#}
+{#                    })#}
+{#            });#}
+{#        })#}
+{#    </script>#}
+
 {% endblock %}

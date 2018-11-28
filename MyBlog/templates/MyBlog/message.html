@@ -1,8 +1,7 @@
 {% extends 'MyBlog/base.html' %}
 {% load static %}
-
 {% block title%}
-    <title>欢迎留言</title>
+    <title>花花与风-欢迎留言</title>
 {% endblock %}
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{% static 'waterfall/css/waterfall.css' %}">
@@ -16,6 +15,21 @@
     <!--这个插件只是为了扩展jquery的animate函数动态效果可有可无-->
     <script type="text/javascript" src="{% static 'waterfall/js/jQeasing.js' %}"></script>
 {% endblock %}
+{% block nav %}
+<div class="nav layui-nav">
+    <div class="item">
+        <a href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
+        <ul class="">
+            <li class="layui-nav-item"><a href="../blog">博客</a></li>
+{#            <li class="layui-nav-item"><a href="../picture">相册</a></li>#}
+            <li class="layui-nav-item"><a href="../weblink">友情链接</a></li>
+            <li class="layui-nav-item"><a href="../archive">归档</a></li>
+            <li class="layui-nav-item  layui-this"><a href="../message">留言</a></li>
+            <li class="layui-nav-item"><a href="../about">关于</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
 {% block fluid %}
         <div class="message-head Tophead">
             <div class="tips">
@@ -28,7 +42,7 @@
 {% endblock %}
 {% block container %}
 
-    <div class="layui-col-md12">
+    <div class="layui-col-md12 Bottomhead">
         <div class="layui-card">
             <div class="layui-card-body">
                 <form class="layui-form message-con" method="post">

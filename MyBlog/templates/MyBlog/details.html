@@ -1,11 +1,30 @@
 {% extends 'MyBlog/base.html' %}
 {% load static %}
 {% block title%}
-    <title>花花与风的博客-{{ Blog.title }}</title>
+    <title>花花与风-{{ Blog.title }}</title>
+{% endblock %}
+{% block head %}
+    <script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="http://www.jq22.com/demo/share201709090147/js/jsmodern-1.1.1.min.js"></script>
+{% endblock %}
+{% block nav %}
+<div class="nav layui-nav">
+    <div class="item">
+        <a href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
+        <ul class="">
+            <li class="layui-nav-item layui-this"><a href="../blog">博客</a></li>
+{#            <li class="layui-nav-item"><a href="../picture">相册</a></li>#}
+            <li class="layui-nav-item"><a href="../weblink">友情链接</a></li>
+            <li class="layui-nav-item"><a href="../archive">归档</a></li>
+            <li class="layui-nav-item"><a href="../message">留言</a></li>
+            <li class="layui-nav-item"><a href="../about">关于</a></li>
+        </ul>
+    </div>
+</div>
 {% endblock %}
 {% block container %}
     <div class="layui-col-md9">
-        <div class="layui-card" style="float: left;">
+        <div class="layui-card">
             <div class="layui-card-body">
                 <div class="blog-content ">
                     <div class="blog-head">
@@ -15,6 +34,7 @@
                         <div class="con-desc">
                             <a>创建日期：{{ Blog.createdate|date:"Y-m-d H:i:s" }}</a>
                             <a>发布者：{{ Blog.author }}</a>
+                            <a>点击量：{{ Blog.hit }}</a>
                         </div>
                     </div>
                     <div class="text-con">
@@ -44,124 +64,135 @@
                         </div>
 
                     </div>
-                    <div class="comment-content">
-                        <h2>分享一下</h2>
-                    </div>
-                    <div class="share">
-
-                        <ul>
-                            <li class="qq"> <a href="mailto:heming_wei@126.com"><i class="layui-icon layui-icon-login-qq"></i></a></li>
-                            <li class="wechat"> <i class="layui-icon layui-icon-login-wechat"></i></li>
-                            <li class="weibo"> <a href="https://weibo.com/mingtianya"><i class="layui-icon layui-icon-login-weibo"></i></a></li>
-                        </ul>
-
-                    </div>
-                    <div class="comment-content">
-                        <h2>评论</h2>
-                    </div>
-                    <div id="reply" >
-                        <div class="reply-con">
-                            <form class="layui-form">
-                                {% csrf_token %}
-                                <div class="userinfo layui-form-item">
-                                    <div class="layui-inline">
-                                        <div class="layui-input-inline input-icon">
-                                            <input type="tel" id="username" lay-verify="" autocomplete="off" class="layui-input username" placeholder="昵称（必填）">
-                                        </div>
-                                    </div>
-                                    <div class="layui-inline">
-
-                                        <div class="layui-input-inline input-icon">
-                                            <input type="text" id="email" lay-verify="" autocomplete="off" class="layui-input email" placeholder="邮箱（必填）">
-                                        </div>
-                                    </div>
-                                    <div class="layui-inline">
-                                        <div class="layui-input-inline input-icon">
-                                            <input type="text" id="website" lay-verify="" autocomplete="off" class="layui-input website" placeholder="站点">
-                                        </div>
-                                    </div></div>
-                                <div class="text">
-                                    <textarea id="commentContent"  placeholder="请输入内容" class="layui-textarea"></textarea>
-                                </div>
-                                <div class="text">
-                                    <button class="layui-btn"  type="button" id="sb-btn">发表</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    {% if Blog.comment_set.all %}
-                        <div class="message-content" >
-                            <div class="comment-content">
-                                <h2>{{ Blog.comment_set.count }}条评论</h2>
-                            </div>
-{#                            {% for comment in Blog.comment_set.all %}#}
-{#                                <div class="media-body">#}
-{#                                    <div class="media-left">#}
-{#                                        <img src="../{{ comment.userpic }}">#}
-{#                                    </div>#}
-{#                                    <div class="pad-btm">#}
-{#                                        <p class="fontColor"><a>{{ comment.username }}</a></p>#}
-{#                                        <div class="min-font">#}
-{#                                          <span class="layui-breadcrumb" lay-separator="-">#}
-{#                                            <a class="layui-icon layui-icon-cellphone"></a>#}
-{#                                            <a>{{ comment.device }}</a>#}
-{#                                            <a class="time" datetime="{{ comment.createdate|date:"Y-m-d H:i:s" }}"></a>#}
-{#                                          </span>#}
-{#                                        </div>#}
-{#                                        <p class="message-text">{{ comment.commentContent }}</p>#}
-{#                                    </div>#}
-{#                                    <div class="reply-text">#}
-{#                                        {% if comment.reply_set.all %}#}
-{#                                            <div class="reply-container">#}
-{#                                                {% for reply in comment.reply_set.all %}#}
-{#                                                    <div class="box-reply">#}
-{#                                                        <div class="title">#}
-{#                                                            <img src="{% static 'common/imgs/userhead.png' %}">#}
-{#                                                            <p>{{ reply.user.username }}</p>#}
-{#                                                        </div>#}
-{#                                                        <div class="brower">四川.成都  Windows 10  Chrome|65</div>#}
-{#                                                        <div class="replyContent"><p>{{ reply.replyContent }}</p></div>#}
-{#                                                        <div class="other">#}
-{#                                                            <div class="like">#}
-{#                                                                <button class="layui-btn" id="replylike{{ reply.id }}"><i class="layui-icon">&#xe6c6;</i></button>#}
-{#                                                                <span class="layui-btn"><p class="replylikecon{{ reply.id }}">{{ reply.likeNum }}</p></span>#}
-{#                                                            </div>#}
-{#                                                            <div lay-separator="-" class="reply-date">#}
-{#                                                                <a class="replytime" datetime="{{ reply.createdate|date:"Y-m-d H:i:s" }}"></a>#}
-{#                                                            </div>#}
-{#                                                        </div>#}
-{#                                                    </div>#}
-{#                                                {% endfor %}#}
-{#                                            </div>#}
-{#                                        {% endif %}#}
-{#                                    </div>#}
-{#                                    <div class="reply-comment">#}
-{#                                        <div class="like">#}
-{#                                            <button class="layui-btn" id="like{{ comment.id }}"><i class="layui-icon">&#xe6c6;</i></button>#}
-{#                                            <button class="layui-btn"><p class="likecon{{ comment.id }}">{{ comment.likeNum }}</p></button>#}
-{#                                        </div>#}
-{#                                        <div class="reply-btn">#}
-{#                                            <button class="layui-btn"><i class="layui-icon">&#xe611;</i></button>#}
-{#                                            <button class="layui-btn" id='replylabel{{ comment.id }}'>回复</button>#}
-{#                                        </div>#}
-{##}
-{#                                    </div>#}
-{#                                    <form  id="formyz">#}
-{#                                        {% csrf_token %}#}
-{#                                        <div class="reply-to-text" id="reply{{ comment.id }}" style="display: none">#}
-{#                                            <div class="text">#}
-{#                                                <textarea class="reply-box-textarea" id="replyContent{{ comment.id }}"></textarea>#}
-{#                                            </div>#}
-{#                                            <div class="replybtn"><button class="layui-btn" id="replybtn{{ comment.id }}" type="button" >回复</button></div>#}
-{#                                        </div>#}
-{#                                    </form>#}
-{#                                </div>#}
-{#                            {% endfor %}#}
-                        </div>
-                    {% endif %}
                 </div>
             </div>
         </div>
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="comment-content">
+                    <div class="font-border"><h2>分享一下</h2></div>
+                </div>
+                <div class="share">
+                    <ul>
+                        <li class="qq" id="share-qq"> <i class="layui-icon layui-icon-login-qq"></i></li>
+                        <li class="wechat"> <a href="#" class="bds_weixin" data-cmd="weixin"><i class="layui-icon layui-icon-login-wechat"></i></li></a>
+                        <li class="weibo"> <a href="#" class="bds_tsina" data-cmd="tsina"><i class="layui-icon layui-icon-login-weibo"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="comment-content">
+                    <div class="font-border"><h2>评论</h2></div>
+                </div>
+                <div id="reply" >
+                    <div class="reply-con">
+                        <form class="layui-form">
+                            {% csrf_token %}
+                            <div class="userinfo">
+                                <div class="input-icon">
+                                    <div class="input-inline">
+                                        <input type="tel" id="username" lay-verify="" autocomplete="off" class="username" placeholder="昵称（必填）">
+                                    </div>
+                                </div>
+                                <div class="input-icon">
+                                    <div class="input-inline">
+                                        <input type="text" id="email" lay-verify="" autocomplete="off" class="email" placeholder="邮箱（必填）">
+                                    </div>
+                                </div>
+                                <div class="input-icon">
+                                    <div class="input-inline">
+                                        <input type="text" id="website" lay-verify="" autocomplete="off" class="website" placeholder="站点">
+                                    </div>
+                                </div></div>
+                            <div class="text">
+                                <textarea id="commentContent"  placeholder="请输入内容" class="layui-textarea"></textarea>
+                            </div>
+                            <div class="text">
+                                <button class="layui-btn"  type="button" id="sb-btn">发表</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if Blog.comment_set.all %}
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="message-content" >
+                        <div class="comment-content">
+                            <div class="font-border"><h2>{{ Blog.comment_set.count }}条评论</h2></div>
+                        </div>
+                        {% for comment in Blog.comment_set.all %}
+                            <div class="media-body">
+                                <div class="media-left">
+                                    <img src="../{{ comment.userpic }}">
+                                </div>
+                                <div class="pad-btm">
+                                    <p class="fontColor"><a>{{ comment.username }}</a></p>
+                                    <div class="min-font">
+                                                                  <span class="layui-breadcrumb" lay-separator="-">
+                                                                    <a class="layui-icon layui-icon-cellphone"></a>
+                                                                    <a>{{ comment.device }}</a>
+                                                                    <a class="time" datetime="{{ comment.createdate|date:"Y-m-d H:i:s" }}"></a>
+                                                                  </span>
+                                    </div>
+                                    <p class="message-text">{{ comment.commentContent }}</p>
+                                </div>
+                                <div class="reply-text">
+                                    {% if comment.reply_set.all %}
+                                        <div class="reply-container">
+                                            {% for reply in comment.reply_set.all %}
+                                                <div class="box-reply">
+                                                    <div class="title">
+                                                        <img src="{% static 'common/imgs/userhead.png' %}">
+                                                        <p>{{ reply.user.username }}</p>
+                                                    </div>
+                                                    <div class="brower">四川.成都  Windows 10  Chrome|65</div>
+                                                    <div class="replyContent"><p>{{ reply.replyContent }}</p></div>
+                                                    <div class="other">
+                                                        <div class="like">
+                                                            <button class="layui-btn" id="replylike{{ reply.id }}"><i class="layui-icon">&#xe6c6;</i></button>
+                                                            <span class="layui-btn"><p class="replylikecon{{ reply.id }}">{{ reply.likeNum }}</p></span>
+                                                        </div>
+                                                        <div lay-separator="-" class="reply-date">
+                                                            <a class="replytime" datetime="{{ reply.createdate|date:"Y-m-d H:i:s" }}"></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="reply-comment">
+                                    <div class="like">
+                                        <button class="layui-btn" id="like{{ comment.id }}"><i class="layui-icon">&#xe6c6;</i></button>
+                                        <button class="layui-btn"><p class="likecon{{ comment.id }}">{{ comment.likeNum }}</p></button>
+                                    </div>
+                                    <div class="reply-btn">
+                                        <button class="layui-btn"><i class="layui-icon">&#xe611;</i></button>
+                                        <button class="layui-btn" id='replylabel{{ comment.id }}'>回复</button>
+                                    </div>
+
+                                </div>
+                                <form  id="formyz">
+                                    {% csrf_token %}
+                                    <div class="reply-to-text" id="reply{{ comment.id }}" style="display: none">
+                                        <div class="text">
+                                            <textarea class="reply-box-textarea" id="replyContent{{ comment.id }}"></textarea>
+                                        </div>
+                                        <div class="replybtn"><button class="layui-btn" id="replybtn{{ comment.id }}" type="button" >回复</button></div>
+                                    </div>
+                                </form>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
     </div>
     <div class="layui-col-md3" >
         <div class="content-sapce-15">
@@ -216,13 +247,15 @@
                         {% endif %}
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
 {% endblock %}
 {% block script %}
     <script src="{% static '/common/js/jquery.timeago.js' %}" ></script>
-    <script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
+
+    <script src="{% static 'common/js/fixedscroll.js' %}"></script>
     <script>
         $("#urlinfo").html(window.location.href)
         $("#urlinfo").attr('href',window.location.href)
@@ -232,6 +265,115 @@
         timeagoInstance.render(document.querySelectorAll('.replytime'),'zh_CN');
 
     </script>
+    <script>
+       jsModern.share({
+			    qrcode: "#share-qrcode",
+			    douban: "#share-douban",
+			    qzone: "#share-qzone",
+			    sina: "#share-sina",
+			    qq: "#share-qq"
+			});
+    </script>
+    <script type="text/javascript">
+        $(function(){
+            {#initData();#}
+        });
+
+        //加载初始化数据
+        function initData(){
+            $.ajax({
+                type:'GET',
+                dataType: "json",
+                url:"../../loadcommentdata/",
+                data:{
+                    'blogid':{{ Blog.id }},
+                },
+                success:function(result){
+                    {#alert("加载数据");#}
+                    if(result.code=="0"){
+                        console.log(result);
+                        {#alert(res.msg);#}
+                        {#var info = result.data;#}
+                        $.each(result.data, function (i, item) {
+                            var vfields = item;  //这里不定义也行，在下面的调用中直接使用item，请忽略我不规范的缩进
+                            var str=" <div class=\"media-body\">\n" +
+                                "                                    <div class=\"media-left\">\n" +
+                                "                                        <img src=\"../"+ vfields.userpic+" \">\n" +
+                                "                                    </div>\n" +
+                                "                                    <div class=\"pad-btm\">\n" +
+                                "                                        <p class=\"fontColor\"><a>"+ vfields.username +"</a></p>\n" +
+                                "                                        <div class=\"min-font\">\n" +
+                                "                                          <span class=\"layui-breadcrumb\" lay-separator=\"-\">\n" +
+                                "                                            <a class=\"layui-icon layui-icon-cellphone\"></a>\n" +
+                                "                                            <a>"+ vfields.device +"</a>\n" +
+                                "                                            <a class=\"time\" datetime=\""+ vfields.createdate+"\"></a>\n" +
+                                "                                          </span>\n" +
+                                "                                        </div>\n" +
+                                "                                        <p class=\"message-text\">"+ vfields.commentContent +"</p>\n" +
+                                "                                    </div>\n" +
+                                "                                    <div class=\"reply-text\">\n" +
+                                "                                    </div>\n" +
+                                "                                    <div class=\"reply-comment\">\n" +
+                                "                                        <div class=\"like\">\n" +
+                                "                                            <button class=\"layui-btn\" id=\"like"+ vfields.id +"\"><i class=\"layui-icon\">&#xe6c6;</i></button>\n" +
+                                "                                            <button class=\"layui-btn\"><p class=\"likecon"+ vfields.id +"\">"+ vfields.likeNum +"</p></button>\n" +
+                                "                                        </div>\n" +
+                                "                                        <div class=\"reply-btn\">\n" +
+                                "                                            <button class=\"layui-btn\"><i class=\"layui-icon\">&#xe611;</i></button>\n" +
+                                "                                            <button class=\"layui-btn\" id='replylabel"+ vfields.id +"'>回复</button>\n" +
+                                "                                        </div>\n" +
+                                "\n" +
+                                "                                    </div>\n" +
+                                "                                    <form  id=\"formyz\">\n" +
+                                {#"                                        {% csrf_token %}\n" +#}
+                                "                                        <div class=\"reply-to-text\" id=\"reply"+ vfields.id +"\" style=\"display: none\">\n" +
+                                "                                            <div class=\"text\">\n" +
+                                "                                                <textarea class=\"reply-box-textarea\" id=\"replyContent"+ vfields.id +"\"></textarea>\n" +
+                                "                                            </div>\n" +
+                                "                                            <div class=\"replybtn\"><button class=\"layui-btn\" id=\"replybtn"+ vfields.id +"\" type=\"button\" >回复</button></div>\n" +
+                                "                                        </div>\n" +
+                                "                                    </form>\n" +
+                                "                                </div>"
+                            var javascriptexec=$(str);
+                            $(".message-content").append(javascriptexec);
+                            $(javascriptexec).find("[id^=replylike]").click(function(){
+                                replyid=$(this).attr("id").split("replylike")[1]
+                                $.ajax({
+                                    type:"POST",
+                                    data: {'replyid':replyid,'csrfmiddlewaretoken':$("[name='csrfmiddlewaretoken']").val()},
+                                    url: "{% url 'MyBlog:replylike' %}", //后台处理函数的url
+                                    cache: false,
+                                    async : false,
+                                    success: function(result){
+                                        console.log(result.message)
+                                        if(result.message="0")
+                                        {
+                                            console.log(result.message)
+                                            layer.msg('点赞成功',{time:0.5*1000})
+                                            var replylikecon='replylikecon'+commentid
+                                            $("."+replylikecon).html(result.replylike)
+                                            console.log(result.replylike,$("."+replylikecon).html())
+                                        }
+                                    },
+                                    error: function(){
+                                        layer.msg('传输格式有误，请检查')
+                                    }
+                                });
+                            })
+                            console.log(javascriptexec)
+
+
+                        });
+                    }else{
+                        alert("数据错误！请联系管理员");
+                    }
+                },
+                error:function(){
+                    alert("发生错误");
+                }
+            });
+        }
+    </script>
     <script type="text/javascript">
 
         layui.use('layer', function(){
@@ -240,15 +382,15 @@
             $("#sb-btn").click(function(){
                 if($("#username").val()=="")
                 {
-                    layer.msg('你的昵称呢!',{time:0.5*1000})
+                    layer.msg('请输入昵称',{time:0.5*1000})
                 }
                 else if($("#email").val()=="")
                 {
-                    layer.msg('邮箱必填!',{time:0.5*1000})
+                    layer.msg('邮箱必填',{time:0.5*1000})
                 }
                 else if($("#commentContent").val()=="")
                 {
-                    layer.msg('评论不能为空!',{time:0.5*1000})
+                    layer.msg('评论不能为空',{time:0.5*1000})
                 }
                 else
                 {
@@ -265,7 +407,7 @@
                                 {#console.log(result.message)#}
                                 layer.msg('评论成功!',{time:0.5*1000})
                                 {#location.reload()#}
-                                    console.log(result.data)
+                                console.log(result.data)
                                 $.each(result.data, function (i, item) {
                                     var vfields = item;  //这里不定义也行，在下面的调用中直接使用item，请忽略我不规范的缩进
                                     $(".message-content").append(" <div class=\"media-body\">\n" +
@@ -355,30 +497,7 @@
                 }
             })
 
-            $("[id^=like]").click(function(){
-                commentid=$(this).attr("id").split("like")[1]
-                $.ajax({
-                    type:"POST",
-                    data: {'commentid':commentid,'csrfmiddlewaretoken':$("[name='csrfmiddlewaretoken']").val()},
-                    url: "{% url 'MyBlog:like' %}", //后台处理函数的url
-                    cache: false,
-                    async : false,
-                    success: function(result){
-                        console.log(result.message)
-                        if(result.message="0")
-                        {
-                            console.log(result.message)
-                            layer.msg('点赞成功',{time:0.5*1000})
-                            var likecon='likecon'+commentid
-                            $("."+likecon).html(result.like)
-                            console.log(result.like,$("."+likecon).html())
-                        }
-                    },
-                    error: function(){
-                        layer.msg('传输格式有误，请检查')
-                    }
-                });
-            })
+
             $("[id^=replylike]").click(function(){
                 replyid=$(this).attr("id").split("replylike")[1]
                 $.ajax({

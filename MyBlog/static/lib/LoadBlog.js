@@ -27,6 +27,22 @@ Date.prototype.Format = function (formatStr) {
     str = str.replace(/s|S/g, this.getSeconds());
     return str;
 }
+
+function getRootPath() {
+//获得根目录
+
+    var strFullPath = window.document.location.href;
+
+    var strPath = window.document.location.pathname;
+
+    var pos = strFullPath.indexOf(strPath);
+
+    var prePath = strFullPath.substring(0, pos);
+
+    var postPath = strPath.substring(0, strPath.substr(1).indexOf('/') + 1);
+
+    return (prePath + postPath);
+}
 layui.use('flow', function(){
     var flow = layui.flow;
     flow.load({
@@ -75,6 +91,11 @@ layui.use('flow', function(){
                             console.log(lis)
                         });
                         next(lis.join(''), page*2 < res.count); //假设总页数为 6
+                        // var link = document.createElement("link");
+                        // link.rel = "stylesheet";
+                        // link.type = "text/css";
+                        // link.href = getRootPath()+"/../static/common/css/blog.css";
+                        // document.getElementsByTagName("head")[0].appendChild(link);
                     });
             }, 500);
         }

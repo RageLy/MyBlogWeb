@@ -26,6 +26,8 @@ body a{cursor: pointer;}
 .content   .item .header .title a.active,.content  .title a:hover{color: #000000!important;}
 .content   .item .header .category{float: right;}
 .content   .item .header .category a{color:#999999!important;border: 1px solid #f0f0f0;padding: 5px 10px;}
+/*.content   .item .header .category:hover{background-color: #0C0C0C;}*/
+.content   .item .header .category:hover .content   .item .header .category a{background-color: #0C0C0C;color:#ffffff!important;}
 .content   .item{overflow: hidden;padding: 20px 20px 0 20px;}
 .content   .item .img{float: left;}
 .content   .item .img img{height: 160px;width: 240px;}
@@ -104,9 +106,9 @@ body a{cursor: pointer;}
     .header .header-down-nav .layui-nav-item a{padding:0 40px;}
     .header .header-down-nav li {display: block;}
     .header .header-down-nav li a{font-size: 16px;}}
-/**, :after, :before {*/
-/*box-sizing: border-box;*/
-/*}*/
+
+/*#right{position: fixed;top:0;left: 1260.25px;}*/
+
 .layui-icon,.iconfont{font-weight: normal!important;}
 
 /*.layui-card-body ul li{font-size: 13px;color: #545556;line-height: 26px;}*/
@@ -162,12 +164,13 @@ body a{cursor: pointer;}
 .blog-content .text-desc {font-size: 14px;color: #999999;border-left: 5px solid #E6E6E6;padding: 20px 0 20px 20px;margin: 20px;line-height: 30px;background-color: #f0f0f0;}
 .blog-content .text-desc a, .blog-content .text-desc span{color: #999999;}
 .blog-content .text-con{padding: 25px;}
+/*.blog-content .text-con img{width: 100%;}*/
 
 
 /*回复列表*/
 .space-message{}
 /*.space-message p{ padding-bottom: 10px;}*/
-.message-content {float:left;margin-bottom: 20px;width: 100%;}
+.message-content {margin-bottom: 20px;width: 100%;}
 
 .message-content .media-body{margin-bottom: 20px;padding: 0 20px 20px 20px;border-bottom: 1px dashed #e6e6e6;}
 /*左侧头像*/
@@ -208,12 +211,14 @@ body a{cursor: pointer;}
 .message-content .reply-to-text .replybtn .layui-btn{font-size: 20px;}
 
 /*评论标题*/
-.comment-content {width: 100%;margin: 25px 0;float: left;}
-.comment-content h2{font-size: 16px;font-weight: bolder;margin: 0 20px!important;padding: 10px 0;color:#999999;letter-spacing:2px
-    /*border-top: 1px solid #e6e6e6;border-bottom: 1px solid #e6e6e6;border-right: 1px solid #e6e6e6;*/
+.comment-content {width: 100%;margin: 15px 0;}
+.comment-content .font-border{margin: 0 20px!important;padding: 10px 0;line-height: 18px;
 }
-.share{text-align: center;width: 100%;float: left;}
-.share ul{}
+.comment-content .font-border h2{font-size: 16px;font-weight: bolder;letter-spacing:2px;color:#999999;
+    border-left: 3px solid #999999;padding:0 10px;
+}
+.share{text-align: center;width: 100%;}
+.share ul{height: 100px;}
 .share ul li{width: 33.333%;float: left;}
 .share .qq {height: 50px;}
 .share .qq i{color: #00B7EE;font-size: 50px;line-height: 50px;}
@@ -223,19 +228,19 @@ body a{cursor: pointer;}
 .share .weibo {height: 50px;}
 .share .weibo i{color: #e6162d;font-size: 50px;line-height: 50px;}
 
+
 /*发表评论*/
-#reply{float: left;width: 100%;}
+#reply{width: 100%;}
 #reply .reply-con{padding:0 20px;}
-#reply .reply-con .userinfo{width: 100%;height: 40px;margin-bottom: 15px;}
-#reply .reply-con .userinfo input{background-color: #f2f2f2;border-width: 0;font-size: 12px;float: left}
+#reply .reply-con .userinfo{height: 36px;margin-bottom: 15px;margin-left:-3.33333%}
+#reply .reply-con .userinfo .input-icon{width: 30%;float: left;margin-left:3.33333%}
+#reply .reply-con .userinfo .input-inline{padding: 7px;background-color: #f2f2f2;height: 22px;line-height: 22px;}
+#reply .reply-con .userinfo .input-icon .input-inline input{border-width: 0;background-color: #f2f2f2;font-size: 12px;width: 100%;height: 22px;}
 /*#reply .reply-con .userinfo .username{width: 200px;display: block;float: left;margin-right: 20px;}*/
 /*#reply .reply-con .userinfo .email{width: 200px;display: block;float: left;margin-right: 20px;}*/
 #reply .reply-con .text{margin-bottom: 15px;}
 #reply .reply-con .text textarea{border: 0;background-color: #f2f2f2;font-size: 12px;padding: 10px;border-radius: 2px;height: 36px;}
 #reply .reply-con .text button{background-color: #f2f2f2;color:#555555;line-height: 32px;font-size: 12px;height: 32px;}
-
-
-
 
 /*图片模块*/
 /*图片覆盖特效*/
@@ -284,6 +289,7 @@ body a{cursor: pointer;}
 .content-sapce-15{margin:0 -7.5px -15px -7.5px }
 .content-sapce-15>*{padding:0 7.5px 15px 7.5px }
 .Tophead{margin-top: 75px!important;}
+.Bottomhead{margin-top: -75px!important;}
 
 
 /*#留言*/

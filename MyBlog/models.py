@@ -2,6 +2,7 @@ from django.db import connection, models
 from django.db.models.fields.files import ImageFieldFile
 from PIL import Image
 from MyBlogWeb.settings import MEDIA_ROOT
+from MyBlog import BaseModel
 import os, datetime, uuid
 import re
 
@@ -27,6 +28,8 @@ class Blog(models.Model):
     isorg = models.IntegerField(db_column='isorg', blank=True, null=True)
     type = models.IntegerField(db_column='Type',blank=True, null=True)
     imgTitle = models.CharField(db_column='imgTitle', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    Category = models.CharField(db_column='Category', max_length=50, blank=True,
+                                null=True)  # Field name made lowercase.
     blog_blogtype = models.ManyToManyField(to="BlogType",
                                      through="BlogTypeRelation",
                                      through_fields=("Blog", "BlogType"))
@@ -43,9 +46,28 @@ class Blog(models.Model):
             return '{0}...'.format(dd[0:499])
         else:
             return '{0}...'.format(dd)
-    # contentpart.allow
-    # def gettop10(self):
 
+
+    def to_dict(self, fields=None, exclude=None):
+        data = {}
+        for f in self._meta.concrete_fields + self._meta.many_to_many:
+            value = f.value_from_object(self)
+
+            if fields and f.name not in fields:
+                continue
+
+            if exclude and f.name in exclude:
+                continue
+
+            if isinstance(f, models.ManyToManyField):
+                value = [i.id for i in value] if self.pk else None
+
+            if isinstance(f, models.DateTimeField):
+                value = value.strftime('%Y-%m-%d %H:%M:%S') if value else None
+
+            data[f.name] = value
+
+        return data
 
     class Meta:
         managed = False

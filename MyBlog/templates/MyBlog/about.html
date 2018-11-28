@@ -9,16 +9,31 @@
 	<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
 {% endblock %}
 {% block title%}
-    <title>关于我</title>
+    <title>花花与风-关于我</title>
+{% endblock %}
+{% block nav %}
+<div class="nav layui-nav">
+    <div class="item">
+        <a href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
+        <ul class="">
+            <li class="layui-nav-item"><a href="../blog">博客</a></li>
+{#            <li class="layui-nav-item"><a href="../picture">相册</a></li>#}
+            <li class="layui-nav-item"><a href="../weblink">友情链接</a></li>
+            <li class="layui-nav-item"><a href="../archive">归档</a></li>
+            <li class="layui-nav-item"><a href="../message">留言</a></li>
+            <li class="layui-nav-item layui-this"><a href="../about">关于</a></li>
+        </ul>
+    </div>
+</div>
 {% endblock %}
 {% block fluid %}
-    <div class="about">
+    <div class="about Tophead">
         <div class="img"><img src="{% static 'common/imgs/userhead.png' %}"></div>
         <div class="con"><h3>每个人的成长都经历了无限的艰辛和挫折，唯有坚持到最后才能获得永久幸福</h3></div>
     </div>
 {% endblock %}
 {% block container %}
-    <div class="layui-col-md9">
+    <div class="layui-col-md9 Bottomhead">
         <div class="layui-card ">
             <div class="layui-card-body about-cont">
                 <h2 class="title">It's Me</h2>
@@ -53,7 +68,7 @@
             </div>
         </div>
     </div>
-    <div class="layui-col-md3">
+    <div class="layui-col-md3 Bottomhead">
         <div class="card github-follow">
             <div class="card-body">
                 <div class="status">

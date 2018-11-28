@@ -17,20 +17,8 @@
     {% endblock %}
 </head>
 <body>
-<div class="nav layui-nav">
-    <div class="item">
-        <a href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
-        <ul class="">
-            <li class="layui-nav-item layui-this"><a href="../blog">博客</a></li>
-{#            <li class="layui-nav-item"><a href="../picture">相册</a></li>#}
-            <li class="layui-nav-item"><a href="../weblink">友情链接</a></li>
-            <li class="layui-nav-item"><a href="../archive">归档</a></li>
-            <li class="layui-nav-item"><a href="../message">留言</a></li>
-            <li class="layui-nav-item"><a href="../about">关于</a></li>
-        </ul>
-    </div>
-</div>
-
+{% block nav %}
+{% endblock %}
 {% block fluid %}
 {% endblock %}
 <div class="layui-container Tophead">
@@ -103,25 +91,25 @@
     }).use(['util','element','menu','index'], function(){
          var $ = layui.$
     ,admin = layui.admin
-    ,element = layui.element;
+    {#,element = layui.element;#}
 
-    element.render('nav', 'component-nav');
-    element.render('nav', 'component-nav-active');
-
-    element.on('nav(component-nav-active)', function(elem){
-      layer.msg(elem.text());
-     });
-        $ = layui.$,menu = layui.menu;
+    {#element.render('nav', 'component-nav');#}
+    {#element.render('nav', 'component-nav-active');#}
+    {##}
+    {#element.on('nav(component-nav-active)', function(elem){#}
+    {#  layer.msg(elem.text());#}
+    {# });#}
+    {#    $ = layui.$,menu = layui.menu;#}
         var util = layui.util
-        menu.init();
+        {#menu.init();#}
         util.fixbar({
             css: {right: 50, bottom: 100}
             ,bgcolor: '#393D49'
         });
     });
-    $("li").click(function(){
-        $(this).siblings().removeClass("layui-this").addClass("layui-this");
-    })
+    {#$("li").click(function(){#}
+    {#    $(this).siblings().removeClass("layui-this").addClass("layui-this");#}
+    {# })#}
 </script>
 <script>
     {#$('li').click(function(){#}

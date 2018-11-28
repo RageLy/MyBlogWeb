@@ -42,7 +42,7 @@ def loadblog(request):
     # if request.method=='GET':
     type=request.GET.get('type')
     method=request.GET.get('method')
-    print('方法：',method)
+    print('方法:',method)
     if method=='0':
         Blog = models.Blog.objects.all()
     elif method=='1':
@@ -180,6 +180,12 @@ def commentdata(request):
     comment.save()
     commentNew=models.Comment.objects.filter(id=comment.id).values()
     return JsonResponse({'message':0,'data':list(commentNew)})
+
+def loadcommentdata(request):
+    blog_id=request.GET.get('blogid')
+    comment=models.Comment.objects.filter(blog_id=blog_id).order_by('-createdate').values()
+    print(list(comment))
+    return JsonResponse({'code':0,'msg':'success','data':list(comment)})
 
 def replydata(request):
     userid=request.POST.get('userid')
