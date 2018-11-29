@@ -27,6 +27,7 @@ urlpatterns = [
     path('imgtypes/<str:type>', views.imgtypes, name='imgtypes'),
     path('commentdata/', views.commentdata, name='commentdata'),
     path('loadcommentdata/', views.loadcommentdata, name='loadcommentdata'),
+    path('loadarchivedata/', views.loadarchivedata, name='loadarchivedata'),
     path('replydata/', views.replydata, name='replydata'),
     path('admin/Top/', views.Top, name='Top'),
     path('admin/upload_ajax/', views.upload_ajax, name='upload_ajax'),

@@ -2,7 +2,6 @@ from django.db import connection, models
 from django.db.models.fields.files import ImageFieldFile
 from PIL import Image
 from MyBlogWeb.settings import MEDIA_ROOT
-from MyBlog import BaseModel
 import os, datetime, uuid
 import re
 
@@ -28,7 +27,12 @@ class Blog(models.Model):
     isorg = models.IntegerField(db_column='isorg', blank=True, null=True)
     type = models.IntegerField(db_column='Type',blank=True, null=True)
     imgTitle = models.CharField(db_column='imgTitle', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    Category = models.CharField(db_column='Category', max_length=50, blank=True,
+    Category = models.CharField(db_column='Category', max_length=50, blank=True,null=True)  # Field name made lowercase.
+    year = models.CharField(db_column='year', max_length=4, blank=True,
+                                null=True)  # Field name made lowercase.
+    month = models.CharField(db_column='month', max_length=2, blank=True,
+                                null=True)  # Field name made lowercase.
+    day = models.CharField(db_column='day', max_length=2, blank=True,
                                 null=True)  # Field name made lowercase.
     blog_blogtype = models.ManyToManyField(to="BlogType",
                                      through="BlogTypeRelation",
@@ -295,6 +299,7 @@ class MessageTb(models.Model):
     MessageContent=models.TextField(db_column='MessageContent', blank=True, null=True)
     userid = models.CharField(db_column='userid', max_length=50, blank=True, null=True)
     username = models.CharField(db_column='username', max_length=50, blank=True, null=True)
+    userpic = models.CharField(db_column='userpic', max_length=50, blank=True, null=True)
     email = models.CharField(db_column='email', max_length=50, blank=True, null=True)
     website = models.CharField(db_column='website', max_length=50, blank=True, null=True)
     createdate=models.DateTimeField(db_column='createdate', blank=True, null=True)
@@ -309,6 +314,9 @@ class MessageTb(models.Model):
     class Meta:
         managed = False
         db_table = 'MessageTb'
+
+    def object_to_json(obj):
+        return dict([(kk, obj.__dict__[kk]) for kk in obj.__dict__.keys() if kk != "_state"])
 
 class Category(models.Model):
     id = models.AutoField(db_column='id', primary_key=True)

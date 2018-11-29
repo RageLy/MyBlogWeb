@@ -9,10 +9,6 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'common/css/blog.css' %}">
     <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}">
-{#    <link rel="stylesheet" href="{% static 'QPlayer/css/player.css' %}">#}
-{#    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>#}
-{#    <script src="{% static 'QPlayer/js/jquery.marquee.min.js' %}"></script>#}
-{#    <script type="application/javascript" src="{% static 'QPlayer/js/playlist.js' %}"></script>#}
     {% block head %}
     {% endblock %}
 </head>
@@ -39,7 +35,7 @@
                 <ul>
                     <li><a href="../">主页</a></li>
                     <li><a href="../blog/">博文</a></li>
-                    <li><a href="../picture/">相册</a></li>
+                    <li><a href="../message/">留言</a></li>
                     <li><a href="../about/">关于</a></li>
                 </ul>
             </div>
@@ -52,97 +48,20 @@
         </div>
     </div>
 </div>
-{#<div id="QPlayer">#}
-{#    <div id="pContent">#}
-{#        <div id="player">#}
-{#            <span class="cover"></span>#}
-{#            <div class="ctrl">#}
-{#                <div class="musicTag marquee">#}
-{#                    <strong>Title</strong>#}
-{#                    <span> - </span>#}
-{#                    <span class="artist">Artist</span>#}
-{#                </div>#}
-{#                <div class="progress">#}
-{#                    <div class="timer left">0:00</div>#}
-{#                    <div class="contr">#}
-{#                        <div class="rewind icon"></div>#}
-{#                        <div class="playback icon"></div>#}
-{#                        <div class="fastforward icon"></div>#}
-{#                    </div>#}
-{#                    <div class="right">#}
-{#                        <div class="liebiao icon"></div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#        <div class="ssBtn">#}
-{#            <div class="adf"></div>#}
-{#        </div>#}
-{#    </div>#}
-{#    <ol id="playlist"></ol>#}
-{#</div>#}
 <script src="{% static 'layui/layui.js' %}"></script>
-{#<script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>#}
 <script>
     layui.config({
         base: '{% static '/' %}'
     }).extend({
         index: 'lib/index'
-    }).use(['util','element','menu','index'], function(){
-         var $ = layui.$
-    ,admin = layui.admin
-    {#,element = layui.element;#}
-
-    {#element.render('nav', 'component-nav');#}
-    {#element.render('nav', 'component-nav-active');#}
-    {##}
-    {#element.on('nav(component-nav-active)', function(elem){#}
-    {#  layer.msg(elem.text());#}
-    {# });#}
-    {#    $ = layui.$,menu = layui.menu;#}
+    }).use(['util','element','index'], function(){
         var util = layui.util
-        {#menu.init();#}
         util.fixbar({
             css: {right: 50, bottom: 100}
             ,bgcolor: '#393D49'
         });
     });
-    {#$("li").click(function(){#}
-    {#    $(this).siblings().removeClass("layui-this").addClass("layui-this");#}
-    {# })#}
 </script>
-<script>
-    {#$('li').click(function(){#}
-    {#    console.log($(this))#}
-    {#    $('.active').removeClass('active');#}
-    {#    $(this).addClass("active");#}
-    {# });#}
-{#    $(function(){#}
-{#        function footerPosition(){#}
-{#            $(".footer").removeClass("fixed-bottom");#}
-{#            var contentHeight = document.body.scrollHeight,//网页正文全文高度#}
-{#                winHeight = window.innerHeight;//可视窗口高度，不包括浏览器顶部工具栏#}
-{#            if(!(contentHeight > winHeight)){#}
-{#                //当网页正文高度小于可视窗口高度时，为footer添加类fixed-bottom#}
-{#                $(".footer").addClass("fixed-bottom");#}
-{#            } else {#}
-{#                $(".footer").removeClass("fixed-bottom");#}
-{#            }#}
-{#        }#}
-{#        footerPosition();#}
-{#        $(window).resize(footerPosition);#}
-{#    });#}
-</script>
-{#<script type="application/javascript" src="{% static 'QPlayer/js/player.js' %}"></script>#}
-{#<script>#}
-{##}
-{#    function bgChange(){#}
-{#        var lis= $('.lib');#}
-{#        for(var i=0; i<lis.length; i+=2)#}
-{#            lis[i].style.background = 'rgba(246, 246, 246, 0.5)';#}
-{#    }#}
-{#    window.onload = bgChange;#}
-{#</script>#}
 {% block script %}
 {% endblock %}
 </body>

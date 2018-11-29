@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from MyBlogWeb import settings
 from django.core.paginator import Paginator,EmptyPage, PageNotAnInteger
 import urllib.request
+import random
 from django.db.models import Q
 import json
 from django.db.models.fields.files import ImageFieldFile
@@ -31,7 +32,7 @@ def index(request):
     return render(request,'MyBlog/index.html')
 
 def Blog(request):
-    Ranker = models.Blog.objects.order_by('-hit')[0:9]
+    Ranker = models.Blog.objects.raw('select top 10 id,title from blog order by hit desc')
     tag = models.BlogType.objects.all()
     category = models.Category.objects.all()
     return render(request,'MyBlog/Blog.html',{'Rankers':Ranker,'Tags':tag,'Categorys':category,'method':'0','type':'all'})
@@ -63,7 +64,7 @@ def loadblog(request):
         for j in blogcategory:
             blogcategorydict.append({'Name': j.Name, 'id': j.id})
         blogdict={'id':item.id,'title':item.title,'abstract':item.abstract,'createdate':str(item.createdate),
-                'hit':item.hit,'isTop':'checked' if item.isTop==1 else '','isorg':'checked' if item.isorg==1 else '','imgTitle':item.imgTitle,'blogType':blogtypedict,'blogCategory':blogcategorydict,'commentcount':item.comment_set.count()}
+                  'hit':item.hit,'isTop':'checked' if item.isTop==1 else '','isorg':'checked' if item.isorg==1 else '','imgTitle':item.imgTitle,'blogType':blogtypedict,'blogCategory':blogcategorydict,'commentcount':item.comment_set.count()}
         bloglist.append(blogdict)
     limit=request.GET.get('limit')
     paginator = Paginator(bloglist, limit)
@@ -78,53 +79,86 @@ def loadblog(request):
 def picture(request):
     PicManage=models.PicManage.objects.all()
     # thumb_url = get_thumbnailer(PicManage.url)['avatar'].url
-    Ranker = models.Blog.objects.order_by('-hit')[0:9]
+    Ranker = models.Blog.objects.raw('select top 10 id,title from blog order by hit desc')
     tag = models.BlogType.objects.filter(category=1)
     return render(request, 'MyBlog/picture.html', {'PicManages': PicManage,'Rankers':Ranker,'Tags':tag})
 
 def archive(request):
-    Ranker = models.Blog.objects.order_by('-hit')[0:9]
+    Ranker = models.Blog.objects.raw('select top 10 id,title from blog order by hit desc')
     tag = models.BlogType.objects.all()
     category = models.Category.objects.all()
-    archive = models.Blog.objects.all()
-    return render(request, 'MyBlog/archive.html', {'archives': archive,'Rankers':Ranker,'Tags':tag,'Categorys':category})
+    # archive = models.Blog.objects.raw('SELECT id ,Title ,year ,month ,day FROM dbo.Blog')
+    return render(request, 'MyBlog/archive.html', {'Rankers':Ranker,'Tags':tag,'Categorys':category})
+
+def loadarchivedata(request):
+    archive=models.Blog.objects.values_list('id','year','month','day','title')
+    data=list(archive)
+    yearlist={x[1] for x in data}
+    dictlist=[]
+    dict={}
+    detail=[]
+    for year in yearlist:
+        dict['year'] = year
+        for i in data:
+            if(i[1]==year):
+                detail.append({'monthday':str(i[2])+'月'+str(i[3])+'日','title':i[4],'id':i[0]})
+        dict['detail'] = detail
+        dictlist.append(dict)
+    print(dictlist)
+    return JsonResponse({'code':0,'msg':'success','data':dictlist})
 
 def message(request):
-    MessageTb=models.MessageTb.objects.order_by('-createdate')[0:10]
-    return render(request, 'MyBlog/message.html',{'MessageTbs':MessageTb})
+    # MessageTb=models.MessageTb.objects.order_by('-createdate')[0:10]
+    return render(request, 'MyBlog/message.html')
 
 def loadmessage(request):
-    data={}
-    message=models.MessageTb.objects.values().order_by('-createdate')[10:]
-    data['list']=list(message)
-    itemNum=len(list(message))
-    print(itemNum)
-    return JsonResponse({'data':data,'itemNum':itemNum})
+    message=models.MessageTb.objects.values().order_by('-createdate')
+    # print(itemNum,data)
+    return JsonResponse({'code':0,'msg':'success','data':list(message)})
 
 def submitmessage(request):
-    if request.POST.get("MessageCon")!='':
-        if 'HTTP_X_FORWARDED_FOR' in request.META:
-            ip = request.META['HTTP_X_FORWARDED_FOR']
-        else:
-            ip = request.META['REMOTE_ADDR']
-        print(ip)
-        ipcity='http://ip.taobao.com/service/getIpInfo.php?ip='+ip
-        wb_data = urllib.request.urlopen(ipcity)
-        data = json.loads(wb_data.read().decode("utf-8"))
-        ipadd=data['data']['ip']
-        country=data['data']['country']
-        region = data['data']['region']
-        city = data['data']['city']
-        username=request.POST.get('username')
-        email = request.POST.get('email')
-        website = request.POST.get('website')
-        MessageCon=request.POST.get("MessageCon")
-        # maxid=models.MessageTb.objects.latest('id').id
-        MessageTb = models.MessageTb(MessageContent=MessageCon,userid='',username=username,createdate=datetime.datetime.now(),ip=ipadd,country=country,region=region,city=city,website=website,email=email)
-        MessageTb.save()
-        return JsonResponse({'message': 0})
+    if 'HTTP_X_FORWARDED_FOR' in request.META:
+        ip = request.META['HTTP_X_FORWARDED_FOR']
     else:
-        return JsonResponse({'message': -1})
+        ip = request.META['REMOTE_ADDR']
+    print(ip)
+    ipcity='http://ip.taobao.com/service/getIpInfo.php?ip='+ip
+    wb_data = urllib.request.urlopen(ipcity)
+    data = json.loads(wb_data.read().decode("utf-8"))
+    ipadd=data['data']['ip']
+    country=data['data']['country']
+    region = data['data']['region']
+    city = data['data']['city']
+    username=request.POST.get('username')
+    email = request.POST.get('email')
+    website = request.POST.get('website')
+    MessageCon=request.POST.get("MessageCon")
+    # maxid=models.MessageTb.objects.latest('id').id
+    userpic=random.choice(["1-1.jpg",
+                           "1-2.jpg",
+                           "1-3.jpg",
+                           "1-4.jpg",
+                           "1-5.jpg",
+                           "1-6.jpg",
+                           "1-7.jpg",
+                           "1-8.jpg",
+                           "1-9.jpg",
+                           "1-10.jpg",
+                           "1-11.jpg",
+                           "1-12.jpg",
+                           "1-13.jpg",
+                           "1-14.jpg",
+                           "1-15.jpg",
+                           "1-16.jpg",
+                           "1-17.jpg",
+                           "1-18.jpg",
+                           "1-19.jpg",
+                           "1-20.jpg",])
+    MessageTb = models.MessageTb(MessageContent=MessageCon,userid='',userpic='static/common/imgs/userheadlib/'+userpic,username=username,createdate=datetime.datetime.now(),ip=ipadd,country=country,region=region,city=city,website=website,email=email)
+    MessageTb.save()
+    print(MessageTb.object_to_json())
+    return JsonResponse({'code': 0, 'msg': 'success', 'data': MessageTb.object_to_json()})
+
 
 def about(request):
     return render(request, 'MyBlog/about.html')
@@ -136,7 +170,7 @@ def details(request,id):
     detail.hit+=1
     detail.save(update_fields=['hit'])
     # commentdetail=models.Blog.objects.all()
-    Ranker = models.Blog.objects.order_by('-hit')[0:9]
+    Ranker = models.Blog.objects.raw('select top 10 id,title from blog order by hit desc')
     tag = models.BlogType.objects.filter(category=0)
     category = models.Category.objects.all()
     return render(request, 'MyBlog/details.html', {'Blog': detail,'Rankers':Ranker,'Tags':tag,'Categorys':category})
@@ -147,18 +181,18 @@ def weblink(request):
 
 def picdetails(request,id):
     PicManage=models.PicManage.objects.get(id=id)
-    Ranker = models.Blog.objects.order_by('-hit')[0:9]
+    Ranker = models.Blog.objects.raw('select top 10 id,title from blog order by hit desc')
     tag = models.BlogType.objects.filter(category=1)
     return render(request, 'MyBlog/picdetails.html', {'PicManages': PicManage, 'Rankers': Ranker, 'Tags': tag})
 
 def types(request,type):
-    Ranker = models.Blog.objects.order_by('-hit')[0:9]
+    Ranker = models.Blog.objects.raw('select top 10 id,title from blog order by hit desc')
     tag = models.BlogType.objects.all()
     category = models.Category.objects.all()
     return render(request, 'MyBlog/Blog.html', {'Rankers':Ranker,'Tags':tag,'Categorys':category,'type':type,'method':'1'})
 
 def category(request,type):
-    Ranker = models.Blog.objects.order_by('-hit')[0:9]
+    Ranker = models.Blog.objects.raw('select top 10 id,title from blog order by hit desc')
     tag = models.BlogType.objects.all()
     category = models.Category.objects.all()
     return render(request, 'MyBlog/Blog.html', {'Rankers':Ranker,'Tags':tag,'Categorys':category,'type':type,'method':'2'})
@@ -176,7 +210,27 @@ def commentdata(request):
     blogid=request.POST.get('blogid')
     commentContent = request.POST.get('commentContent')
     device=request.POST.get('device')
-    comment=models.Comment(blog_id=blogid,username=username,website=website,email=email,commentContent=commentContent,createdate=datetime.datetime.now(),device=device,likeNum=0,userpic='static/common/imgs/userheadlib/userhead.png')
+    userpic = random.choice(["1-1.jpg",
+                             "1-2.jpg",
+                             "1-3.jpg",
+                             "1-4.jpg",
+                             "1-5.jpg",
+                             "1-6.jpg",
+                             "1-7.jpg",
+                             "1-8.jpg",
+                             "1-9.jpg",
+                             "1-10.jpg",
+                             "1-11.jpg",
+                             "1-12.jpg",
+                             "1-13.jpg",
+                             "1-14.jpg",
+                             "1-15.jpg",
+                             "1-16.jpg",
+                             "1-17.jpg",
+                             "1-18.jpg",
+                             "1-19.jpg",
+                             "1-20.jpg", ])
+    comment=models.Comment(blog_id=blogid,username=username,website=website,email=email,commentContent=commentContent,createdate=datetime.datetime.now(),device=device,likeNum=0,userpic='static/common/imgs/userheadlib/'+userpic)
     comment.save()
     commentNew=models.Comment.objects.filter(id=comment.id).values()
     return JsonResponse({'message':0,'data':list(commentNew)})
@@ -388,7 +442,7 @@ def password(request,userid):
     # elif request.method=='GET':
     #     user = models.TblSysUser.user_objects.get(userid=userid)
     #     # print(user)
-        return render(request, 'MyBlogAdmin/password.html')
+    return render(request, 'MyBlogAdmin/password.html')
 
 def upload_ajax(request):
     if request.method == 'POST':
@@ -419,7 +473,7 @@ def menushow(request):
         else:
             with connection.cursor() as cursor:
                 cursor.execute("SELECT  (case when a.id is NULL then 0 else a.id end) Mainid,"
-                                +"tbl_sys_Menu.id ,"
+                               +"tbl_sys_Menu.id ,"
                                + "a.MenuName MainMenu ,"
                                + "tbl_sys_Menu.MenuName,"
                                + "tbl_sys_Menu.url,"

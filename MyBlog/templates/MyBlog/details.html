@@ -8,19 +8,19 @@
     <script src="http://www.jq22.com/demo/share201709090147/js/jsmodern-1.1.1.min.js"></script>
 {% endblock %}
 {% block nav %}
-<div class="nav layui-nav">
-    <div class="item">
-        <a href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
-        <ul class="">
-            <li class="layui-nav-item layui-this"><a href="../blog">博客</a></li>
-{#            <li class="layui-nav-item"><a href="../picture">相册</a></li>#}
-            <li class="layui-nav-item"><a href="../weblink">友情链接</a></li>
-            <li class="layui-nav-item"><a href="../archive">归档</a></li>
-            <li class="layui-nav-item"><a href="../message">留言</a></li>
-            <li class="layui-nav-item"><a href="../about">关于</a></li>
-        </ul>
+    <div class="nav layui-nav">
+        <div class="item">
+            <a href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
+            <ul class="">
+                <li class="layui-nav-item layui-this"><a href="../blog">博客</a></li>
+                {#            <li class="layui-nav-item"><a href="../picture">相册</a></li>#}
+                <li class="layui-nav-item"><a href="../weblink">友情链接</a></li>
+                <li class="layui-nav-item"><a href="../archive">归档</a></li>
+                <li class="layui-nav-item"><a href="../message">留言</a></li>
+                <li class="layui-nav-item"><a href="../about">关于</a></li>
+            </ul>
+        </div>
     </div>
-</div>
 {% endblock %}
 {% block container %}
     <div class="layui-col-md9">
@@ -263,107 +263,107 @@
         timeagoInstance.render(document.querySelectorAll('.replytime'),'zh_CN');
 
     </script>
-{##}
-{#    <script type="text/javascript">#}
-{#        $(function(){#}
-            {#initData();#}
-{#        });#}
-{##}
-{#        //加载初始化数据#}
-{#        function initData(){#}
-{#            $.ajax({#}
-{#                type:'GET',#}
-{#                dataType: "json",#}
-{#                url:"../../loadcommentdata/",#}
-{#                data:{#}
-{#                    'blogid':{{ Blog.id }},#}
-{#                },#}
-{#                success:function(result){#}
-                    {#alert("加载数据");#}
-{#                    if(result.code=="0"){#}
-{#                        console.log(result);#}
-                        {#alert(res.msg);#}
-                        {#var info = result.data;#}
-{#                        $.each(result.data, function (i, item) {#}
-{#                            var vfields = item;  //这里不定义也行，在下面的调用中直接使用item，请忽略我不规范的缩进#}
-{#                            var str=" <div class=\"media-body\">\n" +#}
-{#                                "                                    <div class=\"media-left\">\n" +#}
-{#                                "                                        <img src=\"../"+ vfields.userpic+" \">\n" +#}
-{#                                "                                    </div>\n" +#}
-{#                                "                                    <div class=\"pad-btm\">\n" +#}
-{#                                "                                        <p class=\"fontColor\"><a>"+ vfields.username +"</a></p>\n" +#}
-{#                                "                                        <div class=\"min-font\">\n" +#}
-{#                                "                                          <span class=\"layui-breadcrumb\" lay-separator=\"-\">\n" +#}
-{#                                "                                            <a class=\"layui-icon layui-icon-cellphone\"></a>\n" +#}
-{#                                "                                            <a>"+ vfields.device +"</a>\n" +#}
-{#                                "                                            <a class=\"time\" datetime=\""+ vfields.createdate+"\"></a>\n" +#}
-{#                                "                                          </span>\n" +#}
-{#                                "                                        </div>\n" +#}
-{#                                "                                        <p class=\"message-text\">"+ vfields.commentContent +"</p>\n" +#}
-{#                                "                                    </div>\n" +#}
-{#                                "                                    <div class=\"reply-text\">\n" +#}
-{#                                "                                    </div>\n" +#}
-{#                                "                                    <div class=\"reply-comment\">\n" +#}
-{#                                "                                        <div class=\"like\">\n" +#}
-{#                                "                                            <button class=\"layui-btn\" id=\"like"+ vfields.id +"\"><i class=\"layui-icon\">&#xe6c6;</i></button>\n" +#}
-{#                                "                                            <button class=\"layui-btn\"><p class=\"likecon"+ vfields.id +"\">"+ vfields.likeNum +"</p></button>\n" +#}
-{#                                "                                        </div>\n" +#}
-{#                                "                                        <div class=\"reply-btn\">\n" +#}
-{#                                "                                            <button class=\"layui-btn\"><i class=\"layui-icon\">&#xe611;</i></button>\n" +#}
-{#                                "                                            <button class=\"layui-btn\" id='replylabel"+ vfields.id +"'>回复</button>\n" +#}
-{#                                "                                        </div>\n" +#}
-{#                                "\n" +#}
-{#                                "                                    </div>\n" +#}
-{#                                "                                    <form  id=\"formyz\">\n" +#}
-                                {#"                                        {% csrf_token %}\n" +#}
-{#                                "                                        <div class=\"reply-to-text\" id=\"reply"+ vfields.id +"\" style=\"display: none\">\n" +#}
-{#                                "                                            <div class=\"text\">\n" +#}
-{#                                "                                                <textarea class=\"reply-box-textarea\" id=\"replyContent"+ vfields.id +"\"></textarea>\n" +#}
-{#                                "                                            </div>\n" +#}
-{#                                "                                            <div class=\"replybtn\"><button class=\"layui-btn\" id=\"replybtn"+ vfields.id +"\" type=\"button\" >回复</button></div>\n" +#}
-{#                                "                                        </div>\n" +#}
-{#                                "                                    </form>\n" +#}
-{#                                "                                </div>"#}
-{#                            var javascriptexec=$(str);#}
-{#                            $(".message-content").append(javascriptexec);#}
-{#                            $(javascriptexec).find("[id^=replylike]").click(function(){#}
-{#                                replyid=$(this).attr("id").split("replylike")[1]#}
-{#                                $.ajax({#}
-{#                                    type:"POST",#}
-{#                                    data: {'replyid':replyid,'csrfmiddlewaretoken':$("[name='csrfmiddlewaretoken']").val()},#}
-{#                                    url: "{% url 'MyBlog:replylike' %}", //后台处理函数的url#}
-{#                                    cache: false,#}
-{#                                    async : false,#}
-{#                                    success: function(result){#}
-{#                                        console.log(result.message)#}
-{#                                        if(result.message="0")#}
-{#                                        {#}
-{#                                            console.log(result.message)#}
-{#                                            layer.msg('点赞成功',{time:0.5*1000})#}
-{#                                            var replylikecon='replylikecon'+commentid#}
-{#                                            $("."+replylikecon).html(result.replylike)#}
-{#                                            console.log(result.replylike,$("."+replylikecon).html())#}
-{#                                        }#}
-{#                                    },#}
-{#                                    error: function(){#}
-{#                                        layer.msg('传输格式有误，请检查')#}
-{#                                    }#}
-{#                                });#}
-{#                            })#}
-{#                            console.log(javascriptexec)#}
-{##}
-{##}
-{#                        });#}
-{#                    }else{#}
-{#                        alert("数据错误！请联系管理员");#}
-{#                    }#}
-{#                },#}
-{#                error:function(){#}
-{#                    alert("发生错误");#}
-{#                }#}
-{#            });#}
-{#        }#}
-{#    </script>#}
+    {##}
+    {#    <script type="text/javascript">#}
+    {#        $(function(){#}
+    {#initData();#}
+    {#        });#}
+    {##}
+    {#        //加载初始化数据#}
+    {#        function initData(){#}
+    {#            $.ajax({#}
+    {#                type:'GET',#}
+    {#                dataType: "json",#}
+    {#                url:"../../loadcommentdata/",#}
+    {#                data:{#}
+    {#                    'blogid':{{ Blog.id }},#}
+    {#                },#}
+    {#                success:function(result){#}
+    {#alert("加载数据");#}
+    {#                    if(result.code=="0"){#}
+    {#                        console.log(result);#}
+    {#alert(res.msg);#}
+    {#var info = result.data;#}
+    {#                        $.each(result.data, function (i, item) {#}
+    {#                            var vfields = item;  //这里不定义也行，在下面的调用中直接使用item，请忽略我不规范的缩进#}
+    {#                            var str=" <div class=\"media-body\">\n" +#}
+    {#                                "                                    <div class=\"media-left\">\n" +#}
+    {#                                "                                        <img src=\"../"+ vfields.userpic+" \">\n" +#}
+    {#                                "                                    </div>\n" +#}
+    {#                                "                                    <div class=\"pad-btm\">\n" +#}
+    {#                                "                                        <p class=\"fontColor\"><a>"+ vfields.username +"</a></p>\n" +#}
+    {#                                "                                        <div class=\"min-font\">\n" +#}
+    {#                                "                                          <span class=\"layui-breadcrumb\" lay-separator=\"-\">\n" +#}
+    {#                                "                                            <a class=\"layui-icon layui-icon-cellphone\"></a>\n" +#}
+    {#                                "                                            <a>"+ vfields.device +"</a>\n" +#}
+    {#                                "                                            <a class=\"time\" datetime=\""+ vfields.createdate+"\"></a>\n" +#}
+    {#                                "                                          </span>\n" +#}
+    {#                                "                                        </div>\n" +#}
+    {#                                "                                        <p class=\"message-text\">"+ vfields.commentContent +"</p>\n" +#}
+    {#                                "                                    </div>\n" +#}
+    {#                                "                                    <div class=\"reply-text\">\n" +#}
+    {#                                "                                    </div>\n" +#}
+    {#                                "                                    <div class=\"reply-comment\">\n" +#}
+    {#                                "                                        <div class=\"like\">\n" +#}
+    {#                                "                                            <button class=\"layui-btn\" id=\"like"+ vfields.id +"\"><i class=\"layui-icon\">&#xe6c6;</i></button>\n" +#}
+    {#                                "                                            <button class=\"layui-btn\"><p class=\"likecon"+ vfields.id +"\">"+ vfields.likeNum +"</p></button>\n" +#}
+    {#                                "                                        </div>\n" +#}
+    {#                                "                                        <div class=\"reply-btn\">\n" +#}
+    {#                                "                                            <button class=\"layui-btn\"><i class=\"layui-icon\">&#xe611;</i></button>\n" +#}
+    {#                                "                                            <button class=\"layui-btn\" id='replylabel"+ vfields.id +"'>回复</button>\n" +#}
+    {#                                "                                        </div>\n" +#}
+    {#                                "\n" +#}
+    {#                                "                                    </div>\n" +#}
+    {#                                "                                    <form  id=\"formyz\">\n" +#}
+    {#"                                        {% csrf_token %}\n" +#}
+    {#                                "                                        <div class=\"reply-to-text\" id=\"reply"+ vfields.id +"\" style=\"display: none\">\n" +#}
+    {#                                "                                            <div class=\"text\">\n" +#}
+    {#                                "                                                <textarea class=\"reply-box-textarea\" id=\"replyContent"+ vfields.id +"\"></textarea>\n" +#}
+    {#                                "                                            </div>\n" +#}
+    {#                                "                                            <div class=\"replybtn\"><button class=\"layui-btn\" id=\"replybtn"+ vfields.id +"\" type=\"button\" >回复</button></div>\n" +#}
+    {#                                "                                        </div>\n" +#}
+    {#                                "                                    </form>\n" +#}
+    {#                                "                                </div>"#}
+    {#                            var javascriptexec=$(str);#}
+    {#                            $(".message-content").append(javascriptexec);#}
+    {#                            $(javascriptexec).find("[id^=replylike]").click(function(){#}
+    {#                                replyid=$(this).attr("id").split("replylike")[1]#}
+    {#                                $.ajax({#}
+    {#                                    type:"POST",#}
+    {#                                    data: {'replyid':replyid,'csrfmiddlewaretoken':$("[name='csrfmiddlewaretoken']").val()},#}
+    {#                                    url: "{% url 'MyBlog:replylike' %}", //后台处理函数的url#}
+    {#                                    cache: false,#}
+    {#                                    async : false,#}
+    {#                                    success: function(result){#}
+    {#                                        console.log(result.message)#}
+    {#                                        if(result.message="0")#}
+    {#                                        {#}
+    {#                                            console.log(result.message)#}
+    {#                                            layer.msg('点赞成功',{time:0.5*1000})#}
+    {#                                            var replylikecon='replylikecon'+commentid#}
+    {#                                            $("."+replylikecon).html(result.replylike)#}
+    {#                                            console.log(result.replylike,$("."+replylikecon).html())#}
+    {#                                        }#}
+    {#                                    },#}
+    {#                                    error: function(){#}
+    {#                                        layer.msg('传输格式有误，请检查')#}
+    {#                                    }#}
+    {#                                });#}
+    {#                            })#}
+    {#                            console.log(javascriptexec)#}
+    {##}
+    {##}
+    {#                        });#}
+    {#                    }else{#}
+    {#                        alert("数据错误！请联系管理员");#}
+    {#                    }#}
+    {#                },#}
+    {#                error:function(){#}
+    {#                    alert("发生错误");#}
+    {#                }#}
+    {#            });#}
+    {#        }#}
+    {#    </script>#}
     <script type="text/javascript">
 
         layui.use('layer', function(){
@@ -396,60 +396,13 @@
                             {
                                 {#console.log(result.message)#}
                                 layer.msg('评论成功!',{time:0.5*1000})
-                                {#location.reload()#}
+                                location.reload()
                                 console.log(result.data)
-                                $.each(result.data, function (i, item) {
-                                    var vfields = item;  //这里不定义也行，在下面的调用中直接使用item，请忽略我不规范的缩进
-                                    $(".message-content").append(" <div class=\"media-body\">\n" +
-                                        "                                    <div class=\"media-left\">\n" +
-                                        "                                        <img src=\"../"+ vfields.userpic+" \">\n" +
-                                        "                                    </div>\n" +
-                                        "                                    <div class=\"pad-btm\">\n" +
-                                        "                                        <p class=\"fontColor\"><a>"+ vfields.username +"</a></p>\n" +
-                                        "                                        <div class=\"min-font\">\n" +
-                                        "                                          <span class=\"layui-breadcrumb\" lay-separator=\"-\">\n" +
-                                        "                                            <a class=\"layui-icon layui-icon-cellphone\"></a>\n" +
-                                        "                                            <a>"+ vfields.device +"</a>\n" +
-                                        "                                            <a class=\"time\" datetime=\""+ vfields.createdate+"\"></a>\n" +
-                                        "                                          </span>\n" +
-                                        "                                        </div>\n" +
-                                        "                                        <p class=\"message-text\">"+ vfields.commentContent +"</p>\n" +
-                                        "                                    </div>\n" +
-                                        "                                    <div class=\"reply-text\">\n" +
-                                        "                                    </div>\n" +
-                                        "                                    <div class=\"reply-comment\">\n" +
-                                        "                                        <div class=\"like\">\n" +
-                                        "                                            <button class=\"layui-btn\" id=\"like"+ vfields.id +"\"><i class=\"layui-icon\">&#xe6c6;</i></button>\n" +
-                                        "                                            <button class=\"layui-btn\"><p class=\"likecon"+ vfields.id +"\">"+ vfields.likeNum +"</p></button>\n" +
-                                        "                                        </div>\n" +
-                                        "                                        <div class=\"reply-btn\">\n" +
-                                        "                                            <button class=\"layui-btn\"><i class=\"layui-icon\">&#xe611;</i></button>\n" +
-                                        "                                            <button class=\"layui-btn\" id='replylabel"+ vfields.id +"'>回复</button>\n" +
-                                        "                                        </div>\n" +
-                                        "\n" +
-                                        "                                    </div>\n" +
-                                        "                                    <form  id=\"formyz\">\n" +
-                                        {#"                                        {% csrf_token %}\n" +#}
-                                        "                                        <div class=\"reply-to-text\" id=\"reply"+ vfields.id +"\" style=\"display: none\">\n" +
-                                        "                                            <div class=\"text\">\n" +
-                                        "                                                <textarea class=\"reply-box-textarea\" id=\"replyContent"+ vfields.id +"\"></textarea>\n" +
-                                        "                                            </div>\n" +
-                                        "                                            <div class=\"replybtn\"><button class=\"layui-btn\" id=\"replybtn"+ vfields.id +"\" type=\"button\" >回复</button></div>\n" +
-                                        "                                        </div>\n" +
-                                        "                                    </form>\n" +
-                                        "                                </div>");
-
-                                });
                             }
-                        },
-                        error: function(){
-                            {#$('#test1').html('传输格式有错误')#}
-                            {#layer.confirm(result)#}
-                            layer.msg('传输格式有误，请检查')
                         }
                     });
                 }
-            })
+            });
             var replysbid=''
             var replyContentid=''
             $("[id^=replybtn]").click(function(){

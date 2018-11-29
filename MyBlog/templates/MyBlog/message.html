@@ -3,66 +3,44 @@
 {% block title%}
     <title>花花与风-欢迎留言</title>
 {% endblock %}
-{% block head %}
-    <link rel="stylesheet" type="text/css" href="{% static 'waterfall/css/waterfall.css' %}">
-    <!--[if lt IE 9]>
-		<script src="{% static 'waterfall/js/css3-mediaqueries' %}"></script>
-	<![endif]-->
-    <script type="text/javascript" src="{% static 'waterfall/js/jquery-1.8.3.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'waterfall/js/jQueryColor.js' %}"></script>
-    <!--这个插件是瀑布流主插件函数必须-->
-    <script type="text/javascript" src="{% static 'waterfall/js/jquery.masonry.min.js' %}"></script>
-    <!--这个插件只是为了扩展jquery的animate函数动态效果可有可无-->
-    <script type="text/javascript" src="{% static 'waterfall/js/jQeasing.js' %}"></script>
-{% endblock %}
 {% block nav %}
-<div class="nav layui-nav">
-    <div class="item">
-        <a href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
-        <ul class="">
-            <li class="layui-nav-item"><a href="../blog">博客</a></li>
-{#            <li class="layui-nav-item"><a href="../picture">相册</a></li>#}
-            <li class="layui-nav-item"><a href="../weblink">友情链接</a></li>
-            <li class="layui-nav-item"><a href="../archive">归档</a></li>
-            <li class="layui-nav-item  layui-this"><a href="../message">留言</a></li>
-            <li class="layui-nav-item"><a href="../about">关于</a></li>
-        </ul>
+    <div class="nav layui-nav">
+        <div class="item">
+            <a href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
+            <ul class="">
+                <li class="layui-nav-item"><a href="../blog">博客</a></li>
+                {#            <li class="layui-nav-item"><a href="../picture">相册</a></li>#}
+                <li class="layui-nav-item"><a href="../weblink">友情链接</a></li>
+                <li class="layui-nav-item"><a href="../archive">归档</a></li>
+                <li class="layui-nav-item  layui-this"><a href="../message">留言</a></li>
+                <li class="layui-nav-item"><a href="../about">关于</a></li>
+            </ul>
+        </div>
     </div>
-</div>
 {% endblock %}
 {% block fluid %}
-        <div class="message-head Tophead">
-            <div class="tips">
-                <h2>大佬们看这里</h2>
-            </div>
-            <div class="desc">
-                欢迎各位大佬们提意见，本博客还有很多不完善的地方，如发现，可在下方留言，多谢多谢。
-            </div>
-        </div>
+    <div class="layui-col-sm12 HeadBack">
+        <h2>既然来了就留下点什么吧</h2>
+    </div>
 {% endblock %}
 {% block container %}
-
-    <div class="layui-col-md12 Bottomhead">
+    <div class="layui-col-md12">
         <div class="layui-card">
             <div class="layui-card-body">
                 <form class="layui-form message-con" method="post">
                     {% csrf_token %}
                     <div class="layui-form-item Message-input">
                         <div class="layui-inline">
-                            {#                            <label class="layui-form-label">昵称 *</label>#}
                             <div class="layui-input-inline input-icon">
-                                {#                                <i class="layui-icon layui-icon-username"></i>#}
                                 <input type="tel" name="username" lay-verify="" autocomplete="off" class="layui-input username" placeholder="昵称（必填）">
                             </div>
                         </div>
                         <div class="layui-inline">
-                            {#                            <label class="layui-form-label"></label>#}
                             <div class="layui-input-inline input-icon">
                                 <input type="text" name="email" lay-verify="" autocomplete="off" class="layui-input email" placeholder="邮箱（必填）">
                             </div>
                         </div>
                         <div class="layui-inline">
-                            {#                            <label class="layui-form-label">站点</label>#}
                             <div class="layui-input-inline input-icon">
                                 <input type="text" name="website" lay-verify="" autocomplete="off" class="layui-input website" placeholder="站点">
                             </div>
@@ -78,89 +56,16 @@
             </div>
         </div>
     </div>
-    <div class="layui-col-md12">
-        <div class="waterfall clearfloat" id="waterfall">
-            <ul>
-                {% if MessageTbs %}
-                    {% for MessageTb in MessageTbs %}
-                        <li class="item">
-                            <div class="userinfo">
-                                <div class="headpic"> <img src="{% static 'common/imgs/userhead.png' %}"></div>
-                                <h2 class="li-title" title="{{ MessageTb.username }}">{{ MessageTb.username }}</h2>
-                                <div class="qianm">
-                                    <span class="sp3" datetime="{{ MessageTb.createdate|date:"Y-m-d H:i:s" }}"></span>
-                                </div>
-                            </div>
-                            <div class="con"><a class="description">{{ MessageTb.MessageContent }}</a></div>
-                            <div class="otherinfo"><i class="layui-icon layui-icon-location"> {{ MessageTb.country }} · {{ MessageTb.region }} · {{ MessageTb.city }}</i></div>
-                        </li>
-                    {% endfor %}
-                {% endif %}
-            </ul>
-        </div>
-        <div id="imloading">
-            I'm Loading.....
+    <div class="layui-col-md12" >
+        <div class="layui-card">
+            <div class="layui-card-header">最新留言</div>
+            <div id="messagecon">
+            </div>
         </div>
     </div>
 {% endblock %}
 {% block script %}
+    <script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static '/common/js/jquery.timeago.js' %}" ></script>
     <script src="{% static '/lib/loadMessage.js' %}" ></script>
-    <script>
-        function checkEmail(myemail) {
-            var myReg = /^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
-            if (myReg.test(myemail)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-        var timeagoInstance = timeago();// 实例
-        timeagoInstance.render(document.querySelectorAll('.sp3'),'zh_CN');
-        layui.config({
-            base: '{% static '/layui/js/util/' %}' //静态资源所在路径
-        }).use(['layer'], function(){
-            var $ = layui.$
-                ,layer = layui.layer
-            $('#submit').on("click",function(){
-
-                if ($(".username").val()=="")
-                {
-                    layer.msg('请输入昵称',{time:0.5*1000})
-                }
-                else if ($(".email").val()=="")
-                {
-                    layer.msg('请输入邮箱',{time:0.5*1000})
-                }
-                else if($("#MessageCon").val()=="")
-                {
-                    layer.msg('说点什么吧！',{time:0.5*1000})
-                }
-                else if($(".email").val()!="" && !checkEmail($(".email").val()))
-                {
-                    layer.msg('邮箱格式不对!',{time:0.5*1000})
-                }
-                else
-                {
-                    $.ajax({
-                        type:"POST",
-                        data: {'MessageCon':$("#MessageCon").val(),"csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),'username':$(".username").val(),'email':$(".email").val(),'website':$(".website").val()
-                        },
-                        url: "{% url 'MyBlog:submitmessage' %}", //后台处理函数的url
-                        cache: false,
-                        async : false,
-                        success: function(result) {
-                            console.log(result.message)
-                            if (result.message=="0"){
-                                layer.msg('留言成功',{time:0.5*1000})
-                                location.reload()
-                            }
-                            else if (result.message=="-1")
-                            {layer.msg('请输入内容',{time:0.5*1000})}
-                        },
-                    });
-                }
-            });
-        });
-    </script>
 {% endblock %}

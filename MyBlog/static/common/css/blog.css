@@ -291,7 +291,9 @@ body a{cursor: pointer;}
 .Tophead{margin-top: 75px!important;}
 .Bottomhead{margin-top: -75px!important;}
 
-
+.HeadBack{height: 300px;background: url(../../common/imgs/HeadBack.jpg) no-repeat;margin-bottom: 15px;margin-top: -15px;text-align: center;width: 100%;}
+.HeadBack h2{line-height: 300px;color: #ffffff;}
+#messagecon{float: left;}
 /*#留言*/
 .message-head{height: 200px;width: 100%; text-align: center; }
 .message-head .tips h2{text-transform: uppercase;width: 100%;padding-top: 50px;color: #999999;font-size: 24px;}
@@ -302,6 +304,11 @@ body a{cursor: pointer;}
 .Message .user{text-align: left;overflow: hidden;float: left;line-height:100%;position: absolute;top: 20px;left: 70px;color: dodgerblue;padding:0 0 10px 0;}
 .Message .text{text-align: left;line-height: 20px;position: static;padding: 45px 70px 35px 70px;height:100%;color:#545556;}
 .Message .date{text-align: left;overflow: hidden;float: left;line-height:100%;position: absolute;left:70px;bottom: 10px;color: #adadad;padding:10px 0 0 0;}
+.Message .date i{
+    /*line-height: 36px;*/
+    margin-left: 10px;
+    color: #999999;
+    font-size: 12px;}
 .message-con{text-align: left}
 .message-con .Message-input .input-icon input{background-color: #f2f2f2;border-width: 0;font-size: 12px;float: left}
 .message-con .mybtn button{background-color: #f2f2f2;color:#555555;line-height: 32px;font-size: 12px;height: 32px;}
@@ -364,7 +371,43 @@ body a{cursor: pointer;}
 /*.contact .weibo i,.about-cont .contact .weibo a{color: #e6162d;font-size: 20px;line-height: 30px;}*/
 /*.about-cont .contact .wechat img{height: 200px;width: 200px;}*/
 /*.about-cont .contact .wechat span{line-height: 30px;height: 30px;}*/
-.archive{color: #999999!important; }
-.archive ul{padding: 20px;}
-.archive ul li{padding: 10px 0;}
-.archive ul li a{color: #999999!important;font-size: 12px; }
+/*.archive{color: #999999!important; }*/
+/*.archive ul{padding: 20px;}*/
+/*.archive ul li{padding: 10px 0;}*/
+/*.archive ul li a{color: #999999!important;font-size: 12px; }*/
+.clearfix:after {
+visibility: hidden;
+display: block;
+font-size: 0;
+content: " ";
+clear: both;
+height: 0;
+}
+.timeboxpadding {padding:15px;}
+.timebox { width:100%;margin:0 auto; min-width:500px; }
+.event_year { width:60px;border-bottom:2px solid #DDD;text-align:center;float:left;margin-top:10px; }
+.event_year li { height:40px;line-height:40px;background:#f0f0f0;margin-bottom:1px;font-size:18px;color:#828282;cursor:pointer; }
+.event_year li.current { width:61px;background:#0066ff url('../../../static/common/imgs/jian.png') 60px 0 no-repeat;color:#FFF;text-align:left;padding-left:9px; }
+.event_list { width:820px;float:right;background:url('../../../static/common/imgs/dian3.png') 139px 0 repeat-y;margin:10px 0 20px 0; }
+.event_list h3 { margin:0 0 10px 132px;font-size:24px;font-family:Georgia;color:#0066ff;padding-left:25px;background:url('../../../static/common/imgs/jian.png') 0 -45px no-repeat;height:38px;line-height:30px;font-style:italic; }
+.event_list li { background:url('../../../static/common/imgs/jian.png') 136px -80px no-repeat; }
+.event_list li span { width:127px;text-align:right;display:block;float:left;margin-top:10px; }
+.event_list li p { width:650px;margin-left:24px;display:inline-block;padding-left:10px;background:url('../../../static/common/imgs/jian.png') -21px 0 no-repeat;line-height:25px;_float:left; }
+.event_list li p span { width:620px;text-align:left;border-bottom:2px solid #F1F1F1;padding:10px 15px;background:#f0f0f0;margin:0; }
+@media screen and (min-width:0){
+.event_list { width:500px;}
+.event_list li p { width:330px;}
+.event_list li p span { width:300px;}
+}
+/*@media screen and (min-width:768px){*/
+ /*.event_list { width:550px;}*/
+/*.event_list li p { width:380px;}*/
+/*.event_list li p span { width:350px;}*/
+/*}*/
+@media screen and (min-width:768px){.event_list { width:600px;}
+.event_list li p { width:430px;}
+.event_list li p span { width:400px;}
+}
+@media screen and (min-width:1280px){.event_list { width:820px;}
+.event_list li p { width:650px;}
+.event_list li p span { width:620px;}}

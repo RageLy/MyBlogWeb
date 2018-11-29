@@ -1,40 +1,50 @@
 {% extends 'MyBlog/base.html' %}
+{% load static %}
 {% block title%}
-    {% load static %}
-    <title>归档</title>
+    <title>花花与风-归档</title>
+{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'common/css/blog.css' %}">
 {% endblock %}
 {% block nav %}
-<div class="nav layui-nav">
-    <div class="item">
-        <a href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
-        <ul class="">
-            <li class="layui-nav-item"><a href="../blog">博客</a></li>
-{#            <li class="layui-nav-item"><a href="../picture">相册</a></li>#}
-            <li class="layui-nav-item"><a href="../weblink">友情链接</a></li>
-            <li class="layui-nav-item layui-this"><a href="../archive">归档</a></li>
-            <li class="layui-nav-item"><a href="../message">留言</a></li>
-            <li class="layui-nav-item "><a href="../about">关于</a></li>
-        </ul>
+    <div class="nav layui-nav">
+        <div class="item">
+            <a href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
+            <ul class="">
+                <li class="layui-nav-item"><a href="../blog">博客</a></li>
+                {#            <li class="layui-nav-item"><a href="../picture">相册</a></li>#}
+                <li class="layui-nav-item"><a href="../weblink">友情链接</a></li>
+                <li class="layui-nav-item layui-this"><a href="../archive">归档</a></li>
+                <li class="layui-nav-item"><a href="../message">留言</a></li>
+                <li class="layui-nav-item "><a href="../about">关于</a></li>
+            </ul>
+        </div>
     </div>
-</div>
+{% endblock %}
+{% block fluid %}
+    <div class="layui-col-sm12 HeadBack">
+    <h2>每天的点点滴滴将生活汇聚成一条回忆的长河</h2>
+    </div>
 {% endblock %}
 {% block container %}
     <div class="layui-col-md9">
         <div class="layui-card">
             <div class="layui-card-header">博客归档</div>
-            <div class="layui-card-body archive">
-                {% if archives %}
-                    <ul>
-                        {% for archive in archives %}
-                            <li>
-                            <span>{{ archive.createdate|date:"Y-m-d" }}</span>
-                                <a href="{% url "MyBlog:details" archive.id %}">{{ archive.title }}</a>
-                            </li>
-                        {% endfor %}
+            <div class="timeboxpadding">
+                <div class="timebox">
+                    <ul class="event_year">
+                        <li><label for="2023">2023</label></li>
+                        <li><label for="2022">2022</label></li>
+                        <li><label for="2021">2021</label></li>
+                        <li><label for="2020">2020</label></li>
+                        <li><label for="2019">2019</label></li>
+                        <li class="current"><label for="2018">2018</label></li>
+                        <li><label for="2017">2017</label></li>
                     </ul>
-                {% else %}
-                    还未归档
-                {% endif %}
+                    <ul class="event_list">
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -94,4 +104,62 @@
             </div>
         </div>
     </div>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script>
+        $(function(){
+            initData();
+        });
+        //加载初始化数据
+        function initData(){
+            $.ajax({
+                type:'GET',
+                dataType: "json",
+                url:"../../loadarchivedata/",
+                success:function(result){
+                    {#alert("加载数据");#}
+                    if(result.code=="0"){
+
+                        var info = result.data;
+                        console.log(info);
+                        for(var i in info)
+                        {
+                            var details=""
+                            var item=info[i].detail
+                            for(var j in item){
+                                details+=" <li><span>"+item[j].monthday+"</span><p><span><a href=\"../../details/"+item[j].id+"\">"+item[j].title+"</a></span></p></li>"
+                            }
+                            var str=""
+                            str+="<div><h3 id=\""+info[i].year+"\">"+info[i].year+"</h3>"+details+"</div>"
+                            console.log(str);
+                            $(".event_list").append(str)
+                        }
+                    }else{
+                        alert("数据错误！请联系管理员");
+                    }
+                },
+                error:function(){
+                    alert("发生错误");
+                }
+            });
+        }
+    </script>
+    <script>
+        $(window).resize(function(){
+            if(document.body.clientWidth<500){
+
+                window.resizeTo(document.body.clientWidth,500);
+            }
+        });
+        $(function(){
+            $('label').click(function(){
+                $('.event_year>li').removeClass('current');
+                $(this).parent('li').addClass('current');
+                var year = $(this).attr('for');
+                $('#'+year).parent().prevAll('div').slideUp(800);
+                $('#'+year).parent().slideDown(800).nextAll('div').slideDown(800);
+            });
+        });
+    </script>
 {% endblock %}
