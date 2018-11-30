@@ -23,31 +23,54 @@ Date.prototype.Format = function (formatStr) {
     str = str.replace(/s|S/g, this.getSeconds());
     return str;
 }
+
 $(function(){
-    initData();
+    loadData(1,10);
+});
+$("#pagination").whjPaging({
+    //设为true时，ajax里的success函数必须调用setPage方法，否则分页插件显示保持不变
+    isResetPage: true,
+    css: 'css-4',
+    isShowSkip: false,
+    isShowRefresh: false,
+    isShowPageSizeOpt: false,
+    isShowFL: true,
+    isShowTotalPage: false,
+    isShowTotalSize: false,
+    callBack: function(currPage, pageSize) {
+        loadData(currPage, 10);
+    }
 });
 //加载初始化数据
-function initData(){
+function loadData(currPage, pageSize){
     $.ajax({
         type:'GET',
         dataType: "json",
+        data: {'page':currPage,'limit':pageSize},
         url:"../../loadmessage/",
         success:function(result){
             if(result.code=="0"){
                 var info = result.data;
-                // console.log(info)
+                console.log(result)
                 var html=""
                 for(var i in info){
                     html+=
-                        "                    <div class=\"Message\">\n" +
-                        "                        <div class=\"headimg\"><img src=\"../../"+info[i].userpic+"\"></div>\n" +
-                        "                        <div class=\"user\"> <p>"+info[i].username+"</p></div>\n" +
-                        "                        <div class=\"text\"> <p>"+info[i].MessageContent+"</p></div>\n" +
-                        "                        <div class=\"date\">  <span>"+new Date(info[i].createdate).Format("YYYY-MM-dd hh:mm:ss")+"</span><i class=\"layui-icon layui-icon-location\"> "+info[i].country+"· "+info[i].region+" · "+info[i].city+"</i></div>\n" +
-                        "                    </div>\n"
+                        "<div class=\"Message\">\n" +
+                        "<div class=\"headimg\"><img src=\"../../"+info[i].userpic+"\"></div>\n" +
+                        "<div class=\"user\"> <p>"+info[i].username+"</p></div>\n" +
+                        "<div class=\"text\"> <p>"+info[i].MessageContent+"</p></div>\n" +
+                        "<div class=\"date\">  <span>"+new Date(info[i].createdate).Format("YYYY-MM-dd hh:mm:ss")+"</span><i class=\"layui-icon layui-icon-location\"> "+info[i].country+"· "+info[i].region+" · "+info[i].city+"</i></div>\n" +
+                        "</div>\n"
                 }
+                // location.reload()
+                $('#messagecon').find('*').remove();
+                console.log($('#messagecon').html())
                 $("#messagecon").append(html)
-                // console.log(html)
+                console.log(html)
+                $("#pagination").whjPaging(
+                    "setPage",
+                    {currPage: result.currPage, totalPage: result.totalPage, totalSize: result.totalSize}
+                );
             }else{
                 alert("数据错误！请联系管理员");
             }
@@ -101,20 +124,7 @@ layui.config({
                 async : false,
                 success: function(result) {
                     if(result.code=="0"){
-                        var info = result.data;
-                        // console.log(info)
-                        var html=""
-
-                            html+=" <div class=\"layui-card \">\n" +
-                                "                    <div class=\"layui-card-body Message\">\n" +
-                                "                        <div class=\"headimg\"><img src=\"../../"+info.userpic+"\"></div>\n" +
-                                "                        <div class=\"user\"> <p>"+info.username+"</p></div>\n" +
-                                "                        <div class=\"text\"> <p>"+info.MessageContent+"</p></div>\n" +
-                                "                        <div class=\"date\">  <span class=\"time\" datetime=\""+info.createdate+"\"></span><i class=\"layui-icon layui-icon-location\"> "+info.country+"· "+info.region+" · "+info.city+"</i></div>\n" +
-                                "                    </div>\n" +
-                                "                </div>"
-                        $("#messagecon").append(html)
-                        // console.log(html)
+                        loadData(1,10);
                     }
                     else{
                         alert("数据错误！请联系管理员");

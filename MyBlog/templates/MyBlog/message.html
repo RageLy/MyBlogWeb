@@ -3,8 +3,11 @@
 {% block title%}
     <title>花花与风-欢迎留言</title>
 {% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'common/css/paging.css' %}">
+{% endblock %}
 {% block nav %}
-    <div class="nav layui-nav">
+    <div class="nav layui-nav" id="nav">
         <div class="item">
             <a href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
             <ul class="">
@@ -61,11 +64,13 @@
             <div class="layui-card-header">最新留言</div>
             <div id="messagecon">
             </div>
+            <div id="pagination"></div>
         </div>
     </div>
 {% endblock %}
 {% block script %}
     <script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static '/common/js/paging.js' %}"></script>
     <script src="{% static '/common/js/jquery.timeago.js' %}" ></script>
     <script src="{% static '/lib/loadMessage.js' %}" ></script>
 {% endblock %}

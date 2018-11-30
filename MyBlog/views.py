@@ -32,10 +32,17 @@ def index(request):
     return render(request,'MyBlog/index.html')
 
 def Blog(request):
-    Ranker = models.Blog.objects.raw('select top 10 id,title from blog order by hit desc')
-    tag = models.BlogType.objects.all()
-    category = models.Category.objects.all()
-    return render(request,'MyBlog/Blog.html',{'Rankers':Ranker,'Tags':tag,'Categorys':category,'method':'0','type':'all'})
+    if request.method=="GET":
+        Ranker = models.Blog.objects.raw('select top 10 id,title from blog order by hit desc')
+        tag = models.BlogType.objects.all()
+        print(tag)
+        category = models.Category.objects.all()
+        return render(request,'MyBlog/Blog.html',{'Rankers':Ranker,'Tags':tag,'Categorys':category,'method':'0','type':'all'})
+    elif request.method=="POST":
+        key = request.POST.get("key")
+        result = models.Blog.objects.filter(Q(blogcontent__contains=key) | Q(title__contains=key))
+        print(result)
+        return render(request, 'MyBlog/search.html', {'result': result})
 
 def loadblog(request):
     # data={}
@@ -108,13 +115,17 @@ def loadarchivedata(request):
     return JsonResponse({'code':0,'msg':'success','data':dictlist})
 
 def message(request):
-    # MessageTb=models.MessageTb.objects.order_by('-createdate')[0:10]
+    MessageTb=models.MessageTb.objects.order_by('-createdate')
     return render(request, 'MyBlog/message.html')
 
 def loadmessage(request):
+    page=request.GET.get('page')
+    limit = request.GET.get('limit')
     message=models.MessageTb.objects.values().order_by('-createdate')
-    # print(itemNum,data)
-    return JsonResponse({'code':0,'msg':'success','data':list(message)})
+    data = list(message)
+    paginator = Paginator(data, limit)
+    messagelist = paginator.get_page(page)
+    return JsonResponse({'code':0,'msg':'success','currPage':page,"totalPage":paginator.num_pages,"totalSize":len(data),'data':messagelist.object_list})
 
 def submitmessage(request):
     if 'HTTP_X_FORWARDED_FOR' in request.META:
@@ -134,18 +145,7 @@ def submitmessage(request):
     website = request.POST.get('website')
     MessageCon=request.POST.get("MessageCon")
     # maxid=models.MessageTb.objects.latest('id').id
-    userpic=random.choice(["1-1.jpg",
-                           "1-2.jpg",
-                           "1-3.jpg",
-                           "1-4.jpg",
-                           "1-5.jpg",
-                           "1-6.jpg",
-                           "1-7.jpg",
-                           "1-8.jpg",
-                           "1-9.jpg",
-                           "1-10.jpg",
-                           "1-11.jpg",
-                           "1-12.jpg",
+    userpic=random.choice(["1-1.jpg","1-2.jpg","1-3.jpg","1-4.jpg","1-5.jpg","1-6.jpg","1-7.jpg","1-8.jpg","1-9.jpg","1-10.jpg","1-11.jpg","1-12.jpg",
                            "1-13.jpg",
                            "1-14.jpg",
                            "1-15.jpg",
@@ -156,8 +156,14 @@ def submitmessage(request):
                            "1-20.jpg",])
     MessageTb = models.MessageTb(MessageContent=MessageCon,userid='',userpic='static/common/imgs/userheadlib/'+userpic,username=username,createdate=datetime.datetime.now(),ip=ipadd,country=country,region=region,city=city,website=website,email=email)
     MessageTb.save()
-    print(MessageTb.object_to_json())
-    return JsonResponse({'code': 0, 'msg': 'success', 'data': MessageTb.object_to_json()})
+    # print(MessageTb.object_to_json())
+    message = models.MessageTb.objects.values().order_by('-createdate')
+    data = list(message)
+    paginator = Paginator(data, 10)
+    messagelist = paginator.get_page(1)
+    return JsonResponse(
+        {'code': 0, 'msg': 'success', 'currPage': 1, "totalPage": paginator.num_pages, "totalSize": len(data),
+         'data': messagelist.object_list})
 
 
 def about(request):
@@ -264,6 +270,12 @@ def replylike(request):
     reply.likeNum+=1
     reply.save()
     return JsonResponse({'message':0,'replylike':reply.likeNum})
+
+def search(request):
+    key=request.GET.get("key")
+    result=models.Blog.objects.filter(Q(blogcontent__contains=key)|Q(title__contains=key))
+    return render(request, 'MyBlog/search.html',{'result':result})
+
 '''
 后端处理
 '''

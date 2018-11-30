@@ -16,6 +16,7 @@ urlpatterns = [
     path('picture/', views.picture, name='picture'),
     path('archive/', views.archive, name='archive'),
     path('like/', views.like, name='like'),
+    path('search/', views.search, name='search'),
     path('replylike/', views.replylike, name='replylike'),
     path('about/', views.about, name='about'),
     path('test/', views.test, name='test'),

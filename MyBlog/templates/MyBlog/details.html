@@ -8,7 +8,7 @@
     <script src="http://www.jq22.com/demo/share201709090147/js/jsmodern-1.1.1.min.js"></script>
 {% endblock %}
 {% block nav %}
-    <div class="nav layui-nav">
+    <div class="nav layui-nav" id="nav">
         <div class="item">
             <a href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
             <ul class="">
@@ -62,7 +62,6 @@
                         <div class="">
                             <p>非特殊说明，本文版权归 夏天的风博客 所有，转载请注明出处.</p>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -117,7 +116,6 @@
                 </div>
             </div>
         </div>
-
         {% if Blog.comment_set.all %}
             <div class="layui-card">
                 <div class="layui-card-body">
@@ -133,11 +131,11 @@
                                 <div class="pad-btm">
                                     <p class="fontColor"><a>{{ comment.username }}</a></p>
                                     <div class="min-font">
-                                                                  <span class="layui-breadcrumb" lay-separator="-">
-                                                                    <a class="layui-icon layui-icon-cellphone"></a>
-                                                                    <a>{{ comment.device }}</a>
-                                                                    <a class="time" datetime="{{ comment.createdate|date:"Y-m-d H:i:s" }}"></a>
-                                                                  </span>
+                                      <span class="layui-breadcrumb" lay-separator="-">
+                                        <a class="layui-icon layui-icon-cellphone"></a>
+                                        <a>{{ comment.device }}</a>
+                                        <a class="time" datetime="{{ comment.createdate|date:"Y-m-d H:i:s" }}"></a>
+                                      </span>
                                     </div>
                                     <p class="message-text">{{ comment.commentContent }}</p>
                                 </div>
@@ -175,7 +173,6 @@
                                         <button class="layui-btn"><i class="layui-icon">&#xe611;</i></button>
                                         <button class="layui-btn" id='replylabel{{ comment.id }}'>回复</button>
                                     </div>
-
                                 </div>
                                 <form  id="formyz">
                                     {% csrf_token %}
@@ -192,7 +189,6 @@
                 </div>
             </div>
         {% endif %}
-
     </div>
     <div class="layui-col-md3" >
         <div class="content-sapce-15">

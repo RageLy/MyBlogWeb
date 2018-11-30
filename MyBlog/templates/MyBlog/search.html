@@ -1,13 +1,60 @@
 {% extends 'MyBlog/base.html' %}
+{% load static %}
 {% block title%}
     <title>搜索结果</title>
 {% endblock %}
-{% block container %}
-    <div class="layui-col-md12 Tophead">
-        <div class="layui-card">
-            <div class="layui-card-body ">
-
+{% block nav %}
+    <div class="nav layui-nav" id="nav">
+        <div class="item">
+            <a href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
+            <ul class="">
+                <li class="layui-nav-item layui-this"><a href="../blog">博客</a></li>
+                {#            <li class="layui-nav-item"><a href="../picture">相册</a></li>#}
+                <li class="layui-nav-item"><a href="../weblink">友情链接</a></li>
+                <li class="layui-nav-item"><a href="../archive">归档</a></li>
+                <li class="layui-nav-item"><a href="../message">留言</a></li>
+                <li class="layui-nav-item"><a href="../about">关于</a></li>
+            </ul>
         </div>
-
     </div>
+{% endblock %}
+{% block container %}
+    <div class="layui-col-md12">
+        <div class="layui-card">
+            <div class="layui-card-header">搜索结果</div>
+            <div class="layui-card-body search">
+                <ul>
+                    {% if result %}
+                        {% for i in result %}
+                            <li class="result">
+                                <a href="../../details/{{ i.id }}">{{ i.title }}</a>
+                                <p>{{ i.abstract }}</p>
+                            </li>
+                        {% endfor %}
+                    {% else %}
+                        <div><p>未搜索到结果</p></div>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script>
+     $(function(){
+        function footerPosition(){
+            $(".footer").removeClass("fixed-bottom");
+            var contentHeight = document.body.scrollHeight,//网页正文全文高度
+                winHeight = window.innerHeight;//可视窗口高度，不包括浏览器顶部工具栏
+            if(!(contentHeight > winHeight)){
+                //当网页正文高度小于可视窗口高度时，为footer添加类fixed-bottom
+                $(".footer").addClass("fixed-bottom");
+            } else {
+                $(".footer").removeClass("fixed-bottom");
+            }
+        }
+        footerPosition();
+        $(window).resize(footerPosition);
+    });
+    </script>
 {% endblock %}

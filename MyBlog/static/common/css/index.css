@@ -5,8 +5,15 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
 
 .nav img {float: left;padding-left: 7.5px;}
 .nav ul{float: right;}
-.nav ul li{float: left;font-size: 16px;;}
+.nav ul li{float: left;font-size: 16px;}
 .nav ul li a{color:#777777!important;}
+
+.nav-tree{margin:0 auto 30px;width:100%;text-align: left;background-color: #fefefe;position: fixed;z-index: 1;top: 0;left:0;opacity: 0.8;}
+.nav-tree .navpic {height: 60px;line-height: 60px;}
+.nav-tree .navpic img {padding-left: 15px;}
+.nav-tree ul{padding-left: 20px;}
+.nav-tree ul li{font-size: 16px;line-height: 50px;height: 50px;border-top:1px solid #dcdcdc;}
+.nav-tree ul li a{color:#777777!important;}
 
 @media screen and (min-width:768px){.nav .item{width:750px}}
 @media screen and (min-width:992px){.nav .item{width:970px}}
@@ -80,7 +87,9 @@ body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-se
     .header .header-down-nav li a{font-size: 16px;}}
 .footer .footer-hr {border-top-width: 1px;border-top-color: #444444;border-top-style: solid;padding: 10px 0 30px 0}
 .footer .footer-hr p{padding: 0 0 8px 0}
-.footer .footer-link ul {padding: 0 0 5px 0}
-.footer .footer-link ul li{padding: 2px 0 2px 0}
-.footer .footer-link ul li a{color: #888}
-.footer .footer-desc p{text-align: left;line-height: 24px}
+/*.footer .footer-link{}*/
+/*.footer .footer-link ul {padding: 0 0 5px 0;text-align: center;}*/
+/*.footer .footer-link ul li{padding: 2px 0 2px 0}*/
+/*.footer .footer-link ul li a{color: #888}*/
+.footer .footer-desc{padding: 10px;}
+.footer .footer-desc p{text-align: left;line-height: 24px;}

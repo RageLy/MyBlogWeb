@@ -26,29 +26,19 @@
 <div class="footer">
     <div class="layui-container">
         <div class="layui-col-md12">
-            <div class="layui-col-md9 footer-desc">
+            <div class="footer-desc">
                 <p>花花与风</p>
                 <p>花花与风愿为你分享生活中的点点滴滴，最新前沿技术，包括数据分析，深度学习，python等方方面面的东西，时而也会更新一些个人生活小事。</p>
             </div>
-            <div class="layui-col-md3 footer-link">
-                相关链接
-                <ul>
-                    <li><a href="../">主页</a></li>
-                    <li><a href="../blog/">博文</a></li>
-                    <li><a href="../message/">留言</a></li>
-                    <li><a href="../about/">关于</a></li>
-                </ul>
-            </div>
         </div>
         <div class="layui-col-md12 footer-hr">
-            <div class="layui-col-md12">
                 <p>design & code by @花花与风,base on layui + django</p>
                 <p>感谢layui提供的完美框架，腾讯云提供的优质云服务，以及各位大佬们的设计精髓。</p>
-            </div>
         </div>
     </div>
 </div>
 <script src="{% static 'layui/layui.js' %}"></script>
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
 <script>
     layui.config({
         base: '{% static '/' %}'
@@ -62,6 +52,23 @@
         });
     });
 </script>
+ <script>
+        //浏览器窗口大小变化时
+        window.onresize = function () {
+        var curwidth = document.documentElement.clientWidth;
+        if(curwidth <768){
+         $("#nav").removeClass("nav")
+                $("#nav").removeClass("layui-nav")
+                $("#nav").addClass("nav-tree")
+            }
+            else
+            {
+                $("#nav").addClass("nav")
+                $("#nav").addClass("layui-nav")
+                $("#nav").removeClass("nav-tree")
+            }
+        }
+    </script>
 {% block script %}
 {% endblock %}
 </body>

@@ -12,9 +12,9 @@
     <title>花花与风-关于我</title>
 {% endblock %}
 {% block nav %}
-<div class="nav layui-nav">
+<div class="nav layui-nav" id="nav">
     <div class="item">
-        <a href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
+        <a class="navpic" href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
         <ul class="">
             <li class="layui-nav-item"><a href="../blog">博客</a></li>
 {#            <li class="layui-nav-item"><a href="../picture">相册</a></li>#}
@@ -72,12 +72,12 @@
             <div class="card-body">
                 <div class="status">
                     <div class="follow">
-                        <span class="count">161</span>
+                        <span class="count">0</span>
                         <div class="label">Follower</div>
                     </div>
                     <span class="divider"></span>
                     <div class="following">
-                        <span class="count">141</span>
+                        <span class="count">0</span>
                         <div class="label">Following</div>
                     </div>
                 </div>
