@@ -4,8 +4,8 @@
     <title>花花与风-{{ Blog.title }}</title>
 {% endblock %}
 {% block head %}
-    <script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
-    <script src="http://www.jq22.com/demo/share201709090147/js/jsmodern-1.1.1.min.js"></script>
+    <link rel="stylesheet" href="{% static 'common/css/share.min.css' %}">
+
 {% endblock %}
 {% block nav %}
     <div class="nav layui-nav" id="nav">
@@ -73,9 +73,7 @@
                 </div>
                 <div class="share">
                     <ul>
-                        <li class="qq" id="share-qq"> <i class="layui-icon layui-icon-login-qq"></i></li>
-                        <li class="wechat"> <a href="#" class="bds_weixin" data-cmd="weixin"><i class="layui-icon layui-icon-login-wechat"></i></li></a>
-                        <li class="weibo"> <a href="#" class="bds_tsina" data-cmd="tsina"><i class="layui-icon layui-icon-login-weibo"></i></a></li>
+                        <div id="share-2"></div>
                     </ul>
                 </div>
             </div>
@@ -250,6 +248,9 @@
 {% endblock %}
 {% block script %}
     <script src="{% static '/common/js/jquery.timeago.js' %}" ></script>
+     <script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="https://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+   <script src="{% static '/common/js/share.min.js' %}"></script>
     <script>
         $("#urlinfo").html(window.location.href)
         $("#urlinfo").attr('href',window.location.href)
@@ -575,5 +576,8 @@
         console.log(browser.language)
         {#document.writeln("语言版本: "+browser.language);#}
         {#document.writeln(" 是否为移动终端: "+browser.versions.mobile);#}
+    </script>
+    <script>
+    $('#share-2').share({sites: ['qzone', 'qq', 'weibo','wechat','douban']});
     </script>
 {% endblock %}
