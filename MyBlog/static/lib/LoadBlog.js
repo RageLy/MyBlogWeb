@@ -63,10 +63,10 @@ layui.use('flow', function(){
                                 '                        <div class="img"><img src="'+item.imgTitle+'" alt="'+item.title+'"></div>\n' +
                                 '                        <div class="abstract"><a href="../details/"'+item.id+'" title="'+item.title+'">'+item.abstract+'</a></div>\n' +
                                 '                        <div class="author">\n' +
-                                '                            <span class="f_l t_left top">置顶</span>\n' +
+                                '                            <span class="f_l t_left top">'+item.isTopZh+'</span>\n' +
                                 '                            <span class="f_l lm">分类：'+blog_blogtypelist+'</span>\n' +
                                 '                            <span class="dtime f_l">发布时间：'+new Date(item.createdate).Format("yyyy-MM-dd  hh:mm:ss")+'</span>\n' +
-                                '                            <span class="f_r t_right orign">原创</span>\n' +
+                                '                            <span class="f_r t_right orign">'+item.isorgZh+'</span>\n' +
                                 '                            <span class="viewnum f_r ">'+item.hit+'次阅读</span>\n' +
                                 '                            <span class="pingl f_r">'+item.commentcount+'条评论</span>\n' +
                                 '                        </div>\n' +

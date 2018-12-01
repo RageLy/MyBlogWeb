@@ -59,7 +59,7 @@ function loadData(currPage, pageSize){
                         "<div class=\"headimg\"><img src=\"../../"+info[i].userpic+"\"></div>\n" +
                         "<div class=\"user\"> <p>"+info[i].username+"</p></div>\n" +
                         "<div class=\"text\"> <p>"+info[i].MessageContent+"</p></div>\n" +
-                        "<div class=\"date\">  <span>"+new Date(info[i].createdate).Format("YYYY-MM-dd hh:mm:ss")+"</span><i class=\"layui-icon layui-icon-location\"> "+info[i].country+"· "+info[i].region+" · "+info[i].city+"</i></div>\n" +
+                        "<div class=\"date\">  <span>"+new Date(info[i].createdate).Format("YYYY-MM-dd hh:mm:ss")+"</span><i class=\"layui-icon layui-icon-location\"> "+info[i].country+" ▪ "+info[i].region+" ▪ "+info[i].city+"</i></div>\n" +
                         "</div>\n"
                 }
                 // location.reload()

@@ -12,7 +12,7 @@ import json
 from django.db.models.fields.files import ImageFieldFile
 from PIL import Image
 from MyBlogWeb.settings import MEDIA_ROOT
-import os, datetime, uuid
+import os, datetime, uuid,time
 
 
 
@@ -46,33 +46,33 @@ def Blog(request):
 
 def loadblog(request):
     # data={}
-    # Blog1=models.Blog.objects.values('id','title','abstract','createdate','hit','isTop','isorg','imgTitle','blog_blogtype','blog_CategoryToBlog')
+    # Blog=models.Blog.objects.values('id','title','abstract','createdate','hit','isTop','isorg','imgTitle','blog_blogtype','blog_CategoryToBlog')
     # if request.method=='GET':
+    # Blog2=models.Blog.objects.get(id=57).to_dict()
+    # print(Blog2)
     type=request.GET.get('type')
     method=request.GET.get('method')
     print('方法:',method)
     if method=='0':
-        Blog = models.Blog.objects.all()
+        Blog = models.Blog.objects.values('id','title','abstract','createdate','hit','isTop','isorg','imgTitle')
+        print(Blog)
     elif method=='1':
-        Blog = models.BlogType.objects.get(TypeName=type).blogtype_blog.all()
+        Blog = models.BlogType.objects.get(TypeName=type).blogtype_blog.values('id','title','abstract','createdate','hit','isTop','isorg','imgTitle')
     elif method=='2':
-        Blog = models.Category.objects.get(id=type).CategoryToBlog_Blog.all()
+        Blog = models.Category.objects.get(id=type).CategoryToBlog_Blog.values('id','title','abstract','createdate','hit','isTop','isorg','imgTitle')
     else:
-        Blog = models.Blog.objects.all()
+        Blog = models.Blog.objects.values('id', 'title', 'abstract', 'createdate', 'hit', 'isTop', 'isorg', 'imgTitle')
     # print(data)
-    bloglist=[]
-    for item in Blog:
-        blogtypedict=[]
-        blogtype=item.blog_blogtype.all()
-        for i in blogtype:
-            blogtypedict.append({'TypeName':i.TypeName,'id':i.id})
-        blogcategorydict = []
-        blogcategory = item.blog_CategoryToBlog.all()
-        for j in blogcategory:
-            blogcategorydict.append({'Name': j.Name, 'id': j.id})
-        blogdict={'id':item.id,'title':item.title,'abstract':item.abstract,'createdate':str(item.createdate),
-                  'hit':item.hit,'isTop':'checked' if item.isTop==1 else '','isorg':'checked' if item.isorg==1 else '','imgTitle':item.imgTitle,'blogType':blogtypedict,'blogCategory':blogcategorydict,'commentcount':item.comment_set.count()}
-        bloglist.append(blogdict)
+    bloglist=list(Blog)
+    for index,item in enumerate(bloglist):
+        bloglist[index]["isTopZh"] = '置顶' if item["isTop"]==1 else ''
+        bloglist[index]["isorgZh"] = '原创' if item["isorg"]==1 else '转载'
+        blogtype=models.BlogType.objects.filter(blog__id=item["id"]).values('id','TypeName')
+        bloglist[index]["blogType"]=list(blogtype)
+        categorytype = models.Category.objects.filter(blog__id=item["id"]).values('id','Name')
+        bloglist[index]["blogCategory"] = list(categorytype)
+        commentcount=models.Comment.objects.filter(blog__id=item["id"]).count()
+        bloglist[index]["commentcount"] = commentcount
     limit=request.GET.get('limit')
     paginator = Paginator(bloglist, limit)
     page = request.GET.get('page')
@@ -115,7 +115,7 @@ def loadarchivedata(request):
     return JsonResponse({'code':0,'msg':'success','data':dictlist})
 
 def message(request):
-    MessageTb=models.MessageTb.objects.order_by('-createdate')
+    # MessageTb=models.MessageTb.objects.order_by('-createdate')
     return render(request, 'MyBlog/message.html')
 
 def loadmessage(request):
@@ -154,7 +154,7 @@ def submitmessage(request):
                            "1-18.jpg",
                            "1-19.jpg",
                            "1-20.jpg",])
-    MessageTb = models.MessageTb(MessageContent=MessageCon,userid='',userpic='static/common/imgs/userheadlib/'+userpic,username=username,createdate=datetime.datetime.now(),ip=ipadd,country=country,region=region,city=city,website=website,email=email)
+    MessageTb = models.MessageTb(MessageContent=MessageCon,userid='',userpic='static/common/imgs/userheadlib/'+userpic,username=username,createdate=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())),ip=ipadd,country=country,region=region,city=city,website=website,email=email)
     MessageTb.save()
     # print(MessageTb.object_to_json())
     message = models.MessageTb.objects.values().order_by('-createdate')
@@ -215,7 +215,22 @@ def commentdata(request):
     website = request.POST.get('website')
     blogid=request.POST.get('blogid')
     commentContent = request.POST.get('commentContent')
-    device=request.POST.get('device')
+    device = request.POST.get('device')
+    brower = request.POST.get('brower')
+    system = request.POST.get('system')
+    replytype = request.POST.get('replytype')
+    if 'HTTP_X_FORWARDED_FOR' in request.META:
+        ip = request.META['HTTP_X_FORWARDED_FOR']
+    else:
+        ip = request.META['REMOTE_ADDR']
+    print(ip)
+    ipcity = 'http://ip.taobao.com/service/getIpInfo.php?ip=' + ip
+    wb_data = urllib.request.urlopen(ipcity)
+    data = json.loads(wb_data.read().decode("utf-8"))
+    ipadd = data['data']['ip']
+    country = data['data']['country']
+    region = data['data']['region']
+    city = data['data']['city']
     userpic = random.choice(["1-1.jpg",
                              "1-2.jpg",
                              "1-3.jpg",
@@ -236,24 +251,70 @@ def commentdata(request):
                              "1-18.jpg",
                              "1-19.jpg",
                              "1-20.jpg", ])
-    comment=models.Comment(blog_id=blogid,username=username,website=website,email=email,commentContent=commentContent,createdate=datetime.datetime.now(),device=device,likeNum=0,userpic='static/common/imgs/userheadlib/'+userpic)
+    comment=models.Comment(blog_id=blogid,username=username,website=website,email=email,commentContent=commentContent,createdate=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())),device=device,likeNum=0,userpic='static/common/imgs/userheadlib/'+userpic,brower=brower,system=system,country=country,region=region,city=city)
     comment.save()
-    commentNew=models.Comment.objects.filter(id=comment.id).values()
-    return JsonResponse({'message':0,'data':list(commentNew)})
+    commentNewcount=models.Comment.objects.count()
+    return JsonResponse({'message':0,'commentcount':commentNewcount})
 
 def loadcommentdata(request):
+    page = request.GET.get('page')
+    limit = request.GET.get('limit')
     blog_id=request.GET.get('blogid')
     comment=models.Comment.objects.filter(blog_id=blog_id).order_by('-createdate').values()
-    print(list(comment))
-    return JsonResponse({'code':0,'msg':'success','data':list(comment)})
+
+    data = list(comment)
+    for index,item in enumerate(data):
+        reply = models.Reply.objects.filter(comment_id=item["id"]).values()
+        replylist = list(reply)
+        data[index]["replylist"]=replylist
+    # data.append(replylist)
+    paginator = Paginator(data, limit)
+    commentlist = paginator.get_page(page)
+    print(commentlist.object_list)
+    return JsonResponse({'code':0,'msg':'success','currPage':page,"totalPage":paginator.num_pages,"totalSize":len(data),'data':commentlist.object_list})
 
 def replydata(request):
     userid=request.POST.get('userid')
     blogid=request.POST.get('blogid')
     commentid=request.POST.get('commentid')
     replyContent = request.POST.get('replyContent')
+    device = request.POST.get('device')
+    brower = request.POST.get('brower')
+    system = request.POST.get('system')
     replytype=request.POST.get('replytype')
-    reply=models.Reply(blog_id=blogid,user_id=userid,comment_id=commentid,replyContent=replyContent,createdate=datetime.datetime.now(),reply_type=replytype,likeNum=0)
+    if 'HTTP_X_FORWARDED_FOR' in request.META:
+        ip = request.META['HTTP_X_FORWARDED_FOR']
+    else:
+        ip = request.META['REMOTE_ADDR']
+    print(ip)
+    ipcity='http://ip.taobao.com/service/getIpInfo.php?ip='+ip
+    wb_data = urllib.request.urlopen(ipcity)
+    data = json.loads(wb_data.read().decode("utf-8"))
+    ipadd=data['data']['ip']
+    country=data['data']['country']
+    region = data['data']['region']
+    city = data['data']['city']
+    userpic = random.choice(["1-1.jpg",
+                             "1-2.jpg",
+                             "1-3.jpg",
+                             "1-4.jpg",
+                             "1-5.jpg",
+                             "1-6.jpg",
+                             "1-7.jpg",
+                             "1-8.jpg",
+                             "1-9.jpg",
+                             "1-10.jpg",
+                             "1-11.jpg",
+                             "1-12.jpg",
+                             "1-13.jpg",
+                             "1-14.jpg",
+                             "1-15.jpg",
+                             "1-16.jpg",
+                             "1-17.jpg",
+                             "1-18.jpg",
+                             "1-19.jpg",
+                             "1-20.jpg", ])
+    reply=models.Reply(blog_id=blogid,user_id=userid,userpic='static/common/imgs/userheadlib/'+userpic,comment_id=commentid,replyContent=replyContent,createdate=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())),reply_type=replytype,likeNum=0,device=device,brower=brower,system=system,country=country,region=region,city=city)
     reply.save()
     return JsonResponse({'message':0})
 
@@ -261,14 +322,14 @@ def like(request):
     commentid = request.POST.get('commentid')
     comment=models.Comment.objects.get(id=commentid)
     comment.likeNum+=1
-    comment.save()
+    comment.save(update_fields=['likeNum'])
     return JsonResponse({'message':0,'like':comment.likeNum})
 
 def replylike(request):
     replyid = request.POST.get('replyid')
     reply=models.Reply.objects.get(id=replyid)
     reply.likeNum+=1
-    reply.save()
+    reply.save(update_fields=['likeNum'])
     return JsonResponse({'message':0,'replylike':reply.likeNum})
 
 def search(request):

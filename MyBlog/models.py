@@ -245,7 +245,12 @@ class Comment(models.Model):
     username = models.CharField(db_column='username', max_length=50, blank=True, null=True)
     email = models.CharField(db_column='email', max_length=50, blank=True, null=True)
     createdate = models.DateTimeField(db_column='createdate', blank=True, null=True)  # Field name made lowercase.
-    device=models.CharField(db_column='device', max_length=50, blank=True, null=True)
+    country = models.CharField(db_column='country', max_length=50, blank=True, null=True)
+    region = models.CharField(db_column='region', max_length=50, blank=True, null=True)
+    city = models.CharField(db_column='city', max_length=20, blank=True, null=True)
+    brower = models.CharField(db_column='brower', max_length=20, blank=True, null=True)
+    device = models.CharField(db_column='device', max_length=20, blank=True, null=True)
+    system = models.CharField(db_column='system', max_length=20, blank=True, null=True)
     userpic = models.CharField(db_column='userpic', max_length=50, blank=True, null=True)
     website = models.CharField(db_column='website', max_length=50, blank=True, null=True)
     likeNum = models.IntegerField(db_column='likeNum', blank=True, null=True)  # Field name made lowercase.
@@ -273,8 +278,14 @@ class Reply(models.Model):
     user = models.OneToOneField("Users", to_field="userid", on_delete=models.CASCADE)# Field name made lowercase.
     createdate = models.DateTimeField(db_column='createdate', blank=True, null=True)  # Field name made lowercase.
     reply_type=models.CharField(db_column='reply_type', max_length=50, blank=True, null=True)
-    # taruser_id = models.IntegerField(db_column='taruser_id', blank=True, null=True)  # Field name made lowercase.
+    userpic = models.CharField(db_column='userpic',max_length=50, blank=True, null=True)  # Field name made lowercase.
     likeNum = models.IntegerField(db_column='likeNum', blank=True, null=True)  # Field name made lowercase.
+    country = models.CharField(db_column='country', max_length=50, blank=True, null=True)
+    region = models.CharField(db_column='region', max_length=50, blank=True, null=True)
+    city = models.CharField(db_column='city', max_length=20, blank=True, null=True)
+    brower = models.CharField(db_column='brower', max_length=20, blank=True, null=True)
+    device = models.CharField(db_column='device', max_length=20, blank=True, null=True)
+    system = models.CharField(db_column='system', max_length=20, blank=True, null=True)
     objects = models.Manager()
     reply_objects = ReplyManager()
 
@@ -309,6 +320,7 @@ class MessageTb(models.Model):
     city = models.CharField(db_column='city', max_length=20, blank=True, null=True)
     brower = models.CharField(db_column='brower', max_length=20, blank=True, null=True)
     device = models.CharField(db_column='device', max_length=20, blank=True, null=True)
+    system = models.CharField(db_column='system', max_length=20, blank=True, null=True)
     objects = models.Manager()
 
     class Meta:
