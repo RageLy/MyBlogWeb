@@ -255,6 +255,7 @@
     <script src="{% static '/common/js/paging.js' %}"></script>
     <script src="{% static '/common/js/share.min.js' %}"></script>
     <script>
+        $('#share-2').share({sites: ['qzone', 'qq', 'weibo','wechat','douban']});
         $("#urlinfo").html(window.location.href)
         $("#urlinfo").attr('href',window.location.href)
         console.log(window.location.href)
@@ -263,9 +264,25 @@
         var devide=''
         var brower=''
         var system=''
+        $(function(){
+            LoadComment(1,10);
+        });
+        $("#blogpagination").whjPaging({
+            //设为true时，ajax里的success函数必须调用setPage方法，否则分页插件显示保持不变
+            isResetPage: true,
+            css: 'css-4',
+            isShowSkip: false,
+            isShowRefresh: false,
+            isShowPageSizeOpt: false,
+            isShowFL: true,
+            isShowTotalPage: false,
+            isShowTotalSize: false,
+            callBack: function(currPage, pageSize) {
+                LoadComment(currPage, 10);
+            }
+         });
         layui.use('layer', function(){
             var layer = layui.layer;
-
             $("#sb-btn").click(function(){
                 if($("#username").val()=="")
                 {
@@ -304,23 +321,7 @@
                 }
             });
         });
-        $(function(){
-            LoadComment(1,10);
-        });
-        $("#blogpagination").whjPaging({
-            //设为true时，ajax里的success函数必须调用setPage方法，否则分页插件显示保持不变
-            isResetPage: true,
-            css: 'css-4',
-            isShowSkip: false,
-            isShowRefresh: false,
-            isShowPageSizeOpt: false,
-            isShowFL: true,
-            isShowTotalPage: false,
-            isShowTotalSize: false,
-            callBack: function(currPage, pageSize) {
-                LoadComment(currPage, 10);
-            }
-        });
+
         //加载初始化数据
         function LoadComment(currPage, pageSize){
             console.log('继续加载')
@@ -354,10 +355,8 @@
                                     "<div class=\"like\">\n" +
                                     "<button class=\"layui-btn\" id=\"replylike" + item.id + "\"><i class=\"layui-icon\">&#xe6c6;</i></button>\n" +
                                     "<span class=\"layui-btn\"><p class=\"replylikecon" + item.id + "\">" + item.likeNum + "</p></span></div>\n" +
-                                    "<div lay-separator=\"-\" class=\"reply-date\">\n" +
+                                    "<div class=\"reply-date\">\n" +
                                     "<a class=\"replytime\" datetime=\"" + item.createdate + "\"></a></div></div></div>"
-
-
                             });
                             if (item.replylist.length > 0) {
                                 replystr = topstr + replystr + bottomstr
@@ -372,11 +371,11 @@
                                 "                                    <div class=\"pad-btm\">\n" +
                                 "                                        <p class=\"fontColor\"><a>" + vfields.username + "</a></p>\n" +
                                 "                                        <div class=\"min-font\">\n" +
-                                "                                          <span class=\"layui-breadcrumb\" lay-separator=\"-\">\n" +
+                                "                                          <span class=\"layui-breadcrumb\">\n" +
                                 "                                            <a class=\"layui-icon layui-icon-cellphone\"> - </a>\n" +
                                 "                                            <a>" + vfields.device + " - </a>\n" +
                                 "                                            <a class=\"time\" datetime=\"" + vfields.createdate + "\"> </a>\n" +
-                                    "                                         <a class=\"brower\"> - "+vfields.country+" ▪ "+vfields.region+" ▪ "+vfields.city+" - "+vfields.system+" - "+vfields.brower+"</a>\n" +
+                                "                                         <a class=\"brower\"> - "+vfields.country+" ▪ "+vfields.region+" ▪ "+vfields.city+" - "+vfields.system+" - "+vfields.brower+"</a>\n" +
                                 "                                          </span>\n" +
                                 "                                        </div>\n" +
                                 "                                        <p class=\"message-text\">" + vfields.commentContent + "</p>\n" +
@@ -405,224 +404,225 @@
                                 "                                    </form>\n" +
                                 "                                </div>"
                         });
-                        console.log(str)
-                        $("#messagetext").find('*').remove();
-                        var javascriptexec=$(str);
-                        $("#messagetext").append(javascriptexec);
-                        $(javascriptexec).find("[id^=like]").click(function(){
-                            commentid=$(this).attr("id").split("like")[1]
-                            $.ajax({
-                                type:"POST",
-                                data: {'commentid':commentid,'csrfmiddlewaretoken':$("[name='csrfmiddlewaretoken']").val()},
-                                url: "{% url 'MyBlog:like' %}", //后台处理函数的url
-                                cache: false,
-                                async : false,
-                                success: function(result){
-                                    console.log(result.message)
-                                    if(result.message="0")
-                                    {
-                                        console.log(result.message)
-                                        layer.msg('点赞成功',{time:0.5*1000})
-                                        var likecon='likecon'+commentid
-                                        $("."+likecon).html(result.like)
-                                        console.log(result.like,$("."+likecon).html())
-                                    }
-                                },
-                                error: function(){
-                                    layer.msg('传输格式有误，请检查')
-                                }
-                            });
-                        })
-                        $(javascriptexec).find('[id^=replylabel]').click(function ()
+                        console.log('评论：',str)
+                        if(str.length>0)
                         {
-                            {#console.log($(this).css("display"))#}
-                            id=$(this).attr("id").split("replylabel")[1]
-                            {#console.log(id)#}
-                            var replyid='reply'+id
-                            var replylabelid='replylabel'+id
-                            replysbid=id
-                            replyContentid='replyContent'+id
-                            if($('#'+replyid).css("display")=='block')
-                            {
-                                $('#'+replyid).css("display", "none")
-                                $(this).text("回复")
-                            }
-                            else
-                            {
-                                $("#formyz div[id^='reply']").not("#"+replyid).css("display", "none")
-                                $("#reply-comment button[id^='replylabel']").not("#"+replylabelid).text("回复")
-                                {#console.log($("#reply-comment button[id^='replylabel']"))#}
-                                $('#'+replyid).css("display","block")
-                                $(this).text("收起")
-                            }
-                        })
-                        {#回复评论#}
-                        var replysbid=''
-                        var replyContentid=''
-                        $(javascriptexec).find("[id^=replybtn]").click(function(){
-                            var replyid='reply'+replysbid
-                            var replylabelid='replylabel'+replysbid
-                            if($("#"+replyContentid).val()=="")
-                            {
-                                layer.msg('回复不能为空!',{time:0.5*1000})
-                            }
-                            else
-                            {
+                            $("#messagetext").find('*').remove();
+                            var javascriptexec=$(str);
+                            $("#messagetext").append(javascriptexec);
+                            $(javascriptexec).find("[id^=like]").click(function(){
+                                commentid=$(this).attr("id").split("like")[1]
                                 $.ajax({
                                     type:"POST",
-                                    data: {'userid':"1",'commentid':replysbid,'blogid':{{Blog.id}},'csrfmiddlewaretoken':$("[name='csrfmiddlewaretoken']").val(),'replyContent':$("#"+replyContentid).val(),'device':devide,'brower':brower,'system':system},
-                                    url: "{% url 'MyBlog:replydata' %}", //后台处理函数的url
+                                    data: {'commentid':commentid,'csrfmiddlewaretoken':$("[name='csrfmiddlewaretoken']").val()},
+                                    url: "{% url 'MyBlog:like' %}", //后台处理函数的url
                                     cache: false,
                                     async : false,
                                     success: function(result){
+                                        console.log(result.message)
                                         if(result.message="0")
                                         {
-                                            console.log("回复成功")
-                                            layer.msg('回复成功',{time:0.5*1000})
-                                            {#location.reload()#}
-                                            LoadComment(1,10)
-                                            console.log(replyid)
-                                            $('#'+replyid).css("display", "none")
-                                            $('#'+replylabelid).text("回复")
+                                            console.log(result.message)
+                                            layer.msg('点赞成功',{time:0.5*1000})
+                                            var likecon='likecon'+commentid
+                                            $("."+likecon).html(result.like)
+                                            console.log(result.like,$("."+likecon).html())
                                         }
                                     },
                                     error: function(){
-                                        {#$('#test1').html('传输格式有错误')#}
-                                        {#layer.confirm(result)#}
                                         layer.msg('传输格式有误，请检查')
                                     }
                                 });
-                            }
-                        })
-                        $(javascriptexec).find("[id^=replylike]").click(function(){
-                            replyid=$(this).attr("id").split("replylike")[1]
-                            $.ajax({
-                                type:"POST",
-                                data: {'replyid':replyid,'csrfmiddlewaretoken':$("[name='csrfmiddlewaretoken']").val()},
-                                url: "{% url 'MyBlog:replylike' %}", //后台处理函数的url
-                                cache: false,
-                                async : false,
-                                success: function(result){
-                                    console.log(result.message)
-                                    if(result.message="0")
-                                    {
-                                        console.log(result.message)
-                                        layer.msg('点赞成功',{time:0.5*1000})
-                                        var replylikecon='replylikecon'+replyid
-                                        $("."+replylikecon).html(result.replylike)
-                                        console.log(result.replylike,$("."+replylikecon).html())
-
-                                    }
-                                },
-                                error: function(){
-                                    layer.msg('传输格式有误，请检查')
+                            })
+                            $(javascriptexec).find('[id^=replylabel]').click(function ()
+                            {
+                                {#console.log($(this).css("display"))#}
+                                id=$(this).attr("id").split("replylabel")[1]
+                                {#console.log(id)#}
+                                var replyid='reply'+id
+                                var replylabelid='replylabel'+id
+                                replysbid=id
+                                replyContentid='replyContent'+id
+                                if($('#'+replyid).css("display")=='block')
+                                {
+                                    $('#'+replyid).css("display", "none")
+                                    $(this).text("回复")
                                 }
-                            });
-                        })
-                        var timeagoInstance = timeago();// 实例
-                        timeagoInstance.render(document.querySelectorAll('.time'),'zh_CN');
-                        timeagoInstance.render(document.querySelectorAll('.replytime'),'zh_CN');
+                                else
+                                {
+                                    $("#formyz div[id^='reply']").not("#"+replyid).css("display", "none")
+                                    $("#reply-comment button[id^='replylabel']").not("#"+replylabelid).text("回复")
+                                    {#console.log($("#reply-comment button[id^='replylabel']"))#}
+                                    $('#'+replyid).css("display","block")
+                                    $(this).text("收起")
+                                }
+                            })
+                            {#回复评论#}
+                            var replysbid=''
+                            var replyContentid=''
+                            $(javascriptexec).find("[id^=replybtn]").click(function(){
+                                var replyid='reply'+replysbid
+                                var replylabelid='replylabel'+replysbid
+                                if($("#"+replyContentid).val()=="")
+                                {
+                                    layer.msg('回复不能为空!',{time:0.5*1000})
+                                }
+                                else
+                                {
+                                    $.ajax({
+                                        type:"POST",
+                                        data: {'userid':"1",'commentid':replysbid,'blogid':{{Blog.id}},'csrfmiddlewaretoken':$("[name='csrfmiddlewaretoken']").val(),'replyContent':$("#"+replyContentid).val(),'device':devide,'brower':brower,'system':system},
+                                        url: "{% url 'MyBlog:replydata' %}", //后台处理函数的url
+                                        cache: false,
+                                        async : false,
+                                        success: function(result){
+                                            if(result.message="0")
+                                            {
+                                                console.log("回复成功")
+                                                layer.msg('回复成功',{time:0.5*1000})
+                                                {#location.reload()#}
+                                                LoadComment(1,10)
+                                                console.log(replyid)
+                                                $('#'+replyid).css("display", "none")
+                                                $('#'+replylabelid).text("回复")
+                                            }
+                                        },
+                                        error: function(){
+                                            {#$('#test1').html('传输格式有错误')#}
+                                            {#layer.confirm(result)#}
+                                            layer.msg('传输格式有误，请检查')
+                                        }
+                                    });
+                                }
+                            })
+                            $(javascriptexec).find("[id^=replylike]").click(function(){
+                                replyid=$(this).attr("id").split("replylike")[1]
+                                $.ajax({
+                                    type:"POST",
+                                    data: {'replyid':replyid,'csrfmiddlewaretoken':$("[name='csrfmiddlewaretoken']").val()},
+                                    url: "{% url 'MyBlog:replylike' %}", //后台处理函数的url
+                                    cache: false,
+                                    async : false,
+                                    success: function(result){
+                                        console.log(result.message)
+                                        if(result.message="0")
+                                        {
+                                            console.log(result.message)
+                                            layer.msg('点赞成功',{time:0.5*1000})
+                                            var replylikecon='replylikecon'+replyid
+                                            $("."+replylikecon).html(result.replylike)
+                                            console.log(result.replylike,$("."+replylikecon).html())
 
-                        function getBrowserInfo(){
-                            var Sys = {};
-                            var ua = navigator.userAgent.toLowerCase();
-                            var re =/(Msie|Firefox|Chrome|Opera|version).*?([\d.]+)/;
-                            var m = ua.match(re);
-                            Sys.browser = m[1].replace(/version/, "'Safari");
-                            Sys.ver = m[2];
-                            return Sys;
-                        }
-                        var sys = getBrowserInfo();
-                        brower=sys.browser + " | " + sys.ver
-                        //平台、设备和操作系统
-                        var system = {
-                            win: false,
-                            mac: false,
-                            xll: false,
-                            ipad:false
-                        };
+                                        }
+                                    },
+                                    error: function(){
+                                        layer.msg('传输格式有误，请检查')
+                                    }
+                                });
+                            })
+                            var timeagoInstance = timeago();// 实例
+                            timeagoInstance.render(document.querySelectorAll('.time'),'zh_CN');
+                            timeagoInstance.render(document.querySelectorAll('.replytime'),'zh_CN');
 
-                        function detectOS() {
-                            var sUserAgent = navigator.userAgent;
-
-                            var isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows");
-                            var isMac = (navigator.platform == "Mac68K") || (navigator.platform == "MacPPC") || (navigator.platform == "Macintosh") || (navigator.platform == "MacIntel");
-                            if (isMac) return "Mac";
-                            var isUnix = (navigator.platform == "X11") && !isWin && !isMac;
-                            if (isUnix) return "Unix";
-                            var isLinux = (String(navigator.platform).indexOf("Linux") > -1);
-
-                            var bIsAndroid = sUserAgent.toLowerCase().match(/android/i) == "android";
-                            if (isLinux) {
-                                if(bIsAndroid) return "Android";
-                                else return "Linux";
+                            function getBrowserInfo(){
+                                var Sys = {};
+                                var ua = navigator.userAgent.toLowerCase();
+                                var re =/(Msie|Firefox|Chrome|Opera|version).*?([\d.]+)/;
+                                var m = ua.match(re);
+                                Sys.browser = m[1].replace(/version/, "'Safari");
+                                Sys.ver = m[2];
+                                return Sys;
                             }
-                            if (isWin) {
-                                var isWin2K = sUserAgent.indexOf("Windows NT 5.0") > -1 || sUserAgent.indexOf("Windows 2000") > -1;
-                                if (isWin2K) return "Win2000";
-                                var isWinXP = sUserAgent.indexOf("Windows NT 5.1") > -1 ||
-                                    sUserAgent.indexOf("Windows XP") > -1;
-                                if (isWinXP) return "WinXP";
-                                var isWin2003 = sUserAgent.indexOf("Windows NT 5.2") > -1 || sUserAgent.indexOf("Windows 2003") > -1;
-                                if (isWin2003) return "Win2003";
-                                var isWinVista= sUserAgent.indexOf("Windows NT 6.0") > -1 || sUserAgent.indexOf("Windows Vista") > -1;
-                                if (isWinVista) return "WinVista";
-                                var isWin7 = sUserAgent.indexOf("Windows NT 6.1") > -1 || sUserAgent.indexOf("Windows 7") > -1;
-                                if (isWin7) return "Win7";
+                            var sys = getBrowserInfo();
+                            brower=sys.browser + " | " + sys.ver
+                            //平台、设备和操作系统
+                            var system = {
+                                win: false,
+                                mac: false,
+                                xll: false,
+                                ipad:false
+                            };
+
+                            function detectOS() {
+                                var sUserAgent = navigator.userAgent;
+
+                                var isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows");
+                                var isMac = (navigator.platform == "Mac68K") || (navigator.platform == "MacPPC") || (navigator.platform == "Macintosh") || (navigator.platform == "MacIntel");
+                                if (isMac) return "Mac";
+                                var isUnix = (navigator.platform == "X11") && !isWin && !isMac;
+                                if (isUnix) return "Unix";
+                                var isLinux = (String(navigator.platform).indexOf("Linux") > -1);
+
+                                var bIsAndroid = sUserAgent.toLowerCase().match(/android/i) == "android";
+                                if (isLinux) {
+                                    if(bIsAndroid) return "Android";
+                                    else return "Linux";
+                                }
+                                if (isWin) {
+                                    var isWin2K = sUserAgent.indexOf("Windows NT 5.0") > -1 || sUserAgent.indexOf("Windows 2000") > -1;
+                                    if (isWin2K) return "Win2000";
+                                    var isWinXP = sUserAgent.indexOf("Windows NT 5.1") > -1 ||
+                                        sUserAgent.indexOf("Windows XP") > -1;
+                                    if (isWinXP) return "WinXP";
+                                    var isWin2003 = sUserAgent.indexOf("Windows NT 5.2") > -1 || sUserAgent.indexOf("Windows 2003") > -1;
+                                    if (isWin2003) return "Win2003";
+                                    var isWinVista= sUserAgent.indexOf("Windows NT 6.0") > -1 || sUserAgent.indexOf("Windows Vista") > -1;
+                                    if (isWinVista) return "WinVista";
+                                    var isWin7 = sUserAgent.indexOf("Windows NT 6.1") > -1 || sUserAgent.indexOf("Windows 7") > -1;
+                                    if (isWin7) return "Win7";
+                                }
+                                return "other";
                             }
-                            return "other";
-                        }
-                       system=detectOS()
+                            system=detectOS()
 
-                        //检测平台
-                        var p = navigator.platform;
-                        system.win = p.indexOf("Win") == 0;
-                        system.mac = p.indexOf("Mac") == 0;
-                        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
-                        system.ipad = (navigator.userAgent.match(/iPad/i) != null)?true:false;
-                        //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
-                        if (system.win || system.mac || system.xll||system.ipad) {
-                            console.log('电脑端')
-                            devide='电脑端'
-                        } else if(system.mac)
-                        {
-                            console.log('MAC端')
-                            devide='mac端'
-                        }
-                        else if(system.xll)
-                        {
-                            console.log('OK')
-                            devide='x11或者Linux端'
-                        }
-                        else if(system.ipad)
-                        {
-                            console.log('ipad端')
-                            devide='ipad端'
-                        }
-                        else
-                        {
-                            console.log('手机端')
-                            devide='手机端'
-                        }
+                            //检测平台
+                            var p = navigator.platform;
+                            system.win = p.indexOf("Win") == 0;
+                            system.mac = p.indexOf("Mac") == 0;
+                            system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+                            system.ipad = (navigator.userAgent.match(/iPad/i) != null)?true:false;
+                            //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+                            if (system.win || system.mac || system.xll||system.ipad) {
+                                console.log('电脑端')
+                                devide='电脑端'
+                            } else if(system.mac)
+                            {
+                                console.log('MAC端')
+                                devide='mac端'
+                            }
+                            else if(system.xll)
+                            {
+                                console.log('OK')
+                                devide='x11或者Linux端'
+                            }
+                            else if(system.ipad)
+                            {
+                                console.log('ipad端')
+                                devide='ipad端'
+                            }
+                            else
+                            {
+                                console.log('手机端')
+                                devide='手机端'
+                            }
 
-                        console.log(javascriptexec)
+                            console.log(javascriptexec)
 
-                        $("#blogpagination").whjPaging(
-                            "setPage",
-                            {currPage: result.currPage, totalPage: result.totalPage, totalSize: result.totalSize}
-                        );
+                            $("#blogpagination").whjPaging(
+                                "setPage",
+                                {currPage: result.currPage, totalPage: result.totalPage, totalSize: result.totalSize}
+                            );
+                        }
                     }else{
                         alert("数据错误！请联系管理员");
                     }
+
                 },
                 error:function(){
                     alert("发生错误");
                 }
             });
         }
-        $('#share-2').share({sites: ['qzone', 'qq', 'weibo','wechat','douban']});
-    </script>
-    <script>
 
     </script>
     {#    <script type="text/javascript" scr="{% static 'lib/LoadComment.js' %}" data-id="blogid={{ Blog.id }}"></script>#}
