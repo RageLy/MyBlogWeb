@@ -179,6 +179,7 @@ body a{cursor: pointer;}
 .message-content .media-left{float: left;margin-right: 15px}
 .message-content .media-left img{border-radius: 50%;height: 50px;width: 50px;}
 .message-content .media-body .pad-btm {width:100%;}
+.message-content .media-body .pad-btm .min-font a{font-size: 12px;color: #999999!important;}
 .message-content .media-body .pad-btm .fontColor{font-weight: bold;font-size: 14px!important;}
 .message-content .media-body .pad-btm .message-text{padding:2px 0 14px 65px;}
 .message-content-btn{text-align: center}
