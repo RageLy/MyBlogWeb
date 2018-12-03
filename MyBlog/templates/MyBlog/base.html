@@ -46,30 +46,36 @@
         index: 'lib/index'
     }).use(['util','element','index'], function(){
         var util = layui.util
+        ,element = layui.element;
         util.fixbar({
             css: {right: 50, bottom: 100}
             ,bgcolor: '#393D49'
         });
+
+
+    element.render('nav', 'component-nav');
+    element.render('nav', 'component-nav-active');
+
+    element.on('nav(component-nav-active)', function(elem){
+      layer.msg(elem.text());
+    });
+
     });
 </script>
- <script>
-        //浏览器窗口大小变化时
-        window.onresize = function () {
-        var curwidth = document.documentElement.clientWidth;
-        if(curwidth <768){
-         $("#nav").removeClass("nav")
-                $("#nav").removeClass("layui-nav")
-                $("#nav").addClass("nav-tree")
-            }
-            else
-            {
-                $("#nav").addClass("nav")
-                $("#nav").addClass("layui-nav")
-                $("#nav").removeClass("nav-tree")
-            }
+    <script>
+    $(".menu").on('click',function () {
+        if ($(this).hasClass('on')) {
+            $(this).removeClass('on')
+            $('.nav-tree').css('display','none')
         }
+        else{
+          $(this).addClass('on')
+          $('.nav-tree').css('display','block')
+        }
+    })
     </script>
 {% block script %}
+
 {% endblock %}
 </body>
 </html>

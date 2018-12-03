@@ -3,24 +3,72 @@ body a{cursor: pointer;}
 .layui-card-header{color:#999999!important;font-weight: bold;}
 .nav{z-index:1;text-align: center;padding:0!important;top:0;width:100%;position: fixed!important;background-color: hsla(0,0%,100%,.9)!important;height: 60px;line-height: 60px;box-sizing:border-box;box-shadow: 0 1px 5px 0 rgba(0,0,0,.09); }
 .nav .item{margin:0 auto;width:100%;height: 60px;}
-
+.nav * {
+    font-size:14px
+}
 .nav img {float: left;padding-left: 7.5px;}
 .nav ul{float: right;}
-.nav ul li{float: left;font-size: 16px;;}
-.nav ul li a{color:#777777!important;}
+.nav .nav-item {
+    position:relative;
+    display:inline-block;
+    *display:inline;
+    *zoom:1;
+    vertical-align:middle;
+    line-height:60px
+}
 
-.nav-tree{margin:0 auto 30px;width:100%;text-align: left;background-color: #fefefe;position: fixed;z-index: 1;top: 0;left:0;opacity: 0.8;}
+
+.nav .nav-item a {
+    display:block;
+    padding:0 20px;
+    color:#777777!important;
+    color:rgba(255,255,255,.7);
+    transition:all .3s;
+    -webkit-transition:all .3s
+}
+.nav .layui-this:after,.nav-bar,.nav-tree .layui-this:after {
+    position:absolute;
+    left:0;
+    top:0;
+    width:0;
+    height:5px;
+    background-color:#999999;
+    transition:all .2s;
+    -webkit-transition:all .2s
+}
+.nav-bar {
+    z-index:1000
+}
+.nav .nav-item a:hover,.nav .layui-this a {
+    color:#fff
+}
+.nav .layui-this:after {
+    content:'';
+    top:auto;
+    bottom:0;
+    width:100%
+}
+.nav-tree{margin:0 auto 30px;width:100%;text-align: left;background-color: #fefefe;position: fixed;z-index: 1;top: 60px;left:0;opacity: 0.8;}
 .nav-tree .navpic {height: 60px;line-height: 60px;}
 .nav-tree .navpic img {padding-left: 15px;}
 .nav-tree ul{padding-left: 20px;}
-.nav-tree ul li{font-size: 16px;line-height: 50px;height: 50px;border-top:1px solid #dcdcdc;}
-.nav-tree ul li a{color:#777777!important;}
+.nav-tree .nav-item{font-size: 16px;line-height: 50px;height: 50px;border-top:1px solid #dcdcdc;display:block;}
+.nav-tree .nav-item a{color:#777777!important;}
+.menu { width: 50px; height: 40px; position: relative; cursor: pointer;}
+.menu:before, .menu:after { content: ""; display: block; width: 50px; height: 6px; background: #999999; border-radius: 8px; position: absolute; left: 0; -webkit-transition: all 0.15s ease-in-out; transition: all 0.15s ease-in-out; }
+.menu:before { top: 0; box-shadow: 0 34px #999999;}
+.menu:after { bottom: 17px; }
+.menu.on:before { top: 17px; box-shadow: none; -webkit-transform: rotate(225deg); transform: rotate(225deg); }
+.menu.on:after { bottom: 17px; -webkit-transform: rotate(135deg); transform: rotate(135deg); }
+.menu-btn{position: absolute; top: 10px; right: 20px;}
+
+@media screen and (max-width:768px){.nav-horizontal{display: none;}.nav-tree{display: none}.menu{display: block}}
 @media screen and (min-width: 0){
     .layui-col-sm12 {
         width: 100%!important;
         float: left;
     }}
-@media screen and (min-width:768px){.nav .item{width:750px}  }
+@media screen and (min-width:768px){.nav .item{width:750px} .nav-horizontal{display: block;}.nav-tree{display: none!important;} .menu{display: none}}
 @media screen and (min-width:992px){.nav .item{width:970px}}
 @media screen and (min-width:1280px){.nav .item{width:1250px}}
 

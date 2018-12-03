@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="description" content="花花与风，来自一个数据分析者的辛酸历程"/>
     <title>欢迎来到花花与风的博客</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'common/css/index.css' %}">
@@ -14,16 +15,27 @@
 <![endif]-->
 </head>
 <body>
-<div class="nav layui-nav"  id="nav">
+<div class="nav" id="nav">
+ <div class="menu-btn">
+      <div class="menu"></div>
+    </div>
     <div class="item">
         <a class="navpic" href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
-        <ul class="">
-            <li class="layui-nav-item"><a href="../blog">博客</a></li>
-            {#            <li class="layui-nav-item"><a href="../picture">相册</a></li>#}
-            <li class="layui-nav-item"><a href="../weblink">友情链接</a></li>
-            <li class="layui-nav-item"><a href="../archive">归档</a></li>
-            <li class="layui-nav-item"><a href="../message">留言</a></li>
-            <li class="layui-nav-item"><a href="../about">关于</a></li>
+        <ul class="nav-horizontal">
+            <li class="nav-item"><a href="../blog">博客</a></li>
+{#            <li class="layui-nav-item"><a href="../picture">相册</a></li>#}
+            <li class="nav-item"><a href="../weblink">友情链接</a></li>
+            <li class="nav-item"><a href="../archive">归档</a></li>
+            <li class="nav-item"><a href="../message">留言</a></li>
+            <li class="nav-item"><a href="../about">关于</a></li>
+        </ul>
+        <ul class="nav-tree">
+            <li class="nav-item"><a href="../blog">博客</a></li>
+{#            <li class="layui-nav-item"><a href="../picture">相册</a></li>#}
+            <li class="nav-item"><a href="../weblink">友情链接</a></li>
+            <li class="nav-item"><a href="../archive">归档</a></li>
+            <li class="nav-item"><a href="../message">留言</a></li>
+            <li class="nav-item"><a href="../about">关于</a></li>
         </ul>
     </div>
 </div>
@@ -106,9 +118,8 @@
         base: '{% static '/' %}'
     }).extend({
         index: 'lib/index'
-    }).use(['util','element','menu','index'], function(){
+    }).use(['util'], function(){
         var $ = layui.$
-            ,admin = layui.admin
         var util = layui.util
         util.fixbar({
             css: {right: 50, bottom: 100}
@@ -116,20 +127,15 @@
         });
     });
 </script>
-<script>
-    window.onresize = function () {
-        var curwidth = document.documentElement.clientWidth;
-        if(curwidth < 768){
-            $("#nav").removeClass("nav")
-            $("#nav").removeClass("layui-nav")
-            $("#nav").addClass("nav-tree")
+    <script>
+    $(".menu").on('click',function () {
+        if ($(this).hasClass('on')) {
+            $(this).removeClass('on')
+            $('.nav-tree').css('display','none')
         }
-        else
-        {
-            $("#nav").addClass("nav")
-            $("#nav").addClass("layui-nav")
-            $("#nav").removeClass("nav-tree")
+        else{
+          $(this).addClass('on')
+          $('.nav-tree').css('display','block')
         }
-    }
-    };
-</script>
+    })
+    </script>
