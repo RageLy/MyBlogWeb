@@ -46,7 +46,7 @@
     <div class="layui-col-md9">
         <div class="layui-card ">
             <div class="layui-card-body about-cont">
-                <h2 class="title">It's Me</h2>
+                <h2 class="title">关于我</h2>
                 <ul>
                     <li class="self font detail-item">
                         <i class="layui-icon layui-icon-friends"></i>
@@ -101,10 +101,13 @@
     <div class="layui-col-md3">
         <div class="contact card">
             <div class="card-body">
-                <h2 class="title">Contacts</h2>
+                <h2 class="title">联系我</h2>
                 <ul>
-                    <li class="qq"> <a href="mailto:heming_wei@126.com"><i class="layui-icon layui-icon-login-qq"></i></a></li>
-                    <li class="wechat"> <i class="layui-icon layui-icon-login-wechat"></i></li>
+                    <li class="qq"> <a href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1033780738&website=www.oicqzone.com"><i class="layui-icon layui-icon-login-qq"></i></a></li>
+                    <li class="wechat"> <i class="layui-icon layui-icon-login-wechat">
+                        <img src="{% static 'common/imgs/contact.png' %}">
+                    </i></li>
+
                     <li class="weibo"> <a href="https://weibo.com/mingtianya"><i class="layui-icon layui-icon-login-weibo"></i></a></li>
                     <li class="github"><a href="https://github.com/huahuayufeng"><i class="iconfont icon-github"></i></a></li>
                     <li class="email"><a href="mailto:heming_wei@126.com"><i class="iconfont icon-email"></i></a></li>
@@ -115,7 +118,7 @@
     <div class="layui-col-md3">
         <div class="position card card-no-padding">
             <div class="card-body">
-                <h2 class="title">I'm Here</h2>
+                <h2 class="title">我在这里</h2>
                 <div id="allmap"></div>
             </div>
         </div>

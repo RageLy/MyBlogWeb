@@ -45,11 +45,6 @@ def Blog(request):
         return render(request, 'MyBlog/search.html', {'result': result})
 
 def loadblog(request):
-    # data={}
-    # Blog=models.Blog.objects.values('id','title','abstract','createdate','hit','isTop','isorg','imgTitle','blog_blogtype','blog_CategoryToBlog')
-    # if request.method=='GET':
-    # Blog2=models.Blog.objects.get(id=57).to_dict()
-    # print(Blog2)
     type=request.GET.get('type')
     method=request.GET.get('method')
     print('方法:',method)
@@ -57,7 +52,7 @@ def loadblog(request):
         Blog = models.Blog.objects.values('id','title','abstract','createdate','hit','isTop','isorg','imgTitle')
         print(Blog)
     elif method=='1':
-        Blog = models.BlogType.objects.get(TypeName=type).blogtype_blog.values('id','title','abstract','createdate','hit','isTop','isorg','imgTitle')
+        Blog = models.BlogType.objects.get(id=type).blogtype_blog.values('id','title','abstract','createdate','hit','isTop','isorg','imgTitle')
     elif method=='2':
         Blog = models.Category.objects.get(id=type).CategoryToBlog_Blog.values('id','title','abstract','createdate','hit','isTop','isorg','imgTitle')
     else:
@@ -176,10 +171,16 @@ def details(request,id):
     detail.hit+=1
     detail.save(update_fields=['hit'])
     # commentdetail=models.Blog.objects.all()
-    Ranker = models.Blog.objects.raw('select top 10 id,title from blog order by hit desc')
+    Ranker = models.Blog.objects.raw('select top 10 id,title from Blog order by hit desc')
     tag = models.BlogType.objects.filter(category=0)
     category = models.Category.objects.all()
-    return render(request, 'MyBlog/details.html', {'Blog': detail,'Rankers':Ranker,'Tags':tag,'Categorys':category})
+    lastpage = models.Blog.objects.filter(id__lt=detail.id).order_by('id').values('id','title').last()
+    # lastpage=lastpage if lastpage!=None else '已经是第一条了'
+
+    nextpage=models.Blog.objects.filter(id__gt=detail.id).order_by('id').values('id','title').first()
+    # nextpage = nextpage if nextpage != None else '已经是最后一条了'
+    print(lastpage,nextpage)
+    return render(request, 'MyBlog/details.html', {'Blog': detail,'lastpage':"<a href=\"/details/"+str(lastpage['id'])+"\">"+lastpage['title']+"</a>" if lastpage!=None else '<a>已经是第一条了</a>','nextpage':"<a href=\"/details/"+str(nextpage['id'])+"\">"+nextpage['title']+"</a>" if nextpage!=None else '<a>已经是最后一条了</a>','Rankers':Ranker,'Tags':tag,'Categorys':category})
 
 def weblink(request):
     weblink = models.WebLink.objects.all()

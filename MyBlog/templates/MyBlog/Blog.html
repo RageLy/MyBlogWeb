@@ -99,7 +99,7 @@
                     <div class="layui-card-body note">
                         {% if Tags %}
                             {% for tag in Tags %}
-                                <a  href="{% url 'MyBlog:types' tag.TypeName %}">{{ tag.TypeName }}</a>
+                                <a href="{% url 'MyBlog:types' tag.id  %}">{{ tag.TypeName }}</a>
                             {% endfor %}
                         {% endif %}
                     </div>
@@ -111,64 +111,4 @@
 {% block script %}
     <script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static '/lib/LoadBlog.js' %}" data-id="type={{ type }}&method={{ method }}"></script>
-    {#    <script type="text/javascript">#}
-    {#        $(document).ready(function(){#}
-    {#            //获取nav距离顶部的距离#}
-    {#            var navtop=$("#right").offset().top;#}
-    {#            var navleft=$("#right").offset().left;#}
-    {#            var rightpx=navleft+'px'#}
-    {#            console.log(navtop)#}
-    {#            console.log(navleft)#}
-    {#            $(document).scroll(function(){#}
-    {#                //获取滚动条滚动的高度#}
-    {#                var scroltop=$(document).scrollTop();#}
-    {#                if (scroltop > navtop){#}
-    {#                    $("#right").css({#}
-    {#                        "position":"fixed",#}
-    {#                        "left":rightpx,#}
-    {#                        "top":"75px",#}
-    {#"width":"100%"#}
-    {#                    })#}
-    {#                }else {#}
-    {#                    $("#right").css({#}
-    {#                        "position":"",#}
-    {#                        "left":"",#}
-    {#                        "top":"",#}
-    {#                    })#}
-    {#                }#}
-    {#            })#}
-    {#            $(window).resize(function() {#}
-    {#                console.log('窗体改变了')#}
-    {#                var navtop=$("#right").offset().top;#}
-    {#                var navleft=$("#right").offset().left;#}
-    {#                var rightpx=navleft+'px'#}
-    {#                console.log('距离顶部高度：',navtop)#}
-    {#                console.log(navleft)#}
-    {#                    $("#right").css({#}
-    {#                        "left":rightpx,#}
-    {#                        "top":"75px",#}
-    {#                    })#}
-    {#            });#}
-    {#        })#}
-    {#    </script>#}
-{#    <script>#}
-{#        $("#submit").click(function () {#}
-{#            $.ajax({#}
-{#                type:"GET",#}
-{#                data: {'key':$("#key").val()},#}
-{#                url: "{% url 'MyBlog:search' %}", //后台处理函数的url#}
-{#                cache: false,#}
-{#                async : false,#}
-{#                success: function(result){#}
-{#                    location.reload()#}
-{#                },#}
-{#                error: function(){#}
-                    {#$('#test1').html('传输格式有错误')#}
-                    {#layer.confirm(result)#}
-{#                    layer.msg('传输格式有误，请检查')#}
-{#                    layer.close(index);#}
-{#                }#}
-{#            });#}
-{#        })#}
-{#    </script>#}
 {% endblock %}

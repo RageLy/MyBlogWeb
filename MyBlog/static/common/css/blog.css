@@ -86,7 +86,7 @@ body a{cursor: pointer;}
 .content   .item .header .category{float: right;}
 .content   .item .header .category a{color:#999999!important;border: 1px solid #f0f0f0;padding: 5px 10px;}
 /*.content   .item .header .category:hover{background-color: #0C0C0C;}*/
-.content   .item .header .category:hover .content   .item .header .category a{background-color: #0C0C0C;color:#ffffff!important;}
+.content   .item .header .category a:hover{background-color: #0C0C0C;color:#ffffff!important;}
 .content   .item{overflow: hidden;padding: 20px 20px 0 20px;}
 .content   .item .img{float: left;}
 .content   .item .img img{height: 160px;width: 240px;}
@@ -101,6 +101,7 @@ body a{cursor: pointer;}
 .content   .item  .author .top:hover{background-color: #d3d3d3;color:black}
 .content   .item  .author .orign:hover{background-color: #d3d3d3;color:black}
 .content   .item  .author span a{color: #999}
+.content   .item  .author .lm a:hover{color:#999999!important;}
 .content   .item  .author .lm{
     background: url(../imgs/mynewsbg.png) no-repeat center;
     background-position: 0 4px;}
@@ -214,8 +215,12 @@ body a{cursor: pointer;}
 .blog-content .text-desc {font-size: 14px;color: #999999;border-left: 5px solid #E6E6E6;padding: 20px 0 20px 20px;margin: 20px;line-height: 30px;background-color: #f0f0f0;}
 .blog-content .text-desc a, .blog-content .text-desc span{color: #999999;}
 .blog-content .text-con{padding: 25px;}
-.blog-content .text-con img{max-width: 100%;}
-
+.blog-content .text-con img{ max-width: 100%;
+    max-height: 100%;}
+@media screen and (max-width: 768px){
+    .blog-content .blog-head .con-desc{display: block;text-align: center;}
+    .blog-content .blog-head .con-desc a{width: 100%;padding: 0 5px 0 0;}
+}
 
 /*回复列表*/
 .space-message{}
@@ -267,6 +272,10 @@ body a{cursor: pointer;}
 .comment-content .font-border h2{font-size: 16px;font-weight: bolder;letter-spacing:2px;color:#999999;
     border-left: 3px solid #999999;padding:0 10px;
 }
+.more{padding: 0 25px 10px;height: 60px;color:#999999;font-size: 14px;}
+.more a{color:#999999;font-size: 14px;}
+.more .lastpage{width: 100%;line-height: 30px;}
+.more .nextpage{width: 100%;line-height: 30px;}
 .share{text-align: center;width: 100%;}
 .share ul{height: 100px;}
 .share ul li{width: 33.333%;float: left;}
@@ -352,6 +361,7 @@ body a{cursor: pointer;}
 .Message .headimg{float: left;margin: 0;padding: 20px 0 30px 10px;}
 .Message .headimg img{height: 50px;width: 50px; border-radius: 50%;float: left;}
 .Message .user{text-align: left;overflow: hidden;float: left;line-height:100%;position: absolute;top: 20px;left: 70px;color: dodgerblue;padding:0 0 10px 0;}
+.Message .user a{color: dodgerblue;}
 .Message .text{text-align: left;line-height: 20px;position: static;padding: 45px 70px 35px 70px;height:100%;color:#545556;}
 .Message .date{text-align: left;overflow: hidden;float: left;line-height:100%;position: absolute;left:70px;bottom: 10px;color: #adadad;padding:10px 0 0 0;}
 .Message .date i{
@@ -364,7 +374,14 @@ body a{cursor: pointer;}
 .message-con .mybtn button{background-color: #f2f2f2;color:#555555;line-height: 32px;font-size: 14px;height: 32px;}
 #MessageCon{border-width: 0;background-color: #f2f2f2;font-size: 14px;}
 .navigation{text-align: center;padding: 10px;}
+@media screen and (max-width: 768px){
+    .message-con .Message-input .layui-inline{float: left;}
 
+}
+@media screen and (max-width: 450px)
+{
+.layui-form-item .layui-input-inline{margin: 0!important;}
+}
 /*关于*/
 .about{height: 200px; width: 100%; text-align: center;}
 .about .img{line-height: 100px;padding-top: 50px;}
@@ -410,7 +427,11 @@ body a{cursor: pointer;}
 .contact .qq {height: 30px;}
 .contact .qq i{color: #00B7EE;font-size: 25px;line-height: 30px;}
 /*.about-cont .contact .qq a{line-height: 30px;}*/
-.contact .wechat {height: 30px;}
+.contact .wechat {height: 30px;position: relative}
+.contact .wechat img{height: 150px;width: 150px;z-index: 0;display: none;position: absolute;
+    top: 30px;
+    left: -37.5px;}
+.contact .wechat i:hover .contact .wechat img{z-index: 1;display: block}
 .contact .wechat i{color: #2ba246;font-size: 25px;line-height: 30px;}
 .contact .weibo {height: 30px;}
 .contact .weibo i{color: #e6162d;font-size: 25px;line-height: 30px;}

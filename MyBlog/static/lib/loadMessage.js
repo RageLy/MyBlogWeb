@@ -34,7 +34,7 @@ $("#pagination").whjPaging({
     isShowSkip: false,
     isShowRefresh: false,
     isShowPageSizeOpt: false,
-    isShowFL: true,
+    isShowFL: false,
     isShowTotalPage: false,
     isShowTotalSize: false,
     callBack: function(currPage, pageSize) {
@@ -51,22 +51,22 @@ function loadData(currPage, pageSize){
         success:function(result){
             if(result.code=="0"){
                 var info = result.data;
-                console.log(result)
+                // console.log(result)
                 var html=""
                 for(var i in info){
                     html+=
                         "<div class=\"Message\">\n" +
                         "<div class=\"headimg\"><img src=\"../../"+info[i].userpic+"\"></div>\n" +
-                        "<div class=\"user\"> <p>"+info[i].username+"</p></div>\n" +
+                          "<div class=\"user\"> <p><a href='"+info[i].website+"' target='_blank'>"+info[i].username+"</a></p></div>\n" +
                         "<div class=\"text\"> <p>"+info[i].MessageContent+"</p></div>\n" +
                         "<div class=\"date\">  <span>"+new Date(info[i].createdate).Format("YYYY-MM-dd hh:mm:ss")+"</span><i class=\"layui-icon layui-icon-location\"> "+info[i].country+" ▪ "+info[i].region+" ▪ "+info[i].city+"</i></div>\n" +
                         "</div>\n"
                 }
                 // location.reload()
                 $('#messagecon').find('*').remove();
-                console.log($('#messagecon').html())
+                // console.log($('#messagecon').html())
                 $("#messagecon").append(html)
-                console.log(html)
+                // console.log(html)
                 $("#pagination").whjPaging(
                     "setPage",
                     {currPage: result.currPage, totalPage: result.totalPage, totalSize: result.totalSize}

@@ -32,13 +32,13 @@ layui.use('flow', function(){
     flow.load({
         elem: '#flow' //指定列表容器
         ,scrollElem: '#flow' //滚动条所在元素，一般不用填，此处只是演示需要。
+        // ,end:'<div id="nodata"><div class="nodatatip">暂无此分类，请查看其它分类</div></div>'
         ,done: function(page, next){ //到达临界点（默认滚动触发），触发下一页
             //以jQuery的Ajax请求为例，请求下一页数据（注意：page是从2开始返回）
-            setTimeout(function() {
                 var lis = [];
-                $.get('../loadblog?'+type+'&'+method+'&page=' + page + '&limit=2',
+                $.get('../loadblog?'+type+'&'+method+'&page=' + page + '&limit=10',
                     function(res) {
-                        console.info(res);
+                        // console.info(res);
                         //假设你的列表返回在data集合中
                         layui.each(res.data, function(index, item) {
                             var blogcategorylist=[]
@@ -50,11 +50,11 @@ layui.use('flow', function(){
                             var blog_blogtypelist=[]
                             var blog_blogtype=layui.each(item.blogType,function(index,subitem)
                             {
-                                var itemstr='<a href="../types/'+subitem.TypeName +'">'+subitem.TypeName+'</a>'
+                                var itemstr='<a href="../types/'+subitem.id +'">'+subitem.TypeName+'</a>'
                                 blog_blogtypelist.push(itemstr)
 
                             });
-                            console.log(blog_blogtypelist)
+                            // console.log(blog_blogtypelist)
                             var str=' <div class="item">\n' +
                                 '                        <div class="header">\n' +
                                 '                            <div class="title"><a href="../details/'+item.id+'" title="'+item.title+'">'+item.title+'</a></div>\n' +
@@ -72,16 +72,10 @@ layui.use('flow', function(){
                                 '                        </div>\n' +
                                 '                    </div>'
                             lis.push(str);
-                            console.log(lis)
+                            // console.log(lis)
                         });
-                        next(lis.join(''), page*2 < res.count); //假设总页数为 6
-                        // var link = document.createElement("link");
-                        // link.rel = "stylesheet";
-                        // link.type = "text/css";
-                        // link.href = getRootPath()+"/../static/common/css/blog.css";
-                        // document.getElementsByTagName("head")[0].appendChild(link);
+                        next(lis.join(''), page*10 < res.count); //假设总页数为 6
                     });
-            }, 500);
         }
     });
 });

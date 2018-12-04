@@ -5,6 +5,7 @@
 {% endblock %}
 {% block head %}
     <link rel="stylesheet" href="{% static 'common/css/blog.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/iconfont.css' %}">
 {% endblock %}
 {% block nav %}
 <div class="nav" id="nav">
@@ -107,7 +108,7 @@
                     <div class="layui-card-body note">
                         {% if Tags %}
                             {% for tag in Tags %}
-                                <a  href="{% url 'MyBlog:types' tag.TypeName %}">{{ tag.TypeName }}</a>
+                                <a  href="{% url 'MyBlog:types' tag.id %}">{{ tag.TypeName }}</a>
                             {% endfor %}
                         {% endif %}
                     </div>
