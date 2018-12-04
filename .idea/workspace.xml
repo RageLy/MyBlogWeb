@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="96e37eb9-eab1-4dc6-a001-8e45b9d95461" name="Default" comment="修改了文章评论区样式">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlog/templates/MyBlog/Blog.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/templates/MyBlog/Blog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlog/templates/MyBlog/picture.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/templates/MyBlog/picture.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyBlogWeb/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlogWeb/settings.py" afterDir="false" />
     </list>
     <ignored path="C:\Users\Administrator\PycharmProjects\MyBlogWeb\.idea\shelf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,11 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MyBlogWeb/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="123" column="26" selection-start-line="123" selection-start-column="26" selection-end-line="123" selection-end-column="26" />
+            <state relative-caret-position="306">
+              <caret line="85" column="29" selection-start-line="85" selection-start-column="29" selection-end-line="85" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -73,11 +72,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/picture.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+            <state relative-caret-position="304">
+              <caret line="16" column="69" lean-forward="true" selection-start-line="16" selection-start-column="69" selection-end-line="16" selection-end-column="69" />
             </state>
           </provider>
         </entry>
@@ -192,7 +191,6 @@
         <option value="$PROJECT_DIR$/MyBlog/templates/MyBlog/index.html" />
         <option value="$PROJECT_DIR$/MyBlog/static/common/css/paging.css" />
         <option value="$PROJECT_DIR$/MyBlog/models.py" />
-        <option value="$PROJECT_DIR$/MyBlogWeb/settings.py" />
         <option value="$PROJECT_DIR$/MyBlog/static/lib/loadMessage.js" />
         <option value="$PROJECT_DIR$/MyBlog/static/lib/LoadComment.js" />
         <option value="$PROJECT_DIR$/MyBlog/views.py" />
@@ -206,6 +204,7 @@
         <option value="$PROJECT_DIR$/MyBlog/templates/MyBlog/archive.html" />
         <option value="$PROJECT_DIR$/MyBlog/templates/MyBlog/Blog.html" />
         <option value="$PROJECT_DIR$/MyBlog/templates/MyBlog/picture.html" />
+        <option value="$PROJECT_DIR$/MyBlogWeb/settings.py" />
       </list>
     </option>
   </component>
@@ -451,7 +450,7 @@
       <workItem from="1543367010998" duration="28922000" />
       <workItem from="1543494865126" duration="2650000" />
       <workItem from="1543799010419" duration="22399000" />
-      <workItem from="1543888909186" duration="25466000" />
+      <workItem from="1543888909186" duration="25502000" />
     </task>
     <task id="LOCAL-00001" summary="重新修改留言界面">
       <created>1542333296458</created>
@@ -579,11 +578,18 @@
       <option name="project" value="LOCAL" />
       <updated>1543916743937</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="修改了文章评论区样式">
+      <created>1543918037679</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1543918037679</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="274770000" />
+    <option name="totallyTimeSpent" value="274806000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -598,12 +604,12 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49707603" visible="true" weight="0.17430703" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49707603" visible="true" weight="0.17430703" />
       <window_info id="Structure" order="1" sideWeight="0.5024958" side_tool="true" weight="0.20682302" />
       <window_info id="Favorites" order="2" sideWeight="0.50292397" side_tool="true" weight="0.17430703" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.33259177" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49840087" visible="true" weight="0.27030033" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49840087" visible="true" weight="0.27030033" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" weight="0.23915462" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -898,13 +904,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyBlogWeb/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="123" column="26" selection-start-line="123" selection-start-column="26" selection-end-line="123" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/Python36/Lib/site-packages/django/core/handlers/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
@@ -976,8 +975,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/picture.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+        <state relative-caret-position="304">
+          <caret line="16" column="69" lean-forward="true" selection-start-line="16" selection-start-column="69" selection-end-line="16" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlogWeb/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="85" column="29" selection-start-line="85" selection-start-column="29" selection-end-line="85" selection-end-column="29" />
         </state>
       </provider>
     </entry>
