@@ -80,10 +80,10 @@ DATABASES = {
     'default': {
         'NAME': 'Blog',
         'ENGINE': 'sql_server.pyodbc',
-        'HOST': 'xxxx',
+        'HOST': '118.24.141.118',
         'PORT': '1433',
         'USER': 'sa',
-        'PASSWORD': 'xxxxxxxx',
+        'PASSWORD': 'huahua.@19890216',
         'OPTIONS':{
             'driver':'ODBC Driver 13 for SQL Server',
         }

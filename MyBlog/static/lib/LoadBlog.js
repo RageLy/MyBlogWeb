@@ -61,7 +61,7 @@ layui.use('flow', function(){
                                 '                            <div class="category">'+blogcategorylist+'</div>\n' +
                                 '                        </div>\n' +
                                 '                        <div class="img"><img src="'+item.imgTitle+'" alt="'+item.title+'"></div>\n' +
-                                '                        <div class="abstract"><a href="../details/"'+item.id+'" title="'+item.title+'">'+item.abstract+'</a></div>\n' +
+                                '                        <div class="abstract"><a href="../details/'+item.id+'" title="'+item.title+'">'+item.abstract+'</a></div>\n' +
                                 '                        <div class="author">\n' +
                                 '                            <span class="f_l t_left top">'+item.isTopZh+'</span>\n' +
                                 '                            <span class="f_l lm">分类：'+blog_blogtypelist+'</span>\n' +

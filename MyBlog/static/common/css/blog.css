@@ -1,4 +1,4 @@
-body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif; overflow-x: hidden;background-color: #F2F2F2;}
+body{font: 14px 宋体 Helvetica Neue,Helvetica,PingFang SC,Tahoma,Arial,sans-serif; overflow-x: hidden;background-color: #EEEEEE;}
 body a{cursor: pointer;}
 .layui-card-header{color:#999999!important;font-weight: bold;}
 .nav{z-index:1;text-align: center;padding:0!important;top:0;width:100%;position: fixed!important;background-color: hsla(0,0%,100%,.9)!important;height: 60px;line-height: 60px;box-sizing:border-box;box-shadow: 0 1px 5px 0 rgba(0,0,0,.09); }
