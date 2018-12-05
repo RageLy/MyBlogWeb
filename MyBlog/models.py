@@ -354,6 +354,7 @@ class CategoryToBlog(models.Model):
 class MessageReply(models.Model):
     id = models.AutoField(db_column='id', primary_key=True)
     ReplyContent=models.TextField(db_column='ReplyContent', blank=True, null=True)
+    Messageid = models.IntegerField(db_column='Messageid', blank=True, null=True)
     userid = models.IntegerField(db_column='userid',blank=True, null=True)
     username = models.CharField(db_column='username', max_length=50, blank=True, null=True)
     userpic = models.CharField(db_column='userpic', max_length=50, blank=True, null=True)

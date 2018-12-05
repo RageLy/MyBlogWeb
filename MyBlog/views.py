@@ -322,6 +322,69 @@ def replydata(request):
     reply.save()
     return JsonResponse({'message':0})
 
+def replytomessage(request):
+    messageid=request.POST.get('messageid')
+    username=request.POST.get('username')
+    email = request.POST.get('email')
+    website = request.POST.get('website')
+    ReplyContent = request.POST.get('ReplyContent')
+    userpic = random.choice(["1-1.jpg",
+                             "1-2.jpg",
+                             "1-3.jpg",
+                             "1-4.jpg",
+                             "1-5.jpg",
+                             "1-6.jpg",
+                             "1-7.jpg",
+                             "1-8.jpg",
+                             "1-9.jpg",
+                             "1-10.jpg",
+                             "1-11.jpg",
+                             "1-12.jpg",
+                             "1-13.jpg",
+                             "1-14.jpg",
+                             "1-15.jpg",
+                             "1-16.jpg",
+                             "1-17.jpg",
+                             "1-18.jpg",
+                             "1-19.jpg",
+                             "1-20.jpg", ])
+    MessageReply=models.MessageReply(Messageid=messageid,username=username,email=email,website=website,ReplyContent=ReplyContent,createdate=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())),userpic='static/common/imgs/userheadlib/'+userpic)
+    MessageReply.save()
+    return JsonResponse({'message': 0})
+
+def replytoreply(request):
+    replyid = request.POST.get('replyid')
+    username = request.POST.get('username')
+    email = request.POST.get('email')
+    website = request.POST.get('website')
+    ReplyContent = request.POST.get('ReplyContent')
+    userpic = random.choice(["1-1.jpg",
+                             "1-2.jpg",
+                             "1-3.jpg",
+                             "1-4.jpg",
+                             "1-5.jpg",
+                             "1-6.jpg",
+                             "1-7.jpg",
+                             "1-8.jpg",
+                             "1-9.jpg",
+                             "1-10.jpg",
+                             "1-11.jpg",
+                             "1-12.jpg",
+                             "1-13.jpg",
+                             "1-14.jpg",
+                             "1-15.jpg",
+                             "1-16.jpg",
+                             "1-17.jpg",
+                             "1-18.jpg",
+                             "1-19.jpg",
+                             "1-20.jpg", ])
+    MessageReply = models.MessageReply(Messageid=replyid, username=username, email=email, website=website,
+                                       ReplyContent=ReplyContent,
+                                       createdate=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())),
+                                       userpic='static/common/imgs/userheadlib/' + userpic)
+    MessageReply.save()
+    return JsonResponse({'message': 0})
+
 def like(request):
     commentid = request.POST.get('commentid')
     comment=models.Comment.objects.get(id=commentid)

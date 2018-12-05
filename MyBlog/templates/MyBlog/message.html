@@ -69,7 +69,7 @@
                 </form>
             </div>
         </div>
-    <div class="layui-card">
+        <div class="layui-card">
             <div class="layui-card-header">最新留言</div>
             <div id="messagecon">
                 <div class="Message">
@@ -88,7 +88,7 @@
                             <div class="text">
                                 <textarea placeholder="请说点什么呗" name="replycontent"></textarea>
                             </div>
-                            <div class="reply-submit"><button class="" type="button">回复</button></div>
+                            <div class="reply-submit"><button id="ReplyMain"type="button">回复</button></div>
                         </div>
                     </form>
                     <ul class="message-rely-list">
@@ -99,18 +99,40 @@
                             <div class="reply-user"><a>张三</a></div>
                             <div class="reply-content"><span>回复 @Jooger：</span>友链已加，欢迎回访,友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访</div>
                             <div class="reply-other"><span>2018-9-9 15:45:20</span></div>
-                            <div class="replybtn"><a>回复</a></div>
-                            <form id="submit">
+                            <div class="replybtn"><a id="replytoreply" replytoreply>回复</a></div>
+                            <form id="submitsub">
                                 <div class="reply-input">
                                     <div class="userinfo">
-                                        <div class="inline-space"><input placeholder="用户名" name="username"></div>
-                                        <div class="inline-space"><input placeholder="邮箱" name="email"></div>
-                                        <div class="inline-space"><input placeholder="站点" name="website"></div>
+                                        <div class="inline-space"><input placeholder="用户名" name="reply-to-username"></div>
+                                        <div class="inline-space"><input placeholder="邮箱" name="reply-to-email"></div>
+                                        <div class="inline-space"><input placeholder="站点" name="reply-to-website"></div>
                                     </div>
                                     <div class="text">
-                                        <textarea placeholder="请说点什么呗" name="replycontent"></textarea>
+                                        <textarea placeholder="请说点什么呗" name="reply-to-replycontent"></textarea>
                                     </div>
-                                    <div class="reply-submit"><button class="" type="button">回复</button></div>
+                                    <div class="reply-submit" ><button id="ReplySub" type="button">回复</button></div>
+                                </div>
+                            </form>
+                        </li>
+                        <li class="message-rely-children">
+                            <div class="reply-head">
+                                <img src="{% static 'common/imgs/userhead.png' %}">
+                            </div>
+                            <div class="reply-user"><a>张三</a></div>
+                            <div class="reply-content"><span>回复 @Jooger：</span>友链已加，欢迎回访,友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访</div>
+                            <div class="reply-other"><span>2018-9-9 15:45:20</span></div>
+                            <div class="replybtn"><a id="replytoreply" replytoreply>回复</a></div>
+                            <form id="submitsub">
+                                <div class="reply-input">
+                                    <div class="userinfo">
+                                        <div class="inline-space"><input placeholder="用户名" name="reply-to-username"></div>
+                                        <div class="inline-space"><input placeholder="邮箱" name="reply-to-email"></div>
+                                        <div class="inline-space"><input placeholder="站点" name="reply-to-website"></div>
+                                    </div>
+                                    <div class="text">
+                                        <textarea placeholder="请说点什么呗" name="reply-to-replycontent"></textarea>
+                                    </div>
+                                    <div class="reply-submit" ><button id="ReplySub" type="button">回复</button></div>
                                 </div>
                             </form>
                         </li>
@@ -127,15 +149,7 @@
                                 <img src="{% static 'common/imgs/userhead.png' %}">
                             </div>
                             <div class="reply-user"><a>张三</a></div>
-                            <div class="reply-content"><span>回复 @Jooger：</span>友链已加，欢迎回访,友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访</div>
-                            <div class="reply-other"><span>2018-9-9 15:45:20</span></div>
-                        </li>
-                        <li class="message-rely-children">
-                            <div class="reply-head">
-                                <img src="{% static 'common/imgs/userhead.png' %}">
-                            </div>
-                            <div class="reply-user"><a>张三</a></div>
-                            <div class="reply-content"><span>回复 @Jooger：</span>友链已加，欢迎回访,友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访</div>
+                            <div class="reply-content"><span>回复 @Jooger：</span>友链已加，欢迎回访</div>
                             <div class="reply-other"><span>2018-9-9 15:45:20</span></div>
                         </li>
                     </ul>
@@ -144,7 +158,7 @@
             <div id="pagination"></div>
         </div>
     </div>
-     <div id="right" class="layui-col-md3" >
+    <div id="right" class="layui-col-md3" >
         <div class="content-sapce-15">
             <div class="layui-col-md12 ">
                 <div class="layui-card webinfo">
@@ -197,64 +211,104 @@
             </div>
         </div>
     </div>
-
-
 {% endblock %}
 {% block script %}
     <script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static '/common/js/paging.js' %}"></script>
     <script src="{% static '/common/js/jquery.timeago.js' %}" ></script>
     <script>
-
         $("#replybtn").on('click', function () {
             var btn = $(this).attr('replybtn')
             {#var text = $(this).children('a');#}
             var cont = $(this).parents().parents('.Message').siblings('#submit');
+            var contsub = $(this).parents().parents('.Message').children('.message-rely-list').siblings('#submitsub');
             var contmy = $(this).parents().parents('.Message').children('#submit');
+            console.log(contsub)
             if (btn) {
-
                 $(this).text('回复');
                 $(this).attr('replybtn', '');
                 $(contmy).css('display','none')
-                if (typeof(cont)!=="undefined")
+                if (cont.length!=0)
+                {$(cont).css('display','none')
+                    console.log(cont)}
+                if(contsub.length!=0)
+                {
+                    $(contsub).css('display','none')
+                }
+
+            } else {
+                $(this).text('取消回复');
+                $(this).attr('replybtn', 'true')
+                $(contmy).css('display','block')
+                if (cont.length!=0)
+                {$(cont).css('display','none')
+                    console.log(cont)}
+                if(contsub.length!=0)
+                {
+                    $(contsub).css('display','none')
+                }
+            }
+        });
+
+        $("#replytoreply").on('click', function () {
+            var btn = $(this).attr('replytoreply')
+            {#var text = $(this).children('a');#}
+            var cont = $(this).parents().parents('.message-rely-children').siblings('#submitsub');
+            var contmy = $(this).parents().parents('.message-rely-children').children('#submitsub');
+            if (btn) {
+
+                $(this).text('回复');
+                $(this).attr('replytoreply', '');
+                $(contmy).css('display','none')
+                if (typeof(cont)!="undefined")
                 {$(cont).css('display','block')
                     console.log($(cont).css('display'))}
 
             } else {
                 console.log($(cont).css('display'))
                 $(this).text('取消回复');
-                $(this).attr('replybtn', 'true')
+                $(this).attr('replytoreply', 'true')
                 $(contmy).css('display','block')
-                if (typeof(cont)!=="undefined")
+                if (typeof(cont)!="undefined")
                 {$(cont).css('display','none')
                     console.log($(cont).css('display'))}
             }
         });
-
-        $("#replybtn").on('click', function () {
-            var btn = $(this).attr('replybtn')
-            {#var text = $(this).children('a');#}
-            var cont = $(this).parents().parents('.Message').siblings('#submit');
-            var contmy = $(this).parents().parents('.Message').children('#submit');
-            if (btn) {
-
-                $(this).text('回复');
-                $(this).attr('replybtn', '');
-                $(contmy).css('display','none')
-                if (typeof(cont)!=="undefined")
-                {$(cont).css('display','block')
-                    console.log($(cont).css('display'))}
-
-            } else {
-                console.log($(cont).css('display'))
-                $(this).text('取消回复');
-                $(this).attr('replybtn', 'true')
-                $(contmy).css('display','block')
-                if (typeof(cont)!=="undefined")
-                {$(cont).css('display','none')
-                    console.log($(cont).css('display'))}
-            }
-        });
-
+        $("#ReplyMain").on("click",function () {
+            $.ajax({
+                type:"POST",
+                data: {'messageid':'','username':$('.username').val(),
+                    'email':$('.email').val(),
+                    'website':$('.website').val(),
+                    'ReplyContent':$('.replycontent').val(),
+                    "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),
+                },
+                url: "../../replytomessage", //后台处理函数的url
+                cache: false,
+                success: function(result){
+                    {#var dataobj=JSON.parse(result);#}
+                    $('#submitip').html(result.message);
+                },
+            });
+            return false;
+        })
+        $("#ReplySub").on("click",function () {
+            $.ajax({
+                type:"POST",
+                data: {'replyid':'','username':$('.reply-to-username').val(),
+                    'email':$('.reply-to-email').val(),
+                    'website':$('.reply-to-website').val(),
+                    'ReplyContent':$('.reply-to-replycontent').val(),
+                    "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),
+                },
+                url: "../../replytoreply", //后台处理函数的url
+                cache: false,
+                success: function(result){
+                    {#var dataobj=JSON.parse(result);#}
+                    $('#submitip').html(result.message);
+                },
+            });
+            return false;
+        })
     </script>
 {% endblock %}
