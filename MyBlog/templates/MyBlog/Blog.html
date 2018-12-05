@@ -15,7 +15,6 @@
         <a class="navpic" href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
         <ul class="nav-horizontal">
             <li class="nav-item  layui-this"><a href="../blog">博客</a></li>
-            <li class="nav-item"><a href="../picture">相册</a></li>
             <li class="nav-item"><a href="../weblink">友情链接</a></li>
             <li class="nav-item"><a href="../archive">归档</a></li>
             <li class="nav-item"><a href="../message">留言</a></li>
@@ -23,7 +22,6 @@
         </ul>
         <ul class="nav-tree">
             <li class="nav-item  layui-this"><a href="../blog">博客</a></li>
-            <li class="nav-item"><a href="../picture">相册</a></li>
             <li class="nav-item"><a href="../weblink">友情链接</a></li>
             <li class="nav-item"><a href="../archive">归档</a></li>
             <li class="nav-item"><a href="../message">留言</a></li>
@@ -83,7 +81,7 @@
                         <ul>
                             {% if Rankers %}
                                 {% for ranker in Rankers %}
-                                    <li><a href="{% url 'MyBlog:details' ranker.id %}" title="{{ ranker.title }}">{%if ranker.title|length >= 25 %}{{ranker.title|slice:"25"}}...{%else%} {{ranker.title}}{%endif%}</a></li>
+                                    <li><a href="{% url 'MyBlog:details' ranker.id %}" title="{{ ranker.title }}">{%if ranker.title|length >= 25 %}{{ranker.title|slice:"25"}}...{%else%}{{ranker.title}}{%endif%}</a></li>
                                 {% endfor %}
                             {% endif %}
                         </ul>

@@ -110,8 +110,11 @@ def loadarchivedata(request):
     return JsonResponse({'code':0,'msg':'success','data':dictlist})
 
 def message(request):
-    # MessageTb=models.MessageTb.objects.order_by('-createdate')
-    return render(request, 'MyBlog/message.html')
+    Ranker = models.Blog.objects.raw('select top 10 id,title from blog order by hit desc')
+    tag = models.BlogType.objects.all()
+    print(tag)
+    category = models.Category.objects.all()
+    return render(request, 'MyBlog/message.html',{'Rankers':Ranker,'Tags':tag,'Categorys':category,'method':'0','type':'all'})
 
 def loadmessage(request):
     page=request.GET.get('page')

@@ -7,30 +7,30 @@
     <link rel="stylesheet" href="{% static 'common/css/paging.css' %}">
 {% endblock %}
 {% block nav %}
-<div class="nav" id="nav">
- <div class="menu-btn">
-      <div class="menu"></div>
+    <div class="nav" id="nav">
+        <div class="menu-btn">
+            <div class="menu"></div>
+        </div>
+        <div class="item">
+            <a class="navpic" href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
+            <ul class="nav-horizontal">
+                <li class="nav-item"><a href="../blog">博客</a></li>
+                {#            <li class="layui-nav-item"><a href="../picture">相册</a></li>#}
+                <li class="nav-item"><a href="../weblink">友情链接</a></li>
+                <li class="nav-item"><a href="../archive">归档</a></li>
+                <li class="nav-item  layui-this"><a href="../message">留言</a></li>
+                <li class="nav-item"><a href="../about">关于</a></li>
+            </ul>
+            <ul class="nav-tree">
+                <li class="nav-item"><a href="../blog">博客</a></li>
+                {#            <li class="layui-nav-item"><a href="../picture">相册</a></li>#}
+                <li class="nav-item"><a href="../weblink">友情链接</a></li>
+                <li class="nav-item"><a href="../archive">归档</a></li>
+                <li class="nav-item  layui-this"><a href="../message">留言</a></li>
+                <li class="nav-item"><a href="../about">关于</a></li>
+            </ul>
+        </div>
     </div>
-    <div class="item">
-        <a class="navpic" href="../"><img src="{% static 'common/imgs/logo.png' %}"></a>
-        <ul class="nav-horizontal">
-            <li class="nav-item layui-this"><a href="../blog">博客</a></li>
-{#            <li class="layui-nav-item"><a href="../picture">相册</a></li>#}
-            <li class="nav-item"><a href="../weblink">友情链接</a></li>
-            <li class="nav-item"><a href="../archive">归档</a></li>
-            <li class="nav-item"><a href="../message">留言</a></li>
-            <li class="nav-item"><a href="../about">关于</a></li>
-        </ul>
-        <ul class="nav-tree">
-            <li class="nav-item layui-this"><a href="../blog">博客</a></li>
-{#            <li class="layui-nav-item"><a href="../picture">相册</a></li>#}
-            <li class="nav-item"><a href="../weblink">友情链接</a></li>
-            <li class="nav-item"><a href="../archive">归档</a></li>
-            <li class="nav-item"><a href="../message">留言</a></li>
-            <li class="nav-item"><a href="../about">关于</a></li>
-        </ul>
-    </div>
-</div>
 {% endblock %}
 {% block fluid %}
     <div class="layui-col-sm12 HeadBack">
@@ -38,7 +38,7 @@
     </div>
 {% endblock %}
 {% block container %}
-    <div class="layui-col-md12">
+    <div class="layui-col-md9">
         <div class="layui-card">
             <div class="layui-card-body">
                 <form class="layui-form message-con" method="post">
@@ -69,19 +69,192 @@
                 </form>
             </div>
         </div>
-    </div>
-    <div class="layui-col-md12" >
-        <div class="layui-card">
+    <div class="layui-card">
             <div class="layui-card-header">最新留言</div>
             <div id="messagecon">
+                <div class="Message">
+                    <div class="headimg"><img src="../../static/common/imgs/userheadlib/1-13.jpg"></div>
+                    <div class="user"> <p><a href='https://jooger.me' target='_blank'>Jooger</a></p></div>
+                    <div class="text"> <p>友链已加，欢迎回访,友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访</p></div>
+                    <div class="date">  <span>2018-12-04 10:42:56</span><i class="layui-icon layui-icon-location"> 中国 · 北京 · 北京</i></div>
+                    <div class="replybtn" ><a id="replybtn" replybtn>回复</a></div>
+                    <form id="submit">
+                        <div class="reply-input">
+                            <div class="userinfo">
+                                <div class="inline-space"><input placeholder="用户名" name="username"></div>
+                                <div class="inline-space"><input placeholder="邮箱" name="email"></div>
+                                <div class="inline-space"><input placeholder="站点" name="website"></div>
+                            </div>
+                            <div class="text">
+                                <textarea placeholder="请说点什么呗" name="replycontent"></textarea>
+                            </div>
+                            <div class="reply-submit"><button class="">回复</button></div>
+                        </div>
+                    </form>
+                    <ul class="message-rely-list">
+                        <li class="message-rely-children">
+                            <div class="reply-head">
+                                <img src="{% static 'common/imgs/userhead.png' %}">
+                            </div>
+                            <div class="reply-user"><a>张三</a></div>
+                            <div class="reply-content"><span>回复 @Jooger：</span>友链已加，欢迎回访,友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访</div>
+                            <div class="reply-other"><span>2018-9-9 15:45:20</span></div>
+                            <div class="replybtn"><a>回复</a></div>
+                            <form id="submit">
+                                <div class="reply-input">
+                                    <div class="userinfo">
+                                        <div class="inline-space"><input placeholder="用户名" name="username"></div>
+                                        <div class="inline-space"><input placeholder="邮箱" name="email"></div>
+                                        <div class="inline-space"><input placeholder="站点" name="website"></div>
+                                    </div>
+                                    <div class="text">
+                                        <textarea placeholder="请说点什么呗" name="replycontent"></textarea>
+                                    </div>
+                                    <div class="reply-submit"><button class="">回复</button></div>
+                                </div>
+                            </form>
+                        </li>
+                        <li class="message-rely-children">
+                            <div class="reply-head">
+                                <img src="{% static 'common/imgs/userhead.png' %}">
+                            </div>
+                            <div class="reply-user"><a>张三</a></div>
+                            <div class="reply-content"><span>回复 @Jooger：</span>友链已加，欢迎回访,友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访</div>
+                            <div class="reply-other"><span>2018-9-9 15:45:20</span></div>
+                        </li>
+                        <li class="message-rely-children">
+                            <div class="reply-head">
+                                <img src="{% static 'common/imgs/userhead.png' %}">
+                            </div>
+                            <div class="reply-user"><a>张三</a></div>
+                            <div class="reply-content"><span>回复 @Jooger：</span>友链已加，欢迎回访,友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访</div>
+                            <div class="reply-other"><span>2018-9-9 15:45:20</span></div>
+                        </li>
+                        <li class="message-rely-children">
+                            <div class="reply-head">
+                                <img src="{% static 'common/imgs/userhead.png' %}">
+                            </div>
+                            <div class="reply-user"><a>张三</a></div>
+                            <div class="reply-content"><span>回复 @Jooger：</span>友链已加，欢迎回访,友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访</div>
+                            <div class="reply-other"><span>2018-9-9 15:45:20</span></div>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div id="pagination"></div>
         </div>
     </div>
+     <div id="right" class="layui-col-md3" >
+        <div class="content-sapce-15">
+            <div class="layui-col-md12 ">
+                <div class="layui-card webinfo">
+                    <div class="layui-card-header">
+                        <i class="layui-icon layui-icon-app"></i>
+                        <span>文章分类</span>
+                    </div>
+                    <div class="layui-card-body">
+                        <ul>
+                            {% if Categorys %}
+                                {% for category in Categorys %}
+                                    <a href="{% url 'MyBlog:category' category.id %}" title="{{ category.Name }}" id="link{{ category.id }}"><li>{%if category.Name|length >= 25 %}{{category.Name|slice:"25"}}...{%else%} {{category.Name}}{%endif%}</li></a>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md12">
+                <div class="layui-card ranker">
+                    <div class="layui-card-header">
+                        <i class="iconfont icon-wenzhang"></i>
+                        <span>点击排行</span>
+                    </div>
+                    <div class="layui-card-body">
+                        <ul>
+                            {% if Rankers %}
+                                {% for ranker in Rankers %}
+                                    <li><a href="{% url 'MyBlog:details' ranker.id %}" title="{{ ranker.title }}">{%if ranker.title|length >= 25 %}{{ranker.title|slice:"25"}}...{%else%}{{ranker.title}}{%endif%}</a></li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        <i class="layui-icon layui-icon-note"></i>
+                        <span>标签云</span>
+                    </div>
+                    <div class="layui-card-body note">
+                        {% if Tags %}
+                            {% for tag in Tags %}
+                                <a href="{% url 'MyBlog:types' tag.id  %}">{{ tag.TypeName }}</a>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}
 {% block script %}
     <script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static '/common/js/paging.js' %}"></script>
     <script src="{% static '/common/js/jquery.timeago.js' %}" ></script>
-    <script src="{% static '/lib/loadMessage.js' %}" ></script>
+    <script>
+
+        $("#replybtn").on('click', function () {
+            var btn = $(this).attr('replybtn')
+            {#var text = $(this).children('a');#}
+            var cont = $(this).parents().parents('.Message').siblings('#submit');
+            var contmy = $(this).parents().parents('.Message').children('#submit');
+            if (btn) {
+
+                $(this).text('回复');
+                $(this).attr('replybtn', '');
+                $(contmy).css('display','none')
+                if (typeof(cont)!=="undefined")
+                {$(cont).css('display','block')
+                    console.log($(cont).css('display'))}
+
+            } else {
+                console.log($(cont).css('display'))
+                $(this).text('取消回复');
+                $(this).attr('replybtn', 'true')
+                $(contmy).css('display','block')
+                if (typeof(cont)!=="undefined")
+                {$(cont).css('display','none')
+                    console.log($(cont).css('display'))}
+            }
+        });
+
+        $("#replybtn").on('click', function () {
+            var btn = $(this).attr('replybtn')
+            {#var text = $(this).children('a');#}
+            var cont = $(this).parents().parents('.Message').siblings('#submit');
+            var contmy = $(this).parents().parents('.Message').children('#submit');
+            if (btn) {
+
+                $(this).text('回复');
+                $(this).attr('replybtn', '');
+                $(contmy).css('display','none')
+                if (typeof(cont)!=="undefined")
+                {$(cont).css('display','block')
+                    console.log($(cont).css('display'))}
+
+            } else {
+                console.log($(cont).css('display'))
+                $(this).text('取消回复');
+                $(this).attr('replybtn', 'true')
+                $(contmy).css('display','block')
+                if (typeof(cont)!=="undefined")
+                {$(cont).css('display','none')
+                    console.log($(cont).css('display'))}
+            }
+        });
+
+    </script>
 {% endblock %}

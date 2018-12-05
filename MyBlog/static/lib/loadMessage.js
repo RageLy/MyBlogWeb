@@ -66,7 +66,7 @@ function loadData(currPage, pageSize){
                 $('#messagecon').find('*').remove();
                 // console.log($('#messagecon').html())
                 $("#messagecon").append(html)
-                // console.log(html)
+                console.log(html)
                 $("#pagination").whjPaging(
                     "setPage",
                     {currPage: result.currPage, totalPage: result.totalPage, totalSize: result.totalSize}

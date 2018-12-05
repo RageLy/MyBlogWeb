@@ -1,0 +1,96 @@
+body{font-size: 14px;background-color: #EEEEEE;}
+
+blockquote,body,button,dd,div,dl,dt,form,h1,h2,h3,h4,h5,h6,input,li,ol,p,pre,td,textarea,th,ul {
+    margin:0;
+    padding:0;
+}
+
+
+.huaui-nav{z-index:1;text-align: center;padding:0!important;top:0;width:100%;position: fixed!important;background-color: hsla(0,0%,100%,.9)!important;height: 60px;line-height: 60px;box-sizing:border-box;box-shadow: 0 1px 5px 0 rgba(0,0,0,.09); }
+.huaui-nav .item{margin:0 auto;width:100%;height: 60px;}
+.huaui-nav * {
+    font-size:14px
+}
+.huaui-nav img {float: left;padding-left: 7.5px;}
+.huaui-nav ul{float: right;}
+.huaui-nav .huaui-nav-item {
+    position:relative;
+    display:inline-block;
+    *display:inline;
+    *zoom:1;
+    vertical-align:middle;
+    line-height:60px
+}
+
+
+.huaui-nav .huaui-nav-item a {
+    display:block;
+    padding:0 20px;
+    color:#777777!important;
+    color:rgba(255,255,255,.7);
+    transition:all .3s;
+    -webkit-transition:all .3s
+}
+.huaui-nav .huaui-this:after,.huaui-nav-tree .huaui-this:after {
+    position:absolute;
+    left:0;
+    top:0;
+    width:0;
+    height:5px;
+    background-color:#999999;
+    transition:all .2s;
+    -webkit-transition:all .2s
+}
+
+.huaui-nav .huaui-item a:hover,.nav .huaui-this a {
+    color:#fff
+}
+.huaui-nav .huaui-this:after {
+    content:'';
+    top:auto;
+    bottom:0;
+    width:100%
+}
+.huaui-nav-tree{margin:0 auto 30px;width:100%;text-align: left;background-color: #fefefe;position: fixed;z-index: 1;top: 60px;left:0;opacity: 0.8;}
+.huaui-nav-tree .navpic {height: 60px;line-height: 60px;}
+.huaui-nav-tree .navpic img {padding-left: 15px;}
+.huaui-nav-tree ul{padding-left: 20px;}
+.huaui-nav-tree .nav-item{font-size: 16px;line-height: 50px;height: 50px;border-top:1px solid #dcdcdc;display:block;}
+.huaui-nav-tree .nav-item a{color:#777777!important;}
+.menu { width: 50px; height: 40px; position: relative; cursor: pointer;}
+.menu:before, .menu:after { content: ""; display: block; width: 50px; height: 6px; background: #999999; border-radius: 8px; position: absolute; left: 0; -webkit-transition: all 0.15s ease-in-out; transition: all 0.15s ease-in-out; }
+.menu:before { top: 0; box-shadow: 0 34px #999999;}
+.menu:after { bottom: 17px; }
+.menu.on:before { top: 17px; box-shadow: none; -webkit-transform: rotate(225deg); transform: rotate(225deg); }
+.menu.on:after { bottom: 17px; -webkit-transform: rotate(135deg); transform: rotate(135deg); }
+.menu-btn{position: absolute; top: 10px; right: 20px;}
+
+
+
+/*MyUI*/
+.huaui-card{
+    padding: 15px;
+    background-color: #FFFFFF;
+}
+.huaui-card-left{
+    width: 100%;position: relative;
+}
+.huaui-card-right{
+    width: 300px;position: relative;
+}
+
+@media screen and (max-width: 768px){
+    .huaui-card-left{width: 100%;}
+    .huaui-card-right{
+        float: left;width: 100%;
+    }
+}
+@media screen and (max-width: 1024px){
+    .huaui-card-left{width: 1024px;}
+}
+@media screen and (max-width: 1280px){
+    .huaui-card-left{width: 1280px;}
+}
+@media screen and (min-width: 1280px){
+    .huaui-card-left{width: 1280px;}
+}
