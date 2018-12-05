@@ -269,7 +269,7 @@ layui.use('layer', function(){
             $.ajax({
                 type:"POST",
                 data: {'username':$("#username").val(),'email':$("#email").val(),'blogid':blog_id,'csrfmiddlewaretoken':$("[name='csrfmiddlewaretoken']").val(),'commentContent':$("#commentContent").val(),'replytype':"0",'device':devide,'brower':brower,'system':system},
-                url: "{% url 'MyBlog:commentdata' %}", //后台处理函数的url
+                url: "../../commentdata/", //后台处理函数的url
                 cache: false,
                 async : false,
                 success: function(result,stutas){
@@ -396,7 +396,7 @@ function LoadComment(currPage, pageSize){
                         $.ajax({
                             type:"POST",
                             data: {'commentid':commentid,'csrfmiddlewaretoken':$("[name='csrfmiddlewaretoken']").val()},
-                            url: "{% url 'MyBlog:like' %}", //后台处理函数的url
+                            url: "../../like/", //后台处理函数的url
                             cache: false,
                             async : false,
                             success: function(result){
@@ -453,7 +453,7 @@ function LoadComment(currPage, pageSize){
                             $.ajax({
                                 type:"POST",
                                 data: {'userid':"1",'commentid':replysbid,'blogid':blog_id,'csrfmiddlewaretoken':$("[name='csrfmiddlewaretoken']").val(),'replyContent':$("#"+replyContentid).val(),'device':devide,'brower':brower,'system':system},
-                                url: "{% url 'MyBlog:replydata' %}", //后台处理函数的url
+                                url: "../../replydata/", //后台处理函数的url
                                 cache: false,
                                 async : false,
                                 success: function(result){
@@ -481,7 +481,7 @@ function LoadComment(currPage, pageSize){
                         $.ajax({
                             type:"POST",
                             data: {'replyid':replyid,'csrfmiddlewaretoken':$("[name='csrfmiddlewaretoken']").val()},
-                            url: "{% url 'MyBlog:replylike' %}", //后台处理函数的url
+                            url: "../../replylike/", //后台处理函数的url
                             cache: false,
                             async : false,
                             success: function(result){
