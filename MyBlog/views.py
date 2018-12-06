@@ -121,6 +121,13 @@ def loadmessage(request):
     limit = request.GET.get('limit')
     message=models.MessageTb.objects.values().order_by('-createdate')
     data = list(message)
+    for i in data:
+        reply=models.MessageReply.objects.filter(Messageid=i['id']).values()
+        if reply!=[]:
+            i['MessageReply']=list(reply)
+        else:
+            i['MessageReply']=[]
+    print(data)
     paginator = Paginator(data, limit)
     messagelist = paginator.get_page(page)
     return JsonResponse({'code':0,'msg':'success','currPage':page,"totalPage":paginator.num_pages,"totalSize":len(data),'data':messagelist.object_list})
