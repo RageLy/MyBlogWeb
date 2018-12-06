@@ -355,11 +355,18 @@ def replytomessage(request):
                              "1-18.jpg",
                              "1-19.jpg",
                              "1-20.jpg", ])
-    MessageReply=models.MessageReply(Messageid=messageid,username=username,email=email,website=website,ReplyContent=ReplyContent,createdate=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())),userpic='static/common/imgs/userheadlib/'+userpic)
+    MessageReply=models.MessageReply(Messageid=messageid,username=username,email=email,website=website,ReplyContent=ReplyContent,createdate=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())),userpic='static/common/imgs/userheadlib/'+userpic,type=0)
     MessageReply.save()
-    return JsonResponse({'message': 0})
+    messageReplymodels = models.MessageReply.objects.values().order_by('-createdate')
+    data = list(messageReplymodels)
+    paginator = Paginator(data, 10)
+    MessageReplylist = paginator.get_page(1)
+    return JsonResponse(
+        {'code': 0, 'msg': 'success', 'currPage': 1, "totalPage": paginator.num_pages, "totalSize": len(data),
+         'data': MessageReplylist.object_list})
 
 def replytoreply(request):
+    messageid = request.POST.get('messageid')
     replyid = request.POST.get('replyid')
     username = request.POST.get('username')
     email = request.POST.get('email')
@@ -385,12 +392,18 @@ def replytoreply(request):
                              "1-18.jpg",
                              "1-19.jpg",
                              "1-20.jpg", ])
-    MessageReply = models.MessageReply(Messageid=replyid, username=username, email=email, website=website,
+    MessageReply = models.MessageReply(Messageid=messageid,Replyid=replyid, username=username, email=email, website=website,
                                        ReplyContent=ReplyContent,
                                        createdate=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())),
-                                       userpic='static/common/imgs/userheadlib/' + userpic)
+                                       userpic='static/common/imgs/userheadlib/' + userpic,type=1)
     MessageReply.save()
-    return JsonResponse({'message': 0})
+    messageReplymodels = models.MessageReply.objects.values().order_by('-createdate')
+    data = list(messageReplymodels)
+    paginator = Paginator(data, 10)
+    MessageReplylist = paginator.get_page(1)
+    return JsonResponse(
+        {'code': 0, 'msg': 'success', 'currPage': 1, "totalPage": paginator.num_pages, "totalSize": len(data),
+         'data': MessageReplylist.object_list})
 
 def like(request):
     commentid = request.POST.get('commentid')

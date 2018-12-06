@@ -56,7 +56,7 @@ function loadData(currPage, pageSize){
                 for(var i in info){
                     var sublist=info[i].MessageReply
                     var addstr=""
-                    console.log(sublist)
+                    // console.log(sublist)
                     if(sublist!=[])
                     {
                         var MessageReplylist="<ul class=\"message-rely-list\">"
@@ -64,27 +64,27 @@ function loadData(currPage, pageSize){
                         for(var j in sublist)
                         {
 
-                            str+="<li class=\"message-rely-children\">\n" +
+                            str+="<li class=\"message-rely-children\" data-id=\""+sublist[j].id+"\">\n" +
                                 "<div class=\"reply-head\">\n" +
                                 "<img src=\"../../static/common/imgs/userhead.png\"></div>\n" +
                                 "<div class=\"reply-user\"><a>"+sublist[j].username+"</a></div>\n" +
                                 "<div class=\"reply-content\"><span>回复 @Jooger：</span>"+sublist[j].ReplyContent+"</div>\n" +
                                 "<div class=\"reply-other\"><span>"+new Date(sublist[j].createdate).Format("YYYY-MM-dd hh:mm:ss")+"</span></div>\n" +
                                 "<div class=\"replybtn\"><a class=\"replytoreply\" replytoreply=\"true\">回复</a></div>\n" +
-                                "<form id=\"submitsub\" data-id=\"\"></form></li>"
+                                "<form id=\"submitsub\" ></form></li>"
                         }
                         MessageReplylist+=str+"</ul>"
                         addstr = MessageReplylist
 
                     }
-                    console.log(addstr)
+                    // console.log(addstr)
 
-                    html+="<div class=\"Message\">"+
+                    html+="<div class=\"Message\" data-id=\""+info[i].id+"\">"+
                         "<div class=\"headimg\"><img src=\"../../"+info[i].userpic+"\"></div>\n" +
                         "<div class=\"user\"> <p><a href=\""+info[i].website+"\" target=\"_blank\">"+info[i].username+"</a></p></div>\n" +
                         "<div class=\"text\"> <p>"+info[i].MessageContent+"</p></div>\n" +
                         "<div class=\"date\">  <span>"+new Date(info[i].createdate).Format("YYYY-MM-dd hh:mm:ss")+"</span><i class=\"layui-icon layui-icon-location\"> "+info[i].country+" · "+info[i].region+" · "+info[i].city+"</i></div>\n" +
-                        "<div class=\"replybtn\" ><a class=\"Mainreplybtn\" replybtn=\"true\">回复</a></div><form id=\"submit\"></form>"+addstr+"</div>"
+                        "<div class=\"replybtn\" ><a class=\"Mainreplybtn\" replybtn=\"true\">回复</a></div><form id=\"submit\" ></form>"+addstr+"</div>"
                 }
                 // location.reload()
                 $('#messagecon').find('*').remove();
@@ -132,6 +132,49 @@ function loadData(currPage, pageSize){
                             $(this).attr('replybtn', 'true');
                             $(this).parents().parents('.Message').children('#submit').children('.reply-input').remove()
                         }
+                        $("#ReplyMain").on("click", function () {
+                            console.log($(".Message").attr("data-id"))
+                            if ($(".message-to-username").val()=="")
+                            {
+                                layer.msg('请输入昵称',{time:0.5*1000})
+                            }
+                            else if ($(".message-to-email").val()=="")
+                            {
+                                layer.msg('请输入邮箱',{time:0.5*1000})
+                            }
+                            else if($(".message-to-replycontent").val()=="")
+                            {
+                                layer.msg('说点什么吧！',{time:0.5*1000})
+                            }
+                            else if($(".message-to-email").val()!="" && !checkEmail($(".message-to-email").val()))
+                            {
+                                layer.msg('邮箱格式不对!',{time:0.5*1000})
+                            }
+                            else {
+                                $.ajax({
+                                    type: "POST",
+                                    data: {
+                                        'messageid': $(".Message").attr("data-id"), 'username': $('.message-to-username').val(),
+                                        'email': $('.message-to-email').val(),
+                                        'website': $('.message-to-website').val(),
+                                        'ReplyContent': $('.message-to-replycontent').val(),
+                                        "csrfmiddlewaretoken": $("[name='csrfmiddlewaretoken']").val(),
+                                    },
+                                    url: "../../replytomessage/", //后台处理函数的url
+                                    cache: false,
+                                    success: function (result) {
+                                        if(result.code=="0"){
+                                            loadData(1,10);
+                                        }
+                                        else{
+                                            alert("数据错误！请联系管理员");
+                                        }
+                                    },
+                                });
+                                return false;
+                            }
+
+                        });
                     });
                     $(".replytoreply").on('click', function () {
                         var btn = $(this).attr('replytoreply')
@@ -170,94 +213,50 @@ function loadData(currPage, pageSize){
                             $(this).attr('replytoreply', 'true')
                             $(this).parents().parents('.message-rely-children').children('#submitsub').children('.reply-input').remove()
                         }
-                    });
-                    if ($(".message-to-username").val()=="")
-                    {
-                        layer.msg('请输入昵称',{time:0.5*1000})
-                    }
-                    else if ($(".message-to-email").val()=="")
-                    {
-                        layer.msg('请输入邮箱',{time:0.5*1000})
-                    }
-                    else if($(".message-to-replycontent").val()=="")
-                    {
-                        layer.msg('说点什么吧！',{time:0.5*1000})
-                    }
-                    else if($(".message-to-email").val()!="" && !checkEmail($(".message-to-email").val()))
-                    {
-                        layer.msg('邮箱格式不对!',{time:0.5*1000})
-                    }
-                    else {
-                        $("#ReplyMain").on("click", function () {
-                            $.ajax({
-                                type: "POST",
-                                data: {
-                                    'messageid': '', 'username': $('.message-to-username').val(),
-                                    'email': $('.message-to-email').val(),
-                                    'website': $('.message-to-website').val(),
-                                    'ReplyContent': $('.message-to-replycontent').val(),
-                                    "csrfmiddlewaretoken": $("[name='csrfmiddlewaretoken']").val(),
-                                },
-                                url: "../../replytomessage", //后台处理函数的url
-                                cache: false,
-                                success: function (result) {
-                                    if(result.code=="0"){
-                                        loadData(1,10);
-                                    }
-                                    else{
-                                        alert("数据错误！请联系管理员");
-                                    }
-                                },
-                            });
-                            return false;
-                        })
-                    }
-                    if ($(".reply-to-username").val()=="")
-                    {
-                        layer.msg('请输入昵称',{time:0.5*1000})
-                    }
-                    else if ($(".reply-to-email").val()=="")
-                    {
-                        layer.msg('请输入邮箱',{time:0.5*1000})
-                    }
-                    else if($(".reply-to-replycontent").val()=="")
-                    {
-                        layer.msg('说点什么吧！',{time:0.5*1000})
-                    }
-                    else if($(".reply-to-email").val()!="" && !checkEmail($(".reply-to-email").val()))
-                    {
-                        layer.msg('邮箱格式不对!',{time:0.5*1000})
-                    }
-                    else {
                         $("#ReplySub").on("click", function () {
-                            $.ajax({
-                                type: "POST",
-                                data: {
-                                    'replyid': '', 'username': $('.reply-to-username').val(),
-                                    'email': $('.reply-to-email').val(),
-                                    'website': $('.reply-to-website').val(),
-                                    'ReplyContent': $('.reply-to-replycontent').val(),
-                                    "csrfmiddlewaretoken": $("[name='csrfmiddlewaretoken']").val(),
-                                },
-                                url: "../../replytoreply", //后台处理函数的url
-                                cache: false,
-                                success: function (result) {
-                                    if(result.code=="0"){
-                                        loadData(1,10);
-                                    }
-                                    else{
-                                        alert("数据错误！请联系管理员");
-                                    }
+                            if ($(".reply-to-username").val()=="")
+                            {
+                                layer.msg('请输入昵称',{time:0.5*1000})
+                            }
+                            else if ($(".reply-to-email").val()=="")
+                            {
+                                layer.msg('请输入邮箱',{time:0.5*1000})
+                            }
+                            else if($(".reply-to-replycontent").val()=="")
+                            {
+                                layer.msg('说点什么吧！',{time:0.5*1000})
+                            }
+                            else if($(".reply-to-email").val()!="" && !checkEmail($(".reply-to-email").val()))
+                            {
+                                layer.msg('邮箱格式不对!',{time:0.5*1000})
+                            }
+                            else {
+                                $.ajax({
+                                    type: "POST",
+                                    data: {'messageid':$(".Message").attr("data-id"),
+                                        'replyid': $(".message-rely-children").attr("data-id"), 'username': $('.reply-to-username').val(),
+                                        'email': $('.reply-to-email').val(),
+                                        'website': $('.reply-to-website').val(),
+                                        'ReplyContent': $('.reply-to-replycontent').val(),
+                                        "csrfmiddlewaretoken": $("[name='csrfmiddlewaretoken']").val(),
+                                    },
+                                    url: "../../replytoreply/", //后台处理函数的url
+                                    cache: false,
+                                    success: function (result) {
+                                        if (result.code == "0") {
+                                            loadData(1, 10);
+                                        } else {
+                                            alert("数据错误！请联系管理员");
+                                        }
 
-                                },
-                            });
-                            return false;
+                                    },
+                                });
+                                return false;
+                            }
                         })
-                    }
+                    });
                 })
-
-
-                console.log(html)
+                // console.log(html)
                 $("#pagination").whjPaging(
                     "setPage",
                     {currPage: result.currPage, totalPage: result.totalPage, totalSize: result.totalSize}
