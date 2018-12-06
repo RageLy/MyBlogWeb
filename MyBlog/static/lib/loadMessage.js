@@ -69,7 +69,7 @@ function loadData(currPage, pageSize){
                                 "<img src=\"../../static/common/imgs/userhead.png\"></div>\n" +
                                 "<div class=\"reply-user\"><a>"+sublist[j].username+"</a></div>\n" +
                                 "<div class=\"reply-content\"><span>回复 @Jooger：</span>"+sublist[j].ReplyContent+"</div>\n" +
-                                "<div class=\"reply-other\"><span>"+sublist[j].createdate+"</span></div>\n" +
+                                "<div class=\"reply-other\"><span>"+new Date(sublist[j].createdate).Format("YYYY-MM-dd hh:mm:ss")+"</span></div>\n" +
                                 "<div class=\"replybtn\"><a class=\"replytoreply\" replytoreply=\"true\">回复</a></div>\n" +
                                 "<form id=\"submitsub\" data-id=\"\"></form></li>"
                         }
@@ -83,7 +83,7 @@ function loadData(currPage, pageSize){
                         "<div class=\"headimg\"><img src=\"../../"+info[i].userpic+"\"></div>\n" +
                         "<div class=\"user\"> <p><a href=\""+info[i].website+"\" target=\"_blank\">"+info[i].username+"</a></p></div>\n" +
                         "<div class=\"text\"> <p>"+info[i].MessageContent+"</p></div>\n" +
-                        "<div class=\"date\">  <span>"+info[i].createdate+"</span><i class=\"layui-icon layui-icon-location\"> "+info[i].country+" · "+info[i].region+" · "+info[i].city+"</i></div>\n" +
+                        "<div class=\"date\">  <span>"+new Date(info[i].createdate).Format("YYYY-MM-dd hh:mm:ss")+"</span><i class=\"layui-icon layui-icon-location\"> "+info[i].country+" · "+info[i].region+" · "+info[i].city+"</i></div>\n" +
                         "<div class=\"replybtn\" ><a class=\"Mainreplybtn\" replybtn=\"true\">回复</a></div><form id=\"submit\"></form>"+addstr+"</div>"
                 }
                 // location.reload()

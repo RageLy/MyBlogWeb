@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="96e37eb9-eab1-4dc6-a001-8e45b9d95461" name="Default" comment="修改了文章评论区样式">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlog/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBlog/static/common/css/blog.css" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/static/common/css/blog.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBlog/static/lib/loadMessage.js" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/static/lib/loadMessage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlog/templates/MyBlog/message.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/templates/MyBlog/message.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/views.py" afterDir="false" />
     </list>
     <ignored path="C:\Users\Administrator\PycharmProjects\MyBlogWeb\.idea\shelf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,11 +46,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MyBlog/static/common/css/blog.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="369" column="48" lean-forward="true" selection-start-line="369" selection-start-column="48" selection-end-line="369" selection-end-column="48" />
+            <state relative-caret-position="192">
+              <caret line="362" column="71" selection-start-line="362" selection-start-column="71" selection-end-line="362" selection-end-column="71" />
             </state>
           </provider>
         </entry>
@@ -82,8 +79,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/message.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="106" column="57" lean-forward="true" selection-start-line="106" selection-start-column="57" selection-end-line="106" selection-end-column="57" />
+            <state relative-caret-position="1572">
+              <caret line="227" column="14" lean-forward="true" selection-start-line="227" selection-start-column="14" selection-end-line="227" selection-end-column="14" />
               <folding>
                 <element signature="e#1696#3392#0#HTML" />
                 <element signature="e#10026#12554#0#HTML" />
@@ -92,11 +89,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MyBlog/static/lib/loadMessage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
+            <state relative-caret-position="304">
+              <caret line="85" column="113" selection-start-line="85" selection-start-column="113" selection-end-line="85" selection-end-column="113" />
             </state>
           </provider>
         </entry>
@@ -268,8 +265,8 @@
         <option value="$PROJECT_DIR$/MyBlog/models.py" />
         <option value="$PROJECT_DIR$/MyBlog/views.py" />
         <option value="$PROJECT_DIR$/MyBlog/templates/MyBlog/message.html" />
-        <option value="$PROJECT_DIR$/MyBlog/static/common/css/blog.css" />
         <option value="$PROJECT_DIR$/MyBlog/static/lib/loadMessage.js" />
+        <option value="$PROJECT_DIR$/MyBlog/static/common/css/blog.css" />
       </list>
     </option>
   </component>
@@ -532,7 +529,7 @@
       <workItem from="1543799010419" duration="22399000" />
       <workItem from="1543888909186" duration="25533000" />
       <workItem from="1543971953914" duration="29329000" />
-      <workItem from="1544058193226" duration="20274000" />
+      <workItem from="1544058193226" duration="21104000" />
     </task>
     <task id="LOCAL-00001" summary="重新修改留言界面">
       <created>1542333296458</created>
@@ -681,11 +678,18 @@
       <option name="project" value="LOCAL" />
       <updated>1544004002263</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="修改了文章评论区样式">
+      <created>1544082277855</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1544082277855</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="324440000" />
+    <option name="totallyTimeSpent" value="325270000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -700,12 +704,12 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49707603" weight="0.5144445" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49707603" visible="true" weight="0.23454158" />
       <window_info id="Structure" order="1" sideWeight="0.5024958" side_tool="true" weight="0.20682302" />
       <window_info id="Favorites" order="2" sideWeight="0.50292397" side_tool="true" weight="0.17430703" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.33259177" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49840087" weight="0.27030033" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49840087" visible="true" weight="0.27030033" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" weight="0.38598442" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1066,17 +1070,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyBlog/static/common/css/blog.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="369" column="48" lean-forward="true" selection-start-line="369" selection-start-column="48" selection-end-line="369" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/message.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="106" column="57" lean-forward="true" selection-start-line="106" selection-start-column="57" selection-end-line="106" selection-end-column="57" />
+        <state relative-caret-position="1572">
+          <caret line="227" column="14" lean-forward="true" selection-start-line="227" selection-start-column="14" selection-end-line="227" selection-end-column="14" />
           <folding>
             <element signature="e#1696#3392#0#HTML" />
             <element signature="e#10026#12554#0#HTML" />
@@ -1086,8 +1083,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MyBlog/static/lib/loadMessage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
+        <state relative-caret-position="304">
+          <caret line="85" column="113" selection-start-line="85" selection-start-column="113" selection-end-line="85" selection-end-column="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyBlog/static/common/css/blog.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="362" column="71" selection-start-line="362" selection-start-column="71" selection-end-line="362" selection-end-column="71" />
         </state>
       </provider>
     </entry>

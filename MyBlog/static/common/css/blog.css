@@ -360,12 +360,12 @@ body a{cursor: pointer;}
 .message-head{height: 200px;width: 100%; text-align: center; }
 .message-head .tips h2{text-transform: uppercase;width: 100%;padding-top: 50px;color: #999999;font-size: 24px;}
 .message-head .desc{line-height: 100px;color: #999999;font-size: 16px;}
-.Message{width: 100%;border-bottom: 1px solid #ededed; padding:25px 0!important;background-color: white;}
+.Message{width: 100%;border-bottom: 1px solid #ededed; padding:15px 0 0 0!important;background-color: white;}
 .Message p{color:#0E0E0E;}
 .Message .headimg{float: left;margin: 0;padding: 0 10px 0 0}
 .Message .headimg img{height: 50px;width: 50px; border-radius: 50%;}
 .Message .user{text-align: left;overflow: hidden;float: left;line-height:20px;height:20px;padding:0 10px;}
-.Message .user a{color: #00A99D;}
+.Message .user a{color: #00A99D;font-weight: bold;}
 .Message .text{line-height: 20px;padding: 25px 70px 0 70px;height:100%;}
 .Message .date{text-align: left;overflow: hidden;line-height:100%;color: #a5a5a5;padding:5px 70px;}
 .Message .date i{margin-left: 10px;color: #a5a5a5;font-size: 12px;}
@@ -392,7 +392,7 @@ body a{cursor: pointer;}
 .message-rely-list .reply-head{padding: 5px 0;float: left;}
 .message-rely-list .reply-head img{padding: 0;height: 32px;width: 32px;border-radius: 50%;}
 .message-rely-list .reply-user{padding: 0 52px;}
-.message-rely-list .reply-user a{color: #00A99D;}
+.message-rely-list .reply-user a{color: #00A99D;font-weight: bold;}
 .message-rely-list .reply-content{padding: 5px 0 5px 52px;line-height: 20px;}
 .message-rely-list .reply-other{padding: 0 52px 5px;}
 .message-rely-list .replybtn{padding: 0 52px 5px;}
