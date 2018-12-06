@@ -5,6 +5,7 @@
 {% endblock %}
 {% block head %}
     <link rel="stylesheet" href="{% static 'common/css/paging.css' %}">
+    <link rel="stylesheet" href="{% static 'common/css/iconfont.css' %}">
 {% endblock %}
 {% block nav %}
     <div class="nav" id="nav">
@@ -72,57 +73,6 @@
         <div class="layui-card">
             <div class="layui-card-header">最新留言</div>
             <div id="messagecon">
-                <div class="Message">
-                    <ul class="message-rely-list">
-                        <li class="message-rely-children">
-                            <div class="reply-head">
-                                <img src="{% static 'common/imgs/userhead.png' %}">
-                            </div>
-                            <div class="reply-user"><a>张三</a></div>
-                            <div class="reply-content"><span>回复 @Jooger：</span>友链已加，欢迎回访,友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访</div>
-                            <div class="reply-other"><span>2018-9-9 15:45:20</span></div>
-                            <div class="replybtn"><a class="replytoreply" replytoreply="true">回复</a></div>
-                            <form id="submitsub" data-id="">
-                            </form>
-                        </li>
-                        <li class="message-rely-children">
-                            <div class="reply-head">
-                                <img src="{% static 'common/imgs/userhead.png' %}">
-                            </div>
-                            <div class="reply-user"><a>张三</a></div>
-                            <div class="reply-content"><span>回复 @Jooger：</span>友链已加，欢迎回访,友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访</div>
-                            <div class="reply-other"><span>2018-9-9 15:45:20</span></div>
-                            <div class="replybtn"><a class="replytoreply" replytoreply="true">回复</a></div>
-                            <form id="submitsub">
-                            </form>
-                        </li>
-                        <li class="message-rely-children">
-                            <div class="reply-head">
-                                <img src="{% static 'common/imgs/userhead.png' %}">
-                            </div>
-                            <div class="reply-user"><a>张三</a></div>
-                            <div class="reply-content"><span>回复 @Jooger：</span>友链已加，欢迎回访,友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访</div>
-                            <div class="reply-other"><span>2018-9-9 15:45:20</span></div>
-                        </li>
-                        <li class="message-rely-children">
-                            <div class="reply-head">
-                                <img src="{% static 'common/imgs/userhead.png' %}">
-                            </div>
-                            <div class="reply-user"><a>张三</a></div>
-                            <div class="reply-content"><span>回复 @Jooger：</span>友链已加，欢迎回访</div>
-                            <div class="reply-other"><span>2018-9-9 15:45:20</span></div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="Message">
-                    <div class="headimg"><img src="../../static/common/imgs/userheadlib/1-13.jpg"></div>
-                    <div class="user"> <p><a href='https://jooger.me' target='_blank'>Jooger</a></p></div>
-                    <div class="text"> <p>友链已加，欢迎回访,友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访友链已加，欢迎回访</p></div>
-                    <div class="date">  <span>2018-12-04 10:42:56</span><i class="layui-icon layui-icon-location"> 中国 · 北京 · 北京</i></div>
-                    <div class="replybtn" ><a class="Mainreplybtn" replybtn="true">回复</a></div>
-                    <form id="submit" data-id="">
-                    </form>
-                </div>
             </div>
             <div id="pagination"></div>
         </div>
@@ -187,42 +137,6 @@
     <script src="{% static '/common/js/jquery.timeago.js' %}" ></script>
     <script>
 
-        $("#ReplyMain").on("click",function () {
-            $.ajax({
-                type:"POST",
-                data: {'messageid':'','username':$('.username').val(),
-                    'email':$('.email').val(),
-                    'website':$('.website').val(),
-                    'ReplyContent':$('.replycontent').val(),
-                    "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),
-                },
-                url: "../../replytomessage", //后台处理函数的url
-                cache: false,
-                success: function(result){
-                    {#var dataobj=JSON.parse(result);#}
-                    $('#submitip').html(result.message);
-                },
-            });
-            return false;
-        })
-        $("#ReplySub").on("click",function () {
-            $.ajax({
-                type:"POST",
-                data: {'replyid':'','username':$('.reply-to-username').val(),
-                    'email':$('.reply-to-email').val(),
-                    'website':$('.reply-to-website').val(),
-                    'ReplyContent':$('.reply-to-replycontent').val(),
-                    "csrfmiddlewaretoken":$("[name='csrfmiddlewaretoken']").val(),
-                },
-                url: "../../replytoreply", //后台处理函数的url
-                cache: false,
-                success: function(result){
-                    {#var dataobj=JSON.parse(result);#}
-                    $('#submitip').html(result.message);
-                },
-            });
-            return false;
-        })
     </script>
     <script src="{% static '/lib/loadMessage.js' %}" ></script>
 {% endblock %}

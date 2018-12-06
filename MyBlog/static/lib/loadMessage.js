@@ -119,10 +119,10 @@ function loadData(currPage, pageSize){
                             $(this).attr('replybtn', '');
                             $(this).parents().parents('.Message').children('#submit').append(
                                 "<div class=\"reply-input\"><div class=\"userinfo\">\n" +
-                                "<div class=\"inline-space\"><input placeholder=\"用户名\" name=\"username\"></div>\n" +
-                                "<div class=\"inline-space\"><input placeholder=\"邮箱\" name=\"email\"></div>\n" +
-                                "<div class=\"inline-space\"><input placeholder=\"站点\" name=\"website\"></div></div><div class=\"text\">\n" +
-                                "<textarea placeholder=\"请说点什么呗\" name=\"replycontent\"></textarea></div>\n" +
+                                "<div class=\"inline-space\"><input placeholder=\"用户名\" class=\"message-to-username\"></div>\n" +
+                                "<div class=\"inline-space\"><input placeholder=\"邮箱\" class=\"message-to-email\"></div>\n" +
+                                "<div class=\"inline-space\"><input placeholder=\"站点\" class=\"message-to-website\"></div></div><div class=\"text\">\n" +
+                                "<textarea placeholder=\"请说点什么呗\" class=\"message-to-replycontent\"></textarea></div>\n" +
                                 "<div class=\"reply-submit\"><button id=\"ReplyMain\"type=\"button\">回复</button></div></div>\n"
                             )
                         }
@@ -133,46 +133,130 @@ function loadData(currPage, pageSize){
                             $(this).parents().parents('.Message').children('#submit').children('.reply-input').remove()
                         }
                     });
+                    $(".replytoreply").on('click', function () {
+                        var btn = $(this).attr('replytoreply')
+                        //自己父亲
+                        var contparent = $(this).parents().parents('.message-rely-children').parents().parents('.Message').children('#submit').children('.reply-input');
+                        var contparenttext = $(this).parents().parents('.message-rely-children').parents().parents('.Message').children('.replybtn').children('.Mainreplybtn');
+                        //自己的兄弟
+                        var contsiblings = $(this).parents().siblings('.message-rely-children').children('#submitsub').children('.reply-input');
+                        var contsiblingstext = $(this).parents().siblings('.message-rely-children').children('.replybtn').children('.replytoreply');
+                        //自己表堂
+                        var contparentsiblings = $(this).parents().parents('.message-rely-children').parents().siblings('.Message').children('#submit').children('.reply-input');
+                        var contparentsiblingstext = $(this).parents().parents('.message-rely-children').parents().siblings('.Message').children('.replybtn').children('.Mainreplybtn');
+                        if (btn) {
+                            $(this).text('取消回复');
+                            $(contsiblingstext).text('回复');
+                            $(contparenttext).text('回复');
+                            $(this).attr('replytoreply', '');
+                            $(contparent).remove()
+                            $(contsiblings).remove()
+                            $(contparenttext).attr('replybtn', 'true');
+                            $(contsiblingstext).attr('replytoreply', 'true');
+                            $(contparentsiblings).remove()
+                            $(contparentsiblingstext).text('回复')
+                            $(contparentsiblingstext).attr('replytoreply', 'true');
+                            $(this).parents().parents('.message-rely-children').children('#submitsub').append(
+                                "<div class=\"reply-input\"><div class=\"userinfo\">\n" +
+                                "<div class=\"inline-space\"><input placeholder=\"用户名\" class=\"reply-to-username\"></div>\n" +
+                                "<div class=\"inline-space\"><input placeholder=\"邮箱\" class=\"reply-to-email\"></div>\n" +
+                                "<div class=\"inline-space\"><input placeholder=\"站点\" class=\"reply-to-website\"></div></div><div class=\"text\">\n" +
+                                "<textarea placeholder=\"请说点什么呗\" class=\"reply-to-replycontent\"></textarea></div>\n" +
+                                "<div class=\"reply-submit\" ><button id=\"ReplySub\" type=\"button\">回复</button></div></div>")
+                        }
+                        else
+                        {
+                            $(this).text('回复');
+                            $(this).attr('replytoreply', 'true')
+                            $(this).parents().parents('.message-rely-children').children('#submitsub').children('.reply-input').remove()
+                        }
+                    });
+                    if ($(".message-to-username").val()=="")
+                    {
+                        layer.msg('请输入昵称',{time:0.5*1000})
+                    }
+                    else if ($(".message-to-email").val()=="")
+                    {
+                        layer.msg('请输入邮箱',{time:0.5*1000})
+                    }
+                    else if($(".message-to-replycontent").val()=="")
+                    {
+                        layer.msg('说点什么吧！',{time:0.5*1000})
+                    }
+                    else if($(".message-to-email").val()!="" && !checkEmail($(".message-to-email").val()))
+                    {
+                        layer.msg('邮箱格式不对!',{time:0.5*1000})
+                    }
+                    else {
+                        $("#ReplyMain").on("click", function () {
+                            $.ajax({
+                                type: "POST",
+                                data: {
+                                    'messageid': '', 'username': $('.message-to-username').val(),
+                                    'email': $('.message-to-email').val(),
+                                    'website': $('.message-to-website').val(),
+                                    'ReplyContent': $('.message-to-replycontent').val(),
+                                    "csrfmiddlewaretoken": $("[name='csrfmiddlewaretoken']").val(),
+                                },
+                                url: "../../replytomessage", //后台处理函数的url
+                                cache: false,
+                                success: function (result) {
+                                    if(result.code=="0"){
+                                        loadData(1,10);
+                                    }
+                                    else{
+                                        alert("数据错误！请联系管理员");
+                                    }
+                                },
+                            });
+                            return false;
+                        })
+                    }
+                    if ($(".reply-to-username").val()=="")
+                    {
+                        layer.msg('请输入昵称',{time:0.5*1000})
+                    }
+                    else if ($(".reply-to-email").val()=="")
+                    {
+                        layer.msg('请输入邮箱',{time:0.5*1000})
+                    }
+                    else if($(".reply-to-replycontent").val()=="")
+                    {
+                        layer.msg('说点什么吧！',{time:0.5*1000})
+                    }
+                    else if($(".reply-to-email").val()!="" && !checkEmail($(".reply-to-email").val()))
+                    {
+                        layer.msg('邮箱格式不对!',{time:0.5*1000})
+                    }
+                    else {
+                        $("#ReplySub").on("click", function () {
+                            $.ajax({
+                                type: "POST",
+                                data: {
+                                    'replyid': '', 'username': $('.reply-to-username').val(),
+                                    'email': $('.reply-to-email').val(),
+                                    'website': $('.reply-to-website').val(),
+                                    'ReplyContent': $('.reply-to-replycontent').val(),
+                                    "csrfmiddlewaretoken": $("[name='csrfmiddlewaretoken']").val(),
+                                },
+                                url: "../../replytoreply", //后台处理函数的url
+                                cache: false,
+                                success: function (result) {
+                                    if(result.code=="0"){
+                                        loadData(1,10);
+                                    }
+                                    else{
+                                        alert("数据错误！请联系管理员");
+                                    }
+
+                                },
+                            });
+                            return false;
+                        })
+                    }
                 })
 
-                $(".replytoreply").on('click', function () {
-                    var btn = $(this).attr('replytoreply')
-                    //自己父亲
-                    var contparent = $(this).parents().parents('.message-rely-children').parents().parents('.Message').children('#submit').children('.reply-input');
-                    var contparenttext = $(this).parents().parents('.message-rely-children').parents().parents('.Message').children('.replybtn').children('.Mainreplybtn');
-                    //自己的兄弟
-                    var contsiblings = $(this).parents().siblings('.message-rely-children').children('#submitsub').children('.reply-input');
-                    var contsiblingstext = $(this).parents().siblings('.message-rely-children').children('.replybtn').children('.replytoreply');
-                    //自己表堂
-                    var contparentsiblings = $(this).parents().parents('.message-rely-children').parents().siblings('.Message').children('#submit').children('.reply-input');
-                    var contparentsiblingstext = $(this).parents().parents('.message-rely-children').parents().siblings('.Message').children('.replybtn').children('.Mainreplybtn');
-                    if (btn) {
-                        $(this).text('取消回复');
-                        $(contsiblingstext).text('回复');
-                        $(contparenttext).text('回复');
-                        $(this).attr('replytoreply', '');
-                        $(contparent).remove()
-                        $(contsiblings).remove()
-                        $(contparenttext).attr('replybtn', 'true');
-                        $(contsiblingstext).attr('replytoreply', 'true');
-                        $(contparentsiblings).remove()
-                        $(contparentsiblingstext).text('回复')
-                        $(contparentsiblingstext).attr('replytoreply', 'true');
-                        $(this).parents().parents('.message-rely-children').children('#submitsub').append(
-                            "<div class=\"reply-input\"><div class=\"userinfo\">\n" +
-                            "<div class=\"inline-space\"><input placeholder=\"用户名\" name=\"reply-to-username\"></div>\n" +
-                            "<div class=\"inline-space\"><input placeholder=\"邮箱\" name=\"reply-to-email\"></div>\n" +
-                            "<div class=\"inline-space\"><input placeholder=\"站点\" name=\"reply-to-website\"></div></div><div class=\"text\">\n" +
-                            "<textarea placeholder=\"请说点什么呗\" name=\"reply-to-replycontent\"></textarea></div>\n" +
-                            "<div class=\"reply-submit\" ><button id=\"ReplySub\" type=\"button\">回复</button></div></div>")
-                    }
-                    else
-                    {
-                        $(this).text('回复');
-                        $(this).attr('replytoreply', 'true')
-                        $(this).parents().parents('.message-rely-children').children('#submitsub').children('.reply-input').remove()
-                    }
-                });
+
                 console.log(html)
                 $("#pagination").whjPaging(
                     "setPage",
