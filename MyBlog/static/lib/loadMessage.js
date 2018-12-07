@@ -63,23 +63,21 @@ function loadData(currPage, pageSize){
                         var str=""
                         for(var j in sublist)
                         {
-
-                            str+="<li class=\"message-rely-children\" data-id=\""+sublist[j].id+"\">\n" +
+                            str+="<li class=\"message-rely-children\" data-id=\""+sublist[j].id+"\" data-name=\""+sublist[j].from_uid+"\">\n" +
                                 "<div class=\"reply-head\">\n" +
-                                "<img src=\"../../static/common/imgs/userhead.png\"></div>\n" +
-                                "<div class=\"reply-user\"><a>"+sublist[j].username+"</a></div>\n" +
-                                "<div class=\"reply-content\"><span>回复 @Jooger：</span>"+sublist[j].ReplyContent+"</div>\n" +
+                                "<img src=\"../../"+sublist[j].from_userpic+"\"></div>\n" +
+                                "<div class=\"reply-user\"><a href=\""+sublist[j].from_userwebsite+"\">"+sublist[j].from_username+"</a></div>\n" +
+                                "<div class=\"reply-content\"><span>回复 @"+sublist[j].to_username+"：</span>"+sublist[j].ReplyContent+"</div>\n" +
                                 "<div class=\"reply-other\"><span>"+new Date(sublist[j].createdate).Format("YYYY-MM-dd hh:mm:ss")+"</span></div>\n" +
                                 "<div class=\"replybtn\"><a class=\"replytoreply\" replytoreply=\"true\">回复</a></div>\n" +
                                 "<form id=\"submitsub\" ></form></li>"
                         }
                         MessageReplylist+=str+"</ul>"
                         addstr = MessageReplylist
-
                     }
                     // console.log(addstr)
 
-                    html+="<div class=\"Message\" data-id=\""+info[i].id+"\">"+
+                    html+="<div class=\"Message\" data-id=\""+info[i].id+"\" data-name=\""+info[i].uid+"\">"+
                         "<div class=\"headimg\"><img src=\"../../"+info[i].userpic+"\"></div>\n" +
                         "<div class=\"user\"> <p><a href=\""+info[i].website+"\" target=\"_blank\">"+info[i].username+"</a></p></div>\n" +
                         "<div class=\"text\"> <p>"+info[i].MessageContent+"</p></div>\n" +
@@ -154,7 +152,7 @@ function loadData(currPage, pageSize){
                                 $.ajax({
                                     type: "POST",
                                     data: {
-                                        'messageid': $(".Message").attr("data-id"), 'username': $('.message-to-username').val(),
+                                        'messageid': $(this).parents(".reply-submit").parents().parents("#submit").parents(".Message").attr("data-id"), 'to_uid':$(this).parents(".reply-submit").parents().parents("#submit").parents(".Message").attr("data-name"),'username': $('.message-to-username').val(),
                                         'email': $('.message-to-email').val(),
                                         'website': $('.message-to-website').val(),
                                         'ReplyContent': $('.message-to-replycontent').val(),
@@ -234,6 +232,7 @@ function loadData(currPage, pageSize){
                                 $.ajax({
                                     type: "POST",
                                     data: {'messageid':$(".Message").attr("data-id"),
+                                        'to_uid':$(".message-rely-children").attr("data-name"),
                                         'replyid': $(".message-rely-children").attr("data-id"), 'username': $('.reply-to-username').val(),
                                         'email': $('.reply-to-email').val(),
                                         'website': $('.reply-to-website').val(),

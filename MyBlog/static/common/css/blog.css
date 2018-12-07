@@ -366,7 +366,7 @@ body a{cursor: pointer;}
 .Message .headimg img{height: 50px;width: 50px; border-radius: 50%;}
 .Message .user{text-align: left;overflow: hidden;float: left;line-height:20px;height:20px;padding:0 10px;}
 .Message .user a{color: #00A99D;font-weight: bold;}
-.Message .text{line-height: 20px;padding: 25px 70px 0 70px;height:100%;}
+.Message .text{line-height: 20px;padding: 25px 70px 5px 70px;height:100%;}
 .Message .date{text-align: left;overflow: hidden;line-height:100%;color: #a5a5a5;padding:5px 70px;}
 .Message .date i{margin-left: 10px;color: #a5a5a5;font-size: 12px;}
 .Message .replybtn{text-align: left;overflow: hidden;padding:0 70px 10px 70px;}

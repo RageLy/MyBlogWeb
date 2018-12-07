@@ -123,8 +123,31 @@ def loadmessage(request):
     data = list(message)
     for i in data:
         reply=models.MessageReply.objects.filter(Messageid=i['id']).values()
+        replydata=list(reply)
+        for j in replydata:
+            to_user=models.Users.objects.get(userid=j['to_uid'])
+            to_username=to_user.username
+            to_userwebsite=to_user.website
+            from_user = models.Users.objects.get(userid=j['from_uid'])
+            from_username = from_user.username
+            from_userwebsite = from_user.website
+            from_userpic = from_user.userpic
+            j['to_username']=to_username
+            j['to_userwebsite'] = to_userwebsite
+            j['from_username'] = from_username
+            j['from_userwebsite'] = from_userwebsite
+            j['from_userpic'] = from_userpic
+        user=models.Users.objects.get(userid=i['uid'])
+        username=user.username
+        userwebsite = user.website
+        userpic = user.userpic
+        useremail = user.email
+        i['username']=username
+        i['website'] = userwebsite
+        i['userpic'] = userpic
+        i['email'] = useremail
         if reply!=[]:
-            i['MessageReply']=list(reply)
+            i['MessageReply']=replydata
         else:
             i['MessageReply']=[]
     print(data)
@@ -133,6 +156,23 @@ def loadmessage(request):
     return JsonResponse({'code':0,'msg':'success','currPage':page,"totalPage":paginator.num_pages,"totalSize":len(data),'data':messagelist.object_list})
 
 def submitmessage(request):
+    # if request.method=='POST':
+    # session_useraccount = request.session.get('useraccount')
+    # session_userid = request.session.get('userid')
+    # request.session.set_expiry(600)
+    # try:
+    #     user=models.Users.objects.get(userid=session_userid)
+    # except:
+    #     return redirect('login/')
+        # if user.userpic==None:
+        #     userpic = '../../static/imgs/1.jpg'
+        # else:
+        #     userpic = '../../static/'+user.userpic
+        # if session_useraccount and session_userid:
+        #     return render(request, 'MyBlogAdmin/index.html',
+        #                   {'username': user.username, 'id': session_userid, 'userpic': userpic})
+        # else:
+        #     return redirect('login/')
     if 'HTTP_X_FORWARDED_FOR' in request.META:
         ip = request.META['HTTP_X_FORWARDED_FOR']
     else:
@@ -150,18 +190,28 @@ def submitmessage(request):
     website = request.POST.get('website')
     MessageCon=request.POST.get("MessageCon")
     # maxid=models.MessageTb.objects.latest('id').id
-    userpic=random.choice(["1-1.jpg","1-2.jpg","1-3.jpg","1-4.jpg","1-5.jpg","1-6.jpg","1-7.jpg","1-8.jpg","1-9.jpg","1-10.jpg","1-11.jpg","1-12.jpg",
-                           "1-13.jpg",
-                           "1-14.jpg",
-                           "1-15.jpg",
-                           "1-16.jpg",
-                           "1-17.jpg",
-                           "1-18.jpg",
-                           "1-19.jpg",
-                           "1-20.jpg",])
-    MessageTb = models.MessageTb(MessageContent=MessageCon,userid='',userpic='static/common/imgs/userheadlib/'+userpic,username=username,createdate=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())),ip=ipadd,country=country,region=region,city=city,website=website,email=email)
+    userpic = random.choice(
+        ["1-1.jpg", "1-2.jpg", "1-3.jpg", "1-4.jpg", "1-5.jpg", "1-6.jpg", "1-7.jpg", "1-8.jpg", "1-9.jpg", "1-10.jpg",
+         "1-11.jpg", "1-12.jpg",
+         "1-13.jpg",
+         "1-14.jpg",
+         "1-15.jpg",
+         "1-16.jpg",
+         "1-17.jpg",
+         "1-18.jpg",
+         "1-19.jpg",
+         "1-20.jpg", ])
+    EnableUser=None
+    try:
+        JudgeUser=models.Users.objects.get(username=username)
+        EnableUser=JudgeUser
+    except:
+        User = models.Users(username=username, userpic='static/common/imgs/userheadlib/' + userpic, website=website,useraccount=username,
+                        email=email)
+        User.save()
+        EnableUser=User
+    MessageTb = models.MessageTb(MessageContent=MessageCon,uid=EnableUser.userid,createdate=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())),ip=ipadd,country=country,region=region,city=city)
     MessageTb.save()
-    # print(MessageTb.object_to_json())
     message = models.MessageTb.objects.values().order_by('-createdate')
     data = list(message)
     paginator = Paginator(data, 10)
@@ -332,6 +382,7 @@ def replydata(request):
 def replytomessage(request):
     messageid=request.POST.get('messageid')
     username=request.POST.get('username')
+    to_uid = request.POST.get('to_uid')
     email = request.POST.get('email')
     website = request.POST.get('website')
     ReplyContent = request.POST.get('ReplyContent')
@@ -355,7 +406,16 @@ def replytomessage(request):
                              "1-18.jpg",
                              "1-19.jpg",
                              "1-20.jpg", ])
-    MessageReply=models.MessageReply(Messageid=messageid,username=username,email=email,website=website,ReplyContent=ReplyContent,createdate=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())),userpic='static/common/imgs/userheadlib/'+userpic,type=0)
+    EnableUser = None
+    try:
+        JudgeUser = models.Users.objects.get(username=username)
+        EnableUser = JudgeUser
+    except:
+        User = models.Users(username=username, userpic='static/common/imgs/userheadlib/' + userpic, website=website,useraccount=username,
+                            email=email)
+        User.save()
+        EnableUser = User
+    MessageReply=models.MessageReply(Messageid=messageid,from_uid=EnableUser.userid,to_uid=to_uid,ReplyContent=ReplyContent,createdate=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())),type=0)
     MessageReply.save()
     messageReplymodels = models.MessageReply.objects.values().order_by('-createdate')
     data = list(messageReplymodels)
@@ -367,6 +427,7 @@ def replytomessage(request):
 
 def replytoreply(request):
     messageid = request.POST.get('messageid')
+    to_uid = request.POST.get('to_uid')
     replyid = request.POST.get('replyid')
     username = request.POST.get('username')
     email = request.POST.get('email')
@@ -392,10 +453,16 @@ def replytoreply(request):
                              "1-18.jpg",
                              "1-19.jpg",
                              "1-20.jpg", ])
-    MessageReply = models.MessageReply(Messageid=messageid,Replyid=replyid, username=username, email=email, website=website,
-                                       ReplyContent=ReplyContent,
-                                       createdate=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())),
-                                       userpic='static/common/imgs/userheadlib/' + userpic,type=1)
+
+    EnableUser = None
+    try:
+        JudgeUser = models.Users.objects.get(username=username)
+        EnableUser = JudgeUser
+    except:
+        User = models.Users(username=username, userpic='static/common/imgs/userheadlib/' + userpic, website=website,email=email,useraccount=username)
+        User.save()
+        EnableUser = User
+    MessageReply = models.MessageReply(Messageid=messageid,to_uid=to_uid,from_uid=EnableUser.userid,Replyid=replyid,ReplyContent=ReplyContent,createdate=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())),type=1)
     MessageReply.save()
     messageReplymodels = models.MessageReply.objects.values().order_by('-createdate')
     data = list(messageReplymodels)

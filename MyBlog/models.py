@@ -72,13 +72,10 @@ class Users(models.Model):
                                     null=True)  # Field name made lowercase.
     username = models.CharField(db_column='username', max_length=200, blank=True,
                                 null=True)  # Field name made lowercase.
-    # usersex = models.CharField(db_column='UserSex', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    # contactphone = models.CharField(db_column='ContactPhone', max_length=200, blank=True, null=True)  # Field name made lowercase.
-    # mobilephone = models.CharField(db_column='Mobilephone', max_length=200, blank=True, null=True)  # Field name made lowercase.
-    # email = models.CharField(db_column='Email', max_length=200, blank=True, null=True)  # Field name made lowercase.
+    website = models.CharField(db_column='website', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    type = models.IntegerField(db_column='type', blank=True, null=True)
+    email = models.CharField(db_column='email', max_length=200, blank=True, null=True)  # Field name made lowercase.
     userpic = models.CharField(db_column='userpic', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    # useraddress = models.CharField(db_column='UserAddress', max_length=500, blank=True, null=True)  # Field name made lowercase.
-    # operatorid = models.CharField(db_column='OperatorID', max_length=5, blank=True, null=True)  # Field name made lowercase.
     objects = models.Manager()
     user_objects = UserManager()
 
@@ -308,11 +305,11 @@ class WebLink(models.Model):
 class MessageTb(models.Model):
     id = models.AutoField(db_column='id', primary_key=True)
     MessageContent=models.TextField(db_column='MessageContent', blank=True, null=True)
-    userid = models.CharField(db_column='userid', max_length=50, blank=True, null=True)
-    username = models.CharField(db_column='username', max_length=50, blank=True, null=True)
-    userpic = models.CharField(db_column='userpic', max_length=50, blank=True, null=True)
-    email = models.CharField(db_column='email', max_length=50, blank=True, null=True)
-    website = models.CharField(db_column='website', max_length=50, blank=True, null=True)
+    uid = models.CharField(db_column='userid', max_length=50, blank=True, null=True)
+    # username = models.CharField(db_column='username', max_length=50, blank=True, null=True)
+    # userpic = models.CharField(db_column='userpic', max_length=50, blank=True, null=True)
+    # email = models.CharField(db_column='email', max_length=50, blank=True, null=True)
+    # website = models.CharField(db_column='website', max_length=50, blank=True, null=True)
     createdate=models.DateTimeField(db_column='createdate', blank=True, null=True)
     ip=models.CharField(db_column='ip', max_length=20, blank=True, null=True)
     country = models.CharField(db_column='country', max_length=50, blank=True, null=True)
@@ -356,12 +353,13 @@ class MessageReply(models.Model):
     ReplyContent=models.TextField(db_column='ReplyContent', blank=True, null=True)
     Messageid = models.IntegerField(db_column='Messageid', blank=True, null=True)
     Replyid = models.IntegerField(db_column='Replyid', blank=True, null=True)
-    userid = models.IntegerField(db_column='userid',blank=True, null=True)
+    from_uid = models.IntegerField(db_column='from_uid',blank=True, null=True)
+    to_uid = models.IntegerField(db_column='to_uid', blank=True, null=True)
     type = models.IntegerField(db_column='type', blank=True, null=True)
-    username = models.CharField(db_column='username', max_length=50, blank=True, null=True)
-    userpic = models.CharField(db_column='userpic', max_length=50, blank=True, null=True)
-    email = models.CharField(db_column='email', max_length=50, blank=True, null=True)
-    website = models.CharField(db_column='website', max_length=50, blank=True, null=True)
+    # username = models.CharField(db_column='username', max_length=50, blank=True, null=True)
+    # userpic = models.CharField(db_column='userpic', max_length=50, blank=True, null=True)
+    # email = models.CharField(db_column='email', max_length=50, blank=True, null=True)
+    # website = models.CharField(db_column='website', max_length=50, blank=True, null=True)
     createdate=models.DateTimeField(db_column='createdate', blank=True, null=True)
     ip=models.CharField(db_column='ip', max_length=20, blank=True, null=True)
     country = models.CharField(db_column='country', max_length=50, blank=True, null=True)
