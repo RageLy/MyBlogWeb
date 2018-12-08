@@ -45,6 +45,7 @@ urlpatterns = [
     path('admin/setWrap/', views.setWrap, name='setWrap'),
     path('admin/userinfo/<int:userid>/', views.userinfo, name='userinfo'),
     path('admin/password/<int:userid>/', views.password, name='password'),
+    # path('admin/password/<int:userid>/', views.password, name='password'),
 
 
 

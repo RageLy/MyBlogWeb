@@ -3,7 +3,6 @@ from django.shortcuts import render,redirect
 from django.http import JsonResponse
 from MyBlog import models
 from django.http import HttpResponse
-from MyBlogWeb import settings
 from django.core.paginator import Paginator,EmptyPage, PageNotAnInteger
 import urllib.request
 import random
@@ -11,8 +10,10 @@ from django.db.models import Q
 import json
 from django.db.models.fields.files import ImageFieldFile
 from PIL import Image
-from MyBlogWeb.settings import MEDIA_ROOT
+from MyBlogWeb import settings
 import os, datetime, uuid,time
+
+
 
 
 
@@ -551,9 +552,9 @@ def setWrap(request):
 
     # super(PicManage, self).save()  # 将上传的图片先保存一下，否则报错
     base, ext = os.path.splitext(os.path.basename(picmanage.img.path))
-    thumb_pixbuf = make_thumb(os.path.join(MEDIA_ROOT, picmanage.img.name))
+    thumb_pixbuf = make_thumb(os.path.join(settings.MEDIA_ROOT, picmanage.img.name))
     relate_thumb_path = os.path.join(THUMB_ROOT, base + '_thumb' + ext)
-    thumb_path = os.path.join(MEDIA_ROOT, relate_thumb_path)
+    thumb_path = os.path.join(settings.MEDIA_ROOT, relate_thumb_path)
     thumb_pixbuf.save(thumb_path)
     picmanage.imgthumb = ImageFieldFile(picmanage, picmanage.imgthumb, relate_thumb_path)
     picmanage.save()
@@ -800,3 +801,4 @@ def editblog(request):
             return HttpResponse(json.dumps({'message': '文章修改成功'}, cls=DateEncoder), content_type="application/json")
     elif request.method=='GET':
         return render(request, 'MyBlogAdmin/BlogEdit.html', {'Blog': ''})
+

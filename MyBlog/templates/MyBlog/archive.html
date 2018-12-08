@@ -4,7 +4,6 @@
     <title>花花与风-归档</title>
 {% endblock %}
 {% block head %}
-    <link rel="stylesheet" href="{% static 'common/css/blog.css' %}">
     <link rel="stylesheet" href="{% static 'common/css/iconfont.css' %}">
 {% endblock %}
 {% block nav %}
@@ -39,7 +38,7 @@
     </div>
 {% endblock %}
 {% block container %}
-    <div class="layui-col-md9">
+    <div class="layui-col-md85">
         <div class="layui-card">
             <div class="layui-card-header">博客归档</div>
             <div class="timeboxpadding">
@@ -60,7 +59,7 @@
             </div>
         </div>
     </div>
-    <div class="layui-col-md3" >
+    <div class="layui-col-md35" >
         <div class="layui-col-space15">
             <div class="layui-col-md12 ">
                 <div class="layui-card webinfo">
@@ -158,12 +157,6 @@
         }
     </script>
     <script>
-        $(window).resize(function(){
-            if(document.body.clientWidth<500){
-
-                window.resizeTo(document.body.clientWidth,500);
-            }
-        });
         $(function(){
             $('label').click(function(){
                 $('.event_year>li').removeClass('current');

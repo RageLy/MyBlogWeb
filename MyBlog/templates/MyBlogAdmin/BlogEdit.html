@@ -17,6 +17,15 @@
             {% load static %}
             <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}">
             <link rel="stylesheet" href="{% static 'layui/css/public.css' %}">
+            <script src="{% static '/ueditor/ueditor.config.js' %}" type="text/javascript"></script>
+
+            <script src="{% static '/ueditor/ueditor.all.js' %}" type="text/javascript"></script>
+<script type="text/javascript" charset="utf-8" src="{% static '/ueditor/lang/zh-cn/zh-cn.js' %}"></script>
+            <script type="text/javascript">
+                var ue = UE.getEditor('container',{
+                    serverUrl: "/controller/"
+                });
+            </script>
         </head>
 <body class="childrenBody" style="background-color: #FFFFFF">
 <form class="layui-form layui-row layui-col-space10">
@@ -47,8 +56,10 @@
         <div class="layui-form-item magb0">
             <label class="layui-form-label">文章内容</label>
             <div class="layui-input-block">
-                <textarea  class="layui-hide editor2"></textarea>
-                <textarea id="editor1" name="editor1" class="editor1"></textarea>
+
+                 <script id="container" name="content" type="text/platin">
+                </script>
+                {#                <textarea id="editor1" name="editor1" class="editor1"></textarea>#}
             </div>
         </div>
     </div>
@@ -116,35 +127,6 @@
 <script src="{% static '/layui/layui.js' %}"></script>
 <script src="{% static '/lib/Addnews.js' %}"></script>
 <script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
-<script src='{% static '/tinymce/tinymce.min.js' %}'></script>
-
-<script type="text/javascript">
-    tinymce.init({
-        selector:'#editor1',
-        language: "zh_CN",
-        height: 500,
-        fontsize_formats: "8pt 9pt 10pt 11pt 12pt 13pt 14pt 15pt 16pt 17pt 18pt 19pt 20pt 21pt 22pt 23pt 24pt 26pt 36pt 72pt",
-        plugins: 'print preview fullpage searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools  contextmenu colorpicker textpattern help',
-        toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor fontsizeselect fontselect styleselect | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
-        image_advtab: true,
-        templates: [
-            { title: 'Test template 1', content: 'Test 1' },
-            { title: 'Test template 2', content: 'Test 2' }
-        ],
-        content_css: [
-            '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
-            '//www.tinymce.com/css/codepen.min.css'
-        ],
-        font_formats: "宋体=宋体;微软雅黑=微软雅黑;新宋体=新宋体;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n,Lato=Lato;Andale Mono=andale mono,times;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;Comic Sans MS=comic sans ms,sans-serif;Courier New=courier new,courier;Georgia=georgia,palatino;Helvetica=helvetica;Impact=impact,chicago;Symbol=symbol;Tahoma=tahoma,arial,helvetica,sans-serif;Terminal=terminal,monaco;Times New Roman=times new roman,times;Trebuchet MS=trebuchet ms,geneva;Verdana=verdana,geneva;Webdings=webdings;Wingdings=wingdings,zapf dingbats"
-    });
-    {#if($('.editor2').val()!='')#}
-    {#{#}
-    tinyMCE.activeEditor.getContent($('.editor2').val())
-    {# }#}
-
-
-</script>
-
 
 </body>
 </html>

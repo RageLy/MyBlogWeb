@@ -4,6 +4,8 @@ from PIL import Image
 from MyBlogWeb.settings import MEDIA_ROOT
 import os, datetime, uuid
 import re
+from DjangoUeditor.models import UEditorField
+
 
 class BlogManager(models.Manager):
     def blogSet(self):
@@ -21,8 +23,9 @@ class Blog(models.Model):
     createdate = models.DateTimeField(db_column='createdate', blank=True, null=True)  # Field name made lowercase.
     modifydate=models.DateTimeField(db_column='modifydate', blank=True, null=True)
     author = models.CharField(db_column='Author', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    blogcontent = models.TextField(db_column='blogcontent', blank=True, null=True)  #
-    hit = models.IntegerField(db_column='hit',blank=True, null=True)
+    blogcontent = UEditorField(db_column='blogcontent',verbose_name='内容',width=600, height=300, toolbars="full", imagePath="images/upload/%(datetime)s_%(rnd)s.%(extname)s", filePath="file/upload/%(datetime)s_%(rnd)s.%(extname)s", upload_settings={"imageMaxSize":1204000},
+             settings={},command=None,blank=True)  #
+    hit = models.IntegerField(db_column='hit', blank=True, null=True)
     isTop = models.IntegerField(db_column='isTop', blank=True, null=True)
     isorg = models.IntegerField(db_column='isorg', blank=True, null=True)
     type = models.IntegerField(db_column='Type',blank=True, null=True)
