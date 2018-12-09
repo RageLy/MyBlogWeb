@@ -86,7 +86,7 @@ function loadData(currPage, pageSize){
                 }
                 // location.reload()
                 $('#messagecon').find('*').remove();
-                // console.log($('#messagecon').html())
+                console.log(html)
                 $("#messagecon").append(html)
                 $(function () {
                     $(".Mainreplybtn").on('click', function () {

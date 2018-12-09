@@ -313,26 +313,211 @@ def commentdata(request):
                              "1-18.jpg",
                              "1-19.jpg",
                              "1-20.jpg", ])
-    comment=models.Comment(blog_id=blogid,username=username,website=website,email=email,commentContent=commentContent,createdate=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())),device=device,likeNum=0,userpic='static/common/imgs/userheadlib/'+userpic,brower=brower,system=system,country=country,region=region,city=city)
+    EnableUser = None
+    try:
+        JudgeUser = models.Users.objects.get(username=username)
+        EnableUser = JudgeUser
+    except:
+        User = models.Users(username=username, userpic='static/common/imgs/userheadlib/' + userpic, website=website,
+                            useraccount=username,
+                            email=email)
+        User.save()
+        EnableUser = User
+    comment=models.Comment(blog_id=blogid,uid=EnableUser.userid,website=website,email=email,commentContent=commentContent,createdate=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())),device=device,likeNum=0,brower=brower,system=system,country=country,region=region,city=city)
     comment.save()
     commentNewcount=models.Comment.objects.count()
-    return JsonResponse({'message':0,'commentcount':commentNewcount})
+    commentmodels = models.Comment.objects.values().order_by('-createdate')
+    data = list(commentmodels)
+    paginator = Paginator(data, 10)
+    Commentlist = paginator.get_page(1)
+    return JsonResponse(
+        {'code': 0, 'msg': 'success', 'currPage': 1, "totalPage": paginator.num_pages, "totalSize": len(data),
+         'data': Commentlist.object_list,'commentcount':commentNewcount})
+
+def commenttocommentdata(request):
+    username=request.POST.get('username')
+    email = request.POST.get('email')
+    website = request.POST.get('website')
+    blogid=request.POST.get('blogid')
+    commentid = request.POST.get('commentid')
+    ReplyContent = request.POST.get('ReplyContent')
+    device = request.POST.get('device')
+    to_uid=request.POST.get('to_uid')
+    brower = request.POST.get('brower')
+    system = request.POST.get('system')
+    replytype = request.POST.get('replytype')
+    if 'HTTP_X_FORWARDED_FOR' in request.META:
+        ip = request.META['HTTP_X_FORWARDED_FOR']
+    else:
+        ip = request.META['REMOTE_ADDR']
+    print(ip)
+    ipcity = 'http://ip.taobao.com/service/getIpInfo.php?ip=' + ip
+    wb_data = urllib.request.urlopen(ipcity)
+    data = json.loads(wb_data.read().decode("utf-8"))
+    ipadd = data['data']['ip']
+    country = data['data']['country']
+    region = data['data']['region']
+    city = data['data']['city']
+    userpic = random.choice(["1-1.jpg",
+                             "1-2.jpg",
+                             "1-3.jpg",
+                             "1-4.jpg",
+                             "1-5.jpg",
+                             "1-6.jpg",
+                             "1-7.jpg",
+                             "1-8.jpg",
+                             "1-9.jpg",
+                             "1-10.jpg",
+                             "1-11.jpg",
+                             "1-12.jpg",
+                             "1-13.jpg",
+                             "1-14.jpg",
+                             "1-15.jpg",
+                             "1-16.jpg",
+                             "1-17.jpg",
+                             "1-18.jpg",
+                             "1-19.jpg",
+                             "1-20.jpg", ])
+    EnableUser = None
+    try:
+        JudgeUser = models.Users.objects.get(username=username)
+        EnableUser = JudgeUser
+    except:
+        User = models.Users(username=username, userpic='static/common/imgs/userheadlib/' + userpic, website=website,
+                            useraccount=username,
+                            email=email)
+        User.save()
+        EnableUser = User
+    reply=models.Reply(blog_id=blogid,to_uid=to_uid,from_uid=EnableUser.userid,comment_id=commentid,replyContent=ReplyContent,createdate=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())),device=device,likeNum=0,brower=brower,system=system,country=country,region=region,city=city)
+    reply.save()
+    replyNewcount=models.Reply.objects.count()
+    commentmodels = models.Comment.objects.values().order_by('-createdate')
+    data = list(commentmodels)
+    paginator = Paginator(data, 10)
+    Commentlist = paginator.get_page(1)
+    return JsonResponse(
+        {'code': 0, 'msg': 'success', 'currPage': 1, "totalPage": paginator.num_pages, "totalSize": len(data),
+         'data': Commentlist.object_list,'commentcount':replyNewcount})
+
+def commenttoreplydata(request):
+    username=request.POST.get('username')
+    email = request.POST.get('email')
+    website = request.POST.get('website')
+    blogid=request.POST.get('blogid')
+    commentid=request.POST.get('commentid')
+    ReplyContent = request.POST.get('ReplyContent')
+    device = request.POST.get('device')
+    brower = request.POST.get('brower')
+    to_uid = request.POST.get('to_uid')
+    system = request.POST.get('system')
+    replytype = request.POST.get('replytype')
+    if 'HTTP_X_FORWARDED_FOR' in request.META:
+        ip = request.META['HTTP_X_FORWARDED_FOR']
+    else:
+        ip = request.META['REMOTE_ADDR']
+    print(ip)
+    ipcity = 'http://ip.taobao.com/service/getIpInfo.php?ip=' + ip
+    wb_data = urllib.request.urlopen(ipcity)
+    data = json.loads(wb_data.read().decode("utf-8"))
+    ipadd = data['data']['ip']
+    country = data['data']['country']
+    region = data['data']['region']
+    city = data['data']['city']
+    userpic = random.choice(["1-1.jpg",
+                             "1-2.jpg",
+                             "1-3.jpg",
+                             "1-4.jpg",
+                             "1-5.jpg",
+                             "1-6.jpg",
+                             "1-7.jpg",
+                             "1-8.jpg",
+                             "1-9.jpg",
+                             "1-10.jpg",
+                             "1-11.jpg",
+                             "1-12.jpg",
+                             "1-13.jpg",
+                             "1-14.jpg",
+                             "1-15.jpg",
+                             "1-16.jpg",
+                             "1-17.jpg",
+                             "1-18.jpg",
+                             "1-19.jpg",
+                             "1-20.jpg", ])
+    EnableUser = None
+    try:
+        JudgeUser = models.Users.objects.get(username=username)
+        EnableUser = JudgeUser
+    except:
+        User = models.Users(username=username, userpic='static/common/imgs/userheadlib/' + userpic, website=website,
+                            useraccount=username,
+                            email=email)
+        User.save()
+        EnableUser = User
+    reply=models.Reply(blog_id=blogid,to_uid=to_uid,from_uid=EnableUser.userid,comment_id=commentid,replyContent=ReplyContent,createdate=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())),device=device,likeNum=0,brower=brower,system=system,country=country,region=region,city=city)
+    reply.save()
+    # replyNewcount=models.Reply.objects.count()
+    commentmodels = models.Comment.objects.values().order_by('-createdate')
+    data = list(commentmodels)
+    paginator = Paginator(data, 10)
+    Commentlist = paginator.get_page(1)
+    return JsonResponse(
+        {'code': 0, 'msg': 'success', 'currPage': 1, "totalPage": paginator.num_pages, "totalSize": len(data),
+         'data': Commentlist.object_list})
 
 def loadcommentdata(request):
     page = request.GET.get('page')
     limit = request.GET.get('limit')
-    blog_id=request.GET.get('blogid')
-    comment=models.Comment.objects.filter(blog_id=blog_id).order_by('-createdate').values()
-
+    blog_id = request.GET.get('blogid')
+    comment = models.Comment.objects.filter(blog_id=blog_id).order_by('-createdate').values()
     data = list(comment)
-    for index,item in enumerate(data):
-        reply = models.Reply.objects.filter(comment_id=item["id"]).values()
-        replylist = list(reply)
-        data[index]["replylist"]=replylist
-    # data.append(replylist)
+    for i in data:
+        reply = models.Reply.objects.filter(comment__id=i['id']).values()
+        replydata = list(reply)
+        for j in replydata:
+            to_user = models.Users.objects.get(userid=j['to_uid'])
+            to_username = to_user.username
+            to_userwebsite = to_user.website
+            from_user = models.Users.objects.get(userid=j['from_uid'])
+            from_username = from_user.username
+            from_userwebsite = from_user.website
+            from_userpic = from_user.userpic
+            j['to_username'] = to_username
+            j['to_userwebsite'] = to_userwebsite
+            j['from_username'] = from_username
+            j['from_userwebsite'] = from_userwebsite
+            j['from_userpic'] = from_userpic
+        user = models.Users.objects.get(userid=i['uid'])
+        username = user.username
+        userwebsite = user.website
+        userpic = user.userpic
+        useremail = user.email
+        i['username'] = username
+        i['website'] = userwebsite
+        i['userpic'] = userpic
+        i['email'] = useremail
+        if reply != []:
+            i['Reply'] = replydata
+        else:
+            i['Reply'] = []
+    print(data)
     paginator = Paginator(data, limit)
     commentlist = paginator.get_page(page)
-    print(commentlist.object_list)
+
+
+
+    # page = request.GET.get('page')
+    # limit = request.GET.get('limit')
+    # blog_id=request.GET.get('blogid')
+    # comment=models.Comment.objects.filter(blog_id=blog_id).order_by('-createdate').values()
+    # data = list(comment)
+    # for index,item in enumerate(data):
+    #     reply = models.Reply.objects.filter(comment_id=item["id"]).values()
+    #     replylist = list(reply)
+    #     data[index]["replylist"]=replylist
+    # # data.append(replylist)
+    # paginator = Paginator(data, limit)
+    # commentlist = paginator.get_page(page)
+    # print(commentlist.object_list)
     return JsonResponse({'code':0,'msg':'success','currPage':page,"totalPage":paginator.num_pages,"totalSize":len(data),'data':commentlist.object_list})
 
 def replydata(request):

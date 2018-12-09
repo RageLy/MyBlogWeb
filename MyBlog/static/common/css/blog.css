@@ -210,11 +210,11 @@ body a{cursor: pointer;}
 .search ul li:before{counter-increment:section;content:counter(section);display:inline-block;padding:0 9px;margin-right:10px;height:24px;line-height:24px;background:#e6e6e6;color:#505050;border-radius:50%;font-size:9px;}
 /*文章内容*/
 .blog-content{margin-bottom: 0;padding-bottom: 0!important;background-color: white;width: 100%;}
-.blog-content .blog-head{background: url(../../common/imgs/HeadBack.jpg) no-repeat;padding: 40px 0;margin-top: 5px;box-shadow: 0 1px 5px 0 rgba(0,0,0,.09);color: white;}
+.blog-content .blog-head{padding: 40px 0;margin-top: 5px;box-shadow: 0 1px 5px 0 rgba(0,0,0,.09);color: #000000;}
 .blog-content .blog-head .blog-title{margin: 16px 0;font-size: 20px;text-align: center;}
-.blog-content .blog-head .blog-title h3{font-weight: bold;color: #ffffff;}
+.blog-content .blog-head .blog-title h3{font-weight: bold;color: #000000;}
 .blog-content .blog-head .con-desc{display: flex;flex-direction: row;justify-content: center;align-items: center;flex-wrap: nowrap;margin: 12px 0 16px;font-size: 12px;}
-.blog-content .blog-head .con-desc a{padding-right: 20px;color: #ffffff!important;}
+.blog-content .blog-head .con-desc a{padding-right: 20px;color: #000000!important;}
 .blog-content .text-desc {font-size: 14px;color: #777;border-left: 5px solid #E6E6E6;padding: 20px 0 20px 20px;margin: 20px;line-height: 30px;background-color: #f0f0f0;}
 .blog-content .text-desc a, .blog-content .text-desc span{color: #777;}
 .blog-content .text-con{padding: 25px;}
@@ -227,6 +227,7 @@ body a{cursor: pointer;}
 
 /*回复列表*/
 .space-message{}
+#messagetext{padding: 0 20px;}
 /*.space-message p{ padding-bottom: 10px;}*/
 .message-content {margin-bottom: 20px;width: 100%;}
 
@@ -269,11 +270,10 @@ body a{cursor: pointer;}
 .message-content .reply-to-text .replybtn .layui-btn{font-size: 20px;}
 
 /*评论标题*/
-.comment-content {width: 100%;margin: 15px 0;}
-.comment-content .font-border{margin: 0 20px!important;padding: 10px 0;line-height: 18px;
+.comment-content {width: 100%;margin: 15px 0 15px 0;}
+.comment-content .font-border{margin: 0 20px!important;padding: 0;line-height: 18px;
 }
-.comment-content .font-border h2{font-size: 16px;font-weight: bolder;letter-spacing:2px;color:#777;
-    border-left: 3px solid #777;padding:0 10px;
+.comment-content .font-border h2{font-size: 16px;font-weight: bolder;letter-spacing:2px;color:#777;padding:10px 10px;border-bottom: 1px solid #eeeeee;border-left: 3px solid #eeeeee
 }
 .more{padding: 0 25px 10px;height: 60px;color:#777;font-size: 14px;}
 .more a{color:#777;font-size: 14px;}
@@ -391,10 +391,12 @@ body a{cursor: pointer;}
 .message-rely-list a,.message-rely-list span{color:#a5a5a5;}
 .message-rely-list .reply-head{padding: 5px 0;float: left;}
 .message-rely-list .reply-head img{padding: 0;height: 32px;width: 32px;border-radius: 50%;}
-.message-rely-list .reply-user{padding: 0 52px;}
+.message-rely-list .reply-user{padding: 0 0 0 52px;}
+.message-rely-list .reply-user .replytoreply{float: right;color: #a5a5a5;font-weight: normal;}
 .message-rely-list .reply-user a{color: #00a67c;font-weight: bold;}
 .message-rely-list .reply-content{padding: 5px 0 5px 52px;line-height: 20px;}
 .message-rely-list .reply-other{padding: 0 52px 5px;}
+.message-rely-list .reply-other i{margin-left: 10px;color: #a5a5a5;font-size: 12px;}
 .message-rely-list .replybtn{padding: 0 52px 5px;}
 
 #MessageCon{border-width: 0;background-color: #f2f2f2;font-size: 14px;}
