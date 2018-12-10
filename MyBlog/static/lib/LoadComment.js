@@ -15,6 +15,20 @@ function checkEmail(myemail) {
         return false;
     }
 }
+$("#blogpagination").whjPaging({
+    //设为true时，ajax里的success函数必须调用setPage方法，否则分页插件显示保持不变
+    isResetPage: true,
+    css: 'css-4',
+    isShowSkip: false,
+    isShowRefresh: false,
+    isShowPageSizeOpt: false,
+    isShowFL: true,
+    isShowTotalPage: false,
+    isShowTotalSize: false,
+    callBack: function(currPage, pageSize) {
+        LoadComment(currPage, 10);
+    }
+});
 $(function(){
     LoadComment(1,10);
 });
@@ -306,6 +320,8 @@ function LoadComment(currPage, pageSize){
         data: {'page':currPage,'limit':pageSize,'blogid':blog_id},
         url:"../../loadcommentdata/",
         success:function(result){
+            $(".commentcount").find('*').remove();
+            $(".commentcount").html(result.commentcount+'条评论')
             if(result.code=="0"){
                 var info = result.data;
                 // console.log(result)
@@ -344,22 +360,13 @@ function LoadComment(currPage, pageSize){
 
                 // location.reload()
                 $('#messagetext').find('*').remove();
-                console.log(html)
+                console.log(result.currPage, result.totalPage,  result.totalSize)
                 $("#messagetext").append(html)
-                $("#blogpagination").whjPaging({
-                    //设为true时，ajax里的success函数必须调用setPage方法，否则分页插件显示保持不变
-                    isResetPage: true,
-                    css: 'css-4',
-                    isShowSkip: false,
-                    isShowRefresh: false,
-                    isShowPageSizeOpt: false,
-                    isShowFL: true,
-                    isShowTotalPage: false,
-                    isShowTotalSize: false,
-                    callBack: function(currPage, pageSize) {
-                        LoadComment(currPage, 10);
-                    }
-                });
+
+                $("#blogpagination").whjPaging(
+                    "setPage",
+                    {currPage: result.currPage, totalPage: result.totalPage, totalSize: result.totalSize}
+                );
                 (function($){
                     var BrowserMatch = {
                         init: function() {
@@ -568,40 +575,37 @@ function LoadComment(currPage, pageSize){
                     // {#alert("当前浏览器为：" + BrowserMatch.browser +"\n版本为："+ BrowserMatch.version + "\n所处操作系统为："+BrowserMatch.OS); #}
                 })(jQuery);
 //检测平台
-                    var p = navigator.platform;
-                    system.win = p.indexOf("Win") == 0;
-                    system.mac = p.indexOf("Mac") == 0;
-                    system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
-                    system.ipad = (navigator.userAgent.match(/iPad/i) != null)?true:false;
-                    //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
-                    if (system.win || system.mac || system.xll||system.ipad) {
-                        console.log('电脑端')
-                        devide='电脑端'
-                    } else if(system.mac)
-                    {
-                        console.log('MAC端')
-                        devide='mac端'
-                    }
-                    else if(system.xll)
-                    {
-                        console.log('OK')
-                        devide='x11或者Linux端'
-                    }
-                    else if(system.ipad)
-                    {
-                        console.log('ipad端')
-                        devide='ipad端'
-                    }
-                    else
-                    {
-                        console.log('手机端')
-                        devide='手机端'
-                    }
+                var p = navigator.platform;
+                system.win = p.indexOf("Win") == 0;
+                system.mac = p.indexOf("Mac") == 0;
+                system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+                system.ipad = (navigator.userAgent.match(/iPad/i) != null)?true:false;
+                //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+                if (system.win || system.mac || system.xll||system.ipad) {
+                    console.log('电脑端')
+                    devide='电脑端'
+                } else if(system.mac)
+                {
+                    console.log('MAC端')
+                    devide='mac端'
+                }
+                else if(system.xll)
+                {
+                    console.log('OK')
+                    devide='x11或者Linux端'
+                }
+                else if(system.ipad)
+                {
+                    console.log('ipad端')
+                    devide='ipad端'
+                }
+                else
+                {
+                    console.log('手机端')
+                    devide='手机端'
+                }
 
-                    $("#blogpagination").whjPaging(
-                        "setPage",
-                        {currPage: result.currPage, totalPage: result.totalPage, totalSize: result.totalSize}
-                    );
+
                 $(function () {
                     $(".Mainreplybtn").on('click', function () {
                         //胞兄的孩子
@@ -775,11 +779,8 @@ function LoadComment(currPage, pageSize){
                         })
                     });
                 })
-                // console.log(html)
-                $("#pagination").whjPaging(
-                    "setPage",
-                    {currPage: result.currPage, totalPage: result.totalPage, totalSize: result.totalSize}
-                );
+                console.log(html)
+
             }else{
                 alert("数据错误！请联系管理员");
             }

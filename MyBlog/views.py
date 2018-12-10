@@ -502,23 +502,8 @@ def loadcommentdata(request):
     print(data)
     paginator = Paginator(data, limit)
     commentlist = paginator.get_page(page)
-
-
-
-    # page = request.GET.get('page')
-    # limit = request.GET.get('limit')
-    # blog_id=request.GET.get('blogid')
-    # comment=models.Comment.objects.filter(blog_id=blog_id).order_by('-createdate').values()
-    # data = list(comment)
-    # for index,item in enumerate(data):
-    #     reply = models.Reply.objects.filter(comment_id=item["id"]).values()
-    #     replylist = list(reply)
-    #     data[index]["replylist"]=replylist
-    # # data.append(replylist)
-    # paginator = Paginator(data, limit)
-    # commentlist = paginator.get_page(page)
-    # print(commentlist.object_list)
-    return JsonResponse({'code':0,'msg':'success','currPage':page,"totalPage":paginator.num_pages,"totalSize":len(data),'data':commentlist.object_list})
+    commentNewcount = models.Comment.objects.count()
+    return JsonResponse({'code':0,'msg':'success','currPage':page,"totalPage":paginator.num_pages,"totalSize":len(data),'data':commentlist.object_list,'commentcount':commentNewcount})
 
 def replydata(request):
     userid=request.POST.get('userid')

@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'MyBlogWeb.wsgi.application'
 
 DATABASES = {
     'default': {
-        'NAME': 'Blog',
+        'NAME': 'BlogTest',
         'ENGINE': 'sql_server.pyodbc',
         'HOST': '118.24.141.118',
         'PORT': '1433',
