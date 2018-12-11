@@ -79,14 +79,14 @@ function loadData(currPage, pageSize){
 
                     html+="<div class=\"Message\" data-id=\""+info[i].id+"\" data-name=\""+info[i].uid+"\">"+
                         "<div class=\"headimg\"><img src=\"../../"+info[i].userpic+"\"></div>\n" +
-                        "<div class=\"user\"> <p><a href=\""+info[i].website+"\" target=\"_blank\">"+info[i].username+"</a></p></div>\n" +
-                        "<div class=\"text\"> <p>"+info[i].MessageContent+"</p></div>\n" +
-                        "<div class=\"date\">  <span>"+new Date(info[i].createdate).Format("YYYY-MM-dd hh:mm:ss")+"</span><i class=\"layui-icon layui-icon-location\"> "+info[i].country+" · "+info[i].region+" · "+info[i].city+"</i></div>\n" +
+                        "<div class=\"user\"><a href=\""+info[i].website+"\" target=\"_blank\">"+info[i].username+"</a></div>\n" +
+                        "<div class=\"text\"><p>"+info[i].MessageContent+"</p></div>\n" +
+                        "<div class=\"date\"><span>"+new Date(info[i].createdate).Format("YYYY-MM-dd hh:mm:ss")+"</span><i class=\"layui-icon layui-icon-location\"> "+info[i].country+" · "+info[i].region+" · "+info[i].city+"</i></div>\n" +
                         "<div class=\"replybtn\" ><a class=\"Mainreplybtn\" replybtn=\"true\">回复</a></div><form id=\"submit\" ></form>"+addstr+"</div>"
                 }
                 // location.reload()
                 $('#messagecon').find('*').remove();
-                console.log(html)
+                // console.log(html)
                 $("#messagecon").append(html)
                 $(function () {
                     $(".Mainreplybtn").on('click', function () {
@@ -99,7 +99,8 @@ function loadData(currPage, pageSize){
                         //自己
                         var contsibling = $(this).parents().siblings('.Message').children('#submit').children('.reply-input');
                         var contsiblingtext = $(this).parents().siblings('.Message').children('.replybtn').children('.Mainreplybtn');
-                        // {#console.log(contsub)#}
+                        var username=$(this).parents().parents('.Message').children('.user').children('a').html()
+
                         // {#console.log(contsibling)#}
                         var btn = $(this).attr('replybtn')
                         if (btn)
@@ -113,7 +114,7 @@ function loadData(currPage, pageSize){
                             $(contsiblingsub).remove()
                             $(contsiblingsubtext).text('回复')
                             $(contsiblingsubtext).attr('replytoreply', 'true');
-                            $(this).text('取消回复');
+                            $(this).text('收起');
                             $(this).attr('replybtn', '');
                             $(this).parents().parents('.Message').children('#submit').append(
                                 "<div class=\"reply-input\"><div class=\"userinfo\">\n" +
@@ -123,6 +124,9 @@ function loadData(currPage, pageSize){
                                 "<textarea placeholder=\"请说点什么呗\" class=\"message-to-replycontent\"></textarea></div>\n" +
                                 "<div class=\"reply-submit\"><button id=\"ReplyMain\"type=\"button\">回复</button></div></div>\n"
                             )
+                            var replycon=$(this).parents().parents('.Message').children('#submit').children('.reply-input').children('.text').children('.message-to-replycontent')
+                            $(replycon).attr('placeholder','@'+username)
+                            console.log(replycon)
                         }
                         else
                         {
@@ -185,8 +189,9 @@ function loadData(currPage, pageSize){
                         //自己表堂
                         var contparentsiblings = $(this).parents().parents('.message-rely-children').parents().siblings('.Message').children('#submit').children('.reply-input');
                         var contparentsiblingstext = $(this).parents().parents('.message-rely-children').parents().siblings('.Message').children('.replybtn').children('.Mainreplybtn');
+                        var username=$(this).parents().parents('.message-rely-children').children('.reply-user').children('a').html()
                         if (btn) {
-                            $(this).text('取消回复');
+                            $(this).text('收起');
                             $(contsiblingstext).text('回复');
                             $(contparenttext).text('回复');
                             $(this).attr('replytoreply', '');
@@ -204,6 +209,8 @@ function loadData(currPage, pageSize){
                                 "<div class=\"inline-space\"><input placeholder=\"站点\" class=\"reply-to-website\"></div></div><div class=\"text\">\n" +
                                 "<textarea placeholder=\"请说点什么呗\" class=\"reply-to-replycontent\"></textarea></div>\n" +
                                 "<div class=\"reply-submit\" ><button id=\"ReplySub\" type=\"button\">回复</button></div></div>")
+                            var replycon=$(this).parents().parents('.message-rely-children').children('#submitsub').children('.reply-input').children('.text').children('.reply-to-replycontent')
+                            $(replycon).attr('placeholder','@'+username)
                         }
                         else
                         {
