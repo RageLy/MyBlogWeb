@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="96e37eb9-eab1-4dc6-a001-8e45b9d95461" name="Default" comment="修改了文章评论区样式">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlog/static/common/css/Huaui.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBlog/static/common/css/blog.css" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/static/common/css/blog.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MyBlog/static/lib/LoadBlog.js" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/static/lib/LoadBlog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyBlog/templates/MyBlog/Blog.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyBlog/templates/MyBlog/Blog.html" afterDir="false" />
     </list>
     <ignored path="C:\Users\Administrator\PycharmProjects\MyBlogWeb\.idea\shelf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -60,8 +58,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MyBlog/static/lib/LoadBlog.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="57" column="55" selection-start-line="57" selection-start-column="55" selection-end-line="57" selection-end-column="55" />
+            <state relative-caret-position="204">
+              <caret line="51" column="29" lean-forward="true" selection-end-line="81" />
             </state>
           </provider>
         </entry>
@@ -69,8 +67,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MyBlog/static/common/css/blog.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="93" column="117" selection-start-line="93" selection-start-column="117" selection-end-line="93" selection-end-column="117" />
+            <state relative-caret-position="289">
+              <caret line="97" column="153" selection-start-line="97" selection-start-column="153" selection-end-line="97" selection-end-column="153" />
             </state>
           </provider>
         </entry>
@@ -96,8 +94,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/Blog.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="34" column="30" lean-forward="true" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+            <state relative-caret-position="510">
+              <caret line="54" column="26" lean-forward="true" selection-start-line="54" selection-start-column="26" selection-end-line="54" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -271,8 +269,8 @@
         <option value="D:/Python36/Lib/site-packages/django/forms/boundfield.py" />
         <option value="$PROJECT_DIR$/MyBlog/static/lib/LoadComment.js" />
         <option value="$PROJECT_DIR$/MyBlog/static/lib/loadMessage.js" />
-        <option value="$PROJECT_DIR$/MyBlog/static/lib/LoadBlog.js" />
         <option value="$PROJECT_DIR$/MyBlog/templates/MyBlog/Blog.html" />
+        <option value="$PROJECT_DIR$/MyBlog/static/lib/LoadBlog.js" />
         <option value="$PROJECT_DIR$/MyBlog/static/common/css/blog.css" />
       </list>
     </option>
@@ -552,7 +550,7 @@
       <workItem from="1544405359597" duration="4866000" />
       <workItem from="1544419136836" duration="752000" />
       <workItem from="1544490104408" duration="1929000" />
-      <workItem from="1544620568806" duration="2829000" />
+      <workItem from="1544620568806" duration="3859000" />
     </task>
     <task id="LOCAL-00001" summary="重新修改留言界面">
       <created>1542333296458</created>
@@ -736,11 +734,18 @@
       <option name="project" value="LOCAL" />
       <updated>1544420014400</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="修改了文章评论区样式">
+      <created>1544623556902</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1544623556902</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="401857000" />
+    <option name="totallyTimeSpent" value="402887000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -816,9 +821,9 @@
     <MESSAGE value="修改了留言界面" />
     <MESSAGE value="添加播放器和地图定位" />
     <MESSAGE value="修改了文章回复界面的样式" />
-    <MESSAGE value="修改了文章评论区样式" />
     <MESSAGE value="修改文章评论区" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改文章评论区" />
+    <MESSAGE value="修改了文章评论区样式" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改了文章评论区样式" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1095,24 +1100,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyBlog/static/lib/LoadBlog.js">
+    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/Blog.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="57" column="55" selection-start-line="57" selection-start-column="55" selection-end-line="57" selection-end-column="55" />
+        <state relative-caret-position="510">
+          <caret line="54" column="26" lean-forward="true" selection-start-line="54" selection-start-column="26" selection-end-line="54" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MyBlog/templates/MyBlog/Blog.html">
+    <entry file="file://$PROJECT_DIR$/MyBlog/static/lib/LoadBlog.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="34" column="30" lean-forward="true" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+        <state relative-caret-position="204">
+          <caret line="51" column="29" lean-forward="true" selection-end-line="81" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MyBlog/static/common/css/blog.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="93" column="117" selection-start-line="93" selection-start-column="117" selection-end-line="93" selection-end-column="117" />
+        <state relative-caret-position="289">
+          <caret line="97" column="153" selection-start-line="97" selection-start-column="153" selection-end-line="97" selection-end-column="153" />
         </state>
       </provider>
     </entry>

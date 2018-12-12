@@ -80,7 +80,7 @@ body a{cursor: pointer;}
 .picbanner .title .logo-desc{font-size: 16px;float: left;width: 85%;text-align: left;}
 
 .content{padding:0 0 50px 0;margin-bottom: 0;background-color: white;}
-.content   ul li{border-bottom:1px dashed #adadad;}
+.content   ul li{}
 .content   ul li .header{width: 100%;padding: 0 0 20px 0;display: inline-block;clear: both;}
 .content   ul li .header .title{float: left}
 .content   ul li .header .title a{font-size: 20px; color: #00a67c!important;transition: all .3s ease;}
@@ -91,11 +91,11 @@ body a{cursor: pointer;}
 .content   ul li .header .category a:hover{background-color: #00a67c;color:#ffffff!important;}
 .content   ul li{overflow: hidden;padding: 20px 20px 0 20px;}
 .content   ul li .img{float: left;overflow: hidden;}
-.content   ul li .img img{height: 160px;width: 240px;cursor: pointer;transition: all 0.5s; /* 所有的属性变化在0.5s的时间段内完成 */}
+.content   ul li .img a img{height: 160px;width: 240px;cursor: pointer;transition: all 0.5s; /* 所有的属性变化在0.5s的时间段内完成 */}
 .content   ul li:hover img{transform: scale(1.1);}
 .content   ul li .abstract{width: 67%;padding-left: 20px;float: left;text-align: justify;display: -webkit-box;-webkit-box-orient:vertical;overflow: hidden;-webkit-line-clamp: 4;line-height: 24px;}
 .content   ul li .abstract a{color: #777;}
-.content   ul li  .author{overflow: hidden;margin: 20px 0 0 0;clear: both;display: inline-block;color: #999;width: 100%;line-height: 24px;padding-bottom: 20px;}
+.content   ul li  .author{overflow: hidden;margin: 20px 0 0 0;clear: both;display: inline-block;color: #999;width: 100%;border-bottom:1px dashed #adadad;line-height: 24px;padding-bottom: 20px;}
 .content   ul li  .author span{padding-left: 20px;margin: 0 10px 0 0;font-size: 12px;}
 .content   ul li  .author .t_right{padding-left: 0;margin: 0;font-size: 12px;}
 .content   ul li  .author .t_left{padding-right: 20px;margin: 0;font-size: 12px;}
