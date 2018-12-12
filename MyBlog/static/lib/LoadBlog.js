@@ -55,7 +55,7 @@ layui.use('flow', function(){
 
                             });
                             // console.log(blog_blogtypelist)
-                            var str=' <div class="item">\n' +
+                            var str=' <li class="item">\n' +
                                 '                        <div class="header">\n' +
                                 '                            <div class="title"><a href="../details/'+item.id+'" title="'+item.title+'">'+item.title+'</a></div>\n' +
                                 '                            <div class="category">'+blogcategorylist+'</div>\n' +
@@ -70,7 +70,7 @@ layui.use('flow', function(){
                                 '                            <span class="viewnum f_r ">'+item.hit+'次阅读</span>\n' +
                                 '                            <span class="pingl f_r">'+item.commentcount+'条评论</span>\n' +
                                 '                        </div>\n' +
-                                '                    </div>'
+                                '                    </li>'
                             lis.push(str);
                             // console.log(lis)
                         });
