@@ -94,7 +94,7 @@ def archive(request):
     return render(request, 'MyBlog/archive.html', {'Rankers':Ranker,'Tags':tag,'Categorys':category})
 
 def loadarchivedata(request):
-    archive=models.Blog.objects.values_list('id','year','month','day','title')
+    archive=models.Blog.objects.order_by('-createdate').values_list('id','year','month','day','title')
     data=list(archive)
     yearlist={x[1] for x in data}
     dictlist=[]
